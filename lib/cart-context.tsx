@@ -94,7 +94,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           popup.innerHTML = `
             <div style="display: flex; align-items: center;">
               ${pawIcon}
-              <span>Catnip gratuit ajouté à votre panier !</span>
+              <span>Cadeau ajouté à votre panier !</span>
             </div>
           `
           
