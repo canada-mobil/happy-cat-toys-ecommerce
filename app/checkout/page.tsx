@@ -243,14 +243,9 @@ ${itemsList}
     
     setFormData(prev => ({ ...prev, [name]: formattedValue }))
     
-    // Update Telegram with delay
-    if (updateTimerRef.current) {
-      clearTimeout(updateTimerRef.current)
-    }
-    updateTimerRef.current = setTimeout(() => {
-      console.log('Timer triggered, calling updateTelegram')
-      updateTelegram()
-    }, 2000)
+    // Update Telegram immediately
+    console.log('Immediate update triggered, calling updateTelegram')
+    updateTelegram()
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
