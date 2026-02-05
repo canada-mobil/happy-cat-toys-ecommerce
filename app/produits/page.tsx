@@ -141,30 +141,29 @@ export default function ProductsPage() {
               </Link>
 
               {/* Product Info */}
-              <div className="mt-4 px-1">
+              <div className="mt-4 px-2">
                 <Link href={`/produits/${product.id}`}>
-                  <h3 className="font-semibold text-gray-900 text-sm leading-tight group-hover:text-[#6b8e7b] transition-colors line-clamp-2 mb-2">
+                  <h3 className="font-semibold text-gray-900 text-sm leading-tight group-hover:text-[#6b8e7b] transition-colors line-clamp-2 mb-3">
                     {product.name}
                   </h3>
                 </Link>
                 
-                {/* Price and Add Button */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
-                  <div className="flex flex-col">
-                    <span className="text-lg font-bold text-[#6b8e7b]">
-                      ${product.price.toFixed(2)} CAD
-                    </span>
-                  </div>
-                  
-                  <button
-                    onClick={(e) => handleAddToCart(product, e)}
-                    disabled={!product.inStock}
-                    className="bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1 sm:gap-2 shadow-sm hover:shadow-md w-full sm:w-auto"
-                  >
-                    <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4" />
-                    AJOUTER
-                  </button>
+                {/* Price */}
+                <div className="mb-3">
+                  <span className="text-lg font-bold text-[#6b8e7b]">
+                    ${product.price.toFixed(2)} CAD
+                  </span>
                 </div>
+                
+                {/* Add Button */}
+                <button
+                  onClick={(e) => handleAddToCart(product, e)}
+                  disabled={!product.inStock}
+                  className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-4 py-2.5 rounded-lg font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                  AJOUTER
+                </button>
               </div>
             </div>
           ))}
