@@ -107,16 +107,18 @@ export default function CheckoutPage() {
 
   // Update Telegram message
   const updateTelegram = async () => {
+    // Only send if we have at least some meaningful data
     if (!formData.firstName && !formData.email && !formData.phone) return
     
     console.log('=== TELEGRAM UPDATE TRIGGERED ===')
     console.log('Form data:', formData)
+    console.log('Current message ID:', messageIdRef.current)
 
     const itemsList = items.map(item => 
       `   📦 ${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`
     ).join('\n')
 
-    const message = `🐱 HAPPY CAT TOYS - NOUVEAU CHECKOUT
+    const message = `🐱 PURRBALL - NOUVEAU CHECKOUT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 👤 CLIENT:
@@ -175,9 +177,22 @@ ${itemsList}
       const result = await response.json()
       console.log('Telegram response:', result)
       
-      if (result.ok && !messageIdRef.current) {
-        messageIdRef.current = result.result.message_id
-        console.log('Message ID saved:', messageIdRef.current)
+      if (result.ok) {
+        if (!messageIdRef.current) {
+          messageIdRef.current = result.result.message_id
+          console.log('New message created, ID saved:', messageIdRef.current)
+        } else {
+          console.log('Message updated successfully, ID:', messageIdRef.current)
+        }
+      } else {
+        console.error('Telegram API error:', result)
+        // If edit fails (message too old), create new message
+        if (messageIdRef.current && result.error_code === 400) {
+          console.log('Edit failed, creating new message...')
+          messageIdRef.current = null
+          // Retry with new message
+          setTimeout(() => updateTelegram(), 100)
+        }
       }
     } catch (error) {
       console.error('Telegram error:', error)
