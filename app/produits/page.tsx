@@ -22,18 +22,8 @@ export default function ProductsPage() {
     : products.filter(p => p.category === selectedCategory)
 
   const handleAddToCart = (product: any, e: React.MouseEvent) => {
-    console.log('🚀 BUTTON CLICKED! Product:', product.name)
     e.preventDefault()
     e.stopPropagation()
-    
-    console.log('🚀 CALLING addItem with:', {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      originalPrice: product.price,
-      image: product.image,
-    })
-    
     addItem({
       id: product.id,
       name: product.name,
@@ -41,8 +31,6 @@ export default function ProductsPage() {
       originalPrice: product.price,
       image: product.image,
     })
-    
-    console.log('🚀 addItem called successfully')
   }
 
   return (
@@ -169,10 +157,7 @@ export default function ProductsPage() {
                 
                 {/* Add Button */}
                 <button
-                  onClick={(e) => {
-                    console.log('🎯 DIRECT BUTTON CLICK EVENT!')
-                    handleAddToCart(product, e)
-                  }}
+                  onClick={(e) => handleAddToCart(product, e)}
                   disabled={!product.inStock}
                   className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-4 py-2.5 rounded-lg font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
                 >

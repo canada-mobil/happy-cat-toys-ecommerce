@@ -47,6 +47,38 @@ export function CartProvider({ children }: { children: ReactNode }) {
         if (Array.isArray(parsedCart)) {
           setItems(parsedCart)
         }
+      } else {
+        // Auto-add free catnip on first visit
+        const freeCatnip: CartItem = {
+          id: 'catnip-gratuit',
+          name: 'Catnip Gratuit',
+          price: 0,
+          originalPrice: 5.99,
+          image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=400&fit=crop&crop=center',
+          quantity: 1,
+          variant: 'CADEAU GRATUIT'
+        }
+        setItems([freeCatnip])
+        
+        // Show welcome popup
+        setTimeout(() => {
+          const popup = document.createElement('div')
+          popup.className = 'fixed top-4 right-4 z-[60] bg-green-500 text-white p-4 rounded-lg shadow-lg animate-bounce'
+          popup.innerHTML = `
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🎁</span>
+              <div>
+                <div class="font-semibold text-sm">Bienvenue !</div>
+                <div class="text-xs opacity-90">Catnip gratuit ajouté à votre panier</div>
+              </div>
+            </div>
+          `
+          document.body.appendChild(popup)
+          
+          setTimeout(() => {
+            popup.remove()
+          }, 4000)
+        }, 2000)
       }
     } catch {
       localStorage.removeItem("happy-cat-toys-cart")
@@ -64,64 +96,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items, isClient])
 
   const addItem = (product: Omit<CartItem, "quantity">) => {
-    console.log('🔥 ADD ITEM CALLED WITH:', product.id, product.name)
-    
     setItems(prevItems => {
-      console.log('🔥 CURRENT CART ITEMS:', prevItems.map(i => i.id))
-      
       const existingItem = prevItems.find(item => item.id === product.id)
-      let newItems = [...prevItems]
       
       if (existingItem) {
-        console.log('🔥 UPDATING EXISTING ITEM')
-        newItems = prevItems.map(item =>
+        return prevItems.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
-      } else {
-        console.log('🔥 ADDING NEW ITEM')
-        newItems = [...prevItems, { ...product, quantity: 1 }]
       }
       
-      // FORCE ADD CATNIP FOR ANY NON-CATNIP PRODUCT
-      if (product.id !== 'catnip-gratuit') {
-        console.log('🔥 CHECKING FOR CATNIP...')
-        const hasCatnip = newItems.find(item => item.id === 'catnip-gratuit')
-        console.log('🔥 HAS CATNIP ALREADY?', !!hasCatnip)
-        
-        if (!hasCatnip) {
-          console.log('🔥 ADDING FREE CATNIP NOW!')
-          const freeCatnip: CartItem = {
-            id: 'catnip-gratuit',
-            name: 'Catnip Gratuit',
-            price: 0,
-            originalPrice: 5.99,
-            image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=400&fit=crop&crop=center',
-            quantity: 1,
-            variant: 'CADEAU GRATUIT'
-          }
-          newItems = [...newItems, freeCatnip]
-          console.log('🔥 CATNIP ADDED! NEW ITEMS:', newItems.map(i => i.id))
-          
-          // Simple alert for now to test
-          setTimeout(() => {
-            alert('🎁 CADEAU AJOUTÉ! Catnip gratuit dans votre panier!')
-          }, 100)
-        } else {
-          console.log('🔥 CATNIP ALREADY EXISTS, NOT ADDING')
-        }
-      } else {
-        console.log('🔥 PRODUCT IS CATNIP, NOT ADDING EXTRA')
-      }
-      
-      console.log('🔥 FINAL ITEMS TO RETURN:', newItems.map(i => i.id))
-      return newItems
+      return [...prevItems, { ...product, quantity: 1 }]
     })
     
     // Auto-open cart when item is added
     setIsCartOpen(true)
-    console.log('🔥 CART OPENED')
   }
 
   const openCart = () => setIsCartOpen(true)
