@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ShoppingCart, X, Plus, Minus, Trash2, Star, Truck, Shield, Clock } from "lucide-react"
+import { ShoppingCart, X, Plus, Minus, Trash2, Star, Truck, Shield, Clock, MapPin } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 import Image from "next/image"
 import Link from "next/link"
@@ -14,9 +14,9 @@ export default function CartDropdown() {
 
   // Rotating banner messages
   const bannerMessages = [
-    { icon: "🇨🇦", text: "Fabriqué au Canada", subtext: "Nos produits sont 100% naturels" },
-    { icon: "🚚", text: "Livraison gratuite", subtext: "Pour commandes de 2+ articles" },
-    { icon: "🛡️", text: "Garantie 2 ans", subtext: "100% sécurisé" }
+    { icon: <MapPin className="w-4 h-4" />, text: "Fabriqué au Canada", subtext: "Nos produits sont 100% naturels" },
+    { icon: <Truck className="w-4 h-4" />, text: "Livraison 2-3 jours", subtext: "Expédition rapide" },
+    { icon: <Shield className="w-4 h-4" />, text: "Garantie 2 ans", subtext: "100% sécurisé" }
   ]
 
   // Auto-rotate banner every 4 seconds
@@ -84,7 +84,7 @@ export default function CartDropdown() {
             {/* Rotating Banner */}
             <div className="bg-[#6b8e7b] text-white p-3 text-center transition-all duration-500">
               <div className="flex items-center justify-center gap-2">
-                <span className="text-lg">{bannerMessages[currentBannerIndex].icon}</span>
+                <span className="text-white">{bannerMessages[currentBannerIndex].icon}</span>
                 <div>
                   <div className="text-sm font-semibold">{bannerMessages[currentBannerIndex].text}</div>
                   <div className="text-xs opacity-90">{bannerMessages[currentBannerIndex].subtext}</div>
@@ -152,20 +152,6 @@ export default function CartDropdown() {
               </div>
             ) : (
               <>
-                {/* Free Shipping Progress - Simplified */}
-                {remainingForFreeShipping > 0 && (
-                  <div className="p-3 border-b border-border">
-                    <div className="text-sm text-[#6b8e7b] mb-2 font-medium">
-                      Plus que ${remainingForFreeShipping.toFixed(2)} CAD pour la livraison offerte !
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-[#6b8e7b] h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${freeShippingProgress}%` }}
-                      />
-                    </div>
-                  </div>
-                )}
 
                 {/* Items */}
                 <div className="flex-1 overflow-y-auto">
