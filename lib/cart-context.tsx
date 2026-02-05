@@ -63,35 +63,61 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [items, isClient])
 
-  const addItem = (item: Omit<CartItem, "quantity">) => {
-    setItems((prev) => {
-      const existing = prev.find((i) => i.id === item.id)
-      if (existing) {
-        return prev.map((i) => (i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i))
+  const addItem = (product: Omit<CartItem, "quantity">) => {
+    setItems(prevItems => {
+      const existingItem = prevItems.find(item => item.id === product.id)
+      
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
       }
-
-      // Check if it's a premium toy being added
-      const isPremiumToy = item.price > 20
-      const freeGiftExists = prev.find((i) => i.id === "free-catnip-sample")
-
-      // Add toy
-      const newItems = [...prev, { ...item, quantity: 1 }]
-
-      // Auto-add free catnip sample if adding premium toy and gift doesn't exist
-      if (isPremiumToy && !freeGiftExists) {
-        newItems.push({
-          id: "free-catnip-sample",
-          name: "Échantillon Herbe à Chat Premium",
-          price: 0,
-          originalPrice: 4.99,
-          image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=400&fit=crop&crop=center",
-          quantity: 1,
-          variant: "CADEAU GRATUIT",
-        })
-      }
-
-      return newItems
+      
+      return [...prevItems, { ...product, quantity: 1 }]
     })
+    
+    // Auto-add free catnip when adding any product (except catnip itself)
+    if (product.id !== 'catnip-gratuit') {
+      setTimeout(() => {
+        setItems(prevItems => {
+          const hasCatnip = prevItems.find(item => item.id === 'catnip-gratuit')
+          if (!hasCatnip) {
+            const freeCatnip: CartItem = {
+              id: 'catnip-gratuit',
+              name: 'Catnip Gratuit',
+              price: 0,
+              originalPrice: 5.99,
+              image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=400&fit=crop&crop=center',
+              quantity: 1,
+              variant: 'CADEAU GRATUIT'
+            }
+            
+            // Show popup notification
+            const popup = document.createElement('div')
+            popup.className = 'fixed top-4 right-4 z-[60] bg-green-500 text-white p-3 rounded-lg shadow-lg animate-bounce'
+            popup.innerHTML = `
+              <div class="flex items-center gap-2">
+                <span class="text-lg">🎁</span>
+                <div>
+                  <div class="font-semibold text-sm">Cadeau ajouté !</div>
+                  <div class="text-xs opacity-90">Catnip gratuit dans votre panier</div>
+                </div>
+              </div>
+            `
+            document.body.appendChild(popup)
+            
+            setTimeout(() => {
+              popup.remove()
+            }, 3000)
+            
+            return [...prevItems, freeCatnip]
+          }
+          return prevItems
+        })
+      }, 1000)
+    }
     
     // Auto-open cart when item is added
     setIsCartOpen(true)
