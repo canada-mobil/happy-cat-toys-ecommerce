@@ -1,8 +1,9 @@
 "use client"
 
 import Image from "next/image"
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, ShoppingCart } from "lucide-react"
 import { useRef } from "react"
+import { useCart } from "@/lib/cart-context"
 
 const products = [
   {
@@ -41,10 +42,25 @@ const products = [
 
 export default function TreatsSection() {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const { addItem } = useCart()
 
   const scrollRight = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: 200, behavior: 'smooth' })
+    }
+  }
+
+  const handleAddToCart = (product: any, e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (!product.soldOut) {
+      addItem({
+        id: product.id.toString(),
+        name: product.name,
+        price: product.price,
+        originalPrice: product.price,
+        image: product.image,
+      })
     }
   }
 
@@ -62,29 +78,56 @@ export default function TreatsSection() {
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {products.map((product) => (
-              <div key={product.id} className="flex-shrink-0 w-[45%] md:w-[280px] snap-start">
-                <div className="relative aspect-square bg-white rounded-lg overflow-hidden mb-3">
+              <div key={product.id} className="flex-shrink-0 w-[45%] md:w-[280px] snap-start group relative">
+                <div className="relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
+                  {/* Stock Badge */}
                   {product.soldOut && (
-                    <span className="absolute top-2 left-2 z-10 text-xs font-semibold text-foreground bg-white/80 px-2 py-1 rounded">
+                    <span className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
                       ÉPUISÉ
                     </span>
                   )}
-                  <Image
-                    src={product.image || "/placeholder.svg"}
-                    alt={product.name}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-300"
-                  />
+                  
+                  {/* Best Seller Badge */}
+                  {product.price > 10 && (
+                    <span className="absolute top-3 right-3 z-10 bg-orange-500 text-white text-xs font-medium px-2 py-1 rounded-full">
+                      BEST SELLER
+                    </span>
+                  )}
+                  
+                  {/* Product Image */}
+                  <div className="relative aspect-square bg-gray-50">
+                    <Image
+                      src={product.image || "/placeholder.svg"}
+                      alt={product.name}
+                      fill
+                      className="object-contain p-6 group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
-                <h3 className="text-[#c8847a] font-medium text-sm md:text-base leading-tight mb-1">
-                  {product.name}
-                </h3>
-                <p className="text-muted-foreground text-xs md:text-sm mb-1">
-                  {product.description}
-                </p>
-                <p className="text-foreground font-semibold">
-                  ${product.price.toFixed(2)} CAD
-                </p>
+
+                {/* Product Info */}
+                <div className="mt-4 px-2">
+                  <h3 className="font-semibold text-gray-900 text-sm leading-tight group-hover:text-[#6b8e7b] transition-colors line-clamp-2 mb-3">
+                    {product.name}
+                  </h3>
+                  
+                  {/* Price */}
+                  <div className="mb-3">
+                    <span className="text-lg font-bold text-[#6b8e7b]">
+                      ${product.price.toFixed(2)} CAD
+                    </span>
+                  </div>
+                  
+                  {/* Add Button */}
+                  <button
+                    onClick={(e) => handleAddToCart(product, e)}
+                    disabled={product.soldOut}
+                    className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-4 py-2.5 rounded-lg font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+                  >
+                    <ShoppingCart className="w-4 h-4" />
+                    AJOUTER
+                  </button>
+                </div>
               </div>
             ))}
           </div>

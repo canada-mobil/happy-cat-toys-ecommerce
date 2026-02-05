@@ -22,7 +22,7 @@ export default function HeroSection() {
         </h2>
         
         <a
-          href="#best-sellers"
+          href="/produits"
           className="inline-block bg-white/90 hover:bg-white text-foreground font-medium px-8 py-3 rounded-full transition-all hover:scale-105 tracking-wide"
         >
           DÉCOUVRIR
