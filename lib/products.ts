@@ -19,7 +19,7 @@ export const products: Product[] = [
     description: "Jouet interactif avec plumes colorées pour stimuler l'instinct de chasse de votre chat.",
     longDescription: "La Baguette à Plumes Premium est conçue pour éveiller l'instinct naturel de chasseur de votre félin. Avec ses plumes multicolores et son mouvement fluide, ce jouet offre des heures de divertissement et d'exercice. Parfait pour renforcer le lien avec votre compagnon tout en lui permettant de dépenser son énergie.",
     price: 14.99,
-    image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400&h=400&fit=crop&crop=center",
+    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=400&fit=crop&crop=center",
     category: "Jouets Interactifs",
     inStock: true,
     features: [
@@ -55,7 +55,7 @@ export const products: Product[] = [
     description: "Set de 6 balles avec grelots intégrés pour des heures de jeu.",
     longDescription: "Ce lot de 6 balles colorées avec grelots intégrés offre une variété de textures et de sons pour captiver votre chat. Chaque balle produit un son différent qui stimule la curiosité et l'envie de jouer de votre félin. Parfaites pour le jeu solo ou interactif.",
     price: 12.99,
-    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=400&fit=crop&crop=center",
+    image: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop&crop=center",
     category: "Balles & Grelots",
     inStock: true,
     features: [
