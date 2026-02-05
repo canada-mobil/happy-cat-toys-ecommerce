@@ -143,7 +143,7 @@ export default function TreatsSection() {
           </button>
         </div>
 
-        {/* Mobile Layout - Owari Style */}
+        {/* Mobile Layout - Compact */}
         <div className="md:hidden">
           <div className="relative">
             <div 
@@ -152,19 +152,19 @@ export default function TreatsSection() {
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {products.map((product, index) => (
-                <div key={product.id} className="flex-shrink-0 w-full snap-center px-4">
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-lg mx-auto max-w-sm">
+                <div key={product.id} className="flex-shrink-0 w-full snap-center px-6">
+                  <div className="bg-white rounded-xl overflow-hidden shadow-md mx-auto max-w-xs">
                     {/* Product Image */}
-                    <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100">
+                    <div className="relative aspect-[4/3] bg-gray-50">
                       {/* Badges */}
-                      <div className="absolute top-4 left-4 right-4 flex justify-between z-10">
+                      <div className="absolute top-2 left-2 right-2 flex justify-between z-10">
                         {product.soldOut && (
-                          <span className="bg-red-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                          <span className="bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
                             ÉPUISÉ
                           </span>
                         )}
                         {product.price > 10 && !product.soldOut && (
-                          <span className="bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full ml-auto">
+                          <span className="bg-orange-500 text-white text-xs font-medium px-2 py-1 rounded-full ml-auto">
                             BEST SELLER
                           </span>
                         )}
@@ -174,22 +174,22 @@ export default function TreatsSection() {
                         src={product.image || "/placeholder.svg"}
                         alt={product.name}
                         fill
-                        className="object-contain p-8"
+                        className="object-contain p-4"
                       />
                     </div>
 
                     {/* Product Info */}
-                    <div className="p-6 text-center">
-                      <h3 className="font-bold text-xl text-gray-900 mb-2 leading-tight">
+                    <div className="p-4 text-center">
+                      <h3 className="font-semibold text-base text-gray-900 mb-1 leading-tight">
                         {product.name}
                       </h3>
-                      <p className="text-gray-600 text-sm mb-4">
+                      <p className="text-gray-600 text-xs mb-3">
                         {product.description}
                       </p>
                       
                       {/* Price */}
-                      <div className="mb-6">
-                        <span className="text-2xl font-bold text-[#6b8e7b]">
+                      <div className="mb-3">
+                        <span className="text-lg font-bold text-[#6b8e7b]">
                           ${product.price.toFixed(2)} CAD
                         </span>
                       </div>
@@ -198,10 +198,10 @@ export default function TreatsSection() {
                       <button
                         onClick={(e) => handleAddToCart(product, e)}
                         disabled={product.soldOut}
-                        className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-6 py-4 rounded-xl font-semibold text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:scale-105"
+                        className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-4 py-2.5 rounded-lg font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm"
                       >
-                        <ShoppingCart className="w-5 h-5" />
-                        {product.soldOut ? 'ÉPUISÉ' : 'AJOUTER AU PANIER'}
+                        <ShoppingCart className="w-4 h-4" />
+                        {product.soldOut ? 'ÉPUISÉ' : 'AJOUTER'}
                       </button>
                     </div>
                   </div>
@@ -210,11 +210,11 @@ export default function TreatsSection() {
             </div>
 
             {/* Dots Indicator */}
-            <div className="flex justify-center mt-6 gap-2">
+            <div className="flex justify-center mt-4 gap-1.5">
               {products.map((_, index) => (
                 <button
                   key={index}
-                  className="w-2 h-2 rounded-full bg-gray-300 transition-colors"
+                  className="w-1.5 h-1.5 rounded-full bg-gray-300 transition-colors"
                   onClick={() => {
                     if (scrollRef.current) {
                       scrollRef.current.scrollTo({
