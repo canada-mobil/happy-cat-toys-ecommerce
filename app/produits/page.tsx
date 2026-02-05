@@ -149,19 +149,19 @@ export default function ProductsPage() {
                 </Link>
                 
                 {/* Price and Add Button */}
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
                   <div className="flex flex-col">
                     <span className="text-lg font-bold text-[#6b8e7b]">
-                      {product.price.toFixed(2)}€
+                      ${product.price.toFixed(2)} CAD
                     </span>
                   </div>
                   
                   <button
                     onClick={(e) => handleAddToCart(product, e)}
                     disabled={!product.inStock}
-                    className="bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-4 py-2 rounded-lg font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-sm hover:shadow-md"
+                    className="bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1 sm:gap-2 shadow-sm hover:shadow-md w-full sm:w-auto"
                   >
-                    <ShoppingCart className="w-4 h-4" />
+                    <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4" />
                     AJOUTER
                   </button>
                 </div>
