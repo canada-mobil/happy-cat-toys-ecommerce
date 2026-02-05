@@ -71,14 +71,15 @@ export default function TreatsSection() {
           Jouets & Accessoires
         </h2>
 
-        <div className="relative">
+        {/* Desktop Layout */}
+        <div className="relative hidden md:block">
           <div 
             ref={scrollRef}
             className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {products.map((product) => (
-              <div key={product.id} className="flex-shrink-0 w-[45%] md:w-[280px] snap-start group relative">
+              <div key={product.id} className="flex-shrink-0 w-[280px] snap-start group relative">
                 <div className="relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
                   {/* Stock Badge */}
                   {product.soldOut && (
@@ -135,11 +136,97 @@ export default function TreatsSection() {
           {/* Scroll Button */}
           <button 
             onClick={scrollRight}
-            className="absolute right-0 top-1/3 -translate-y-1/2 bg-[#c8847a] text-white p-3 rounded-full shadow-lg hover:bg-[#b5736a] transition-colors hidden md:block"
+            className="absolute right-0 top-1/3 -translate-y-1/2 bg-[#c8847a] text-white p-3 rounded-full shadow-lg hover:bg-[#b5736a] transition-colors"
             aria-label="Voir plus"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
+        </div>
+
+        {/* Mobile Layout - Owari Style */}
+        <div className="md:hidden">
+          <div className="relative">
+            <div 
+              ref={scrollRef}
+              className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {products.map((product, index) => (
+                <div key={product.id} className="flex-shrink-0 w-full snap-center px-4">
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-lg mx-auto max-w-sm">
+                    {/* Product Image */}
+                    <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100">
+                      {/* Badges */}
+                      <div className="absolute top-4 left-4 right-4 flex justify-between z-10">
+                        {product.soldOut && (
+                          <span className="bg-red-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                            ÉPUISÉ
+                          </span>
+                        )}
+                        {product.price > 10 && !product.soldOut && (
+                          <span className="bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full ml-auto">
+                            BEST SELLER
+                          </span>
+                        )}
+                      </div>
+                      
+                      <Image
+                        src={product.image || "/placeholder.svg"}
+                        alt={product.name}
+                        fill
+                        className="object-contain p-8"
+                      />
+                    </div>
+
+                    {/* Product Info */}
+                    <div className="p-6 text-center">
+                      <h3 className="font-bold text-xl text-gray-900 mb-2 leading-tight">
+                        {product.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        {product.description}
+                      </p>
+                      
+                      {/* Price */}
+                      <div className="mb-6">
+                        <span className="text-2xl font-bold text-[#6b8e7b]">
+                          ${product.price.toFixed(2)} CAD
+                        </span>
+                      </div>
+                      
+                      {/* Add Button */}
+                      <button
+                        onClick={(e) => handleAddToCart(product, e)}
+                        disabled={product.soldOut}
+                        className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-6 py-4 rounded-xl font-semibold text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:scale-105"
+                      >
+                        <ShoppingCart className="w-5 h-5" />
+                        {product.soldOut ? 'ÉPUISÉ' : 'AJOUTER AU PANIER'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center mt-6 gap-2">
+              {products.map((_, index) => (
+                <button
+                  key={index}
+                  className="w-2 h-2 rounded-full bg-gray-300 transition-colors"
+                  onClick={() => {
+                    if (scrollRef.current) {
+                      scrollRef.current.scrollTo({
+                        left: index * scrollRef.current.offsetWidth,
+                        behavior: 'smooth'
+                      })
+                    }
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
