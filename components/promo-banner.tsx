@@ -33,7 +33,7 @@ export default function PromoBanner() {
             <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
               <Shield className="w-7 h-7 text-white" />
             </div>
-            <span className="text-white font-semibold">Garantie 2 Ans</span>
+            <span className="text-white font-semibold">Garantie 2 Mois</span>
             <span className="text-white/70 text-sm">Sur tous les produits</span>
           </div>
           

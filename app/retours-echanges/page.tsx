@@ -57,7 +57,7 @@ export default function RetoursEchangesPage() {
               <div className="border border-red-200 bg-red-50 p-6 rounded-lg text-center">
                 <Clock className="w-8 h-8 text-red-600 mx-auto mb-3" />
                 <h3 className="font-semibold text-red-800 mb-2">30+ jours</h3>
-                <p className="text-red-700 text-sm">Garantie 2 ans pour défauts uniquement</p>
+                <p className="text-red-700 text-sm">Garantie 2 mois pour défauts uniquement</p>
               </div>
             </div>
           </section>

@@ -1,12 +1,19 @@
 "use client"
 
 import { Menu, ShoppingBag } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import CartDropdown from "./cart-dropdown"
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [currentMessage, setCurrentMessage] = useState(0)
+
+  const messages = [
+    "🚚 LIVRAISON GRATUITE OFFERTE",
+    "⚡ LIVRAISON RAPIDE",
+    "✅ GARANTI 2 MOIS"
+  ]
 
   const menuItems = [
     { label: "Accueil", href: "/" },
@@ -17,13 +24,34 @@ export default function Header() {
     { label: "Contact", href: "/contact" },
   ]
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentMessage((prev) => (prev + 1) % messages.length)
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [messages.length])
+
   return (
     <>
-      {/* Announcement Bar */}
-      <div className="bg-[#f5f2ed] py-2 text-center">
-        <p className="text-sm font-medium text-foreground tracking-wide">
-          SOLDES : ACHETEZ 2, OBTENEZ 1 GRATUIT
-        </p>
+      {/* Animated Announcement Bar */}
+      <div className="bg-[#f5f2ed] py-2 text-center overflow-hidden relative">
+        <div className="relative h-6">
+          {messages.map((message, index) => (
+            <p
+              key={index}
+              className={`absolute inset-0 text-sm font-medium text-foreground tracking-wide transition-transform duration-500 ease-in-out ${
+                index === currentMessage
+                  ? 'transform translate-x-0'
+                  : index < currentMessage
+                  ? 'transform -translate-x-full'
+                  : 'transform translate-x-full'
+              }`}
+            >
+              {message}
+            </p>
+          ))}
+        </div>
       </div>
 
       {/* Main Header */}

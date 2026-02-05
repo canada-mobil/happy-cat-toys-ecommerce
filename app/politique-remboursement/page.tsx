@@ -178,9 +178,9 @@ export default function PolitiqueRemboursementPage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">8. Garantie qualité</h2>
             <div className="bg-[#6b8e7b] bg-opacity-10 p-6 rounded-lg">
-              <h3 className="text-foreground font-semibold mb-3">🛡️ Garantie 2 ans</h3>
+              <h3 className="text-foreground font-semibold mb-3">🛡️ Garantie 2 mois</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Tous nos produits sont couverts par une garantie de 2 ans contre les défauts de fabrication. 
+                Tous nos produits sont couverts par une garantie de 2 mois contre les défauts de fabrication. 
                 Si un problème survient après la période de remboursement de 30 jours, nous offrons :
               </p>
               <ul className="list-disc list-inside text-muted-foreground mt-3 space-y-1">

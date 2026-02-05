@@ -16,7 +16,7 @@ export default function CartDropdown() {
   const bannerMessages = [
     { icon: <MapPin className="w-4 h-4" />, text: "Fabriqué au Canada", subtext: "Nos produits sont 100% naturels" },
     { icon: <Truck className="w-4 h-4" />, text: "Livraison 2-3 jours", subtext: "Expédition rapide" },
-    { icon: <Shield className="w-4 h-4" />, text: "Garantie 2 ans", subtext: "100% sécurisé" }
+    { icon: <Shield className="w-4 h-4" />, text: "Garantie 2 mois", subtext: "100% sécurisé" }
   ]
 
   // Auto-rotate banner every 4 seconds
@@ -286,7 +286,7 @@ export default function CartDropdown() {
                   {/* Bottom Trust Badges - Simplified */}
                   <div className="mt-3 pt-2 border-t border-border">
                     <div className="text-xs text-center text-muted-foreground">
-                      Paiement sécurisé SSL • Livraison 2-3j • Garantie 2 ans
+                      Paiement sécurisé SSL • Livraison 2-3j • Garantie 2 mois
                     </div>
                   </div>
                 </div>

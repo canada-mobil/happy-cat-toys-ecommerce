@@ -22,8 +22,8 @@ export default function AboutPage() {
     },
     {
       icon: Shield,
-      title: "Garantie 2 Ans",
-      description: "Tous nos produits sont couverts par notre garantie satisfaction de 2 ans."
+      title: "Garantie 2 Mois",
+      description: "Tous nos produits sont couverts par notre garantie satisfaction de 2 mois."
     }
   ]
 
@@ -31,7 +31,7 @@ export default function AboutPage() {
     { number: "50,000+", label: "Chats Heureux" },
     { number: "2-3", label: "Jours de Livraison" },
     { number: "100%", label: "Canadien" },
-    { number: "2 ans", label: "Garantie" }
+    { number: "2 mois", label: "Garantie" }
   ]
 
   return (

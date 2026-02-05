@@ -219,7 +219,7 @@ export default function CartPage() {
             </div>
             <div className="flex flex-col items-center">
               <Shield className="w-6 h-6 mb-2" />
-              <span className="text-sm font-medium">Garantie 2 ans</span>
+              <span className="text-sm font-medium">Garantie 2 mois</span>
             </div>
             <div className="flex flex-col items-center">
               <RotateCcw className="w-6 h-6 mb-2" />

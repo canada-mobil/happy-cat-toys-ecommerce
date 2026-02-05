@@ -7,7 +7,7 @@ const badges = [
   { icon: Truck, title: "Livraison Gratuite", subtitle: "Commandes 50$+" },
   { icon: Clock, title: "Expédition 24h", subtitle: "Livré en 2-3 jours" },
   { icon: MapPin, title: "100% Canadien", subtitle: "Basé à Montréal" },
-  { icon: Shield, title: "Garantie 2 Ans", subtitle: "Satisfait ou remboursé" },
+  { icon: Shield, title: "Garantie 2 Mois", subtitle: "Satisfait ou remboursé" },
   { icon: CreditCard, title: "Paiement Sécurisé", subtitle: "SSL crypté" },
   { icon: RotateCcw, title: "Retours Gratuits", subtitle: "Sous 30 jours" },
 ]

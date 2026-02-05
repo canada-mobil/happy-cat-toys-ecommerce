@@ -26,7 +26,7 @@ export default function Footer() {
   const guarantees = [
     { icon: MapPin, text: "100% Canadien" },
     { icon: Truck, text: "Livraison 2-3 jours" },
-    { icon: Shield, text: "Garantie 2 ans" },
+    { icon: Shield, text: "Garantie 2 mois" },
     { icon: Clock, text: "Retours 30 jours" },
   ]
 
