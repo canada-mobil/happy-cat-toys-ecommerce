@@ -1,6 +1,6 @@
 "use client"
 
-import { Menu, ShoppingBag, Truck, Zap, Shield } from "lucide-react"
+import { Menu, ShoppingBag } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import CartDropdown from "./cart-dropdown"
@@ -10,9 +10,9 @@ export default function Header() {
   const [currentMessage, setCurrentMessage] = useState(0)
 
   const messages = [
-    { icon: <Truck className="w-4 h-4" />, text: "LIVRAISON GRATUITE OFFERTE" },
-    { icon: <Zap className="w-4 h-4" />, text: "LIVRAISON RAPIDE" },
-    { icon: <Shield className="w-4 h-4" />, text: "GARANTI 2 MOIS" }
+    "🚚 LIVRAISON GRATUITE OFFERTE",
+    "⚡ LIVRAISON RAPIDE",
+    "✅ GARANTI 2 MOIS"
   ]
 
   const menuItems = [
@@ -38,9 +38,9 @@ export default function Header() {
       <div className="bg-[#f5f2ed] py-2 text-center overflow-hidden relative">
         <div className="relative h-6">
           {messages.map((message, index) => (
-            <div
+            <p
               key={index}
-              className={`absolute inset-0 flex items-center justify-center gap-2 text-sm font-medium text-foreground tracking-wide transition-transform duration-500 ease-in-out ${
+              className={`absolute inset-0 text-sm font-medium text-foreground tracking-wide transition-transform duration-500 ease-in-out ${
                 index === currentMessage
                   ? 'transform translate-x-0'
                   : index < currentMessage
@@ -48,9 +48,8 @@ export default function Header() {
                   : 'transform translate-x-full'
               }`}
             >
-              {message.icon}
-              <span>{message.text}</span>
-            </div>
+              {message}
+            </p>
           ))}
         </div>
       </div>

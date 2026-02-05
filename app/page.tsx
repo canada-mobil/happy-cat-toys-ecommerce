@@ -6,6 +6,7 @@ import TreatsSection from "@/components/treats-section"
 import FeaturesSection from "@/components/features-section"
 import BenefitsSection from "@/components/benefits-section"
 import PromoBanner from "@/components/promo-banner"
+import FAQSection from "@/components/faq-section"
 import Newsletter from "@/components/newsletter"
 import Footer from "@/components/footer"
 
@@ -20,6 +21,7 @@ export default function Home() {
       <TreatsSection />
       <FeaturesSection />
       <BenefitsSection />
+      <FAQSection />
       <Newsletter />
       <Footer />
     </main>
