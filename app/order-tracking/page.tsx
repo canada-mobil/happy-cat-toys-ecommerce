@@ -25,10 +25,28 @@ export default function OrderTracking() {
   const searchOrder = () => {
     if (!searchOrderId.trim()) return
     
+    // Validate Order ID format (should start with PB and be the right length)
+    if (!searchOrderId.startsWith('PB') || searchOrderId.length < 10) {
+      setOrderData(null)
+      setNotFound(true)
+      return
+    }
+    
     const storedOrder = localStorage.getItem(`order_${searchOrderId}`)
+    console.log('Searching for order:', searchOrderId)
+    console.log('Found in localStorage:', storedOrder)
+    
     if (storedOrder) {
-      setOrderData(JSON.parse(storedOrder))
-      setNotFound(false)
+      try {
+        const parsedOrder = JSON.parse(storedOrder)
+        console.log('Parsed order data:', parsedOrder)
+        setOrderData(parsedOrder)
+        setNotFound(false)
+      } catch (error) {
+        console.error('Error parsing order data:', error)
+        setOrderData(null)
+        setNotFound(true)
+      }
     } else {
       setOrderData(null)
       setNotFound(true)
@@ -123,18 +141,18 @@ export default function OrderTracking() {
           </div>
 
           {/* Status Card */}
-          {(orderData || !searchOrderId) && (
+          {orderData && (
           <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-xl font-semibold text-foreground mb-2">
-                  {orderData ? `Commande #${orderData.orderNumber}` : 'Commande de démonstration'}
+                  Commande #{orderData.orderNumber}
                 </h2>
                 <p className="text-muted-foreground">
                   Statut actuel : Préparation en cours
                 </p>
                 <p className="text-muted-foreground">
-                  Livraison estimée : {orderData ? '2-3 jours ouvrables' : defaultOrderStatus.estimatedDelivery}
+                  Livraison estimée : 2-3 jours ouvrables
                 </p>
               </div>
               <div className="text-right">
@@ -189,6 +207,7 @@ export default function OrderTracking() {
           )}
 
           {/* Order Details */}
+          {orderData && (
           <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
             <h3 className="text-lg font-semibold text-foreground mb-4">
               Détails de la commande
@@ -197,13 +216,27 @@ export default function OrderTracking() {
             <div className="space-y-4">
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-muted-foreground">Numéro de commande</span>
-                <span className="font-medium">{orderData?.orderNumber || defaultOrderStatus.orderNumber}</span>
+                <span className="font-medium">{orderData.orderNumber}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-muted-foreground">Date de commande</span>
                 <span className="font-medium">
-                  {orderData ? new Date(orderData.orderDate).toLocaleDateString('fr-FR') : '5 février 2026'}
+                  {new Date(orderData.orderDate).toLocaleDateString('fr-FR')}
                 </span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-gray-100">
+                <span className="text-muted-foreground">Client</span>
+                <span className="font-medium">
+                  {orderData.customerInfo.firstName} {orderData.customerInfo.lastName}
+                </span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-gray-100">
+                <span className="text-muted-foreground">Email</span>
+                <span className="font-medium">{orderData.customerInfo.email}</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-gray-100">
+                <span className="text-muted-foreground">Téléphone</span>
+                <span className="font-medium">{orderData.customerInfo.phone}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-muted-foreground">Méthode de livraison</span>
@@ -212,28 +245,20 @@ export default function OrderTracking() {
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-muted-foreground">Total de la commande</span>
                 <span className="font-medium">
-                  ${orderData ? orderData.finalTotal.toFixed(2) : '47.97'} CAD
+                  ${orderData.finalTotal.toFixed(2)} CAD
                 </span>
               </div>
               <div className="flex justify-between py-2">
                 <span className="text-muted-foreground">Adresse de livraison</span>
                 <span className="font-medium text-right">
-                  {orderData ? (
-                    <>
-                      {orderData.customerInfo.address}<br />
-                      {orderData.customerInfo.apartment && `${orderData.customerInfo.apartment}<br />`}
-                      {orderData.customerInfo.city}, {orderData.customerInfo.province} {orderData.customerInfo.postalCode}
-                    </>
-                  ) : (
-                    <>
-                      123 Rue des Chats<br />
-                      Montréal, QC H1A 1A1
-                    </>
-                  )}
+                  {orderData.customerInfo.address}<br />
+                  {orderData.customerInfo.apartment && `${orderData.customerInfo.apartment}<br />`}
+                  {orderData.customerInfo.city}, {orderData.customerInfo.province} {orderData.customerInfo.postalCode}
                 </span>
               </div>
             </div>
           </div>
+          )}
 
           {/* Order Items */}
           {orderData && (
