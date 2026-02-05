@@ -134,7 +134,7 @@ export default function FAQPage() {
         },
         {
           question: "Comment supprimer mon compte ?",
-          answer: "Pour supprimer votre compte et toutes vos données personnelles, contactez notre service client à support@happycattoys.ca. Nous traiterons votre demande sous 48h conformément à nos politiques de confidentialité."
+          answer: "Pour supprimer votre compte et toutes vos données personnelles, contactez notre service client à support@purrball.ca. Nous traiterons votre demande sous 48h conformément à nos politiques de confidentialité."
         },
         {
           question: "J'ai oublié mon mot de passe, que faire ?",
@@ -147,7 +147,7 @@ export default function FAQPage() {
       questions: [
         {
           question: "Comment vous contacter ?",
-          answer: "Vous pouvez nous joindre par email à support@happycattoys.ca (réponse sous 24h) ou par téléphone au 1-800-CAT-TOYS du lundi au vendredi de 9h à 17h (EST). Nous sommes là pour vous aider !"
+          answer: "Vous pouvez nous joindre par email à support@purrball.ca (réponse sous 24h) ou par téléphone au 1-800-CAT-TOYS du lundi au vendredi de 9h à 17h (EST). Nous sommes là pour vous aider !"
         },
         {
           question: "Dans quelle langue offrez-vous le support ?",
@@ -185,7 +185,7 @@ export default function FAQPage() {
             Questions Fréquentes (FAQ)
           </h1>
           <p className="text-muted-foreground">
-            Trouvez rapidement les réponses à vos questions sur Happy Cat Toys
+            Trouvez rapidement les réponses à vos questions sur Purrball
           </p>
         </div>
 
@@ -244,7 +244,7 @@ export default function FAQPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white rounded-lg p-6 border border-border">
               <h3 className="font-semibold text-foreground mb-2">📧 Email</h3>
-              <p className="text-muted-foreground mb-1">support@happycattoys.ca</p>
+              <p className="text-muted-foreground mb-1">support@purrball.ca</p>
               <p className="text-sm text-muted-foreground">Réponse garantie sous 24h</p>
             </div>
             <div className="bg-white rounded-lg p-6 border border-border">

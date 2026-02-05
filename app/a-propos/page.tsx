@@ -45,7 +45,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto text-center">
             <Cat className="w-16 h-16 text-white mx-auto mb-6" />
             <h1 className="text-3xl md:text-5xl font-serif font-semibold text-white mb-6">
-              À Propos de Happy Cat Toys
+              À Propos de Purrball
             </h1>
             <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
               Une entreprise canadienne dédiée au bonheur et au bien-être de vos compagnons félins depuis 2020.
@@ -75,7 +75,7 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Happy Cat Toys est née d'une passion simple : rendre les chats heureux. Fondée en 2020 
+                Purrball est née d'une passion simple : rendre les chats heureux. Fondée en 2020 
                 à Montréal par une équipe d'amoureux des félins, notre mission est de fournir aux 
                 parents de chats les meilleurs jouets et accessoires pour leurs compagnons.
               </p>

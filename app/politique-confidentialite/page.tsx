@@ -29,7 +29,7 @@ export default function PolitiqueConfidentialitePage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">1. Introduction</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Chez Happy Cat Toys, nous nous engageons à protéger votre vie privée et vos données personnelles. 
+              Chez Purrball, nous nous engageons à protéger votre vie privée et vos données personnelles. 
               Cette politique de confidentialité explique comment nous collectons, utilisons, stockons et protégeons 
               vos informations lorsque vous utilisez notre site web et nos services.
             </p>
@@ -142,8 +142,8 @@ export default function PolitiqueConfidentialitePage() {
               contactez-nous :
             </p>
             <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-              <p className="text-foreground font-medium">Happy Cat Toys</p>
-              <p className="text-muted-foreground">Email : support@happycattoys.ca</p>
+              <p className="text-foreground font-medium">Purrball</p>
+              <p className="text-muted-foreground">Email : support@purrball.ca</p>
               <p className="text-muted-foreground">Téléphone : 1-800-CAT-TOYS</p>
             </div>
           </section>

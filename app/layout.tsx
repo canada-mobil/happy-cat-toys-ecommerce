@@ -18,8 +18,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Happy Cat Toys - Jouets Premium pour Chats",
-  description: "Découvrez notre collection de jouets premium pour chats. Livraison gratuite au Canada. Satisfaction garantie.",
+  title: "Purrball - Jouets Premium pour Chats",
+  description: "Découvrez notre collection de jouets premium pour chats chez Purrball. Livraison gratuite au Canada. Satisfaction garantie.",
   generator: 'v0.app',
 }
 

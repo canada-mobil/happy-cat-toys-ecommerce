@@ -120,7 +120,7 @@ export default function OrderSuccess() {
               <Heart className="w-5 h-5 text-red-500" />
             </div>
             <p className="text-muted-foreground">
-              Chez Happy Cat Toys, nous nous engageons à offrir les meilleurs jouets pour rendre votre chat heureux. 
+              Chez Purrball, nous nous engageons à offrir les meilleurs jouets pour rendre votre chat heureux. 
               N'hésitez pas à nous contacter si vous avez des questions !
             </p>
           </div>

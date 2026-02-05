@@ -125,7 +125,7 @@ export default function Footer() {
               <ul className="space-y-2 text-xs text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <Mail className="w-3 h-3 text-[#6b8e7b] flex-shrink-0" />
-                  <span className="truncate">support@happycattoys.ca</span>
+                  <span className="truncate">support@purrball.ca</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Phone className="w-3 h-3 text-[#6b8e7b] flex-shrink-0" />

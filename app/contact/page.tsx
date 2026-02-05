@@ -47,8 +47,8 @@ export default function ContactPage() {
               <Mail className="w-6 h-6 text-[#c8847a]" />
             </div>
             <h3 className="font-semibold text-foreground mb-2">Email</h3>
-            <p className="text-muted-foreground text-sm">support@happycattoys.ca</p>
-            <p className="text-muted-foreground text-sm">info@happycattoys.ca</p>
+            <p className="text-muted-foreground text-sm">support@purrball.ca</p>
+            <p className="text-muted-foreground text-sm">info@purrball.ca</p>
           </div>
 
           <div className="bg-card rounded-xl shadow-lg p-6 text-center">

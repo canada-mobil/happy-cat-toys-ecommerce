@@ -6,7 +6,7 @@ export default function PromoBanner() {
     <section className="bg-[#c8847a] py-12 px-4">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-2xl md:text-3xl font-serif font-semibold text-white mb-4">
-          Pourquoi Choisir Happy Cat Toys?
+          Pourquoi Choisir Purrball?
         </h2>
         <p className="text-white/90 mb-8 max-w-xl mx-auto">
           Entreprise 100% canadienne, nous livrons rapidement partout au Canada avec une garantie satisfaction totale.

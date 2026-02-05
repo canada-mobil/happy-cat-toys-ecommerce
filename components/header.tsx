@@ -70,7 +70,7 @@ export default function Header() {
 
           {/* Logo */}
           <Link href="/" className="text-white text-xl md:text-2xl font-serif font-semibold tracking-wide hover:opacity-90 transition-opacity">
-            Happy Cat Toys
+            Purrball
           </Link>
 
           {/* Right Icons */}
