@@ -64,23 +64,23 @@ export default function CartDropdown() {
           />
           
           {/* Cart Panel - Large Sidebar Style */}
-          <div className="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl border-l border-border z-50 flex flex-col">
+          <div className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-2xl border-l border-border z-50 flex flex-col">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-border">
-              <h3 className="font-semibold text-foreground">Panier ({itemCount})</h3>
+            <div className="flex items-center justify-between p-4 sm:p-4 border-b border-border">
+              <h3 className="font-semibold text-foreground text-lg sm:text-base">Panier ({itemCount})</h3>
               <button
                 onClick={() => setCartOpen(false)}
-                className="p-1 hover:bg-muted rounded-md transition-colors"
+                className="p-2 sm:p-1 hover:bg-muted rounded-md transition-colors"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5 sm:w-4 sm:h-4" />
               </button>
             </div>
 
             {items.length === 0 ? (
-              <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
-                <ShoppingCart className="w-16 h-16 mx-auto mb-4 opacity-50 text-muted-foreground" />
-                <h3 className="text-lg font-semibold text-foreground mb-2">Votre panier est vide</h3>
-                <p className="text-muted-foreground mb-6">Découvrez nos produits et ajoutez-les à votre panier</p>
+              <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-8 text-center">
+                <ShoppingCart className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 opacity-50 text-muted-foreground" />
+                <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2">Votre panier est vide</h3>
+                <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">Découvrez nos produits et ajoutez-les à votre panier</p>
                 
                 {/* Recommended Products for Empty Cart */}
                 <div className="w-full">
@@ -126,7 +126,7 @@ export default function CartDropdown() {
             ) : (
               <>
                 {/* Trust CTAs Section */}
-                <div className="p-4 border-b border-border bg-gradient-to-r from-green-50 to-blue-50">
+                <div className="p-3 sm:p-4 border-b border-border bg-gradient-to-r from-green-50 to-blue-50">
                   {/* Free Shipping Progress */}
                   {remainingForFreeShipping > 0 ? (
                     <div className="mb-4">
@@ -149,7 +149,7 @@ export default function CartDropdown() {
                   )}
 
                   {/* Trust CTAs */}
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <div className="flex items-center gap-2 p-2 bg-white rounded-lg border border-green-200">
                       <Clock className="w-4 h-4 text-blue-600" />
                       <div>
@@ -171,9 +171,9 @@ export default function CartDropdown() {
                 {/* Items */}
                 <div className="flex-1 overflow-y-auto">
                   {items.map((item) => (
-                    <div key={item.id} className="p-4 border-b border-border last:border-b-0">
-                      <div className="flex gap-3">
-                        <div className="relative w-16 h-16 rounded-md overflow-hidden bg-muted flex-shrink-0">
+                    <div key={item.id} className="p-3 sm:p-4 border-b border-border last:border-b-0">
+                      <div className="flex gap-2 sm:gap-3">
+                        <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-md overflow-hidden bg-muted flex-shrink-0">
                           <Image
                             src={item.image || "/placeholder.svg"}
                             alt={item.name}
@@ -192,34 +192,34 @@ export default function CartDropdown() {
                             </p>
                           )}
                           
-                          <div className="flex items-center justify-between mt-3">
-                            <div className="flex items-center gap-2">
+                          <div className="flex items-center justify-between mt-2 sm:mt-3">
+                            <div className="flex items-center gap-1 sm:gap-2">
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="w-7 h-7 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
+                                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
                               >
                                 <Minus className="w-3 h-3" />
                               </button>
-                              <span className="text-sm font-medium w-8 text-center">
+                              <span className="text-sm font-medium w-6 sm:w-8 text-center">
                                 {item.quantity}
                               </span>
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="w-7 h-7 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
+                                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
                               >
                                 <Plus className="w-3 h-3" />
                               </button>
                             </div>
                             
-                            <div className="flex items-center gap-2">
-                              <span className="text-sm font-semibold text-foreground">
+                            <div className="flex items-center gap-1 sm:gap-2">
+                              <span className="text-xs sm:text-sm font-semibold text-foreground">
                                 ${(item.price * item.quantity).toFixed(2)} CAD
                               </span>
                               <button
                                 onClick={() => removeItem(item.id)}
                                 className="p-1 hover:bg-red-50 hover:text-red-600 rounded-md transition-colors"
                               >
-                                <Trash2 className="w-4 h-4" />
+                                <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                               </button>
                             </div>
                           </div>
@@ -271,14 +271,14 @@ export default function CartDropdown() {
                 </div>
 
                 {/* Footer */}
-                <div className="p-4 border-t border-border bg-white">
+                <div className="p-3 sm:p-4 border-t border-border bg-white">
                   {/* Additional Trust CTAs */}
-                  <div className="mb-4 p-3 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border border-yellow-200">
+                  <div className="mb-3 sm:mb-4 p-2 sm:p-3 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border border-yellow-200">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Shield className="w-5 h-5 text-orange-600" />
+                        <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
                         <div>
-                          <div className="text-sm font-semibold text-foreground">Achat 100% Sécurisé</div>
+                          <div className="text-xs sm:text-sm font-semibold text-foreground">Achat 100% Sécurisé</div>
                           <div className="text-xs text-muted-foreground">Paiement crypté SSL + Garantie</div>
                         </div>
                       </div>
@@ -288,18 +288,18 @@ export default function CartDropdown() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
                     <span className="font-semibold text-foreground">Total:</span>
-                    <span className="font-bold text-xl text-[#6b8e7b]">
+                    <span className="font-bold text-lg sm:text-xl text-[#6b8e7b]">
                       ${total.toFixed(2)} CAD
                     </span>
                   </div>
                   
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     <Link href="/checkout" className="block">
                       <button
                         onClick={() => setCartOpen(false)}
-                        className="w-full bg-gradient-to-r from-[#6b8e7b] to-[#5a7a66] hover:from-[#5a7a66] hover:to-[#4a6956] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-200 text-sm shadow-lg flex items-center justify-center gap-2"
+                        className="w-full bg-gradient-to-r from-[#6b8e7b] to-[#5a7a66] hover:from-[#5a7a66] hover:to-[#4a6956] text-white py-3 sm:py-3 px-4 rounded-lg font-semibold transition-all duration-200 text-sm shadow-lg flex items-center justify-center gap-2"
                       >
                         <Shield className="w-4 h-4" />
                         Finaliser la commande
@@ -317,8 +317,8 @@ export default function CartDropdown() {
                   </div>
 
                   {/* Bottom Trust Badges */}
-                  <div className="mt-4 pt-3 border-t border-border">
-                    <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
+                  <div className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-border">
+                    <div className="flex items-center justify-center gap-2 sm:gap-4 text-xs text-muted-foreground flex-wrap">
                       <div className="flex items-center gap-1">
                         <Truck className="w-3 h-3 text-green-600" />
                         <span>Livraison 2-3j</span>
