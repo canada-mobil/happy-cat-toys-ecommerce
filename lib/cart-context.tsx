@@ -80,9 +80,49 @@ export function CartProvider({ children }: { children: ReactNode }) {
     
     // Auto-add free catnip when adding any product (except catnip itself)
     if (product.id !== 'catnip-gratuit') {
+      console.log('Adding free catnip for product:', product.id)
+      
+      // Show popup notification immediately
+      const popup = document.createElement('div')
+      popup.className = 'fixed top-4 right-4 z-[9999] bg-green-500 text-white p-4 rounded-lg shadow-2xl border-2 border-green-400'
+      popup.style.cssText = `
+        position: fixed !important;
+        top: 20px !important;
+        right: 20px !important;
+        z-index: 9999 !important;
+        background: #10b981 !important;
+        color: white !important;
+        padding: 16px !important;
+        border-radius: 8px !important;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+        font-family: system-ui, -apple-system, sans-serif !important;
+        animation: bounce 1s infinite !important;
+      `
+      popup.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 20px;">🎁</span>
+          <div>
+            <div style="font-weight: 600; font-size: 14px;">Cadeau ajouté !</div>
+            <div style="font-size: 12px; opacity: 0.9;">Catnip gratuit dans votre panier</div>
+          </div>
+        </div>
+      `
+      document.body.appendChild(popup)
+      
       setTimeout(() => {
+        if (popup.parentNode) {
+          popup.remove()
+        }
+      }, 4000)
+      
+      // Add catnip after a short delay
+      setTimeout(() => {
+        console.log('Checking if catnip should be added...')
         setItems(prevItems => {
+          console.log('Current items:', prevItems.map(i => i.id))
           const hasCatnip = prevItems.find(item => item.id === 'catnip-gratuit')
+          console.log('Has catnip already?', !!hasCatnip)
+          
           if (!hasCatnip) {
             const freeCatnip: CartItem = {
               id: 'catnip-gratuit',
@@ -93,30 +133,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
               quantity: 1,
               variant: 'CADEAU GRATUIT'
             }
-            
-            // Show popup notification
-            const popup = document.createElement('div')
-            popup.className = 'fixed top-4 right-4 z-[60] bg-green-500 text-white p-3 rounded-lg shadow-lg animate-bounce'
-            popup.innerHTML = `
-              <div class="flex items-center gap-2">
-                <span class="text-lg">🎁</span>
-                <div>
-                  <div class="font-semibold text-sm">Cadeau ajouté !</div>
-                  <div class="text-xs opacity-90">Catnip gratuit dans votre panier</div>
-                </div>
-              </div>
-            `
-            document.body.appendChild(popup)
-            
-            setTimeout(() => {
-              popup.remove()
-            }, 3000)
-            
+            console.log('Adding free catnip to cart!')
             return [...prevItems, freeCatnip]
           }
+          console.log('Catnip already exists, not adding')
           return prevItems
         })
-      }, 1000)
+      }, 500)
     }
     
     // Auto-open cart when item is added
