@@ -67,38 +67,34 @@ export function CartProvider({ children }: { children: ReactNode }) {
           popup.id = 'welcome-popup'
           popup.style.cssText = `
             position: fixed !important;
-            top: 50% !important;
+            top: 20px !important;
             left: 50% !important;
-            transform: translate(-50%, -50%) !important;
+            transform: translateX(-50%) !important;
             z-index: 99999 !important;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            background: #6b8e7b !important;
             color: white !important;
-            padding: 20px 24px !important;
-            border-radius: 12px !important;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+            padding: 12px 20px !important;
+            border-radius: 25px !important;
             font-family: system-ui, -apple-system, sans-serif !important;
-            max-width: 280px !important;
-            text-align: center !important;
-            border: 1px solid rgba(255,255,255,0.2) !important;
+            font-size: 14px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
           `
           
-          // Create SVG paw icon
+          // Simple paw icon
           const pawIcon = `
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="margin-bottom: 8px;">
-              <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2M21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V9M19 9H14V4H5V21H19V9Z"/>
-              <ellipse cx="8" cy="12" rx="2" ry="3" fill="currentColor"/>
-              <ellipse cx="16" cy="12" rx="2" ry="3" fill="currentColor"/>
-              <ellipse cx="12" cy="16" rx="3" ry="2" fill="currentColor"/>
-              <circle cx="6" cy="8" r="1.5" fill="currentColor"/>
-              <circle cx="18" cy="8" r="1.5" fill="currentColor"/>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;">
+              <ellipse cx="8" cy="12" rx="2" ry="3"/>
+              <ellipse cx="16" cy="12" rx="2" ry="3"/>
+              <ellipse cx="12" cy="16" rx="3" ry="2"/>
+              <circle cx="6" cy="8" r="1.5"/>
+              <circle cx="18" cy="8" r="1.5"/>
             </svg>
           `
           
           popup.innerHTML = `
-            <div style="display: flex; flex-direction: column; align-items: center;">
+            <div style="display: flex; align-items: center;">
               ${pawIcon}
-              <div style="font-weight: 600; font-size: 15px; margin-bottom: 4px;">Bienvenue !</div>
-              <div style="font-size: 12px; opacity: 0.9; line-height: 1.4;">Catnip gratuit ajouté à votre panier</div>
+              <span>Catnip gratuit ajouté à votre panier !</span>
             </div>
           `
           
@@ -108,7 +104,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
             if (popup && popup.parentNode) {
               popup.remove()
             }
-          }, 3500)
+          }, 3000)
         }, 1500)
       }
     } catch {
