@@ -42,12 +42,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setIsClient(true)
     try {
       const savedCart = localStorage.getItem("happy-cat-toys-cart")
+      console.log('Saved cart:', savedCart) // Debug
+      
       if (savedCart) {
         const parsedCart = JSON.parse(savedCart)
         if (Array.isArray(parsedCart)) {
           setItems(parsedCart)
         }
       } else {
+        console.log('No saved cart, adding free catnip') // Debug
+        
         // Auto-add free catnip on first visit
         const freeCatnip: CartItem = {
           id: 'catnip-gratuit',
@@ -60,53 +64,52 @@ export function CartProvider({ children }: { children: ReactNode }) {
         }
         setItems([freeCatnip])
         
-        // Show welcome popup
+        console.log('Showing popup in 1 second') // Debug
+        
+        // Show welcome popup immediately for testing
         setTimeout(() => {
+          console.log('Creating popup now') // Debug
+          
           const popup = document.createElement('div')
+          popup.id = 'welcome-popup'
           popup.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            background-color: #10b981;
-            color: white;
-            padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            animation: bounce 1s infinite;
-            font-family: system-ui, -apple-system, sans-serif;
-            max-width: 300px;
+            position: fixed !important;
+            top: 20px !important;
+            right: 20px !important;
+            z-index: 99999 !important;
+            background-color: #10b981 !important;
+            color: white !important;
+            padding: 16px !important;
+            border-radius: 8px !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+            font-family: system-ui, -apple-system, sans-serif !important;
+            max-width: 300px !important;
+            border: 3px solid #059669 !important;
+            transform: scale(1.1) !important;
           `
           popup.innerHTML = `
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 20px;">🎁</span>
+              <span style="font-size: 24px;">🎁</span>
               <div>
-                <div style="font-weight: 600; font-size: 14px;">Bienvenue !</div>
-                <div style="font-size: 12px; opacity: 0.9;">Catnip gratuit ajouté à votre panier</div>
+                <div style="font-weight: 700; font-size: 16px; margin-bottom: 4px;">BIENVENUE !</div>
+                <div style="font-size: 13px; opacity: 0.95;">Catnip gratuit ajouté à votre panier</div>
               </div>
             </div>
           `
           
-          // Add bounce animation
-          const style = document.createElement('style')
-          style.textContent = `
-            @keyframes bounce {
-              0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
-              40%, 43% { transform: translate3d(0,-30px,0); }
-              70% { transform: translate3d(0,-15px,0); }
-              90% { transform: translate3d(0,-4px,0); }
-            }
-          `
-          document.head.appendChild(style)
           document.body.appendChild(popup)
+          console.log('Popup added to body:', popup) // Debug
           
           setTimeout(() => {
-            popup.remove()
-            style.remove()
-          }, 4000)
-        }, 2000)
+            console.log('Removing popup') // Debug
+            if (popup && popup.parentNode) {
+              popup.remove()
+            }
+          }, 5000)
+        }, 1000)
       }
-    } catch {
+    } catch (error) {
+      console.error('Cart loading error:', error) // Debug
       localStorage.removeItem("happy-cat-toys-cart")
     }
   }, [])
