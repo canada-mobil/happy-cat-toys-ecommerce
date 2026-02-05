@@ -3,21 +3,35 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { SlidersHorizontal, Grid2X2, Square } from "lucide-react"
+import { SlidersHorizontal, Grid2X2, Square, ShoppingCart } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import BenefitsSection from "@/components/benefits-section"
 import { products } from "@/lib/products"
+import { useCart } from "@/lib/cart-context"
 
 const categories = ["Tous", "Jouets Interactifs", "Peluches", "Balles & Grelots", "Jouets Automatiques", "Tunnels & Cachettes", "Griffoirs", "Jouets Intelligents"]
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("Tous")
   const [gridView, setGridView] = useState<"grid" | "list">("grid")
+  const { addItem } = useCart()
 
   const filteredProducts = selectedCategory === "Tous" 
     ? products 
     : products.filter(p => p.category === selectedCategory)
+
+  const handleAddToCart = (product: any, e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.price,
+      image: product.image,
+    })
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -92,45 +106,67 @@ export default function ProductsPage() {
         </div>
 
         {/* Products Grid */}
-        <div className={`grid gap-4 ${gridView === "grid" ? "grid-cols-2 md:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"}`}>
+        <div className={`grid gap-6 ${gridView === "grid" ? "grid-cols-2 md:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"}`}>
           {filteredProducts.map(product => (
-            <Link 
-              key={product.id} 
-              href={`/produits/${product.id}`}
-              className="group block"
-            >
-              <div className="relative bg-card rounded-lg overflow-hidden">
-                {/* Stock Badge */}
-                {!product.inStock && (
-                  <span className="absolute top-2 left-2 z-10 bg-background/90 text-foreground text-xs font-medium px-2 py-1 rounded">
-                    ÉPUISÉ
-                  </span>
-                )}
-                
-                {/* Product Image */}
-                <div className="relative aspect-square bg-white">
-                  <Image
-                    src={product.image || "/placeholder.svg"}
-                    alt={product.name}
-                    fill
-                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                  />
+            <div key={product.id} className="group relative">
+              <Link 
+                href={`/produits/${product.id}`}
+                className="block"
+              >
+                <div className="relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
+                  {/* Stock Badge */}
+                  {!product.inStock && (
+                    <span className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
+                      ÉPUISÉ
+                    </span>
+                  )}
+                  
+                  {/* Best Seller Badge */}
+                  {product.price > 20 && (
+                    <span className="absolute top-3 right-3 z-10 bg-orange-500 text-white text-xs font-medium px-2 py-1 rounded-full">
+                      BEST SELLER
+                    </span>
+                  )}
+                  
+                  {/* Product Image */}
+                  <div className="relative aspect-square bg-gray-50">
+                    <Image
+                      src={product.image || "/placeholder.svg"}
+                      alt={product.name}
+                      fill
+                      className="object-contain p-6 group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
-              </div>
+              </Link>
 
               {/* Product Info */}
-              <div className="mt-3">
-                <h3 className="text-secondary font-medium text-sm md:text-base leading-snug group-hover:text-secondary/80 transition-colors">
-                  {product.name}
-                </h3>
-                <p className="text-muted-foreground text-sm mt-1 line-clamp-2">
-                  {product.description}
-                </p>
-                <p className="text-secondary font-semibold mt-2">
-                  {product.price.toFixed(2)} $
-                </p>
+              <div className="mt-4 px-1">
+                <Link href={`/produits/${product.id}`}>
+                  <h3 className="font-semibold text-gray-900 text-sm leading-tight group-hover:text-[#6b8e7b] transition-colors line-clamp-2 mb-2">
+                    {product.name}
+                  </h3>
+                </Link>
+                
+                {/* Price and Add Button */}
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-lg font-bold text-[#6b8e7b]">
+                      {product.price.toFixed(2)}€
+                    </span>
+                  </div>
+                  
+                  <button
+                    onClick={(e) => handleAddToCart(product, e)}
+                    disabled={!product.inStock}
+                    className="bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-4 py-2 rounded-lg font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-sm hover:shadow-md"
+                  >
+                    <ShoppingCart className="w-4 h-4" />
+                    AJOUTER
+                  </button>
+                </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
 
