@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ShoppingCart, X, Plus, Minus, Trash2, Star, Truck, Shield, Clock } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 import Image from "next/image"
@@ -8,8 +8,24 @@ import Link from "next/link"
 
 export default function CartDropdown() {
   const { items, removeItem, updateQuantity, total, itemCount, freeShippingProgress, freeShippingThreshold, addItem, setCartOpen, isCartOpen } = useCart()
+  const [currentBannerIndex, setCurrentBannerIndex] = useState(0)
 
   const remainingForFreeShipping = Math.max(0, freeShippingThreshold - total)
+
+  // Rotating banner messages
+  const bannerMessages = [
+    { icon: "🇨🇦", text: "Fabriqué au Canada", subtext: "Nos produits sont 100% naturels" },
+    { icon: "🚚", text: "Livraison gratuite", subtext: "Pour commandes de 2+ articles" },
+    { icon: "🛡️", text: "Garantie 2 ans", subtext: "100% sécurisé" }
+  ]
+
+  // Auto-rotate banner every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBannerIndex((prev) => (prev + 1) % bannerMessages.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [])
 
   // Recommended products
   const recommendedProducts = [
@@ -65,6 +81,17 @@ export default function CartDropdown() {
           
           {/* Cart Panel - Large Sidebar Style */}
           <div className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-2xl border-l border-border z-50 flex flex-col">
+            {/* Rotating Banner */}
+            <div className="bg-[#6b8e7b] text-white p-3 text-center transition-all duration-500">
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-lg">{bannerMessages[currentBannerIndex].icon}</span>
+                <div>
+                  <div className="text-sm font-semibold">{bannerMessages[currentBannerIndex].text}</div>
+                  <div className="text-xs opacity-90">{bannerMessages[currentBannerIndex].subtext}</div>
+                </div>
+              </div>
+            </div>
+
             {/* Header */}
             <div className="flex items-center justify-between p-4 sm:p-4 border-b border-border">
               <h3 className="font-semibold text-foreground text-lg sm:text-base">Panier ({itemCount})</h3>
@@ -125,48 +152,20 @@ export default function CartDropdown() {
               </div>
             ) : (
               <>
-                {/* Trust CTAs Section */}
-                <div className="p-3 sm:p-4 border-b border-border bg-gradient-to-r from-green-50 to-blue-50">
-                  {/* Free Shipping Progress */}
-                  {remainingForFreeShipping > 0 ? (
-                    <div className="mb-4">
-                      <div className="flex items-center gap-2 text-sm text-green-800 mb-2 font-medium">
-                        <Truck className="w-4 h-4" />
-                        Plus que ${remainingForFreeShipping.toFixed(2)} CAD pour la livraison gratuite!
-                      </div>
-                      <div className="w-full bg-green-200 rounded-full h-3">
-                        <div 
-                          className="bg-green-500 h-3 rounded-full transition-all duration-300"
-                          style={{ width: `${freeShippingProgress}%` }}
-                        />
-                      </div>
+                {/* Free Shipping Progress - Simplified */}
+                {remainingForFreeShipping > 0 && (
+                  <div className="p-3 border-b border-border">
+                    <div className="text-sm text-[#6b8e7b] mb-2 font-medium">
+                      Plus que ${remainingForFreeShipping.toFixed(2)} CAD pour la livraison offerte !
                     </div>
-                  ) : (
-                    <div className="mb-4 flex items-center gap-2 text-sm text-green-800 font-medium">
-                      <Truck className="w-4 h-4" />
-                      Livraison gratuite incluse!
-                    </div>
-                  )}
-
-                  {/* Trust CTAs */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    <div className="flex items-center gap-2 p-2 bg-white rounded-lg border border-green-200">
-                      <Clock className="w-4 h-4 text-blue-600" />
-                      <div>
-                        <div className="text-xs font-semibold text-foreground">Livraison 2-3j</div>
-                        <div className="text-xs text-muted-foreground">Expédition rapide</div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center gap-2 p-2 bg-white rounded-lg border border-blue-200">
-                      <Shield className="w-4 h-4 text-green-600" />
-                      <div>
-                        <div className="text-xs font-semibold text-foreground">Garantie 2 ans</div>
-                        <div className="text-xs text-muted-foreground">100% sécurisé</div>
-                      </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div 
+                        className="bg-[#6b8e7b] h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${freeShippingProgress}%` }}
+                      />
                     </div>
                   </div>
-                </div>
+                )}
 
                 {/* Items */}
                 <div className="flex-1 overflow-y-auto">
@@ -272,22 +271,6 @@ export default function CartDropdown() {
 
                 {/* Footer */}
                 <div className="p-3 sm:p-4 border-t border-border bg-white">
-                  {/* Additional Trust CTAs */}
-                  <div className="mb-3 sm:mb-4 p-2 sm:p-3 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border border-yellow-200">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
-                        <div>
-                          <div className="text-xs sm:text-sm font-semibold text-foreground">Achat 100% Sécurisé</div>
-                          <div className="text-xs text-muted-foreground">Paiement crypté SSL + Garantie</div>
-                        </div>
-                      </div>
-                      <div className="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full font-medium">
-                        Protégé
-                      </div>
-                    </div>
-                  </div>
-
                   <div className="flex items-center justify-between mb-3 sm:mb-4">
                     <span className="font-semibold text-foreground">Total:</span>
                     <span className="font-bold text-lg sm:text-xl text-[#6b8e7b]">
@@ -299,38 +282,25 @@ export default function CartDropdown() {
                     <Link href="/checkout" className="block">
                       <button
                         onClick={() => setCartOpen(false)}
-                        className="w-full bg-gradient-to-r from-[#6b8e7b] to-[#5a7a66] hover:from-[#5a7a66] hover:to-[#4a6956] text-white py-3 sm:py-3 px-4 rounded-lg font-semibold transition-all duration-200 text-sm shadow-lg flex items-center justify-center gap-2"
+                        className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white py-3 px-4 rounded-lg font-semibold transition-colors text-sm"
                       >
-                        <Shield className="w-4 h-4" />
-                        Finaliser la commande
+                        Commander
                       </button>
                     </Link>
                     <Link href="/cart" className="block">
                       <button
                         onClick={() => setCartOpen(false)}
-                        className="w-full border border-[#6b8e7b] text-[#6b8e7b] hover:bg-[#6b8e7b] hover:text-white py-2 px-4 rounded-lg font-medium transition-colors text-sm flex items-center justify-center gap-2"
+                        className="w-full border border-[#6b8e7b] text-[#6b8e7b] hover:bg-[#6b8e7b] hover:text-white py-2 px-4 rounded-lg font-medium transition-colors text-sm"
                       >
-                        <ShoppingCart className="w-4 h-4" />
                         Voir le panier complet
                       </button>
                     </Link>
                   </div>
 
-                  {/* Bottom Trust Badges */}
-                  <div className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-border">
-                    <div className="flex items-center justify-center gap-2 sm:gap-4 text-xs text-muted-foreground flex-wrap">
-                      <div className="flex items-center gap-1">
-                        <Truck className="w-3 h-3 text-green-600" />
-                        <span>Livraison 2-3j</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Shield className="w-3 h-3 text-blue-600" />
-                        <span>Garantie 2 ans</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-orange-600" />
-                        <span>Support 24/7</span>
-                      </div>
+                  {/* Bottom Trust Badges - Simplified */}
+                  <div className="mt-3 pt-2 border-t border-border">
+                    <div className="text-xs text-center text-muted-foreground">
+                      Paiement sécurisé SSL • Livraison 2-3j • Garantie 2 ans
                     </div>
                   </div>
                 </div>
