@@ -156,6 +156,24 @@ export const products: Product[] = [
     ],
     materials: "Plastique ABS alimentaire, sans BPA, lavable au lave-vaisselle (panier supérieur).",
     shipping: "Livraison gratuite pour les commandes de plus de 35$. Expédition sous 24-48h."
+  },
+  {
+    id: "catnip-gratuit",
+    name: "Catnip Gratuit",
+    description: "Herbe à chat premium 100% biologique - CADEAU GRATUIT avec tout achat !",
+    longDescription: "Notre herbe à chat premium est cultivée de manière biologique et séchée naturellement pour préserver tous ses arômes. Ce petit sachet gratuit accompagne chaque commande pour faire plaisir à votre félin. Qualité garantie, effet irrésistible !",
+    price: 0,
+    image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=400&fit=crop&crop=center",
+    category: "Cadeaux",
+    inStock: true,
+    features: [
+      "100% biologique et naturel",
+      "Séchage traditionnel",
+      "Effet relaxant garanti",
+      "Sachet refermable"
+    ],
+    materials: "Herbe à chat (Nepeta cataria) biologique séchée, emballage biodégradable.",
+    shipping: "GRATUIT - Ajouté automatiquement à votre commande !"
   }
 ]
 
