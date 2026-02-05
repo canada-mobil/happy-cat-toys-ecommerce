@@ -64,83 +64,87 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items, isClient])
 
   const addItem = (product: Omit<CartItem, "quantity">) => {
+    // First add the main product
     setItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id)
+      let newItems = [...prevItems]
       
       if (existingItem) {
-        return prevItems.map(item =>
+        newItems = prevItems.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
+      } else {
+        newItems = [...prevItems, { ...product, quantity: 1 }]
       }
       
-      return [...prevItems, { ...product, quantity: 1 }]
-    })
-    
-    // Auto-add free catnip when adding any product (except catnip itself)
-    if (product.id !== 'catnip-gratuit') {
-      console.log('Adding free catnip for product:', product.id)
-      
-      // Show popup notification immediately
-      const popup = document.createElement('div')
-      popup.className = 'fixed top-4 right-4 z-[9999] bg-green-500 text-white p-4 rounded-lg shadow-2xl border-2 border-green-400'
-      popup.style.cssText = `
-        position: fixed !important;
-        top: 20px !important;
-        right: 20px !important;
-        z-index: 9999 !important;
-        background: #10b981 !important;
-        color: white !important;
-        padding: 16px !important;
-        border-radius: 8px !important;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
-        font-family: system-ui, -apple-system, sans-serif !important;
-        animation: bounce 1s infinite !important;
-      `
-      popup.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 20px;">🎁</span>
-          <div>
-            <div style="font-weight: 600; font-size: 14px;">Cadeau ajouté !</div>
-            <div style="font-size: 12px; opacity: 0.9;">Catnip gratuit dans votre panier</div>
-          </div>
-        </div>
-      `
-      document.body.appendChild(popup)
-      
-      setTimeout(() => {
-        if (popup.parentNode) {
-          popup.remove()
-        }
-      }, 4000)
-      
-      // Add catnip after a short delay
-      setTimeout(() => {
-        console.log('Checking if catnip should be added...')
-        setItems(prevItems => {
-          console.log('Current items:', prevItems.map(i => i.id))
-          const hasCatnip = prevItems.find(item => item.id === 'catnip-gratuit')
-          console.log('Has catnip already?', !!hasCatnip)
-          
-          if (!hasCatnip) {
-            const freeCatnip: CartItem = {
-              id: 'catnip-gratuit',
-              name: 'Catnip Gratuit',
-              price: 0,
-              originalPrice: 5.99,
-              image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=400&fit=crop&crop=center',
-              quantity: 1,
-              variant: 'CADEAU GRATUIT'
-            }
-            console.log('Adding free catnip to cart!')
-            return [...prevItems, freeCatnip]
+      // Auto-add free catnip DIRECTLY in the same state update
+      if (product.id !== 'catnip-gratuit') {
+        const hasCatnip = newItems.find(item => item.id === 'catnip-gratuit')
+        if (!hasCatnip) {
+          const freeCatnip: CartItem = {
+            id: 'catnip-gratuit',
+            name: 'Catnip Gratuit',
+            price: 0,
+            originalPrice: 5.99,
+            image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=400&fit=crop&crop=center',
+            quantity: 1,
+            variant: 'CADEAU GRATUIT'
           }
-          console.log('Catnip already exists, not adding')
-          return prevItems
-        })
-      }, 500)
-    }
+          newItems.push(freeCatnip)
+          
+          // Show popup notification
+          setTimeout(() => {
+            const popup = document.createElement('div')
+            popup.style.cssText = `
+              position: fixed;
+              top: 20px;
+              right: 20px;
+              z-index: 99999;
+              background: #10b981;
+              color: white;
+              padding: 16px;
+              border-radius: 12px;
+              box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+              font-family: system-ui;
+              font-size: 14px;
+              font-weight: 600;
+              min-width: 250px;
+              animation: slideIn 0.3s ease-out;
+            `
+            popup.innerHTML = `
+              🎁 Cadeau ajouté !<br>
+              <span style="font-size: 12px; opacity: 0.9;">Catnip gratuit dans votre panier</span>
+            `
+            
+            // Add animation keyframes
+            if (!document.querySelector('#popup-animation')) {
+              const style = document.createElement('style')
+              style.id = 'popup-animation'
+              style.textContent = `
+                @keyframes slideIn {
+                  from { transform: translateX(100%); opacity: 0; }
+                  to { transform: translateX(0); opacity: 1; }
+                }
+              `
+              document.head.appendChild(style)
+            }
+            
+            document.body.appendChild(popup)
+            
+            setTimeout(() => {
+              if (popup.parentNode) {
+                popup.style.animation = 'slideIn 0.3s ease-out reverse'
+                setTimeout(() => popup.remove(), 300)
+              }
+            }, 3000)
+          }, 100)
+        }
+      }
+      
+      return newItems
+    })
     
     // Auto-open cart when item is added
     setIsCartOpen(true)
