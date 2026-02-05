@@ -63,20 +63,46 @@ export function CartProvider({ children }: { children: ReactNode }) {
         // Show welcome popup
         setTimeout(() => {
           const popup = document.createElement('div')
-          popup.className = 'fixed top-4 right-4 z-[60] bg-green-500 text-white p-4 rounded-lg shadow-lg animate-bounce'
+          popup.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background-color: #10b981;
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: bounce 1s infinite;
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 300px;
+          `
           popup.innerHTML = `
-            <div class="flex items-center gap-2">
-              <span class="text-xl">🎁</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 20px;">🎁</span>
               <div>
-                <div class="font-semibold text-sm">Bienvenue !</div>
-                <div class="text-xs opacity-90">Catnip gratuit ajouté à votre panier</div>
+                <div style="font-weight: 600; font-size: 14px;">Bienvenue !</div>
+                <div style="font-size: 12px; opacity: 0.9;">Catnip gratuit ajouté à votre panier</div>
               </div>
             </div>
           `
+          
+          // Add bounce animation
+          const style = document.createElement('style')
+          style.textContent = `
+            @keyframes bounce {
+              0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+              40%, 43% { transform: translate3d(0,-30px,0); }
+              70% { transform: translate3d(0,-15px,0); }
+              90% { transform: translate3d(0,-4px,0); }
+            }
+          `
+          document.head.appendChild(style)
           document.body.appendChild(popup)
           
           setTimeout(() => {
             popup.remove()
+            style.remove()
           }, 4000)
         }, 2000)
       }
