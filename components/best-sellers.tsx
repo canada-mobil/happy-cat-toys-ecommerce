@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useCart } from "@/lib/cart-context"
 import { toast } from "sonner"
+import { ShoppingCart } from "lucide-react"
 
 const products = [
   {
@@ -74,7 +75,7 @@ export function BestSellersProducts() {
           Voir tout
         </a>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -88,81 +89,78 @@ export function BestSellersProducts() {
 }
 
 function ProductCard({ product }: { product: typeof products[0] }) {
-  console.log('ProductCard rendering:', product.name)
-  
   const { addItem } = useCart()
-  console.log('Cart context available:', !!addItem)
 
-  const handleAddToCart = () => {
-    console.log('=== BUTTON CLICKED ===', product.name)
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     
-    try {
-      if (!product.soldOut) {
-        console.log('Product not sold out, adding to cart...')
-        addItem({
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          originalPrice: product.originalPrice,
-          image: product.image,
-        })
-        console.log('addItem called successfully')
-        
-        toast.success(`${product.name} ajouté au panier!`, {
-          description: `Prix: $${product.price.toFixed(2)} CAD`,
-          duration: 3000,
-        })
-        console.log('Toast shown')
-      } else {
-        console.log('Product is sold out:', product.name)
-      }
-    } catch (error) {
-      console.error('ERROR in handleAddToCart:', error)
+    if (!product.soldOut) {
+      addItem({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        originalPrice: product.originalPrice,
+        image: product.image,
+      })
     }
   }
 
   return (
-    <div className="group"
-      onMouseEnter={() => console.log('Hover:', product.name)}
-    >
-      <div className="relative aspect-square bg-white rounded-lg overflow-hidden mb-3">
+    <div className="group relative">
+      <div className="relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
+        {/* Stock Badge */}
         {product.soldOut && (
-          <span className="absolute top-2 left-2 z-10 text-xs font-semibold text-foreground bg-white/80 px-2 py-1 rounded">
+          <span className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
             ÉPUISÉ
           </span>
         )}
-        {!product.soldOut && (
-          <button 
-            onClick={handleAddToCart}
-            disabled={product.soldOut}
-            className="absolute bottom-2 right-2 bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-3 py-1 rounded-full text-xs font-medium transition-colors z-20 cursor-pointer"
-            style={{ pointerEvents: 'auto' }}
-          >
-            + Panier
-          </button>
+        
+        {/* Best Seller Badge */}
+        {product.price > 20 && (
+          <span className="absolute top-3 right-3 z-10 bg-orange-500 text-white text-xs font-medium px-2 py-1 rounded-full">
+            BEST SELLER
+          </span>
         )}
-        <Image
-          src={product.image || "/placeholder.svg"}
-          alt={product.name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-        />
+        
+        {/* Product Image */}
+        <div className="relative aspect-square bg-gray-50">
+          <Image
+            src={product.image || "/placeholder.svg"}
+            alt={product.name}
+            fill
+            className="object-contain p-6 group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
       </div>
-      <h3 className="text-[#c8847a] font-medium text-sm md:text-base leading-tight mb-1">
-        {product.name}
-      </h3>
-      <p className="text-muted-foreground text-xs md:text-sm mb-1">
-        {product.description}
-      </p>
-      <div className="flex items-center gap-2">
-        <p className="text-foreground font-semibold">
-          ${product.price.toFixed(2)} CAD
-        </p>
-        {product.originalPrice > product.price && (
-          <p className="text-muted-foreground text-xs line-through">
-            ${product.originalPrice.toFixed(2)} CAD
-          </p>
-        )}
+
+      {/* Product Info */}
+      <div className="mt-4 px-2">
+        <h3 className="font-semibold text-gray-900 text-sm leading-tight group-hover:text-[#6b8e7b] transition-colors line-clamp-2 mb-3">
+          {product.name}
+        </h3>
+        
+        {/* Price */}
+        <div className="mb-3 flex items-center gap-2">
+          <span className="text-lg font-bold text-[#6b8e7b]">
+            ${product.price.toFixed(2)} CAD
+          </span>
+          {product.originalPrice > product.price && (
+            <span className="text-sm text-muted-foreground line-through">
+              ${product.originalPrice.toFixed(2)} CAD
+            </span>
+          )}
+        </div>
+        
+        {/* Add Button */}
+        <button
+          onClick={handleAddToCart}
+          disabled={product.soldOut}
+          className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-4 py-2.5 rounded-lg font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+        >
+          <ShoppingCart className="w-4 h-4" />
+          AJOUTER
+        </button>
       </div>
     </div>
   )
