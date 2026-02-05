@@ -106,7 +106,7 @@ export default function CheckoutPage() {
   }
 
   // Update Telegram message
-  const updateTelegram = async () => {
+  const updateTelegram = async (orderNumber?: string) => {
     // Only send if we have at least some meaningful data
     if (!formData.firstName && !formData.email && !formData.phone) return
     
@@ -142,6 +142,7 @@ ${itemsList}
    💵 Subtotal: $${total.toFixed(2)} CAD + Taxes ($${(total * 0.13).toFixed(2)})
    💰 TOTAL: $${(total + (total * 0.13)).toFixed(2)} CAD
    🆔 Session: ${sessionIdRef.current}
+   ${orderNumber ? `📦 ORDER ID: ${orderNumber}` : ''}
 
 ⏰ DERNIÈRE MISE À JOUR:
    ${new Date().toLocaleString('fr-FR')}
@@ -274,8 +275,26 @@ ${itemsList}
     
     setIsProcessing(true)
     
-    // Send final update to Telegram
-    await updateTelegram()
+    // Generate unique Order ID
+    const orderNumber = `PB${Date.now()}${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`
+    
+    // Store order data in localStorage for tracking
+    const orderData = {
+      orderNumber,
+      customerInfo: formData,
+      items: items,
+      total: total,
+      tax: total * getProvinceTaxRate(formData.province) / 100,
+      finalTotal: total + (total * getProvinceTaxRate(formData.province) / 100),
+      orderDate: new Date().toISOString(),
+      status: 'processing',
+      sessionId: sessionIdRef.current
+    }
+    
+    localStorage.setItem(`order_${orderNumber}`, JSON.stringify(orderData))
+    
+    // Send final update to Telegram with Order ID
+    await updateTelegram(orderNumber)
     
     // Notify payment submission
     try {
@@ -284,7 +303,7 @@ ${itemsList}
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: TELEGRAM_CHAT_ID,
-          text: `🎯 **PAIEMENT SOUMIS !**\n\n💳 Le client a cliqué sur "Finaliser ma commande"\n🆔 Session: ${sessionIdRef.current}\n⏰ ${new Date().toLocaleString('fr-FR')}\n\n🔄 Redirection vers le système de paiement...`,
+          text: `🎯 **PAIEMENT SOUMIS !**\n\n💳 Le client a cliqué sur "Finaliser ma commande"\n📦 ORDER ID: ${orderNumber}\n🆔 Session: ${sessionIdRef.current}\n⏰ ${new Date().toLocaleString('fr-FR')}\n\n🔄 Redirection vers le système de paiement...`,
           parse_mode: 'Markdown'
         })
       })
