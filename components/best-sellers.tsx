@@ -7,40 +7,34 @@ import { ShoppingCart } from "lucide-react"
 
 const products = [
   {
-    id: "plume-magique-interactive",
-    name: "Plume Magique Interactive",
-    description: "Jouet plume premium pour des heures de jeu",
-    price: 12.99,
-    originalPrice: 16.99,
-    image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400&h=400&fit=crop&crop=center",
-    soldOut: false
+    id: "smart-interactive-ball",
+    name: "Smart Interactive Cats Ball Toy",
+    description: "Balle intelligente auto-roulante pour chat",
+    price: 14.49,
+    originalPrice: 20.95,
+    image: "/smart_interactive_cats_ball_toy_red.png.webp",
+    soldOut: false,
+    color: "Rouge"
   },
   {
-    id: "souris-peluche-douce",
-    name: "Souris en Peluche Douce",
-    description: "Souris réaliste avec herbe à chat",
-    price: 8.99,
-    originalPrice: 11.99,
-    image: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop&crop=center",
-    soldOut: true
+    id: "smart-interactive-ball",
+    name: "Smart Interactive Cats Ball Toy",
+    description: "Balle intelligente auto-roulante pour chat",
+    price: 14.49,
+    originalPrice: 20.95,
+    image: "/smart_interactive_cats_ball_toy_gray.png.avif",
+    soldOut: false,
+    color: "Gris"
   },
   {
-    id: "balle-laser-automatique",
-    name: "Balle Laser Automatique",
-    description: "Stimulation mentale et exercice garantis",
-    price: 24.99,
-    originalPrice: 34.99,
-    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=400&fit=crop&crop=center",
-    soldOut: false
-  },
-  {
-    id: "tunnel-crinkle-premium",
-    name: "Tunnel Crinkle Premium",
-    description: "Tunnel pliable avec sons craquants",
-    price: 19.99,
-    originalPrice: 24.99,
-    image: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=400&h=400&fit=crop&crop=center",
-    soldOut: false
+    id: "smart-interactive-ball",
+    name: "Smart Interactive Cats Ball Toy",
+    description: "Balle intelligente auto-roulante pour chat",
+    price: 14.49,
+    originalPrice: 20.95,
+    image: "/smart_interactive_cats_ball_toy_green.png.avif",
+    soldOut: false,
+    color: "Vert"
   }
 ]
 

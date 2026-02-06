@@ -10,7 +10,7 @@ import BenefitsSection from "@/components/benefits-section"
 import { products } from "@/lib/products"
 import { useCart } from "@/lib/cart-context"
 
-const categories = ["Tous", "Jouets Interactifs", "Peluches", "Balles & Grelots", "Jouets Automatiques", "Tunnels & Cachettes", "Griffoirs", "Jouets Intelligents"]
+const categories = ["Tous", "Jouets Interactifs"]
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("Tous")
@@ -28,7 +28,7 @@ export default function ProductsPage() {
       id: product.id,
       name: product.name,
       price: product.price,
-      originalPrice: product.price,
+      originalPrice: product.originalPrice,
       image: product.image,
     })
   }

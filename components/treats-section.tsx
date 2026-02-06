@@ -7,35 +7,27 @@ import { useCart } from "@/lib/cart-context"
 
 const products = [
   {
-    id: 1,
-    name: "Balle Grelot Interactive",
-    description: "Balle avec grelot pour stimuler la chasse",
-    price: 6.99,
-    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=400&fit=crop&crop=center",
+    id: "smart-interactive-ball-red",
+    name: "Smart Interactive Ball - Rouge",
+    description: "Balle intelligente auto-roulante pour chat",
+    price: 14.49,
+    image: "/smart_interactive_cats_ball_toy_red.png.webp",
     soldOut: false
   },
   {
-    id: 2,
-    name: "Poisson Herbe à Chat",
-    description: "Poisson en peluche avec herbe à chat bio",
-    price: 11.99,
-    image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=400&fit=crop&crop=center",
+    id: "smart-interactive-ball-gray",
+    name: "Smart Interactive Ball - Gris",
+    description: "Balle intelligente auto-roulante pour chat",
+    price: 14.49,
+    image: "/smart_interactive_cats_ball_toy_gray.png.avif",
     soldOut: false
   },
   {
-    id: 3,
-    name: "Plume Arc-en-ciel",
-    description: "Plume colorée sur bâton flexible",
-    price: 9.99,
-    image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400&h=400&fit=crop&crop=center",
-    soldOut: true
-  },
-  {
-    id: 4,
-    name: "Souris Musicale",
-    description: "Souris qui couine au toucher",
-    price: 7.49,
-    image: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop&crop=center",
+    id: "smart-interactive-ball-green",
+    name: "Smart Interactive Ball - Vert",
+    description: "Balle intelligente auto-roulante pour chat",
+    price: 14.49,
+    image: "/smart_interactive_cats_ball_toy_green.png.avif",
     soldOut: false
   }
 ]

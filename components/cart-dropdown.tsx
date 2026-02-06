@@ -30,28 +30,28 @@ export default function CartDropdown() {
   // Recommended products
   const recommendedProducts = [
     {
-      id: "rec-1",
-      name: "Baguette à Plumes Premium",
-      price: 14.99,
-      image: "/images/baguette-plumes.jpg",
+      id: "smart-interactive-ball-Rouge",
+      name: "Smart Interactive Ball - Rouge",
+      price: 14.49,
+      image: "/smart_interactive_cats_ball_toy_red.png.webp",
       rating: 4.8,
-      reviews: 127
+      reviews: 325
     },
     {
-      id: "rec-2", 
-      name: "Souris Interactive",
-      price: 9.99,
-      image: "/images/souris-interactive.jpg",
-      rating: 4.6,
-      reviews: 89
+      id: "smart-interactive-ball-Gris",
+      name: "Smart Interactive Ball - Gris",
+      price: 14.49,
+      image: "/smart_interactive_cats_ball_toy_gray.png.avif",
+      rating: 4.8,
+      reviews: 325
     },
     {
-      id: "rec-3",
-      name: "Tunnel de Jeu",
-      price: 19.99,
-      image: "/images/tunnel-jeu.jpg", 
-      rating: 4.9,
-      reviews: 156
+      id: "smart-interactive-ball-Vert",
+      name: "Smart Interactive Ball - Vert",
+      price: 14.49,
+      image: "/smart_interactive_cats_ball_toy_green.png.avif",
+      rating: 4.8,
+      reviews: 325
     }
   ]
 

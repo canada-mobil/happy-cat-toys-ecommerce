@@ -47,65 +47,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
         if (Array.isArray(parsedCart)) {
           setItems(parsedCart)
         }
-      } else {
-        
-        // Auto-add free catnip on first visit
-        const freeCatnip: CartItem = {
-          id: 'catnip-gratuit',
-          name: 'Catnip Gratuit',
-          price: 0,
-          originalPrice: 5.99,
-          image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=400&fit=crop&crop=center',
-          quantity: 1,
-          variant: 'CADEAU GRATUIT'
-        }
-        setItems([freeCatnip])
-        
-        // Show welcome popup
-        setTimeout(() => {
-          const popup = document.createElement('div')
-          popup.id = 'welcome-popup'
-          popup.style.cssText = `
-            position: fixed !important;
-            top: 20px !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-            z-index: 99999 !important;
-            background: #6b8e7b !important;
-            color: white !important;
-            padding: 12px 20px !important;
-            border-radius: 25px !important;
-            font-family: system-ui, -apple-system, sans-serif !important;
-            font-size: 14px !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-          `
-          
-          // Simple paw icon
-          const pawIcon = `
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;">
-              <ellipse cx="8" cy="12" rx="2" ry="3"/>
-              <ellipse cx="16" cy="12" rx="2" ry="3"/>
-              <ellipse cx="12" cy="16" rx="3" ry="2"/>
-              <circle cx="6" cy="8" r="1.5"/>
-              <circle cx="18" cy="8" r="1.5"/>
-            </svg>
-          `
-          
-          popup.innerHTML = `
-            <div style="display: flex; align-items: center;">
-              ${pawIcon}
-              <span>Cadeau ajouté à votre panier !</span>
-            </div>
-          `
-          
-          document.body.appendChild(popup)
-          
-          setTimeout(() => {
-            if (popup && popup.parentNode) {
-              popup.remove()
-            }
-          }, 3000)
-        }, 1500)
       }
     } catch {
       localStorage.removeItem("happy-cat-toys-cart")
