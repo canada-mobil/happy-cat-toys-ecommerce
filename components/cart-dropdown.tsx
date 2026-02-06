@@ -75,12 +75,12 @@ export default function CartDropdown() {
         <>
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 z-40" 
+            className="fixed inset-0 z-40 bg-black/30 animate-[fadeIn_0.3s_ease-out]" 
             onClick={() => setCartOpen(false)}
           />
           
           {/* Cart Panel - Large Sidebar Style */}
-          <div className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-2xl border-l border-border z-50 flex flex-col">
+          <div className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-2xl border-l border-border z-50 flex flex-col animate-[slideInRight_0.3s_ease-out]">
             {/* Rotating Banner */}
             <div className="bg-[#6b8e7b] text-white p-3 text-center transition-all duration-500">
               <div className="flex items-center justify-center gap-2">
