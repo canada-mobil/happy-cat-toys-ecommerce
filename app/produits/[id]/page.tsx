@@ -125,8 +125,8 @@ export default function ProductPage({ params }: ProductPageProps) {
               ))}
             </div>
 
-            {/* Product Description Images */}
-            <div className="mt-8 space-y-4">
+            {/* Product Description Images - Desktop only here */}
+            <div className="hidden lg:block mt-8 space-y-4">
               <h3 className="text-xl font-bold text-gray-900">Unleash the Fun</h3>
               <p className="text-gray-600 leading-relaxed">
                 {product.longDescription}
@@ -341,6 +341,19 @@ export default function ProductPage({ params }: ProductPageProps) {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Product Description Images - Mobile only, after all product info */}
+        <div className="lg:hidden mt-8 space-y-4 px-0">
+          <h3 className="text-xl font-bold text-gray-900">Unleash the Fun</h3>
+          <p className="text-gray-600 leading-relaxed">
+            {product.longDescription}
+          </p>
+          {product.images.slice(1, 5).map((img, index) => (
+            <div key={index} className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+              <Image src={img} alt={`Détail ${index + 1}`} fill className="object-contain bg-[#f8f8f8]" />
+            </div>
+          ))}
         </div>
       </main>
 
