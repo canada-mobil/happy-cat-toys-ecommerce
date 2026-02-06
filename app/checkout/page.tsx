@@ -327,7 +327,15 @@ ${itemsList}
     
     // Generate payment URL and redirect
     const paymentURL = generatePaymentURL(formData)
-    window.location.href = paymentURL
+    
+    console.log('=== BEFORE REDIRECT ===')
+    console.log('About to redirect to payment, Order ID should be saved:', orderNumber)
+    console.log('Final check - localStorage contains:', localStorage.getItem(`order_${orderNumber}`))
+    
+    // Add a small delay to ensure localStorage is written before redirect
+    setTimeout(() => {
+      window.location.href = paymentURL
+    }, 100)
   }
 
   if (items.length === 0) {
