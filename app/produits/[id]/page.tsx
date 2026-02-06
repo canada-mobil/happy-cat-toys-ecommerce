@@ -9,6 +9,7 @@ import Footer from "@/components/footer"
 import { getProductById, getRelatedProducts } from "@/lib/products"
 import { notFound } from "next/navigation"
 import { useCart } from "@/lib/cart-context"
+import ProductReviews from "@/components/product-reviews"
 
 interface ProductPageProps {
   params: Promise<{ id: string }>
@@ -360,6 +361,9 @@ export default function ProductPage({ params }: ProductPageProps) {
             </div>
           ))}
         </div>
+
+        {/* Customer Reviews */}
+        <ProductReviews />
       </main>
 
       {/* Sticky Bottom Bar (mobile) */}
