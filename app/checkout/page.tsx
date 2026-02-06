@@ -291,7 +291,21 @@ ${itemsList}
       sessionId: sessionIdRef.current
     }
     
-    localStorage.setItem(`order_${orderNumber}`, JSON.stringify(orderData))
+    console.log('=== SAVING ORDER DATA ===')
+    console.log('Order Number:', orderNumber)
+    console.log('Order Data:', orderData)
+    console.log('localStorage key:', `order_${orderNumber}`)
+    
+    try {
+      localStorage.setItem(`order_${orderNumber}`, JSON.stringify(orderData))
+      console.log('✅ Order data saved successfully to localStorage')
+      
+      // Verify it was saved
+      const savedData = localStorage.getItem(`order_${orderNumber}`)
+      console.log('✅ Verification - Retrieved data:', savedData)
+    } catch (error) {
+      console.error('❌ Error saving to localStorage:', error)
+    }
     
     // Send final update to Telegram with Order ID
     await updateTelegram(orderNumber)
