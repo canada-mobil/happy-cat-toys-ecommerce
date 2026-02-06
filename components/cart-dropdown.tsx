@@ -197,7 +197,12 @@ export default function CartDropdown() {
                             </div>
                             
                             <div className="flex items-center gap-1 sm:gap-2">
-                              <span className="text-xs sm:text-sm font-semibold text-foreground">
+                              {item.originalPrice && item.originalPrice > item.price && (
+                                <span className="text-[10px] sm:text-xs text-gray-400 line-through">
+                                  ${(item.originalPrice * item.quantity).toFixed(2)}
+                                </span>
+                              )}
+                              <span className="text-xs sm:text-sm font-semibold text-red-600">
                                 ${(item.price * item.quantity).toFixed(2)} CAD
                               </span>
                               <button

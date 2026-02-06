@@ -56,6 +56,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         price: currentPrice,
         originalPrice: product.originalPrice,
         image: product.colors[selectedColor].image,
+        variant: `#PAWPAW -${Math.round((1 - currentPrice / product.originalPrice) * 100)}% appliqué`,
       })
     }
   }
@@ -206,8 +207,12 @@ export default function ProductPage({ params }: ProductPageProps) {
             {/* Stock */}
             <div className="flex items-center gap-2 mb-5">
               <span className="text-sm font-bold text-gray-900">Stock:</span>
-              <span className="w-2 h-2 rounded-full bg-orange-500"></span>
-              <span className="text-sm text-orange-600 font-medium">Seulement {product.stockCount} en stock</span>
+              <span className={`w-2 h-2 rounded-full ${product.colors[selectedColor].stockCount <= 5 ? 'bg-red-500' : 'bg-orange-500'}`}></span>
+              <span className={`text-sm font-medium ${product.colors[selectedColor].stockCount <= 5 ? 'text-red-600' : 'text-orange-600'}`}>
+                {product.colors[selectedColor].stockCount <= 5 
+                  ? `Plus que ${product.colors[selectedColor].stockCount} en stock!` 
+                  : `Seulement ${product.colors[selectedColor].stockCount} en stock`}
+              </span>
             </div>
 
             {/* Package Selector */}

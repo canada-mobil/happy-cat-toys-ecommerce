@@ -2,6 +2,7 @@ export interface ProductColor {
   name: string
   value: string
   image: string
+  stockCount: number
 }
 
 export interface ProductPackage {
@@ -51,9 +52,9 @@ export const products: Product[] = [
       "/smart_interactive_cats_ball_toy_package.png.avif"
     ],
     colors: [
-      { name: "Rouge", value: "#e53e3e", image: "/smart_interactive_cats_ball_toy_red.png.webp" },
-      { name: "Gris", value: "#a0aec0", image: "/smart_interactive_cats_ball_toy_gray.png.avif" },
-      { name: "Vert", value: "#48bb78", image: "/smart_interactive_cats_ball_toy_green.png.avif" }
+      { name: "Rouge", value: "#e53e3e", image: "/smart_interactive_cats_ball_toy_red.png.webp", stockCount: 18 },
+      { name: "Gris", value: "#a0aec0", image: "/smart_interactive_cats_ball_toy_gray.png.avif", stockCount: 3 },
+      { name: "Vert", value: "#48bb78", image: "/smart_interactive_cats_ball_toy_green.png.avif", stockCount: 7 }
     ],
     packages: [
       { quantity: 1, label: "1x", pricePerUnit: 4.99 },
