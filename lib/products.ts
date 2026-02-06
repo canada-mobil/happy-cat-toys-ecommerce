@@ -58,7 +58,7 @@ export const products: Product[] = [
     ],
     packages: [
       { quantity: 1, label: "1x", pricePerUnit: 4.99 },
-      { quantity: 2, label: "2x", pricePerUnit: 4.49, badge: "Livraison Offerte" },
+      { quantity: 2, label: "2x", pricePerUnit: 4.49 },
       { quantity: 3, label: "3x", pricePerUnit: 3.99, badge: "Meilleur Deal" }
     ],
     category: "Jouets Interactifs",
