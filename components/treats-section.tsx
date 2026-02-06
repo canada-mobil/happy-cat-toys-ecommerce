@@ -10,7 +10,7 @@ const products = [
     id: "smart-interactive-ball-red",
     name: "Smart Interactive Ball - Rouge",
     description: "Balle intelligente auto-roulante pour chat",
-    price: 14.49,
+    price: 4.99,
     image: "/smart_interactive_cats_ball_toy_red.png.webp",
     soldOut: false
   },
@@ -18,7 +18,7 @@ const products = [
     id: "smart-interactive-ball-gray",
     name: "Smart Interactive Ball - Gris",
     description: "Balle intelligente auto-roulante pour chat",
-    price: 14.49,
+    price: 4.99,
     image: "/smart_interactive_cats_ball_toy_gray.png.avif",
     soldOut: false
   },
@@ -26,7 +26,7 @@ const products = [
     id: "smart-interactive-ball-green",
     name: "Smart Interactive Ball - Vert",
     description: "Balle intelligente auto-roulante pour chat",
-    price: 14.49,
+    price: 4.99,
     image: "/smart_interactive_cats_ball_toy_green.png.avif",
     soldOut: false
   }

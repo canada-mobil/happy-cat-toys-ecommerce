@@ -38,8 +38,8 @@ export const products: Product[] = [
     name: "Smart Interactive Cats Ball Toy",
     description: "Jouet balle interactive intelligente qui roule, rebondit et stimule l'instinct de chasse de votre chat.",
     longDescription: "Transformez le temps de jeu de votre chat en une aventure ! La Smart Interactive Cats Ball Toy est conçue pour éveiller la curiosité et l'énergie de votre félin grâce à ses mouvements de roulement, de secousse et de rebond qui imitent une proie naturelle. Rechargeable par USB, matériaux écologiques et sécuritaires.",
-    price: 14.49,
-    originalPrice: 20.95,
+    price: 4.99,
+    originalPrice: 12.99,
     image: "/smart_interactive_cats_ball_toy_red.png.webp",
     images: [
       "/smart_interactive_cats_ball_toy_red.png.webp",
@@ -56,9 +56,9 @@ export const products: Product[] = [
       { name: "Vert", value: "#48bb78", image: "/smart_interactive_cats_ball_toy_green.png.avif" }
     ],
     packages: [
-      { quantity: 1, label: "1", pricePerUnit: 14.49 },
-      { quantity: 2, label: "2", pricePerUnit: 12.99, badge: "Livraison Gratuite" },
-      { quantity: 3, label: "3", pricePerUnit: 10.99, badge: "Économisez 19,38$" }
+      { quantity: 1, label: "1x", pricePerUnit: 4.99 },
+      { quantity: 2, label: "2x", pricePerUnit: 4.49, badge: "Livraison Offerte" },
+      { quantity: 3, label: "3x", pricePerUnit: 3.99, badge: "Meilleur Deal" }
     ],
     category: "Jouets Interactifs",
     inStock: true,

@@ -32,7 +32,7 @@ export default function CartDropdown() {
     {
       id: "smart-interactive-ball-Rouge",
       name: "Smart Interactive Ball - Rouge",
-      price: 14.49,
+      price: 4.99,
       image: "/smart_interactive_cats_ball_toy_red.png.webp",
       rating: 4.8,
       reviews: 325
@@ -40,7 +40,7 @@ export default function CartDropdown() {
     {
       id: "smart-interactive-ball-Gris",
       name: "Smart Interactive Ball - Gris",
-      price: 14.49,
+      price: 4.99,
       image: "/smart_interactive_cats_ball_toy_gray.png.avif",
       rating: 4.8,
       reviews: 325
@@ -48,7 +48,7 @@ export default function CartDropdown() {
     {
       id: "smart-interactive-ball-Vert",
       name: "Smart Interactive Ball - Vert",
-      price: 14.49,
+      price: 4.99,
       image: "/smart_interactive_cats_ball_toy_green.png.avif",
       rating: 4.8,
       reviews: 325

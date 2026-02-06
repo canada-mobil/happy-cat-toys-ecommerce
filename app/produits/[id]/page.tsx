@@ -157,17 +157,26 @@ export default function ProductPage({ params }: ProductPageProps) {
             </h1>
 
             {/* Price */}
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-2">
               <span className="text-3xl font-bold text-red-600">CA${currentPrice.toFixed(2)}</span>
+              <span className="text-lg text-gray-400 line-through">CA${product.originalPrice.toFixed(2)}</span>
               <span className="bg-orange-100 text-orange-700 text-xs font-bold px-2 py-1 rounded">
                 -{Math.round((1 - currentPrice / product.originalPrice) * 100)}%
               </span>
-              <span className="text-lg text-gray-400 line-through">CA${product.originalPrice.toFixed(2)}</span>
+            </div>
+
+            {/* Promo Code Badge */}
+            <div className="flex items-center gap-2 mb-4">
+              <div className="bg-green-50 border border-green-300 rounded-md px-3 py-1.5 flex items-center gap-2">
+                <span className="text-green-700 text-xs font-medium">Code promo appliqué:</span>
+                <span className="bg-green-600 text-white text-xs font-bold px-2 py-0.5 rounded tracking-wider">#PAWPAW</span>
+              </div>
+              <span className="text-xs text-green-600 font-medium">-{Math.round((1 - currentPrice / product.originalPrice) * 100)}% de rabais!</span>
             </div>
 
             {/* Free Shipping Countdown */}
             <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 mb-5 flex items-center gap-2">
-              <span className="text-sm font-medium text-gray-700">Livraison Gratuite.</span>
+              <span className="text-sm font-medium text-gray-700">Livraison Offerte.</span>
               <span className="bg-black text-white text-xs font-bold px-2 py-1 rounded">{timeLeft.hours}</span>
               <span className="text-xs font-bold">:</span>
               <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">{timeLeft.minutes}</span>
@@ -203,31 +212,28 @@ export default function ProductPage({ params }: ProductPageProps) {
 
             {/* Package Selector */}
             <div className="mb-5">
-              <p className="text-sm font-bold text-gray-900 mb-3">Quantité:</p>
-              <div className="flex gap-3">
+              <p className="text-sm font-bold text-gray-900 mb-3">Package: <span className="font-normal text-gray-600">{product.packages[selectedPackage].label}</span></p>
+              <div className="flex gap-2">
                 {product.packages.map((pkg, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedPackage(index)}
-                    className={`flex-1 py-3 px-4 rounded-lg border-2 text-center transition-all ${
+                    className={`relative px-4 py-2 rounded-lg border-2 text-center transition-all ${
                       selectedPackage === index 
                         ? 'border-[#6b8e7b] bg-[#f0f7f3] shadow-md' 
-                        : 'border-gray-200 hover:border-gray-300 bg-white'
+                        : 'border-gray-200 hover:border-gray-400 bg-white'
                     }`}
                   >
-                    <span className="block text-xl font-bold text-gray-900">{pkg.label}</span>
+                    <span className="block text-sm font-bold text-gray-900">{pkg.label}</span>
                     {pkg.badge && (
-                      <span className={`block text-xs font-medium mt-1 ${
-                        pkg.badge.includes('Gratuite') ? 'text-[#6b8e7b]' : 'text-red-500'
+                      <span className={`block text-[10px] font-medium mt-0.5 ${
+                        pkg.badge.includes('Offerte') ? 'text-[#6b8e7b]' : 'text-red-500'
                       }`}>
                         {pkg.badge}
                       </span>
                     )}
                   </button>
                 ))}
-                <button className="py-3 px-4 rounded-lg border-2 border-gray-200 hover:border-gray-300 bg-white text-center">
-                  <Plus className="w-5 h-5 text-gray-400 mx-auto" />
-                </button>
               </div>
             </div>
 
