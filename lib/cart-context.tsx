@@ -47,6 +47,50 @@ export function CartProvider({ children }: { children: ReactNode }) {
         if (Array.isArray(parsedCart)) {
           setItems(parsedCart)
         }
+      } else {
+        // Auto-add free catnip on first visit
+        const freeCatnip: CartItem = {
+          id: 'catnip-gratuit',
+          name: 'Catnip Gratuit',
+          price: 0,
+          originalPrice: 5.99,
+          image: '/smart_interactive_cats_ball_toy_package.png.avif',
+          quantity: 1,
+          variant: 'CADEAU GRATUIT'
+        }
+        setItems([freeCatnip])
+
+        // Show welcome popup
+        setTimeout(() => {
+          const popup = document.createElement('div')
+          popup.id = 'welcome-popup'
+          popup.style.cssText = `
+            position: fixed !important;
+            top: 20px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 99999 !important;
+            background: #6b8e7b !important;
+            color: white !important;
+            padding: 12px 20px !important;
+            border-radius: 25px !important;
+            font-family: system-ui, -apple-system, sans-serif !important;
+            font-size: 14px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+          `
+          popup.innerHTML = `
+            <div style="display: flex; align-items: center;">
+              <span style="margin-right: 8px;">🎁</span>
+              <span>Cadeau ajouté à votre panier !</span>
+            </div>
+          `
+          document.body.appendChild(popup)
+          setTimeout(() => {
+            if (popup && popup.parentNode) {
+              popup.remove()
+            }
+          }, 3000)
+        }, 1500)
       }
     } catch {
       localStorage.removeItem("happy-cat-toys-cart")
