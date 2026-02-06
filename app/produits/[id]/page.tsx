@@ -276,7 +276,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             {/* Delivery Info */}
             <div className="bg-gray-50 rounded-lg p-4 mb-6">
               <p className="text-sm text-gray-700">
-                <strong>Livraison:</strong> 5-9 jours ouvrables. 81.4% des livraisons arrivent en 9 jours ou moins.
+                <strong>Livraison:</strong> 24 à 72h ouvrables. Expédition le jour même si commandé avant 14h.
               </p>
               <p className="text-sm text-gray-500 mt-1">
                 Transporteur: Canada Post
