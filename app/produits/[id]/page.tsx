@@ -140,7 +140,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
 
           {/* RIGHT: Product Info */}
-          <div className="lg:sticky lg:top-4 lg:self-start">
+          <div className="lg:sticky lg:top-24 lg:self-start">
             {/* Reviews */}
             <div className="flex items-center gap-2 mb-2">
               <div className="flex">
