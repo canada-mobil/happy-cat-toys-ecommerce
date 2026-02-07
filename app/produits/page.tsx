@@ -231,7 +231,7 @@ export default function ProductsPage() {
             preload="metadata"
             className="w-full"
           >
-            <source src="/shop1.mp4" type="video/mp4" />
+            <source src="/hoeme1.mp4" type="video/mp4" />
           </video>
         </div>
       </section>
