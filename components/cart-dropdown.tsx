@@ -153,9 +153,9 @@ export default function CartDropdown() {
               </div>
             ) : (
               <>
-
-                {/* Items */}
-                <div className="flex-1 overflow-y-auto">
+                {/* Scrollable area: items + recommendations */}
+                <div className="flex-1 overflow-y-auto min-h-0">
+                  {/* Items */}
                   {items.map((item) => (
                     <div key={item.id} className="p-3 sm:p-4 border-b border-neutral-200 last:border-b-0">
                       <div className="flex gap-2 sm:gap-3">
@@ -204,7 +204,7 @@ export default function CartDropdown() {
                                   ${(item.originalPrice * item.quantity).toFixed(2)}
                                 </span>
                               )}
-                              <span className="text-xs sm:text-sm font-semibold text-red-600">
+                              <span className="text-xs sm:text-sm font-semibold text-neutral-900">
                                 ${(item.price * item.quantity).toFixed(2)} CAD
                               </span>
                               <button
@@ -219,48 +219,48 @@ export default function CartDropdown() {
                       </div>
                     </div>
                   ))}
-                </div>
 
-                {/* Recommendations Section */}
-                <div className="border-t border-neutral-100 p-3 bg-neutral-50">
-                  <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider mb-2">Recommandé</h4>
-                  <div>
-                    {recommendedProducts.slice(0, 1).map((product) => (
-                      <div key={product.id} className="flex gap-2 p-2 bg-white rounded-lg border border-neutral-100">
-                        <div className="relative w-10 h-10 rounded-md overflow-hidden bg-neutral-50 flex-shrink-0">
-                          <Image
-                            src={product.image || "/placeholder.svg"}
-                            alt={product.name}
-                            fill
-                            sizes="40px"
-                            className="object-contain p-1"
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <h5 className="text-xs font-medium text-neutral-900 leading-tight">{product.name}</h5>
-                          <div className="flex items-center justify-between mt-1.5">
-                            <span className="text-xs font-semibold text-neutral-900">CA${product.price}</span>
-                            <button
-                              onClick={() => addItem({
-                                id: product.id,
-                                name: product.name,
-                                price: product.price,
-                                originalPrice: product.price,
-                                image: product.image,
-                              })}
-                              className="text-[10px] bg-neutral-900 text-white px-2.5 py-0.5 rounded-full hover:bg-black transition-colors"
-                            >
-                              Ajouter
-                            </button>
+                  {/* Recommendations Section - inside scrollable area */}
+                  <div className="border-t border-neutral-100 p-3 bg-neutral-50">
+                    <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider mb-2">Recommandé</h4>
+                    <div>
+                      {recommendedProducts.slice(0, 1).map((product) => (
+                        <div key={product.id} className="flex gap-2 p-2 bg-white rounded-lg border border-neutral-100">
+                          <div className="relative w-10 h-10 rounded-md overflow-hidden bg-neutral-50 flex-shrink-0">
+                            <Image
+                              src={product.image || "/placeholder.svg"}
+                              alt={product.name}
+                              fill
+                              sizes="40px"
+                              className="object-contain p-1"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <h5 className="text-xs font-medium text-neutral-900 leading-tight">{product.name}</h5>
+                            <div className="flex items-center justify-between mt-1.5">
+                              <span className="text-xs font-semibold text-neutral-900">CA${product.price}</span>
+                              <button
+                                onClick={() => addItem({
+                                  id: product.id,
+                                  name: product.name,
+                                  price: product.price,
+                                  originalPrice: product.price,
+                                  image: product.image,
+                                })}
+                                className="text-[10px] bg-neutral-900 text-white px-2.5 py-0.5 rounded-full hover:bg-black transition-colors"
+                              >
+                                Ajouter
+                              </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Footer */}
-                <div className="p-3 sm:p-4 border-t border-neutral-100 bg-white">
+                {/* Footer - fixed at bottom, never scrolls */}
+                <div className="flex-shrink-0 p-3 sm:p-4 border-t border-neutral-100 bg-white">
                   <div className="flex items-center justify-between mb-3 sm:mb-4">
                     <span className="font-medium text-neutral-500 text-sm">Total</span>
                     <span className="font-semibold text-lg text-neutral-900">
