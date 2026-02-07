@@ -10,6 +10,7 @@ import { getProductById, getRelatedProducts } from "@/lib/products"
 import { notFound } from "next/navigation"
 import { useCart } from "@/lib/cart-context"
 import ProductReviews from "@/components/product-reviews"
+import LazyVideo from "@/components/lazy-video"
 
 interface ProductPageProps {
   params: Promise<{ id: string }>
@@ -322,11 +323,13 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
         </div>
 
-        {/* Product Video */}
-        <div className="mt-12 rounded-2xl overflow-hidden bg-neutral-900">
-          <video autoPlay muted loop playsInline preload="metadata" className="w-full">
-            <source src="/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4" type="video/mp4" />
-          </video>
+        {/* Product Video - lazy loaded on click */}
+        <div className="mt-12 rounded-2xl overflow-hidden">
+          <LazyVideo
+            src="/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4"
+            className="w-full aspect-video object-cover"
+            containerClassName="w-full bg-neutral-900 rounded-2xl overflow-hidden"
+          />
         </div>
 
         {/* Customer Reviews */}

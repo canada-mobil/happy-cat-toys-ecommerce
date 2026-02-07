@@ -1,38 +1,17 @@
 "use client"
 
-import { useRef, useEffect } from "react"
+import VideoHero from "./video-hero"
 
 export default function HeroSection() {
-  const mobileVideoRef = useRef<HTMLVideoElement>(null)
-  const desktopVideoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    // Force play videos as soon as they can
-    const playVideo = (video: HTMLVideoElement | null) => {
-      if (video) {
-        video.play().catch(() => {})
-      }
-    }
-    playVideo(mobileVideoRef.current)
-    playVideo(desktopVideoRef.current)
-  }, [])
-
   return (
     <>
       {/* Mobile: Full-screen video hero like Cheerble */}
       <section className="relative md:hidden w-full h-[100svh] overflow-hidden bg-neutral-900">
         {/* Video Background */}
-        <video
-          ref={mobileVideoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
+        <VideoHero
+          src="/hoeme1.mp4"
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/hoeme1.mp4" type="video/mp4" />
-        </video>
+        />
 
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
@@ -95,17 +74,10 @@ export default function HeroSection() {
           {/* Video on desktop */}
           <div className="flex-1 relative">
             <div className="relative w-full aspect-[4/5] max-w-xl mx-auto rounded-2xl overflow-hidden shadow-2xl bg-neutral-900">
-              <video
-                ref={desktopVideoRef}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
+              <VideoHero
+                src="/hoeme1.mp4"
                 className="absolute inset-0 w-full h-full object-cover"
-              >
-                <source src="/hoeme1.mp4" type="video/mp4" />
-              </video>
+              />
             </div>
           </div>
         </div>
