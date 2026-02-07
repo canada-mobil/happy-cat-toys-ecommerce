@@ -126,20 +126,20 @@ export const products: Product[] = [
     longDescription: "Le Mouse PLUS offre une expérience de chasse réaliste pour votre chat grâce à ses mouvements aléatoires qui imitent une vraie souris. Avec 2 modes de vitesse, un système anti-perte par bip sonore, et un équilibre jeu/repos automatique (10 min de jeu, 30 min de repos), il garde votre chat actif et stimulé. Rechargeable par USB-C, roues détachables et évitement d'obstacles automatique.",
     price: 7.99,
     originalPrice: 17.99,
-    image: "/mouse1.jpg",
+    image: "/shop3.png.avif",
     images: [
-      "/mouse1.jpg",
-      "/mouse3.webp",
-      "/mouse4.webp",
-      "/mouse5.webp",
-      "/mouse6.webp",
-      "/mouse7.webp",
-      "/mouse8.webp",
-      "/mouse9.webp"
+      "/shop3.png.avif",
+      "/shop3.jpg.avif",
+      "/shop3_150a69c0-bdf8-458a-8bb2-fae5e7902a5a.jpg.jxl",
+      "/shop3_82fe0b27-f4c3-4527-902d-03ac1e3bcf5d.png.jxl",
+      "/shop3_a6e342a2-2ecc-4f2d-a619-ec1787dc623b.jpg.avif",
+      "/shop3_aa9ddd53-79c8-4beb-8ca5-9b0f1e061c9f.jpg.avif",
+      "/shop3_b40fdffb-e680-4a39-bf6c-fd2982caa576.jpg.avif",
+      "/shop3_e698e30e-33d0-4cd3-be1d-089e0a5b7eb1.jpg.jxl"
     ],
     colors: [
-      { name: "Milky Blue", value: "#b8d4e3", image: "/mouse1.jpg", stockCount: 15 },
-      { name: "Vert", value: "#8fbc8f", image: "/mouse3.webp", stockCount: 10 }
+      { name: "Milky Blue", value: "#b8d4e3", image: "/shop3.png.avif", stockCount: 15 },
+      { name: "Vert", value: "#8fbc8f", image: "/shop3.jpg.avif", stockCount: 10 }
     ],
     packages: [
       { quantity: 1, label: "1x", pricePerUnit: 7.99 },
