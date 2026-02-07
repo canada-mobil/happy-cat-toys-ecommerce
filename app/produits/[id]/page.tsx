@@ -319,10 +319,10 @@ export default function ProductPage({ params }: ProductPageProps) {
         <div className="mt-16 space-y-5">
           <h3 className="text-xl font-semibold text-neutral-900">Unleash the Fun</h3>
           <p className="text-neutral-500 text-sm leading-relaxed max-w-2xl">{product.longDescription}</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-4">
             {product.images.slice(1).map((img, index) => (
-              <div key={index} className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
-                <Image src={img} alt={`Détail ${index + 1}`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain bg-neutral-50 p-2" />
+              <div key={index} className="relative w-full rounded-2xl overflow-hidden">
+                <Image src={img} alt={`Détail ${index + 1}`} width={1200} height={800} sizes="100vw" className="w-full h-auto bg-neutral-50" />
               </div>
             ))}
           </div>
