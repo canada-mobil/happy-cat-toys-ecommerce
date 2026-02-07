@@ -1,7 +1,4 @@
-"use client"
-
 import { Truck, Shield, MapPin, Clock, CreditCard, RotateCcw } from "lucide-react"
-import { useEffect, useRef } from "react"
 
 const badges = [
   { icon: Truck, title: "Livraison Gratuite", subtitle: "Commandes 50$+" },
@@ -12,59 +9,35 @@ const badges = [
   { icon: RotateCcw, title: "Retours Gratuits", subtitle: "Sous 30 jours" },
 ]
 
-export default function TrustBadges() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const badgeElements = entry.target.querySelectorAll('.trust-badge')
-            // Animate from right to left by reversing the order
-            Array.from(badgeElements).reverse().forEach((badge, index) => {
-              setTimeout(() => {
-                badge.classList.add('animate-slide-in')
-              }, index * 150)
-            })
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
+function BadgeItem({ icon: Icon, title, subtitle }: typeof badges[0]) {
   return (
-    <section className="bg-white py-12 px-4 border-y border-neutral-100 overflow-hidden">
-      <div className="max-w-6xl mx-auto" ref={containerRef}>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-          {badges.map((badge, index) => (
-            <div 
-              key={badge.title} 
-              className="trust-badge flex flex-col items-center text-center opacity-0 transform translate-x-12 transition-all duration-1000 ease-out"
-            >
-              <div className="w-10 h-10 bg-neutral-50 rounded-full flex items-center justify-center mb-2.5">
-                <badge.icon className="w-5 h-5 text-neutral-700" />
-              </div>
-              <span className="text-neutral-900 font-medium text-xs">{badge.title}</span>
-              <span className="text-neutral-400 text-[11px]">{badge.subtitle}</span>
-            </div>
+    <div className="flex flex-col items-center text-center px-8 flex-shrink-0">
+      <div className="w-10 h-10 bg-neutral-50 rounded-full flex items-center justify-center mb-2.5">
+        <Icon className="w-5 h-5 text-neutral-700" />
+      </div>
+      <span className="text-neutral-900 font-medium text-xs whitespace-nowrap">{title}</span>
+      <span className="text-neutral-400 text-[11px] whitespace-nowrap">{subtitle}</span>
+    </div>
+  )
+}
+
+export default function TrustBadges() {
+  return (
+    <section className="bg-white py-10 border-y border-neutral-100 overflow-hidden">
+      {/* Fade edges */}
+      <div className="relative">
+        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10" />
+
+        <div className="flex animate-marquee">
+          {badges.map((badge, i) => (
+            <BadgeItem key={`a-${i}`} {...badge} />
+          ))}
+          {badges.map((badge, i) => (
+            <BadgeItem key={`b-${i}`} {...badge} />
           ))}
         </div>
       </div>
-      
-      <style jsx>{`
-        .animate-slide-in {
-          opacity: 1 !important;
-          transform: translateX(0) !important;
-        }
-      `}</style>
     </section>
   )
 }
