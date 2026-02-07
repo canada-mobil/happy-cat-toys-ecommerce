@@ -21,7 +21,7 @@ export default function Home() {
       <TrustBadges />
       <BestSellers />
       <PromoBanner />
-      <TreatsSection />
+      {/* TreatsSection removed */}
       <FeaturesSection />
       <BenefitsSection />
       <LifestyleSection />
