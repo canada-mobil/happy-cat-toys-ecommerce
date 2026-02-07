@@ -10,9 +10,9 @@ export default function Header() {
   const [currentMessage, setCurrentMessage] = useState(0)
 
   const messages = [
-    "🚚 LIVRAISON GRATUITE OFFERTE",
-    "⚡ LIVRAISON RAPIDE",
-    "✅ GARANTI 2 MOIS"
+    "LIVRAISON GRATUITE OFFERTE",
+    "LIVRAISON RAPIDE",
+    "GARANTI 2 MOIS"
   ]
 
   const menuItems = [
@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <>
       {/* Animated Announcement Bar */}
-      <div className="bg-blue-800 py-2 text-center overflow-hidden relative">
+      <div className="bg-blue-600 py-2 text-center overflow-hidden relative">
         <div className="relative h-5">
           {messages.map((message, index) => (
             <p
