@@ -29,13 +29,13 @@ export default function LovedByFamilies() {
         </p>
 
         <div
-          className="relative rounded-2xl overflow-hidden bg-neutral-900 cursor-pointer group"
+          className="relative rounded-2xl overflow-hidden bg-neutral-900 cursor-pointer group max-w-sm mx-auto"
           onClick={handlePlay}
         >
           <video
             ref={videoRef}
             src="/86fe1575-9665-4b7d-a9da-3ee5e1515474.mp4"
-            className="w-full aspect-video object-cover"
+            className="w-full aspect-[9/16] object-cover"
             playsInline
             preload="metadata"
             onEnded={() => setIsPlaying(false)}
