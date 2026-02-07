@@ -37,7 +37,7 @@ export default function ProductsPage() {
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/20 to-transparent" />
         <div className="absolute bottom-6 left-6 md:left-12 z-10">
           <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 tracking-tight">
             Cat Toys
@@ -57,7 +57,7 @@ export default function ProductsPage() {
             {/* Big lifestyle photo */}
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
               <Image
-                src="/smart_interactive_cats_ball_toy_entertainment.png.webp"
+                src="/Section2_-_Featured_Cat_Toy.jpg.webp"
                 alt="Smart Interactive Ball"
                 fill
                 sizes="100vw"
@@ -157,7 +157,7 @@ export default function ProductsPage() {
             {/* Right: Lifestyle photo */}
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/smart_interactive_cats_ball_toy_entertainment.png.webp"
+                src="/Section2_-_Featured_Cat_Toy.jpg.webp"
                 alt="Chat jouant avec la Smart Interactive Ball"
                 fill
                 sizes="50vw"

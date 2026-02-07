@@ -79,220 +79,112 @@ export default function CartDropdown() {
             onClick={() => setCartOpen(false)}
           />
           
-          {/* Cart Panel - Large Sidebar Style */}
-          <div className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-2xl border-l border-neutral-100 z-50 flex flex-col animate-[slideInRight_0.3s_ease-out]">
-            {/* Rotating Banner */}
-            <div className="bg-neutral-900 text-white p-3 text-center transition-all duration-500">
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-white">{bannerMessages[currentBannerIndex].icon}</span>
-                <div>
-                  <div className="text-xs font-medium">{bannerMessages[currentBannerIndex].text}</div>
-                  <div className="text-[10px] text-neutral-400">{bannerMessages[currentBannerIndex].subtext}</div>
-                </div>
-              </div>
-            </div>
-
+          {/* Cart Panel - Shopify style sidebar */}
+          <div className="fixed right-0 top-0 h-full w-full sm:w-[400px] bg-white shadow-2xl border-l border-neutral-100 z-50 flex flex-col animate-[slideInRight_0.3s_ease-out]">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 sm:p-4 border-b border-neutral-100">
-              <h3 className="font-semibold text-neutral-900 text-lg sm:text-base">Panier ({itemCount})</h3>
+            <div className="flex-shrink-0 flex items-center justify-between px-4 py-4 border-b border-neutral-100">
+              <h3 className="font-semibold text-neutral-900 text-base">Panier ({itemCount})</h3>
               <button
                 onClick={() => setCartOpen(false)}
-                className="p-2 sm:p-1 hover:bg-neutral-50 rounded-md transition-colors"
+                className="p-1.5 hover:bg-neutral-100 rounded-full transition-colors"
               >
-                <X className="w-5 h-5 sm:w-4 sm:h-4 text-neutral-400" />
+                <X className="w-5 h-5 text-neutral-500" />
               </button>
             </div>
 
             {items.length === 0 ? (
-              <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-8 text-center">
-                <ShoppingCart className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 opacity-50 text-neutral-400" />
-                <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-2">Votre panier est vide</h3>
-                <p className="text-sm sm:text-base text-neutral-400 mb-4 sm:mb-6">Découvrez nos produits et ajoutez-les à votre panier</p>
-                
-                {/* Recommended Products for Empty Cart */}
-                <div className="w-full">
-                  <h4 className="text-sm font-semibold text-neutral-900 mb-4">Produits recommandés</h4>
-                  <div className="space-y-3">
-                    {recommendedProducts.slice(0, 1).map((product) => (
-                      <div key={product.id} className="flex gap-2 p-2 border border-neutral-200 rounded-lg hover:shadow-md transition-shadow">
-                        <div className="relative w-12 h-12 rounded-md overflow-hidden bg-neutral-50 flex-shrink-0">
-                          <Image
-                            src={product.image || "/placeholder.svg"}
-                            alt={product.name}
-                            fill
-                            sizes="48px"
-                            className="object-cover"
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <h5 className="text-xs font-medium text-neutral-900">{product.name}</h5>
-                          <div className="flex items-center gap-1 mt-1">
-                            <Star className="w-2.5 h-2.5 fill-yellow-400 text-yellow-400" />
-                            <span className="text-xs text-neutral-400">{product.rating} ({product.reviews})</span>
-                          </div>
-                          <div className="flex items-center justify-between mt-1">
-                            <span className="text-xs font-semibold text-neutral-900">${product.price} CAD</span>
-                            <button
-                              onClick={() => addItem({
-                                id: product.id,
-                                name: product.name,
-                                price: product.price,
-                                originalPrice: product.price,
-                                image: product.image,
-                              })}
-                              className="text-xs bg-neutral-900 text-white px-2 py-0.5 rounded hover:bg-black transition-colors"
-                            >
-                              +
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
+                <ShoppingCart className="w-14 h-14 mx-auto mb-4 text-neutral-200" />
+                <h3 className="text-base font-semibold text-neutral-900 mb-1">Votre panier est vide</h3>
+                <p className="text-sm text-neutral-400 mb-6">Ajoutez des produits pour commencer</p>
+                <Link href="/produits" onClick={() => setCartOpen(false)} className="bg-neutral-900 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-black transition-colors">
+                  Voir les produits
+                </Link>
               </div>
             ) : (
               <>
-                {/* Scrollable area: items + recommendations */}
-                <div className="flex-1 overflow-y-auto min-h-0">
-                  {/* Items */}
+                {/* Scrollable items */}
+                <div className="flex-1 overflow-y-auto" style={{ minHeight: 0 }}>
                   {items.map((item) => (
-                    <div key={item.id} className="p-3 sm:p-4 border-b border-neutral-200 last:border-b-0">
-                      <div className="flex gap-2 sm:gap-3">
-                        <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-md overflow-hidden bg-neutral-50 flex-shrink-0">
+                    <div key={item.id} className="px-4 py-4 border-b border-neutral-100">
+                      <div className="flex gap-3">
+                        <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-neutral-50 flex-shrink-0">
                           <Image
                             src={item.image || "/placeholder.svg"}
                             alt={item.name}
                             fill
                             sizes="64px"
-                            className="object-cover"
+                            className="object-contain p-1"
                           />
                         </div>
                         
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-medium text-neutral-900">
-                            {item.name}
-                          </h4>
+                          <div className="flex justify-between items-start">
+                            <h4 className="text-sm font-medium text-neutral-900 leading-tight pr-2">
+                              {item.name}
+                            </h4>
+                            <button
+                              onClick={() => removeItem(item.id)}
+                              className="p-1 text-neutral-300 hover:text-red-500 transition-colors flex-shrink-0"
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
                           {item.variant && (
-                            <p className="text-xs text-neutral-500 font-medium">
-                              {item.variant}
-                            </p>
+                            <p className="text-xs text-neutral-400 mt-0.5">{item.variant}</p>
                           )}
                           
-                          <div className="flex items-center justify-between mt-2 sm:mt-3">
-                            <div className="flex items-center gap-1 sm:gap-2">
+                          <div className="flex items-center justify-between mt-3">
+                            <div className="flex items-center border border-neutral-200 rounded-lg">
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors"
+                                className="w-8 h-8 flex items-center justify-center hover:bg-neutral-50 transition-colors"
                               >
                                 <Minus className="w-3 h-3" />
                               </button>
-                              <span className="text-sm font-medium w-6 sm:w-8 text-center">
-                                {item.quantity}
-                              </span>
+                              <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors"
+                                className="w-8 h-8 flex items-center justify-center hover:bg-neutral-50 transition-colors"
                               >
                                 <Plus className="w-3 h-3" />
                               </button>
                             </div>
                             
-                            <div className="flex items-center gap-1 sm:gap-2">
-                              {item.originalPrice && item.originalPrice > item.price && (
-                                <span className="text-[10px] sm:text-xs text-gray-400 line-through">
-                                  ${(item.originalPrice * item.quantity).toFixed(2)}
-                                </span>
-                              )}
-                              <span className="text-xs sm:text-sm font-semibold text-neutral-900">
-                                ${(item.price * item.quantity).toFixed(2)} CAD
-                              </span>
-                              <button
-                                onClick={() => removeItem(item.id)}
-                                className="p-1 hover:bg-red-50 hover:text-red-600 rounded-md transition-colors"
-                              >
-                                <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
-                              </button>
-                            </div>
+                            <span className="text-sm font-semibold text-neutral-900">
+                              CA${(item.price * item.quantity).toFixed(2)}
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
                   ))}
-
-                  {/* Recommendations Section - inside scrollable area */}
-                  <div className="border-t border-neutral-100 p-3 bg-neutral-50">
-                    <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider mb-2">Recommandé</h4>
-                    <div>
-                      {recommendedProducts.slice(0, 1).map((product) => (
-                        <div key={product.id} className="flex gap-2 p-2 bg-white rounded-lg border border-neutral-100">
-                          <div className="relative w-10 h-10 rounded-md overflow-hidden bg-neutral-50 flex-shrink-0">
-                            <Image
-                              src={product.image || "/placeholder.svg"}
-                              alt={product.name}
-                              fill
-                              sizes="40px"
-                              className="object-contain p-1"
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <h5 className="text-xs font-medium text-neutral-900 leading-tight">{product.name}</h5>
-                            <div className="flex items-center justify-between mt-1.5">
-                              <span className="text-xs font-semibold text-neutral-900">CA${product.price}</span>
-                              <button
-                                onClick={() => addItem({
-                                  id: product.id,
-                                  name: product.name,
-                                  price: product.price,
-                                  originalPrice: product.price,
-                                  image: product.image,
-                                })}
-                                className="text-[10px] bg-neutral-900 text-white px-2.5 py-0.5 rounded-full hover:bg-black transition-colors"
-                              >
-                                Ajouter
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
 
-                {/* Footer - fixed at bottom, never scrolls */}
-                <div className="flex-shrink-0 p-3 sm:p-4 border-t border-neutral-100 bg-white">
-                  <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <span className="font-medium text-neutral-500 text-sm">Total</span>
-                    <span className="font-semibold text-lg text-neutral-900">
-                      CA${total.toFixed(2)}
-                    </span>
+                {/* Footer */}
+                <div className="flex-shrink-0 border-t border-neutral-100 bg-white p-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm text-neutral-500">Sous-total</span>
+                    <span className="text-lg font-semibold text-neutral-900">CA${total.toFixed(2)}</span>
                   </div>
+                  <p className="text-[11px] text-neutral-400 mb-3">Taxes et frais de livraison calculés à la caisse</p>
                   
-                  <div className="space-y-2 sm:space-y-3">
-                    <Link href="/checkout" className="block">
-                      <button
-                        onClick={() => setCartOpen(false)}
-                        className="w-full bg-neutral-900 hover:bg-black text-white py-3 px-4 rounded-full font-medium transition-all text-sm"
-                      >
-                        Commander
-                      </button>
-                    </Link>
-                    <Link href="/cart" className="block">
-                      <button
-                        onClick={() => setCartOpen(false)}
-                        className="w-full text-neutral-500 hover:text-neutral-900 py-2 px-4 font-medium transition-colors text-xs"
-                      >
-                        Voir le panier complet
-                      </button>
-                    </Link>
-                  </div>
-
-                  {/* Bottom Trust Badges - Simplified */}
-                  <div className="mt-3 pt-2 border-t border-neutral-100">
-                    <div className="text-[10px] text-center text-neutral-300">
-                      Paiement sécurisé · Livraison 24-72h · Garantie 2 mois
-                    </div>
-                  </div>
+                  <Link href="/checkout" className="block mb-2">
+                    <button
+                      onClick={() => setCartOpen(false)}
+                      className="w-full bg-neutral-900 hover:bg-black text-white py-3.5 rounded-full font-medium transition-all text-sm"
+                    >
+                      Commander · CA${total.toFixed(2)}
+                    </button>
+                  </Link>
+                  <Link href="/cart" className="block">
+                    <button
+                      onClick={() => setCartOpen(false)}
+                      className="w-full text-neutral-500 hover:text-neutral-900 py-2 font-medium transition-colors text-xs underline underline-offset-2"
+                    >
+                      Voir le panier complet
+                    </button>
+                  </Link>
                 </div>
               </>
             )}

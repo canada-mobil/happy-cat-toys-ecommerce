@@ -56,14 +56,21 @@ export default function Header() {
       {/* Main Header */}
       <header className="bg-white/95 backdrop-blur-md py-3 px-4 sticky top-0 z-50 border-b border-neutral-100">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Left: Logo */}
-          <div className="flex items-center gap-8">
+          {/* Mobile: Menu left */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden text-neutral-800 hover:text-black transition-colors p-1"
+            aria-label="Menu"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+
+          {/* Desktop: Logo + Nav left */}
+          <div className="hidden lg:flex items-center gap-8">
             <Link href="/" className="text-neutral-900 text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
               Purrball
             </Link>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-6">
+            <nav className="flex items-center gap-6">
               {menuItems.map((item) => (
                 <Link
                   key={item.label}
@@ -76,16 +83,14 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* Right Icons */}
-          <div className="flex items-center gap-4">
+          {/* Mobile: Logo center */}
+          <Link href="/" className="lg:hidden text-neutral-900 text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity absolute left-1/2 -translate-x-1/2">
+            Purrball
+          </Link>
+
+          {/* Right: Cart */}
+          <div className="flex items-center">
             <CartDropdown />
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden text-neutral-800 hover:text-black transition-colors"
-              aria-label="Menu"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
           </div>
         </div>
 
