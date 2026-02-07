@@ -28,9 +28,9 @@ export default function ProductsPage() {
       <Header />
 
       {/* Hero Banner */}
-      <section className="relative h-[280px] md:h-[400px] overflow-hidden bg-neutral-50">
+      <section className="relative h-[200px] md:h-[300px] overflow-hidden bg-neutral-50">
         <Image
-          src="/smart_interactive_cats_ball_toy_fun.png.webp"
+          src="/CollectionPage-cat-banner.jpg.webp"
           alt="Cat Toys"
           fill
           sizes="100vw"
@@ -137,11 +137,11 @@ export default function ProductsPage() {
             {/* Right: Lifestyle Image */}
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
               <Image
-                src="/smart_interactive_cats_ball_toy_entertainment.png.webp"
+                src="/smart_interactive_cats_ball_toy_intro.png.webp"
                 alt="Chat jouant avec la Smart Interactive Ball"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
+                className="object-contain bg-neutral-50"
               />
             </div>
           </div>
