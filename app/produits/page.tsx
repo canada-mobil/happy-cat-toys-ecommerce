@@ -168,56 +168,19 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* All Products Grid */}
-      <section className="py-16 px-4 bg-neutral-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight mb-10">
-            All Products
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {product.colors.map((color, index) => (
-              <Link key={index} href={`/produits/${product.id}`} className="group block">
-                <div className="relative aspect-square bg-white rounded-2xl overflow-hidden mb-4 border border-neutral-100">
-                  <span className="absolute top-3 right-3 z-10 bg-red-500 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full">
-                    -{Math.round((1 - product.price / product.originalPrice) * 100)}%
-                  </span>
-                  <Image
-                    src={color.image}
-                    alt={`${product.name} - ${color.name}`}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                    className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="px-1">
-                  <h3 className="font-semibold text-neutral-900 text-sm mb-1">
-                    {product.name}
-                  </h3>
-                  <p className="text-neutral-400 text-xs mb-2">{color.name}</p>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-base font-bold text-neutral-900">${product.price.toFixed(2)}</span>
-                    <span className="text-sm text-neutral-300 line-through">${product.originalPrice.toFixed(2)}</span>
-                  </div>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault()
-                      addItem({
-                        id: `${product.id}-${color.name}`,
-                        name: `${product.name} (${color.name})`,
-                        price: product.price,
-                        originalPrice: product.originalPrice,
-                        image: color.image,
-                      })
-                    }}
-                    className="w-full bg-blue-800 hover:bg-blue-900 text-white px-4 py-2.5 rounded-full font-medium text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
-                  >
-                    ADD TO CART
-                  </button>
-                </div>
-              </Link>
-            ))}
-          </div>
+      {/* Product Video */}
+      <section className="px-4 py-12">
+        <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="w-full"
+          >
+            <source src="/shop1.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
 
