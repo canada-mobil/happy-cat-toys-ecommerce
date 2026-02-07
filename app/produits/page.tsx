@@ -28,7 +28,7 @@ export default function ProductsPage() {
       <Header />
 
       {/* Hero Banner */}
-      <section className="relative h-[200px] md:h-[300px] overflow-hidden bg-neutral-50">
+      <section className="relative h-[140px] md:h-[200px] overflow-hidden">
         <Image
           src="/CollectionPage-cat-banner.jpg.webp"
           alt="Cat Toys"
@@ -37,9 +37,9 @@ export default function ProductsPage() {
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent" />
-        <div className="absolute bottom-8 left-6 md:left-12 z-10">
-          <h1 className="text-4xl md:text-6xl font-bold text-neutral-900 tracking-tight">
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent" />
+        <div className="absolute bottom-6 left-6 md:left-12 z-10">
+          <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 tracking-tight">
             Cat Toys
           </h1>
         </div>
@@ -134,14 +134,14 @@ export default function ProductsPage() {
               </div>
             </div>
 
-            {/* Right: Lifestyle Image */}
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
+            {/* Right: Product Image */}
+            <div className="relative aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-100 shadow-lg">
               <Image
                 src="/smart_interactive_cats_ball_toy_intro.png.webp"
-                alt="Chat jouant avec la Smart Interactive Ball"
+                alt="Smart Interactive Ball"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain bg-neutral-50"
+                sizes="(max-width: 768px) 80vw, 384px"
+                className="object-contain p-8"
               />
             </div>
           </div>
