@@ -6,7 +6,6 @@ import { Star, ShoppingCart } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import BenefitsSection from "@/components/benefits-section"
-import LazyVideo from "@/components/lazy-video"
 import { products } from "@/lib/products"
 import { useCart } from "@/lib/cart-context"
 
@@ -221,13 +220,17 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Product Video - lazy loaded on click */}
+      {/* Product Video - autoplay on load */}
       <section className="px-4 py-12">
-        <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden">
-          <LazyVideo
-            src="/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4"
+        <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden bg-neutral-900">
+          <video
+            src="/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4#t=4"
             className="w-full aspect-video object-cover"
-            containerClassName="w-full"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
           />
         </div>
       </section>
