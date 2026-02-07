@@ -99,6 +99,12 @@ export default function CartDropdown() {
               <p className="text-green-700 text-xs font-medium">Livraison gratuite offerte sur toutes les commandes!</p>
             </div>
 
+            {/* Delivery estimate */}
+            <div className="flex-shrink-0 flex items-center justify-center gap-2 px-4 py-2 border-b border-neutral-100">
+              <Truck className="w-4 h-4 text-brand" />
+              <p className="text-neutral-600 text-xs">Livré en <span className="font-semibold text-neutral-900">1-3 jours ouvrables</span></p>
+            </div>
+
             {items.length === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
                 <ShoppingCart className="w-14 h-14 mx-auto mb-4 text-neutral-200" />
@@ -142,24 +148,28 @@ export default function CartDropdown() {
                           )}
                           
                           <div className="flex items-center justify-between mt-3">
-                            <div className="flex items-center border border-neutral-200 rounded-lg">
-                              <button
-                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="w-8 h-8 flex items-center justify-center hover:bg-neutral-50 transition-colors"
-                              >
-                                <Minus className="w-3 h-3" />
-                              </button>
-                              <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
-                              <button
-                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="w-8 h-8 flex items-center justify-center hover:bg-neutral-50 transition-colors"
-                              >
-                                <Plus className="w-3 h-3" />
-                              </button>
-                            </div>
+                            {item.price === 0 ? (
+                              <span className="text-xs text-green-600 font-medium">Cadeau × 1</span>
+                            ) : (
+                              <div className="flex items-center border border-neutral-200 rounded-lg">
+                                <button
+                                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                  className="w-8 h-8 flex items-center justify-center hover:bg-neutral-50 transition-colors"
+                                >
+                                  <Minus className="w-3 h-3" />
+                                </button>
+                                <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
+                                <button
+                                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                  className="w-8 h-8 flex items-center justify-center hover:bg-neutral-50 transition-colors"
+                                >
+                                  <Plus className="w-3 h-3" />
+                                </button>
+                              </div>
+                            )}
                             
                             <span className="text-sm font-semibold text-neutral-900">
-                              CA${(item.price * item.quantity).toFixed(2)}
+                              {item.price === 0 ? 'GRATUIT' : `CA$${(item.price * item.quantity).toFixed(2)}`}
                             </span>
                           </div>
                         </div>
