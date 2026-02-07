@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <>
       {/* Animated Announcement Bar */}
-      <div className="bg-blue-600 py-2 text-center overflow-hidden relative">
+      <div className="py-2 text-center overflow-hidden relative" style={{ backgroundColor: '#161F6A' }}>
         <div className="relative h-5">
           {messages.map((message, index) => (
             <p
