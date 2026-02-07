@@ -1,0 +1,221 @@
+"use client"
+
+import Image from "next/image"
+import Link from "next/link"
+import { Star, ShoppingCart, Droplets, Zap, Shield, Volume2 } from "lucide-react"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
+import { products } from "@/lib/products"
+import { useCart } from "@/lib/cart-context"
+
+export default function FournituresPage() {
+  const { addItem } = useCart()
+  const fountain = products.find(p => p.id === "purr-fountain-f1")!
+
+  const handleAddToCart = () => {
+    addItem({
+      id: fountain.id,
+      name: fountain.name,
+      price: fountain.price,
+      originalPrice: fountain.originalPrice,
+      image: fountain.image,
+      variant: `#PAWPAW -${Math.round((1 - fountain.price / fountain.originalPrice) * 100)}% appliqué`,
+    })
+  }
+
+  const highlights = [
+    { icon: Droplets, title: "Sans Pompe", desc: "Technologie MagDrive™ ultra silencieuse" },
+    { icon: Zap, title: "Capteur Intelligent", desc: "Détecte automatiquement votre chat" },
+    { icon: Shield, title: "Sécuritaire", desc: "Séparation eau-électricité" },
+    { icon: Volume2, title: "Silencieux", desc: "Moins de 30dB en fonctionnement" },
+  ]
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* Hero Banner */}
+      <section className="relative h-[200px] md:h-[320px] overflow-hidden">
+        <Image
+          src="/petfount.webp"
+          alt="Fournitures pour chats"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/30 to-transparent" />
+        <div className="absolute bottom-8 left-6 md:left-12 z-10">
+          <p className="text-xs uppercase tracking-widest text-neutral-500 mb-2">Collection</p>
+          <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 tracking-tight">
+            Fournitures
+          </h1>
+          <p className="text-neutral-600 text-sm md:text-base mt-2 max-w-md">
+            Tout ce dont votre chat a besoin pour une vie saine et heureuse.
+          </p>
+        </div>
+      </section>
+
+      {/* Product Showcase */}
+      <section className="py-12 md:py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Title */}
+          <div className="text-center mb-10 md:mb-16">
+            <span className="inline-block bg-brand/10 text-brand text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4">
+              Nouveau
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold text-neutral-900 tracking-tight mb-3">
+              Purr Fountain F1
+            </h2>
+            <p className="text-neutral-500 text-sm md:text-base max-w-xl mx-auto">
+              La fontaine à eau intelligente sans pompe qui garde votre chat hydraté avec de l'eau fraîche et filtrée.
+            </p>
+          </div>
+
+          {/* Product Hero - Big image + Info */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center mb-16">
+            {/* Left: Main Product Image */}
+            <div className="relative aspect-square bg-white rounded-2xl overflow-hidden border border-neutral-100">
+              <Image
+                src={fountain.image}
+                alt={fountain.name}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain p-6"
+              />
+              <span className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                -{Math.round((1 - fountain.price / fountain.originalPrice) * 100)}%
+              </span>
+            </div>
+
+            {/* Right: Product Info */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="border border-neutral-200 text-neutral-500 text-[11px] font-medium px-3 py-1 rounded-full uppercase tracking-wide">Fournitures</span>
+                <span className="bg-red-500 text-white text-[11px] font-semibold px-3 py-1 rounded-full">
+                  Économisez {Math.round((1 - fountain.price / fountain.originalPrice) * 100)}%
+                </span>
+              </div>
+
+              <h3 className="text-3xl font-bold text-neutral-900 tracking-tight mb-3">{fountain.name}</h3>
+
+              <div className="flex items-center gap-1.5 mb-4">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className={`w-4 h-4 ${i < Math.floor(fountain.rating) ? 'text-yellow-400 fill-yellow-400' : 'text-neutral-200'}`} />
+                  ))}
+                </div>
+                <span className="text-xs text-neutral-400 ml-1">{fountain.rating} ({fountain.reviewCount} avis)</span>
+              </div>
+
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-3xl font-bold text-red-600">CA${fountain.price.toFixed(2)}</span>
+                <span className="text-lg text-neutral-300 line-through">CA${fountain.originalPrice.toFixed(2)}</span>
+              </div>
+
+              {/* #PAWPAW discount badge */}
+              <div className="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 rounded-full px-3 py-1.5 mb-6">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span className="text-green-700 text-xs font-medium">Rabais <span className="font-bold">#PAWPAW</span> -{Math.round((1 - fountain.price / fountain.originalPrice) * 100)}% appliqué automatiquement</span>
+              </div>
+
+              <p className="text-neutral-600 text-sm leading-relaxed mb-6">{fountain.description}</p>
+
+              <ul className="text-neutral-600 text-sm space-y-2 mb-8">
+                {fountain.features.slice(0, 5).map((feature, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-brand rounded-full mt-1.5 flex-shrink-0" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleAddToCart}
+                  className="flex-1 bg-brand hover:bg-brand-dark text-white py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                  Ajouter au panier
+                </button>
+                <Link
+                  href={`/produits/${fountain.id}`}
+                  className="flex-1 border border-brand text-brand hover:bg-brand hover:text-white py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all text-center"
+                >
+                  Voir détails
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Highlights Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+            {highlights.map((h, i) => (
+              <div key={i} className="bg-neutral-50 rounded-2xl p-5 text-center">
+                <h.icon className="w-7 h-7 text-brand mx-auto mb-3" />
+                <h4 className="font-semibold text-neutral-900 text-sm mb-1">{h.title}</h4>
+                <p className="text-neutral-500 text-xs">{h.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Feature Images Grid */}
+          <div className="mb-16">
+            <h3 className="text-xl md:text-2xl font-bold text-neutral-900 tracking-tight mb-8 text-center">
+              Pourquoi choisir la Purr Fountain F1?
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {fountain.images.slice(1).map((img, index) => {
+                const labels = [
+                  "Double mode de distribution",
+                  "Filtration multi-couches",
+                  "Nettoyage facile",
+                  "Séparation eau-électricité",
+                  "Longue autonomie",
+                  "Alimentation flexible"
+                ]
+                return (
+                  <div key={index} className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-50 group">
+                    <Image
+                      src={img}
+                      alt={labels[index] || `Feature ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-contain p-4"
+                    />
+                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                      <p className="text-white text-sm font-medium">{labels[index]}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="bg-neutral-900 rounded-3xl p-8 md:p-12 text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              Offrez de l'eau fraîche à votre chat
+            </h3>
+            <p className="text-neutral-400 text-sm md:text-base mb-6 max-w-lg mx-auto">
+              Commandez maintenant et profitez de la livraison gratuite. Votre chat mérite le meilleur.
+            </p>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span className="text-3xl font-bold text-white">CA${fountain.price.toFixed(2)}</span>
+              <span className="text-lg text-neutral-500 line-through">CA${fountain.originalPrice.toFixed(2)}</span>
+            </div>
+            <button
+              onClick={handleAddToCart}
+              className="bg-brand hover:bg-brand-dark text-white px-10 py-4 rounded-full font-medium text-sm uppercase tracking-wider transition-all inline-flex items-center gap-2"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              Ajouter au panier — CA${fountain.price.toFixed(2)}
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  )
+}

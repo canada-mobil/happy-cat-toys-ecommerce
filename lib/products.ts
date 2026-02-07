@@ -163,6 +163,49 @@ export const products: Product[] = [
     shipping: "Expédition en 24h. Livraison garantie avec Canada Post. Livraison gratuite pour les commandes de 2+ unités.",
     reviewCount: 156,
     rating: 4.9
+  },
+  {
+    id: "purr-fountain-f1",
+    name: "Purr Fountain F1",
+    description: "Fontaine à eau intelligente sans pompe pour chats. Design sans fil, filtration multi-couches et capteur intelligent pour une eau toujours fraîche.",
+    longDescription: "La Purr Fountain F1 révolutionne l'hydratation de votre chat grâce à sa technologie MagDrive™ sans pompe. Silencieuse, facile à nettoyer et dotée d'un capteur intelligent qui détecte la présence de votre chat. Double mode de distribution, séparation eau-électricité pour la sécurité, et filtration multi-couches pour une eau pure et fraîche en permanence.",
+    price: 27.15,
+    originalPrice: 84.00,
+    image: "/e__pumpless_design.jpg",
+    images: [
+      "/e__pumpless_design.jpg",
+      "/e1__dual_mode_dispensing.jpg.webp",
+      "/e1__multi-layer__filtration.jpg.webp",
+      "/e1__no_cleaning_hassle.jpg.webp",
+      "/e1__water-elecrical_separation.jpg.webp",
+      "/e1__battery_life.jpg.webp",
+      "/e1__flexible_power_options.jpg.webp"
+    ],
+    colors: [
+      { name: "Blanc", value: "#f5f5f5", image: "/e__pumpless_design.jpg", stockCount: 14 }
+    ],
+    packages: [
+      { quantity: 1, label: "1x", pricePerUnit: 27.15 },
+      { quantity: 2, label: "2x", pricePerUnit: 24.99, badge: "Meilleur Deal" }
+    ],
+    category: "Fournitures",
+    inStock: true,
+    stockCount: 14,
+    features: [
+      "Design sans pompe (Pumpless) - ultra silencieux",
+      "Technologie MagDrive™ brevetée",
+      "Capteur intelligent - détecte votre chat",
+      "Double mode de distribution d'eau",
+      "Filtration multi-couches",
+      "Séparation eau-électricité sécuritaire",
+      "Nettoyage facile - aucun tracas",
+      "Options d'alimentation flexibles (USB / batterie)",
+      "Autonomie longue durée de la batterie"
+    ],
+    materials: "Plastique alimentaire sans BPA, filtre à charbon actif multi-couches, moteur MagDrive silencieux. Certifié sécuritaire pour animaux.",
+    shipping: "Expédition en 24h. Livraison garantie avec Canada Post. Livraison gratuite.",
+    reviewCount: 89,
+    rating: 4.8
   }
 ]
 
