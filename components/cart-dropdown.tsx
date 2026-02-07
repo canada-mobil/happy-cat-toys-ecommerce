@@ -103,8 +103,8 @@ export default function CartDropdown() {
               </div>
             ) : (
               <>
-                {/* Scrollable items */}
-                <div className="flex-1 overflow-y-auto" style={{ minHeight: 0 }}>
+                {/* Scrollable items - takes all remaining space */}
+                <div className="overflow-y-auto flex-1" style={{ minHeight: '200px' }}>
                   {items.map((item) => (
                     <div key={item.id} className="px-4 py-4 border-b border-neutral-100">
                       <div className="flex gap-3">

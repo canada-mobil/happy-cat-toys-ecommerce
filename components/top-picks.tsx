@@ -5,41 +5,18 @@ import Link from "next/link"
 import { ShoppingCart } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 
-const topPicks = [
-  {
-    id: "smart-interactive-ball",
-    name: "Smart Interactive Ball",
-    subtitle: "Rouge",
-    description: "Mouvements intelligents auto-roulants avec 3 modes de jeu interactifs",
-    price: 4.99,
-    originalPrice: 11.99,
-    image: "/smart_interactive_cats_ball_toy_red.png.webp",
-    badge: "SAVE 58%",
-    isNew: true,
-  },
-  {
-    id: "smart-interactive-ball",
-    name: "Smart Interactive Ball",
-    subtitle: "Gris",
-    description: "Silencieux et rechargeable USB — 2h d'autonomie continue",
-    price: 4.99,
-    originalPrice: 11.99,
-    image: "/smart_interactive_cats_ball_toy_gray.png.avif",
-    badge: "SAVE 58%",
-    isNew: false,
-  },
-  {
-    id: "smart-interactive-ball",
-    name: "Smart Interactive Ball",
-    subtitle: "Vert",
-    description: "Matériaux écologiques non toxiques, sécuritaire pour votre chat",
-    price: 4.99,
-    originalPrice: 11.99,
-    image: "/smart_interactive_cats_ball_toy_green.png.avif",
-    badge: "SAVE 58%",
-    isNew: false,
-  },
-]
+import { products } from "@/lib/products"
+
+const topPicks = products.map((p) => ({
+  id: p.id,
+  name: p.name,
+  description: p.description,
+  price: p.price,
+  originalPrice: p.originalPrice,
+  image: p.image,
+  badge: `SAVE ${Math.round((1 - p.price / p.originalPrice) * 100)}%`,
+  isNew: true,
+}))
 
 export default function TopPicks() {
   const { addItem } = useCart()
@@ -48,8 +25,8 @@ export default function TopPicks() {
     e.preventDefault()
     e.stopPropagation()
     addItem({
-      id: `${product.id}-${product.subtitle}`,
-      name: `${product.name} (${product.subtitle})`,
+      id: product.id,
+      name: product.name,
       price: product.price,
       originalPrice: product.originalPrice,
       image: product.image,
@@ -70,7 +47,7 @@ export default function TopPicks() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+<div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
           {topPicks.map((product, index) => (
             <Link
               key={index}
