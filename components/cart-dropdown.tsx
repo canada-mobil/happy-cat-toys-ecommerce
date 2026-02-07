@@ -74,15 +74,27 @@ export default function CartDropdown() {
       {/* Dropdown - rendered via portal to escape header containment */}
       {isCartOpen && typeof document !== 'undefined' && createPortal(
         <>
+          {/* Animation styles */}
+          <style>{`
+            @keyframes cartSlideIn {
+              from { transform: translateX(100%); }
+              to { transform: translateX(0); }
+            }
+            @keyframes cartFadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+          `}</style>
+
           {/* Backdrop */}
           <div 
             className="fixed inset-0 bg-black/40" 
-            style={{ zIndex: 99998 }}
+            style={{ zIndex: 99998, animation: 'cartFadeIn 0.3s ease-out' }}
             onClick={() => setCartOpen(false)}
           />
           
           {/* Cart Panel */}
-          <div className="fixed right-0 top-0 bottom-0 w-full sm:w-[420px] flex flex-col shadow-2xl" style={{ zIndex: 99999, backgroundColor: '#ffffff' }}>
+          <div className="fixed right-0 top-0 bottom-0 w-full sm:w-[420px] flex flex-col shadow-2xl" style={{ zIndex: 99999, backgroundColor: '#ffffff', animation: 'cartSlideIn 0.3s ease-out' }}>
             {/* Header */}
             <div className="flex-shrink-0 flex items-center justify-between px-4 py-4 border-b border-neutral-100">
               <h3 className="font-semibold text-neutral-900 text-base">Panier ({itemCount})</h3>
