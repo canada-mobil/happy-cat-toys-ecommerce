@@ -361,6 +361,20 @@ export default function ProductPage({ params }: ProductPageProps) {
           ))}
         </div>
 
+        {/* Product Video */}
+        <div className="mt-12 rounded-2xl overflow-hidden bg-neutral-900">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="w-full"
+          >
+            <source src="/shop1.mp4" type="video/mp4" />
+          </video>
+        </div>
+
         {/* Customer Reviews */}
         <ProductReviews />
       </main>
