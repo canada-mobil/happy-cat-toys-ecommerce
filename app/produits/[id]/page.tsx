@@ -325,7 +325,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         {/* Product Video */}
         <div className="mt-12 rounded-2xl overflow-hidden bg-neutral-900">
           <video autoPlay muted loop playsInline preload="metadata" className="w-full">
-            <source src="/hoeme1.mp4" type="video/mp4" />
+            <source src="/shop1.mp4" type="video/mp4" />
           </video>
         </div>
 
