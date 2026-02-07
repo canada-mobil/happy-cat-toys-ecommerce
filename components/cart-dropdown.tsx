@@ -56,7 +56,7 @@ export default function CartDropdown() {
   ]
 
   return (
-    <div className="relative">
+    <>
       {/* Cart Button */}
       <button
         onClick={() => setCartOpen(!isCartOpen)}
@@ -75,12 +75,12 @@ export default function CartDropdown() {
         <>
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 z-40 bg-black/30 animate-[fadeIn_0.3s_ease-out]" 
+            className="fixed inset-0 z-[9998] bg-black/40" 
             onClick={() => setCartOpen(false)}
           />
           
-          {/* Cart Panel - Shopify style sidebar */}
-          <div className="fixed right-0 top-0 h-full w-full sm:w-[420px] bg-white shadow-2xl border-l border-neutral-100 z-50 flex flex-col animate-[slideInRight_0.3s_ease-out]" style={{ backgroundColor: '#ffffff' }}>
+          {/* Cart Panel */}
+          <div className="fixed right-0 top-0 bottom-0 w-full sm:w-[420px] z-[9999] flex flex-col shadow-2xl" style={{ backgroundColor: '#ffffff' }}>
             {/* Header */}
             <div className="flex-shrink-0 flex items-center justify-between px-4 py-4 border-b border-neutral-100">
               <h3 className="font-semibold text-neutral-900 text-base">Panier ({itemCount})</h3>
@@ -196,6 +196,6 @@ export default function CartDropdown() {
           </div>
         </>
       )}
-    </div>
+    </>
   )
 }
