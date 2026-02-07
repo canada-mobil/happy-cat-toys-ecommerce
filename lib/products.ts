@@ -187,7 +187,10 @@ export const products: Product[] = [
       "/Double_Protection_pc.jpg.webp"
     ],
     colors: [
-      { name: "Blanc", value: "#f5f5f5", image: "/e__pumpless_design.jpg", stockCount: 14 }
+      { name: "American", value: "#f5f5f5", image: "/e__pumpless_design.jpg", stockCount: 14 },
+      { name: "European", value: "#e8e8e8", image: "/e__pumpless_design.jpg", stockCount: 12 },
+      { name: "British", value: "#dcdcdc", image: "/e__pumpless_design.jpg", stockCount: 8 },
+      { name: "Australian", value: "#d0d0d0", image: "/e__pumpless_design.jpg", stockCount: 6 }
     ],
     packages: [
       { quantity: 1, label: "1x", pricePerUnit: 27.15 },

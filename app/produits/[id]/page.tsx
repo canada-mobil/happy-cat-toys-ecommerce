@@ -183,21 +183,40 @@ export default function ProductPage({ params }: ProductPageProps) {
             {/* Divider */}
             <div className="border-t border-neutral-100 mb-6" />
 
-            {/* Color Selector */}
+            {/* Color / Standard Selector */}
             <div className="mb-6">
-              <p className="text-sm text-neutral-900 mb-3">Color: <span className="font-medium">{product.colors[selectedColor].name}</span></p>
-              <div className="flex gap-2">
-                {product.colors.map((color, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleColorChange(index)}
-                    className={`w-10 h-10 rounded-full border-2 transition-all ${
-                      selectedColor === index ? 'border-neutral-900 scale-110' : 'border-neutral-200 hover:border-neutral-400'
-                    }`}
-                    style={{ backgroundColor: color.value }}
-                    title={color.name}
-                  />
-                ))}
+              <p className="text-sm text-neutral-900 mb-3">
+                {product.category === 'Fournitures' ? 'Standard:' : 'Color:'}{' '}
+                <span className="font-medium">{product.colors[selectedColor].name}</span>
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {product.category === 'Fournitures' ? (
+                  product.colors.map((color, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleColorChange(index)}
+                      className={`px-4 py-2 rounded-full border text-sm font-medium transition-all ${
+                        selectedColor === index
+                          ? 'border-neutral-900 bg-neutral-900 text-white'
+                          : 'border-neutral-200 text-neutral-600 hover:border-neutral-400'
+                      }`}
+                    >
+                      {color.name}
+                    </button>
+                  ))
+                ) : (
+                  product.colors.map((color, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleColorChange(index)}
+                      className={`w-10 h-10 rounded-full border-2 transition-all ${
+                        selectedColor === index ? 'border-neutral-900 scale-110' : 'border-neutral-200 hover:border-neutral-400'
+                      }`}
+                      style={{ backgroundColor: color.value }}
+                      title={color.name}
+                    />
+                  ))
+                )}
               </div>
             </div>
 
