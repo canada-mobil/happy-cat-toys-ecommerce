@@ -11,6 +11,7 @@ import LifestyleSection from "@/components/lifestyle-section"
 import FAQSection from "@/components/faq-section"
 import Newsletter from "@/components/newsletter"
 import Footer from "@/components/footer"
+import ShopByCategory from "@/components/shop-by-category"
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <BestSellers />
       <PromoBanner />
       {/* TreatsSection removed */}
+      <ShopByCategory />
       <FeaturesSection />
       <BenefitsSection />
       <LifestyleSection />
