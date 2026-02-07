@@ -46,13 +46,13 @@ export default function TopPicks() {
           </p>
         </div>
 
-        {/* Products Grid */}
-<div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+        {/* Products - horizontal scroll on mobile, grid on desktop */}
+<div className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0">
           {topPicks.map((product, index) => (
             <Link
               key={index}
               href={`/produits/${product.id}`}
-              className="group block"
+              className="group block min-w-[80%] snap-center md:min-w-0"
             >
               <div className="relative aspect-square bg-neutral-50 rounded-2xl overflow-hidden mb-4">
                 {/* Badges */}
