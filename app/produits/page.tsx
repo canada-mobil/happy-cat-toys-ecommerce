@@ -1,29 +1,19 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { SlidersHorizontal, Grid2X2, Square, ShoppingCart } from "lucide-react"
+import { Star, ShoppingCart } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import BenefitsSection from "@/components/benefits-section"
 import { products } from "@/lib/products"
 import { useCart } from "@/lib/cart-context"
 
-const categories = ["Tous", "Jouets Interactifs"]
-
 export default function ProductsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("Tous")
-  const [gridView, setGridView] = useState<"grid" | "list">("grid")
   const { addItem } = useCart()
+  const product = products[0]
 
-  const filteredProducts = selectedCategory === "Tous" 
-    ? products 
-    : products.filter(p => p.category === selectedCategory)
-
-  const handleAddToCart = (product: any, e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
+  const handleAddToCart = () => {
     addItem({
       id: product.id,
       name: product.name,
@@ -36,146 +26,177 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
-      <main className="px-4 py-8 max-w-7xl mx-auto">
-        {/* Page Title */}
-        <h1 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-8 tracking-tight">
-          Produits
-        </h1>
 
-        {/* Filter Bar */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2">
-            <button className="flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors">
-              <SlidersHorizontal className="w-4 h-4" />
-              <span className="text-xs font-medium">Filtrer</span>
-            </button>
-          </div>
-
-          {/* Category Filter - Mobile Scroll */}
-          <div className="hidden md:flex items-center gap-2 overflow-x-auto">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 text-xs rounded-full whitespace-nowrap transition-all ${
-                  selectedCategory === cat
-                    ? "bg-neutral-900 text-white"
-                    : "bg-neutral-50 text-neutral-500 hover:bg-neutral-100"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* View Toggle */}
-          <div className="flex items-center gap-1">
-            <button 
-              onClick={() => setGridView("list")}
-              className={`p-2 rounded-lg transition-colors ${gridView === "list" ? "bg-neutral-100" : ""}`}
-              aria-label="Vue liste"
-            >
-              <Square className="w-4 h-4 text-neutral-500" />
-            </button>
-            <button 
-              onClick={() => setGridView("grid")}
-              className={`p-2 rounded-lg transition-colors ${gridView === "grid" ? "bg-neutral-100" : ""}`}
-              aria-label="Vue grille"
-            >
-              <Grid2X2 className="w-4 h-4 text-neutral-500" />
-            </button>
-          </div>
+      {/* Hero Banner */}
+      <section className="relative h-[280px] md:h-[400px] overflow-hidden bg-neutral-50">
+        <Image
+          src="/smart_interactive_cats_ball_toy_fun.png.webp"
+          alt="Cat Toys"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent" />
+        <div className="absolute bottom-8 left-6 md:left-12 z-10">
+          <h1 className="text-4xl md:text-6xl font-bold text-neutral-900 tracking-tight">
+            Cat Toys
+          </h1>
         </div>
+      </section>
 
-        {/* Mobile Category Scroll */}
-        <div className="flex md:hidden gap-2 overflow-x-auto pb-4 mb-4 -mx-4 px-4">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 text-xs rounded-full whitespace-nowrap transition-all ${
-                selectedCategory === cat
-                  ? "bg-neutral-900 text-white"
-                  : "bg-neutral-50 text-neutral-500 hover:bg-neutral-100"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+      {/* Trending This Month */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight mb-10 md:mb-14">
+            Trending This Month
+          </h2>
 
-        {/* Products Grid */}
-        <div className={`grid gap-6 ${gridView === "grid" ? "grid-cols-2 md:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"}`}>
-          {filteredProducts.map(product => (
-            <div key={product.id} className="group relative">
-              <Link 
-                href={`/produits/${product.id}`}
-                className="block"
-              >
-                <div className="relative bg-white rounded-2xl overflow-hidden hover:shadow-sm transition-all duration-300 border border-neutral-100">
-                  {/* Stock Badge */}
-                  {!product.inStock && (
-                    <span className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
-                      ÉPUISÉ
-                    </span>
-                  )}
-                  
-                  {/* Best Seller Badge */}
-                  {product.price > 20 && (
-                    <span className="absolute top-3 right-3 z-10 bg-orange-500 text-white text-xs font-medium px-2 py-1 rounded-full">
-                      BEST SELLER
-                    </span>
-                  )}
-                  
-                  {/* Product Image */}
-                  <div className="relative aspect-square bg-neutral-50">
-                    <Image
-                      src={product.image || "/placeholder.svg"}
-                      alt={product.name}
-                      fill
-                      className="object-contain p-6 group-hover:scale-105 transition-transform duration-300"
-                    />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+            {/* Left: Product Info */}
+            <div>
+              {/* Badges */}
+              <div className="flex items-center gap-2 mb-5">
+                <span className="border border-neutral-200 text-neutral-500 text-[11px] font-medium px-3 py-1 rounded-full uppercase tracking-wide">
+                  Cat
+                </span>
+                <span className="bg-red-500 text-white text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
+                  Save {Math.round((1 - product.price / product.originalPrice) * 100)}%
+                </span>
+              </div>
+
+              {/* Title + Rating */}
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight leading-tight">
+                  {product.name}
+                </h3>
+                <div className="flex items-center gap-1 flex-shrink-0 mt-1">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                    ))}
                   </div>
+                  <span className="text-xs text-neutral-400 ml-1">{product.rating}({product.reviewCount})</span>
                 </div>
-              </Link>
+              </div>
 
-              {/* Product Info */}
-              <div className="mt-4 px-2">
-                <Link href={`/produits/${product.id}`}>
-                  <h3 className="font-medium text-neutral-900 text-sm leading-tight line-clamp-2 mb-3">
-                    {product.name}
-                  </h3>
-                </Link>
-                
-                {/* Price */}
-                <div className="mb-3">
-                  <span className="text-sm font-semibold text-neutral-900">
-                    ${product.price.toFixed(2)} CAD
-                  </span>
-                </div>
-                
-                {/* Add Button */}
+              {/* Price */}
+              <div className="flex items-center gap-3 mb-5">
+                <span className="text-2xl font-bold text-neutral-900">
+                  ${product.price.toFixed(2)}
+                </span>
+                <span className="text-base text-neutral-300 line-through">
+                  ${product.originalPrice.toFixed(2)}
+                </span>
+              </div>
+
+              {/* Color Swatches */}
+              <div className="flex items-center gap-2 mb-6">
+                {product.colors.map((color, i) => (
+                  <div
+                    key={i}
+                    className={`w-7 h-7 rounded-full border-2 ${i === 0 ? 'border-neutral-900' : 'border-neutral-200'}`}
+                    style={{ backgroundColor: color.value }}
+                    title={color.name}
+                  />
+                ))}
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-neutral-100 mb-6" />
+
+              {/* Description */}
+              <p className="text-neutral-600 text-sm leading-relaxed mb-4">
+                {product.description}
+              </p>
+
+              {/* Features */}
+              <ul className="text-neutral-600 text-sm space-y-1.5 mb-8">
+                {product.features.map((feature, i) => (
+                  <li key={i}>• {feature}</li>
+                ))}
+              </ul>
+
+              {/* CTA Buttons */}
+              <div className="flex items-center gap-3">
                 <button
-                  onClick={(e) => handleAddToCart(product, e)}
-                  disabled={!product.inStock}
-                  className="w-full bg-neutral-900 hover:bg-black text-white px-4 py-2.5 rounded-full font-medium text-xs transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  onClick={handleAddToCart}
+                  className="bg-neutral-900 hover:bg-black text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all flex items-center gap-2"
                 >
-                  <ShoppingCart className="w-4 h-4" />
-                  AJOUTER
+                  ADD TO CART
                 </button>
+                <Link
+                  href={`/produits/${product.id}`}
+                  className="border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all"
+                >
+                  LEARN MORE
+                </Link>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Empty State */}
-        {filteredProducts.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-neutral-400 text-sm">Aucun produit trouvé dans cette catégorie.</p>
+            {/* Right: Lifestyle Image */}
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
+              <Image
+                src="/smart_interactive_cats_ball_toy_entertainment.png.webp"
+                alt="Chat jouant avec la Smart Interactive Ball"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
-        )}
-      </main>
+        </div>
+      </section>
+
+      {/* All Products Grid */}
+      <section className="py-16 px-4 bg-neutral-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight mb-10">
+            All Products
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            {product.colors.map((color, index) => (
+              <Link key={index} href={`/produits/${product.id}`} className="group block">
+                <div className="relative aspect-square bg-white rounded-2xl overflow-hidden mb-4 border border-neutral-100">
+                  <span className="absolute top-3 right-3 z-10 bg-red-500 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full">
+                    -{Math.round((1 - product.price / product.originalPrice) * 100)}%
+                  </span>
+                  <Image
+                    src={color.image}
+                    alt={`${product.name} - ${color.name}`}
+                    fill
+                    className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="px-1">
+                  <h3 className="font-semibold text-neutral-900 text-sm mb-1">
+                    {product.name}
+                  </h3>
+                  <p className="text-neutral-400 text-xs mb-2">{color.name}</p>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-base font-bold text-neutral-900">${product.price.toFixed(2)}</span>
+                    <span className="text-sm text-neutral-300 line-through">${product.originalPrice.toFixed(2)}</span>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault()
+                      addItem({
+                        id: `${product.id}-${color.name}`,
+                        name: `${product.name} (${color.name})`,
+                        price: product.price,
+                        originalPrice: product.originalPrice,
+                        image: color.image,
+                      })
+                    }}
+                    className="w-full bg-neutral-900 hover:bg-black text-white px-4 py-2.5 rounded-full font-medium text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                  >
+                    ADD TO CART
+                  </button>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <BenefitsSection />
       <Footer />
