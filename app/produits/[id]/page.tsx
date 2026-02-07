@@ -103,7 +103,7 @@ export default function ProductPage({ params }: ProductPageProps) {
       </div>
       
       <main className="max-w-7xl mx-auto px-4 pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-16">
           
           {/* LEFT: Image Gallery - Cheerble style */}
           <div className="flex flex-col-reverse lg:flex-row gap-3">
