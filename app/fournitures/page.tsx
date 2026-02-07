@@ -183,38 +183,6 @@ export default function FournituresPage() {
             ))}
           </div>
 
-          {/* Feature Images Grid */}
-          <div className="mb-16">
-            <h3 className="text-xl md:text-2xl font-bold text-neutral-900 tracking-tight mb-8 text-center">
-              Pourquoi choisir la Purr Fountain F1?
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {fountain.images.slice(1).map((img, index) => {
-                const labels = [
-                  "Double mode de distribution",
-                  "Filtration multi-couches",
-                  "Nettoyage facile",
-                  "Séparation eau-électricité",
-                  "Longue autonomie",
-                  "Alimentation flexible"
-                ]
-                return (
-                  <div key={index} className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-50 group">
-                    <Image
-                      src={img}
-                      alt={labels[index] || `Feature ${index + 1}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-contain p-4"
-                    />
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-                      <p className="text-white text-sm font-medium">{labels[index]}</p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
 
           {/* CTA Section */}
           <div className="bg-neutral-900 rounded-3xl p-8 md:p-12 text-center">
