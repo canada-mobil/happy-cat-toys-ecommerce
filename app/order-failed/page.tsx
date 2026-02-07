@@ -108,14 +108,14 @@ export default function OrderFailed() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               href="/cart"
-              className="bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+              className="bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
             >
               <RefreshCw className="w-4 h-4" />
               Réessayer la commande
             </Link>
             <Link
               href="/produits"
-              className="border border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+              className="border border-brand text-brand hover:bg-brand hover:text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
               Retour aux produits

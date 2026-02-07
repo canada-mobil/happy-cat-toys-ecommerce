@@ -93,13 +93,13 @@ export default function ProductsPage() {
               <div className="flex items-center gap-2 pt-2">
                 <button
                   onClick={handleAddToCart}
-                  className="flex-1 bg-blue-800 hover:bg-blue-900 text-white py-3 rounded-full font-medium text-xs uppercase tracking-wider transition-all"
+                  className="flex-1 bg-brand hover:bg-brand-dark text-white py-3 rounded-full font-medium text-xs uppercase tracking-wider transition-all"
                 >
                   ADD TO CART
                 </button>
                 <Link
                   href={`/produits/${product.id}`}
-                  className="flex-1 border border-blue-800 text-blue-800 py-3 rounded-full font-medium text-xs uppercase tracking-wider transition-all text-center"
+                  className="flex-1 border border-brand text-brand py-3 rounded-full font-medium text-xs uppercase tracking-wider transition-all text-center"
                 >
                   VIEW DETAILS
                 </Link>
@@ -150,8 +150,8 @@ export default function ProductsPage() {
               </ul>
 
               <div className="flex items-center gap-3">
-                <button onClick={handleAddToCart} className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all">ADD TO CART</button>
-                <Link href={`/produits/${product.id}`} className="border border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all">LEARN MORE</Link>
+                <button onClick={handleAddToCart} className="bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all">ADD TO CART</button>
+                <Link href={`/produits/${product.id}`} className="border border-brand text-brand hover:bg-brand hover:text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all">LEARN MORE</Link>
               </div>
             </div>
 
@@ -209,7 +209,7 @@ export default function ProductsPage() {
                         image: p.image,
                       })
                     }}
-                    className="w-full bg-blue-800 hover:bg-blue-900 text-white px-4 py-2.5 rounded-full font-medium text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                    className="w-full bg-brand hover:bg-brand-dark text-white px-4 py-2.5 rounded-full font-medium text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
                   >
                     <ShoppingCart className="w-3.5 h-3.5" />
                     ADD TO CART

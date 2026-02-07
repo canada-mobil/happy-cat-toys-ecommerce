@@ -11,6 +11,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        brand: {
+          DEFAULT: '#5B9BD5',
+          dark: '#4A89C0',
+          light: '#6EAADE',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

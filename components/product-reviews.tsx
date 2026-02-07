@@ -318,7 +318,7 @@ export default function ProductReviews() {
           <div className="p-6 border-t border-neutral-100 text-center">
             <button
               onClick={() => setVisibleCount(prev => Math.min(prev + 15, totalReviews))}
-              className="inline-flex items-center gap-2 bg-blue-800 hover:bg-blue-900 text-white font-medium text-xs px-6 py-2.5 rounded-full transition-all hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium text-xs px-6 py-2.5 rounded-full transition-all hover:scale-[1.02]"
             >
               <ChevronDown className="w-3.5 h-3.5" />
               Voir plus d'avis ({totalReviews - visibleCount} restants)

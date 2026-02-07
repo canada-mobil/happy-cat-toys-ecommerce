@@ -27,7 +27,7 @@ export default function RetoursEchangesPage() {
 
         <div className="bg-white rounded-lg p-8 border border-neutral-200 space-y-8">
           <section>
-            <div className="bg-blue-800 bg-opacity-10 p-6 rounded-lg mb-6">
+            <div className="bg-brand bg-opacity-10 p-6 rounded-lg mb-6">
               <h2 className="text-2xl font-semibold text-neutral-900 mb-4 flex items-center gap-2">
                 <Package className="w-6 h-6" />
                 Politique de retour simple
@@ -66,7 +66,7 @@ export default function RetoursEchangesPage() {
             <h2 className="text-2xl font-semibold text-neutral-900 mb-6">📦 Comment retourner un produit</h2>
             <div className="space-y-6">
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-800 text-white rounded-full flex items-center justify-center font-semibold">1</div>
+                <div className="flex-shrink-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-semibold">1</div>
                 <div>
                   <h3 className="font-semibold text-neutral-900 mb-2">Contactez notre équipe</h3>
                   <p className="text-neutral-400 mb-2">Envoyez-nous un email avec :</p>
@@ -83,7 +83,7 @@ export default function RetoursEchangesPage() {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-800 text-white rounded-full flex items-center justify-center font-semibold">2</div>
+                <div className="flex-shrink-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-semibold">2</div>
                 <div>
                   <h3 className="font-semibold text-neutral-900 mb-2">Recevez votre étiquette de retour</h3>
                   <p className="text-neutral-400">
@@ -94,7 +94,7 @@ export default function RetoursEchangesPage() {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-800 text-white rounded-full flex items-center justify-center font-semibold">3</div>
+                <div className="flex-shrink-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-semibold">3</div>
                 <div>
                   <h3 className="font-semibold text-neutral-900 mb-2">Emballez soigneusement</h3>
                   <ul className="list-disc list-inside text-neutral-400 space-y-1">
@@ -107,7 +107,7 @@ export default function RetoursEchangesPage() {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-800 text-white rounded-full flex items-center justify-center font-semibold">4</div>
+                <div className="flex-shrink-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-semibold">4</div>
                 <div>
                   <h3 className="font-semibold text-neutral-900 mb-2">Expédiez votre retour</h3>
                   <p className="text-neutral-400">
@@ -118,7 +118,7 @@ export default function RetoursEchangesPage() {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-800 text-white rounded-full flex items-center justify-center font-semibold">5</div>
+                <div className="flex-shrink-0 w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center font-semibold">5</div>
                 <div>
                   <h3 className="font-semibold text-neutral-900 mb-2">Recevez votre remboursement</h3>
                   <p className="text-neutral-400">
@@ -320,7 +320,7 @@ export default function RetoursEchangesPage() {
 
           <section>
             <h2 className="text-2xl font-semibold text-neutral-900 mb-4">📞 Besoin d'aide ?</h2>
-            <div className="bg-blue-800 bg-opacity-10 p-6 rounded-lg">
+            <div className="bg-brand bg-opacity-10 p-6 rounded-lg">
               <p className="text-neutral-400 mb-4">
                 Notre équipe de service client est là pour vous aider avec tous vos retours et échanges :
               </p>

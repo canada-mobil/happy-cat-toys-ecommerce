@@ -724,7 +724,7 @@ ${itemsList}
                       <button
                         type="button"
                         onClick={() => setShowDatePicker(false)}
-                        className="mt-3 w-full bg-blue-800 text-white py-2 px-3 rounded-lg text-sm hover:bg-blue-900 transition-colors"
+                        className="mt-3 w-full bg-brand text-white py-2 px-3 rounded-lg text-sm hover:bg-brand-dark transition-colors"
                       >
                         Confirmer
                       </button>
@@ -741,7 +741,7 @@ ${itemsList}
                 <button 
                   type="submit"
                   disabled={isProcessing || !isFormValid()}
-                  className="w-full bg-blue-800 hover:bg-blue-900 disabled:opacity-50 text-white py-3.5 px-4 rounded-full font-medium text-sm transition-all flex items-center justify-center gap-2"
+                  className="w-full bg-brand hover:bg-brand-dark disabled:opacity-50 text-white py-3.5 px-4 rounded-full font-medium text-sm transition-all flex items-center justify-center gap-2"
                 >
                   {isProcessing ? (
                     <>

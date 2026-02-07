@@ -26,7 +26,7 @@ export default function CartPage() {
           </p>
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-full font-medium text-sm transition-all"
+            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-full font-medium text-sm transition-all"
           >
             <ArrowLeft className="w-4 h-4" />
             Continuer mes achats
@@ -64,7 +64,7 @@ export default function CartPage() {
                 </p>
                 <div className="w-full bg-blue-100 rounded-full h-2">
                   <div 
-                    className="bg-blue-800 h-2 rounded-full transition-all duration-300"
+                    className="bg-brand h-2 rounded-full transition-all duration-300"
                     style={{ width: `${freeShippingProgress}%` }}
                   />
                 </div>
@@ -187,7 +187,7 @@ export default function CartPage() {
               </div>
               
               <Link href="/checkout" className="block">
-                <button className="w-full bg-blue-800 hover:bg-blue-900 text-white py-3 px-4 rounded-full font-medium text-sm transition-all">
+                <button className="w-full bg-brand hover:bg-brand-dark text-white py-3 px-4 rounded-full font-medium text-sm transition-all">
                   Procéder au paiement
                 </button>
               </Link>
@@ -207,7 +207,7 @@ export default function CartPage() {
       </div>
       
       {/* Trust Section */}
-      <div className="bg-blue-900 text-white py-8 mt-8">
+      <div className="bg-brand text-white py-8 mt-8">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="flex flex-col items-center">

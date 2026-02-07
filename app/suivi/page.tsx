@@ -58,7 +58,7 @@ export default function TrackOrderPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-blue-800 py-16 px-4">
+      <section className="bg-brand py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <Package className="w-12 h-12 text-white mx-auto mb-4" />
           <h1 className="text-3xl md:text-4xl font-semibold text-white mb-4">
@@ -107,7 +107,7 @@ export default function TrackOrderPage() {
 
               <button
                 type="submit"
-                className="w-full bg-blue-800 text-white py-4 rounded-lg font-semibold hover:bg-black transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-brand text-white py-4 rounded-lg font-semibold hover:bg-brand-dark transition-colors flex items-center justify-center gap-2"
               >
                 <Search className="w-5 h-5" />
                 Rechercher ma commande
@@ -130,7 +130,7 @@ export default function TrackOrderPage() {
                       <p className="text-sm text-neutral-400">Commande</p>
                       <p className="text-xl font-semibold text-neutral-900">{orderStatus.orderNumber}</p>
                     </div>
-                    <div className="bg-blue-800/10 text-neutral-900 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+                    <div className="bg-brand/10 text-neutral-900 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
                       <Truck className="w-4 h-4" />
                       En transit
                     </div>
@@ -166,8 +166,8 @@ export default function TrackOrderPage() {
                           <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                             step.completed 
                               ? step.current 
-                                ? "bg-blue-800 text-white" 
-                                : "bg-blue-800/20 text-neutral-900"
+                                ? "bg-brand text-white" 
+                                : "bg-brand/20 text-neutral-900"
                               : "bg-neutral-50 text-neutral-400"
                           }`}>
                             {step.completed ? (
@@ -182,7 +182,7 @@ export default function TrackOrderPage() {
                           </div>
                           {index < orderStatus.steps.length - 1 && (
                             <div className={`w-0.5 h-8 ${
-                              step.completed ? "bg-blue-800/30" : "bg-neutral-50"
+                              step.completed ? "bg-brand/30" : "bg-neutral-50"
                             }`} />
                           )}
                         </div>
@@ -200,7 +200,7 @@ export default function TrackOrderPage() {
                 </div>
 
                 {/* Delivery Info */}
-                <div className="bg-blue-800/10 rounded-xl p-6">
+                <div className="bg-brand/10 rounded-xl p-6">
                   <div className="flex items-start gap-4">
                     <MapPin className="w-6 h-6 text-neutral-900 flex-shrink-0" />
                     <div>
@@ -216,7 +216,7 @@ export default function TrackOrderPage() {
               </div>
             ) : (
               <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-                <div className="w-16 h-16 bg-blue-800/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Package className="w-8 h-8 text-neutral-900" />
                 </div>
                 <h3 className="text-xl font-semibold text-neutral-900 mb-2">Commande non trouvée</h3>

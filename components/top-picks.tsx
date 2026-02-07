@@ -98,7 +98,7 @@ export default function TopPicks() {
                 {/* Add to Cart */}
                 <button
                   onClick={(e) => handleAddToCart(product, e)}
-                  className="w-full bg-blue-800 hover:bg-blue-900 text-white px-4 py-3 rounded-full font-medium text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                  className="w-full bg-brand hover:bg-brand-dark text-white px-4 py-3 rounded-full font-medium text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
                 >
                   ADD TO CART
                 </button>

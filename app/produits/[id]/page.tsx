@@ -222,7 +222,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
-                className="flex-1 bg-blue-800 hover:bg-blue-900 text-white h-12 rounded-lg font-medium text-sm uppercase tracking-wider transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-brand hover:bg-brand-dark text-white h-12 rounded-lg font-medium text-sm uppercase tracking-wider transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 ADD TO CART
               </button>
@@ -350,7 +350,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         <button
           onClick={handleAddToCart}
           disabled={!product.inStock}
-          className="bg-blue-800 hover:bg-blue-900 text-white py-2.5 px-5 rounded-lg font-medium text-xs uppercase tracking-wider flex items-center gap-2 disabled:opacity-50 transition-all"
+          className="bg-brand hover:bg-brand-dark text-white py-2.5 px-5 rounded-lg font-medium text-xs uppercase tracking-wider flex items-center gap-2 disabled:opacity-50 transition-all"
         >
           ADD TO CART
         </button>

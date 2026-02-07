@@ -99,14 +99,14 @@ export default function OrderSuccess() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               href="/order-tracking"
-              className="bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+              className="bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
             >
               Suivre ma commande
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/produits"
-              className="border border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              className="border border-brand text-brand hover:bg-brand hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
               Continuer mes achats
             </Link>

@@ -26,7 +26,7 @@ export default function HeroSection() {
           </p>
           <a
             href="/produits/smart-interactive-ball"
-            className="inline-block bg-blue-800 text-white font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:bg-blue-900 transition-all"
+            className="inline-block bg-brand text-white font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:bg-brand-dark transition-all"
           >
             SHOP NOW
           </a>
@@ -58,7 +58,7 @@ export default function HeroSection() {
             <div className="flex items-start gap-4">
               <a
                 href="/produits/smart-interactive-ball"
-                className="bg-blue-800 hover:bg-blue-900 text-white font-medium px-8 py-3.5 rounded-full transition-all hover:scale-[1.02] text-sm tracking-wide"
+                className="bg-brand hover:bg-brand-dark text-white font-medium px-8 py-3.5 rounded-full transition-all hover:scale-[1.02] text-sm tracking-wide"
               >
                 Acheter — CA$4.99
               </a>
