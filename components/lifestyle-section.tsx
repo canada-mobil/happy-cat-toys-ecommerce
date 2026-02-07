@@ -9,7 +9,7 @@ export default function LifestyleSection() {
           {/* Image Side */}
           <div className="relative h-[300px] lg:h-auto">
             <Image
-              src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&h=600&fit=crop&crop=center"
+              src="/homebas.jpg.webp"
               alt="Chat heureux jouant avec son jouet"
               fill
               className="object-cover"
