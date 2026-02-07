@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
     <>
       {/* Mobile: Full-screen video hero like Cheerble */}
-      <section className="relative md:hidden w-full h-[100svh] overflow-hidden">
+      <section className="relative md:hidden w-full h-[100svh] overflow-hidden bg-neutral-900">
         {/* Video Background */}
         <video
           autoPlay
@@ -14,7 +14,6 @@ export default function HeroSection() {
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          poster="/smart_interactive_cats_ball_toy_red.png.webp"
         >
           <source src="/hoeme1.mp4" type="video/mp4" />
         </video>
@@ -79,14 +78,13 @@ export default function HeroSection() {
 
           {/* Video on desktop */}
           <div className="flex-1 relative">
-            <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl bg-neutral-900">
               <video
                 autoPlay
                 muted
                 loop
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover"
-                poster="/smart_interactive_cats_ball_toy_red.png.webp"
               >
                 <source src="/hoeme1.mp4" type="video/mp4" />
               </video>
