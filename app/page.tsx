@@ -1,5 +1,6 @@
 import Header from "@/components/header"
 import HeroSection from "@/components/hero-section"
+import TopPicks from "@/components/top-picks"
 import TrustBadges from "@/components/trust-badges"
 import BestSellers from "@/components/best-sellers"
 import TreatsSection from "@/components/treats-section"
@@ -16,6 +17,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Header />
       <HeroSection />
+      <TopPicks />
       <TrustBadges />
       <BestSellers />
       <PromoBanner />
