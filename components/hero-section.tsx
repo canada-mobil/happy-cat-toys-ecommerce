@@ -1,19 +1,34 @@
 "use client"
 
-import Image from "next/image"
+import { useRef, useEffect } from "react"
 
 export default function HeroSection() {
+  const mobileVideoRef = useRef<HTMLVideoElement>(null)
+  const desktopVideoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    // Force play videos as soon as they can
+    const playVideo = (video: HTMLVideoElement | null) => {
+      if (video) {
+        video.play().catch(() => {})
+      }
+    }
+    playVideo(mobileVideoRef.current)
+    playVideo(desktopVideoRef.current)
+  }, [])
+
   return (
     <>
       {/* Mobile: Full-screen video hero like Cheerble */}
       <section className="relative md:hidden w-full h-[100svh] overflow-hidden bg-neutral-900">
         {/* Video Background */}
         <video
+          ref={mobileVideoRef}
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/hoeme1.mp4" type="video/mp4" />
@@ -81,11 +96,12 @@ export default function HeroSection() {
           <div className="flex-1 relative">
             <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl bg-neutral-900">
               <video
+                ref={desktopVideoRef}
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="auto"
+                preload="metadata"
                 className="absolute inset-0 w-full h-full object-cover"
               >
                 <source src="/hoeme1.mp4" type="video/mp4" />
