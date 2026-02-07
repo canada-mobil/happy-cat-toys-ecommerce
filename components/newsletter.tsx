@@ -17,7 +17,7 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="bg-neutral-900 py-20 px-4">
+    <section className="bg-blue-900 py-20 px-4">
       <div className="max-w-2xl mx-auto text-center">
         {subscribed ? (
           <div className="py-6">

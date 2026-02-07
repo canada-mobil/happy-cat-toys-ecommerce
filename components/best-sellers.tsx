@@ -137,7 +137,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
         <button
           onClick={handleAddToCart}
           disabled={product.soldOut}
-          className="w-full bg-neutral-900 hover:bg-black text-white px-4 py-2.5 rounded-full font-medium text-xs tracking-wide transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full bg-blue-800 hover:bg-blue-900 text-white px-4 py-2.5 rounded-full font-medium text-xs tracking-wide transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           <ShoppingCart className="w-3.5 h-3.5" />
           Ajouter au panier

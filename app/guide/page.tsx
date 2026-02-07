@@ -115,7 +115,7 @@ export default function GuidePage() {
       
       {/* Hero Section */}
       <section className="relative">
-        <div className="absolute inset-0 bg-neutral-900" />
+        <div className="absolute inset-0 bg-blue-800" />
         <div className="relative py-20 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <BookOpen className="w-12 h-12 text-white/60 mx-auto mb-6" />
@@ -158,7 +158,7 @@ export default function GuidePage() {
       <section className="py-16 px-4 bg-neutral-50">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="w-10 h-10 bg-neutral-900 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center">
               <Check className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 tracking-tight">
@@ -211,7 +211,7 @@ export default function GuidePage() {
       </section>
 
       {/* Health Section */}
-      <section className="py-16 px-4 bg-neutral-900">
+      <section className="py-16 px-4 bg-blue-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-xl md:text-2xl font-semibold text-white text-center mb-8 tracking-tight">
             Santé de Votre Chat
@@ -267,7 +267,7 @@ export default function GuidePage() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center p-6">
-              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Activity className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-medium text-neutral-900 mb-2 text-sm">Exercice Physique</h3>
@@ -277,7 +277,7 @@ export default function GuidePage() {
             </div>
             
             <div className="text-center p-6">
-              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-medium text-neutral-900 mb-2 text-sm">Stimulation Mentale</h3>
@@ -287,7 +287,7 @@ export default function GuidePage() {
             </div>
             
             <div className="text-center p-6">
-              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-medium text-neutral-900 mb-2 text-sm">Lien Affectif</h3>
@@ -311,7 +311,7 @@ export default function GuidePage() {
           </p>
           <a
             href="/produits"
-            className="inline-block bg-neutral-900 text-white px-8 py-3.5 rounded-full font-medium text-sm hover:bg-black transition-all hover:scale-[1.02]"
+            className="inline-block bg-blue-800 text-white px-8 py-3.5 rounded-full font-medium text-sm hover:bg-black transition-all hover:scale-[1.02]"
           >
             Voir Nos Jouets
           </a>

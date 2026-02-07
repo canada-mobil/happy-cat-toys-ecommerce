@@ -125,7 +125,7 @@ export default function OrderTracking() {
                 />
                 <button
                   onClick={searchOrder}
-                  className="bg-neutral-900 hover:bg-black text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+                  className="bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
                 >
                   <Search className="w-4 h-4" />
                   Rechercher
@@ -327,13 +327,13 @@ export default function OrderTracking() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="bg-neutral-900 hover:bg-black text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                className="bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 Contacter le support
               </a>
               <a
                 href="/faq"
-                className="border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                className="border border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 Voir la FAQ
               </a>

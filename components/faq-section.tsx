@@ -84,7 +84,7 @@ export default function FAQSection() {
           </p>
           <a
             href="/contact"
-            className="inline-block bg-neutral-900 hover:bg-black text-white font-medium px-6 py-2.5 rounded-full text-sm transition-all hover:scale-[1.02]"
+            className="inline-block bg-blue-800 hover:bg-blue-900 text-white font-medium px-6 py-2.5 rounded-full text-sm transition-all hover:scale-[1.02]"
           >
             Contactez-nous
           </a>

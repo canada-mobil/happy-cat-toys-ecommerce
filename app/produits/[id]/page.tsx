@@ -87,7 +87,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                   ÉPUISÉ
                 </span>
               )}
-              <span className="absolute top-4 right-4 z-10 bg-neutral-900 text-white text-[10px] font-medium px-2.5 py-1 rounded-full">
+              <span className="absolute top-4 right-4 z-10 bg-blue-800 text-white text-[10px] font-medium px-2.5 py-1 rounded-full">
                 -{Math.round((1 - product.price / product.originalPrice) * 100)}%
               </span>
               <Image
@@ -163,7 +163,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="flex items-center gap-3 mb-2">
               <span className="text-3xl font-semibold text-neutral-900">CA${currentPrice.toFixed(2)}</span>
               <span className="text-lg text-neutral-300 line-through">CA${product.originalPrice.toFixed(2)}</span>
-              <span className="bg-neutral-900 text-white text-[10px] font-medium px-2 py-0.5 rounded-full">
+              <span className="bg-blue-800 text-white text-[10px] font-medium px-2 py-0.5 rounded-full">
                 -{Math.round((1 - currentPrice / product.originalPrice) * 100)}%
               </span>
             </div>
@@ -172,7 +172,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="flex items-center gap-2 mb-5">
               <div className="bg-neutral-50 border border-neutral-200 rounded-full px-3 py-1 flex items-center gap-2">
                 <span className="text-neutral-500 text-xs">Code appliqué:</span>
-                <span className="bg-neutral-900 text-white text-[10px] font-medium px-2 py-0.5 rounded-full tracking-wider">#PAWPAW</span>
+                <span className="bg-blue-800 text-white text-[10px] font-medium px-2 py-0.5 rounded-full tracking-wider">#PAWPAW</span>
               </div>
               <span className="text-xs text-neutral-400">-{Math.round((1 - currentPrice / product.originalPrice) * 100)}% de rabais</span>
             </div>
@@ -180,11 +180,11 @@ export default function ProductPage({ params }: ProductPageProps) {
             {/* Free Shipping Countdown */}
             <div className="bg-neutral-50 rounded-xl px-4 py-2.5 mb-6 flex items-center gap-2">
               <span className="text-xs font-medium text-neutral-600">Livraison Offerte</span>
-              <span className="bg-neutral-900 text-white text-[10px] font-medium px-1.5 py-0.5 rounded">{timeLeft.hours}</span>
+              <span className="bg-blue-800 text-white text-[10px] font-medium px-1.5 py-0.5 rounded">{timeLeft.hours}</span>
               <span className="text-[10px] text-neutral-300">:</span>
-              <span className="bg-neutral-900 text-white text-[10px] font-medium px-1.5 py-0.5 rounded">{timeLeft.minutes}</span>
+              <span className="bg-blue-800 text-white text-[10px] font-medium px-1.5 py-0.5 rounded">{timeLeft.minutes}</span>
               <span className="text-[10px] text-neutral-300">:</span>
-              <span className="bg-neutral-900 text-white text-[10px] font-medium px-1.5 py-0.5 rounded">{timeLeft.seconds}</span>
+              <span className="bg-blue-800 text-white text-[10px] font-medium px-1.5 py-0.5 rounded">{timeLeft.seconds}</span>
               <span className="text-[10px] text-neutral-400 ml-1">restantes</span>
             </div>
 
@@ -226,7 +226,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                     onClick={() => setSelectedPackage(index)}
                     className={`relative px-5 py-2.5 rounded-full text-center transition-all ${
                       selectedPackage === index 
-                        ? 'bg-neutral-900 text-white' 
+                        ? 'bg-blue-800 text-white' 
                         : 'bg-neutral-50 text-neutral-600 hover:bg-neutral-100'
                     }`}
                   >
@@ -247,7 +247,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             <button
               onClick={handleAddToCart}
               disabled={!product.inStock}
-              className="w-full bg-neutral-900 hover:bg-black text-white py-4 px-6 rounded-full font-medium text-sm flex items-center justify-center gap-3 transition-all hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed mb-5"
+              className="w-full bg-blue-800 hover:bg-blue-900 text-white py-4 px-6 rounded-full font-medium text-sm flex items-center justify-center gap-3 transition-all hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed mb-5"
             >
               <ShoppingCart className="w-4 h-4" />
               Ajouter au panier — CA${totalPrice.toFixed(2)}
@@ -385,7 +385,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         <button
           onClick={handleAddToCart}
           disabled={!product.inStock}
-          className="bg-neutral-900 hover:bg-black text-white py-2.5 px-5 rounded-full font-medium text-xs flex items-center gap-2 disabled:opacity-50 transition-all"
+          className="bg-blue-800 hover:bg-blue-900 text-white py-2.5 px-5 rounded-full font-medium text-xs flex items-center gap-2 disabled:opacity-50 transition-all"
         >
           <ShoppingCart className="w-3.5 h-3.5" />
           Ajouter

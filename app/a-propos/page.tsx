@@ -40,7 +40,7 @@ export default function AboutPage() {
       
       {/* Hero Section */}
       <section className="relative">
-        <div className="absolute inset-0 bg-neutral-900" />
+        <div className="absolute inset-0 bg-blue-800" />
         <div className="relative py-20 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <Cat className="w-12 h-12 text-white/80 mx-auto mb-6" />
@@ -132,7 +132,7 @@ export default function AboutPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center">
-              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mb-4">
+              <div className="w-14 h-14 bg-blue-800 rounded-full flex items-center justify-center mb-4">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-medium text-neutral-900 mb-2 text-sm">100% Canadien</h3>
@@ -142,7 +142,7 @@ export default function AboutPage() {
             </div>
 
             <div className="flex flex-col items-center text-center">
-              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mb-4">
+              <div className="w-14 h-14 bg-blue-800 rounded-full flex items-center justify-center mb-4">
                 <Truck className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-medium text-neutral-900 mb-2 text-sm">Livraison Gratuite</h3>
@@ -152,7 +152,7 @@ export default function AboutPage() {
             </div>
 
             <div className="flex flex-col items-center text-center">
-              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mb-4">
+              <div className="w-14 h-14 bg-blue-800 rounded-full flex items-center justify-center mb-4">
                 <Award className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-medium text-neutral-900 mb-2 text-sm">Qualité Garantie</h3>
@@ -165,7 +165,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 px-4 bg-neutral-900">
+      <section className="py-20 px-4 bg-blue-800">
         <div className="max-w-4xl mx-auto text-center">
           <Users className="w-10 h-10 text-white/60 mx-auto mb-4" />
           <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4 tracking-tight">
@@ -195,7 +195,7 @@ export default function AboutPage() {
           </p>
           <a
             href="/produits"
-            className="inline-block bg-neutral-900 text-white px-8 py-3.5 rounded-full font-medium text-sm hover:bg-black transition-all hover:scale-[1.02]"
+            className="inline-block bg-blue-800 text-white px-8 py-3.5 rounded-full font-medium text-sm hover:bg-black transition-all hover:scale-[1.02]"
           >
             Voir Nos Produits
           </a>

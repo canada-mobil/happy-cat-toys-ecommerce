@@ -52,7 +52,7 @@ export default function PromoBanner() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/produits"
-            className="bg-neutral-900 hover:bg-black text-white px-8 py-3 rounded-full font-medium text-sm transition-all hover:scale-[1.02]"
+            className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-3 rounded-full font-medium text-sm transition-all hover:scale-[1.02]"
           >
             Voir les Produits
           </Link>
