@@ -12,7 +12,7 @@ export default function LifestyleSection() {
               src="/homebas.jpg.webp"
               alt="Chat heureux jouant avec son jouet"
               fill
-              className="object-cover"
+              className="object-cover object-right"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-neutral-900/30 hidden lg:block" />
           </div>
