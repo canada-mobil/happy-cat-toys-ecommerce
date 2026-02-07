@@ -1,31 +1,80 @@
 "use client"
 
+import { useState, useRef, useCallback } from "react"
 import VideoHero from "./video-hero"
 
+const slides = [
+  {
+    video: "/hoeme1.mp4",
+    title: "Smart Interactive Ball",
+    subtitle: "Le jouet intelligent pour chats curieux",
+    href: "/produits/smart-interactive-ball",
+  },
+  {
+    video: "/home2.mp4",
+    title: "Wicked Ball M3",
+    subtitle: "La balle douce et robuste pour chats",
+    href: "/produits/wicked-ball-m3",
+  },
+]
+
 export default function HeroSection() {
+  const [activeSlide, setActiveSlide] = useState(0)
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }, [])
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX
+    const diff = touchStartX.current - touchEndX.current
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && activeSlide < slides.length - 1) {
+        setActiveSlide(activeSlide + 1)
+      } else if (diff < 0 && activeSlide > 0) {
+        setActiveSlide(activeSlide - 1)
+      }
+    }
+  }, [activeSlide])
+
   return (
     <>
-      {/* Mobile: Full-screen video hero like Cheerble */}
-      <section className="relative md:hidden w-full h-[100svh] overflow-hidden bg-neutral-900">
+      {/* Mobile: Full-screen video hero carousel */}
+      <section
+        className="relative md:hidden w-full h-[100svh] overflow-hidden bg-neutral-900"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         {/* Video Background */}
-        <VideoHero
-          src="/hoeme1.mp4"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        {slides.map((slide, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-500 ${
+              i === activeSlide ? 'opacity-100 z-[1]' : 'opacity-0 z-0'
+            }`}
+          >
+            <VideoHero
+              src={slide.video}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+        ))}
 
         {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-[2]" />
 
         {/* Content overlay at bottom */}
         <div className="absolute bottom-0 left-0 right-0 p-6 pb-10 z-10">
           <h1 className="text-3xl font-semibold text-white leading-tight tracking-tight mb-2">
-            Smart Interactive Ball
+            {slides[activeSlide].title}
           </h1>
           <p className="text-white/70 text-sm mb-6">
-            Le jouet intelligent pour chats curieux
+            {slides[activeSlide].subtitle}
           </p>
           <a
-            href="/produits/smart-interactive-ball"
+            href={slides[activeSlide].href}
             className="inline-block bg-brand text-white font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:bg-brand-dark transition-all"
           >
             SHOP NOW
@@ -34,9 +83,15 @@ export default function HeroSection() {
 
         {/* Dots indicator */}
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-          <span className="w-1.5 h-1.5 rounded-full bg-white" />
-          <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-          <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveSlide(i)}
+              className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                i === activeSlide ? 'bg-white' : 'bg-white/40'
+              }`}
+            />
+          ))}
         </div>
       </section>
 
