@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Poppins, Playfair_Display } from 'next/font/google'
 import { CartProvider } from "@/lib/cart-context"
 import { Toaster } from "sonner"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import './globals.css'
 
@@ -43,6 +44,7 @@ export default function RootLayout({
             richColors
             closeButton
           />
+          <SpeedInsights />
         </CartProvider>
       </body>
     </html>
