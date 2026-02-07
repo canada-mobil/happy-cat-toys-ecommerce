@@ -1,6 +1,27 @@
 import { Truck, Shield, MapPin, Star } from "lucide-react"
 import Link from "next/link"
 
+const badges = [
+  { icon: MapPin, label: "100% Canadien", sub: "Basé à Montréal" },
+  { icon: Truck, label: "Livraison 24-72h", sub: "Canada Post" },
+  { icon: Shield, label: "Garantie 2 Mois", sub: "Satisfait ou remboursé" },
+  { icon: Star, label: "50,000+", sub: "Chats heureux" },
+]
+
+function BadgeItem({ icon: Icon, label, sub }: typeof badges[0]) {
+  return (
+    <div className="flex items-center gap-3 px-8 flex-shrink-0">
+      <div className="w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-sm flex-shrink-0">
+        <Icon className="w-4.5 h-4.5 text-neutral-700" />
+      </div>
+      <div className="text-left">
+        <span className="text-neutral-900 font-medium text-sm whitespace-nowrap block">{label}</span>
+        <span className="text-neutral-400 text-xs whitespace-nowrap block">{sub}</span>
+      </div>
+    </div>
+  )
+}
+
 export default function PromoBanner() {
   return (
     <section className="bg-neutral-50 py-20 px-4">
@@ -15,37 +36,21 @@ export default function PromoBanner() {
           Entreprise 100% canadienne basée à Montréal. Livraison rapide, garantie satisfaction, et un service client qui répond vraiment.
         </p>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
-          <div className="flex flex-col items-center">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-sm">
-              <MapPin className="w-5 h-5 text-neutral-700" />
-            </div>
-            <span className="text-neutral-900 font-medium text-sm">100% Canadien</span>
-            <span className="text-neutral-400 text-xs mt-0.5">Basé à Montréal</span>
-          </div>
+        {/* Marquee animation - smooth right to left */}
+        <div className="relative overflow-hidden mb-14">
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-neutral-50 to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-neutral-50 to-transparent z-10" />
           
-          <div className="flex flex-col items-center">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-sm">
-              <Truck className="w-5 h-5 text-neutral-700" />
-            </div>
-            <span className="text-neutral-900 font-medium text-sm">Livraison 24-72h</span>
-            <span className="text-neutral-400 text-xs mt-0.5">Canada Post</span>
-          </div>
-          
-          <div className="flex flex-col items-center">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-sm">
-              <Shield className="w-5 h-5 text-neutral-700" />
-            </div>
-            <span className="text-neutral-900 font-medium text-sm">Garantie 2 Mois</span>
-            <span className="text-neutral-400 text-xs mt-0.5">Satisfait ou remboursé</span>
-          </div>
-          
-          <div className="flex flex-col items-center">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-sm">
-              <Star className="w-5 h-5 text-neutral-700" />
-            </div>
-            <span className="text-neutral-900 font-medium text-sm">50,000+</span>
-            <span className="text-neutral-400 text-xs mt-0.5">Chats heureux</span>
+          <div className="flex animate-marquee">
+            {/* First set */}
+            {badges.map((badge, i) => (
+              <BadgeItem key={`a-${i}`} {...badge} />
+            ))}
+            {/* Duplicate for seamless loop */}
+            {badges.map((badge, i) => (
+              <BadgeItem key={`b-${i}`} {...badge} />
+            ))}
           </div>
         </div>
 
