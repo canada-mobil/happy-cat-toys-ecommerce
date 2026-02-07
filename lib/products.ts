@@ -118,6 +118,51 @@ export const products: Product[] = [
     shipping: "Expédition en 24h. Livraison garantie avec Canada Post. Livraison gratuite pour les commandes de 2+ unités.",
     reviewCount: 198,
     rating: 4.7
+  },
+  {
+    id: "mouse-plus",
+    name: "Mouse PLUS",
+    description: "Jouet souris interactive qui imite les mouvements d'une vraie souris. Stimule l'instinct de chasse avec des déplacements imprévisibles.",
+    longDescription: "Le Mouse PLUS offre une expérience de chasse réaliste pour votre chat grâce à ses mouvements aléatoires qui imitent une vraie souris. Avec 2 modes de vitesse, un système anti-perte par bip sonore, et un équilibre jeu/repos automatique (10 min de jeu, 30 min de repos), il garde votre chat actif et stimulé. Rechargeable par USB-C, roues détachables et évitement d'obstacles automatique.",
+    price: 7.99,
+    originalPrice: 17.99,
+    image: "/mouse1.jpg",
+    images: [
+      "/mouse1.jpg",
+      "/mouse3.webp",
+      "/mouse4.webp",
+      "/mouse5.webp",
+      "/mouse6.webp",
+      "/mouse7.webp",
+      "/mouse8.webp",
+      "/mouse9.webp"
+    ],
+    colors: [
+      { name: "Milky Blue", value: "#b8d4e3", image: "/mouse1.jpg", stockCount: 15 },
+      { name: "Vert", value: "#8fbc8f", image: "/mouse3.webp", stockCount: 10 }
+    ],
+    packages: [
+      { quantity: 1, label: "1x", pricePerUnit: 7.99 },
+      { quantity: 2, label: "2x", pricePerUnit: 6.99 },
+      { quantity: 3, label: "3x", pricePerUnit: 5.99, badge: "Meilleur Deal" }
+    ],
+    category: "Jouets Interactifs",
+    inStock: true,
+    stockCount: 25,
+    features: [
+      "Imite les mouvements d'une vraie souris",
+      "2 modes de vitesse (Normal & Doux)",
+      "Alerte bip anti-perte intégrée",
+      "Équilibre jeu/repos (10 min jeu, 30 min repos)",
+      "Rechargeable par USB-C",
+      "Évitement d'obstacles automatique",
+      "Roues facilement détachables",
+      "Batterie 48% plus grande que la Gen 1"
+    ],
+    materials: "Plastique ABS écologique, roues en silicone, batterie lithium rechargeable USB-C. Sans BPA, non toxique.",
+    shipping: "Expédition en 24h. Livraison garantie avec Canada Post. Livraison gratuite pour les commandes de 2+ unités.",
+    reviewCount: 156,
+    rating: 4.9
   }
 ]
 
