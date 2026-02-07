@@ -3,7 +3,7 @@ import { Shield, Truck, Heart } from "lucide-react"
 
 export default function LifestyleSection() {
   return (
-    <section className="relative bg-brand overflow-hidden">
+    <section className="relative bg-neutral-900 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
           {/* Image Side */}

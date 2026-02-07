@@ -80,7 +80,7 @@ export default function CartDropdown() {
           />
           
           {/* Cart Panel - Shopify style sidebar */}
-          <div className="fixed right-0 top-0 h-full w-full sm:w-[400px] bg-white shadow-2xl border-l border-neutral-100 z-50 flex flex-col animate-[slideInRight_0.3s_ease-out]">
+          <div className="fixed right-0 top-0 h-full w-full sm:w-[420px] bg-white shadow-2xl border-l border-neutral-100 z-50 flex flex-col animate-[slideInRight_0.3s_ease-out]" style={{ backgroundColor: '#ffffff' }}>
             {/* Header */}
             <div className="flex-shrink-0 flex items-center justify-between px-4 py-4 border-b border-neutral-100">
               <h3 className="font-semibold text-neutral-900 text-base">Panier ({itemCount})</h3>
@@ -90,6 +90,11 @@ export default function CartDropdown() {
               >
                 <X className="w-5 h-5 text-neutral-500" />
               </button>
+            </div>
+
+            {/* Free shipping banner */}
+            <div className="flex-shrink-0 bg-green-50 px-4 py-2.5 text-center">
+              <p className="text-green-700 text-xs font-medium">Livraison gratuite offerte sur toutes les commandes!</p>
             </div>
 
             {items.length === 0 ? (
