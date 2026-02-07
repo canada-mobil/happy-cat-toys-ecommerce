@@ -156,7 +156,13 @@ export default function CartDropdown() {
                             </button>
                           </div>
                           {item.variant && (
-                            <p className="text-xs text-neutral-400 mt-0.5">{item.variant}</p>
+                            <p className="text-xs mt-0.5">
+                              {item.variant.includes('PAWPAW') ? (
+                                <span className="text-green-600 font-medium">{item.variant}</span>
+                              ) : (
+                                <span className="text-neutral-400">{item.variant}</span>
+                              )}
+                            </p>
                           )}
                           
                           <div className="flex items-center justify-between mt-3">
@@ -192,6 +198,11 @@ export default function CartDropdown() {
 
                 {/* Footer */}
                 <div className="flex-shrink-0 border-t border-neutral-100 bg-white p-4">
+                  {/* #PAWPAW discount applied */}
+                  <div className="flex items-center gap-1.5 mb-3 bg-green-50 rounded-lg px-3 py-2">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full flex-shrink-0" />
+                    <span className="text-green-700 text-[11px] font-medium">Code <span className="font-bold">#PAWPAW</span> appliqué automatiquement</span>
+                  </div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-sm text-neutral-500">Sous-total</span>
                     <span className="text-lg font-semibold text-neutral-900">CA${total.toFixed(2)}</span>

@@ -166,12 +166,18 @@ export default function ProductPage({ params }: ProductPageProps) {
             </p>
 
             {/* Price */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-3">
               <span className="text-2xl font-bold text-red-600">CA${currentPrice.toFixed(2)}</span>
               <span className="text-base text-neutral-300 line-through">CA${product.originalPrice.toFixed(2)}</span>
               <span className="bg-red-500 text-white text-[10px] font-semibold px-2.5 py-1 rounded uppercase">
                 Save {Math.round((1 - currentPrice / product.originalPrice) * 100)}%
               </span>
+            </div>
+
+            {/* #PAWPAW discount badge */}
+            <div className="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 rounded-full px-3 py-1.5 mb-6">
+              <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+              <span className="text-green-700 text-xs font-medium">Rabais <span className="font-bold">#PAWPAW</span> -{Math.round((1 - currentPrice / product.originalPrice) * 100)}% appliqué automatiquement</span>
             </div>
 
             {/* Divider */}
