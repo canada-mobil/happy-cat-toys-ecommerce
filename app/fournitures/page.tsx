@@ -1,8 +1,9 @@
 "use client"
 
+import { useRef, useState, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Star, ShoppingCart, Droplets, Zap, Shield, Volume2 } from "lucide-react"
+import { Star, ShoppingCart, Droplets, Zap, Shield, Volume2, Play } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { products } from "@/lib/products"
@@ -11,6 +12,29 @@ import { useCart } from "@/lib/cart-context"
 export default function FournituresPage() {
   const { addItem } = useCart()
   const fountain = products.find(p => p.id === "purr-fountain-f1")!
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  const handlePlayVideo = useCallback(() => {
+    const video = videoRef.current
+    if (!video) return
+    if (isPlaying) {
+      video.pause()
+      setIsPlaying(false)
+    } else {
+      video.play()
+      setIsPlaying(true)
+    }
+  }, [isPlaying])
+
+  const handleTimeUpdate = useCallback(() => {
+    const video = videoRef.current
+    if (video && video.currentTime >= 93) {
+      video.pause()
+      video.currentTime = 0
+      setIsPlaying(false)
+    }
+  }, [])
 
   const handleAddToCart = () => {
     addItem({
@@ -211,6 +235,43 @@ export default function FournituresPage() {
               <ShoppingCart className="w-4 h-4" />
               Ajouter au panier — CA${fountain.price.toFixed(2)}
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Product Video */}
+      <section className="px-4 py-12">
+        <div className="max-w-4xl mx-auto">
+          <h3 className="text-xl md:text-2xl font-bold text-neutral-900 tracking-tight mb-6 text-center">
+            Voir la Purr Fountain F1 en action
+          </h3>
+          <div
+            className="relative rounded-2xl overflow-hidden bg-neutral-900 cursor-pointer group"
+            onClick={handlePlayVideo}
+          >
+            <video
+              ref={videoRef}
+              src="/pet_video.mp4#t=1"
+              className="w-full aspect-video object-cover"
+              playsInline
+              preload="metadata"
+              onTimeUpdate={handleTimeUpdate}
+            />
+            {!isPlaying && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src="/pet_fountain_elfin_e1_plus_video_post_image_1.jpg.webp"
+                  alt="Purr Fountain F1 Video"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 896px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+                <div className="relative w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <Play className="w-6 h-6 text-neutral-900 ml-1" />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

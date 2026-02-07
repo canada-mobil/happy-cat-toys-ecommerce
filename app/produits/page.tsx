@@ -40,7 +40,7 @@ export default function ProductsPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/20 to-transparent" />
         <div className="absolute bottom-6 left-6 md:left-12 z-10">
           <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 tracking-tight">
-            Cat Toys
+            Toys
           </h1>
         </div>
       </section>
@@ -176,7 +176,7 @@ export default function ProductsPage() {
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {products.map((p) => (
+            {products.filter(p => p.category !== 'Fournitures').map((p) => (
               <Link key={p.id} href={`/produits/${p.id}`} className="group block">
                 <div className="relative aspect-square bg-white rounded-2xl overflow-hidden mb-4 border border-neutral-100">
                   <span className="absolute top-3 right-3 z-10 bg-red-500 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full">

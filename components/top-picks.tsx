@@ -7,7 +7,7 @@ import { useCart } from "@/lib/cart-context"
 
 import { products } from "@/lib/products"
 
-const topPicks = products.map((p) => ({
+const topPicks = products.filter(p => p.category !== 'Fournitures').map((p) => ({
   id: p.id,
   name: p.name,
   description: p.description,
