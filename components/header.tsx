@@ -1,6 +1,6 @@
 "use client"
 
-import { Menu, ShoppingBag } from "lucide-react"
+import { Menu, ShoppingBag, PawPrint } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import CartDropdown from "./cart-dropdown"
@@ -67,7 +67,8 @@ export default function Header() {
 
           {/* Desktop: Logo + Nav left */}
           <div className="hidden lg:flex items-center gap-8">
-            <Link href="/" className="text-neutral-900 text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
+            <Link href="/" className="text-neutral-900 text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity flex items-center gap-1.5">
+              <PawPrint className="w-5 h-5" />
               Purrball
             </Link>
             <nav className="flex items-center gap-6">
@@ -84,7 +85,8 @@ export default function Header() {
           </div>
 
           {/* Mobile: Logo center */}
-          <Link href="/" className="lg:hidden text-neutral-900 text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity absolute left-1/2 -translate-x-1/2">
+          <Link href="/" className="lg:hidden text-neutral-900 text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity absolute left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+            <PawPrint className="w-5 h-5" />
             Purrball
           </Link>
 
