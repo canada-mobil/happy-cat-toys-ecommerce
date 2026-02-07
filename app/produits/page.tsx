@@ -33,6 +33,7 @@ export default function ProductsPage() {
           src="/smart_interactive_cats_ball_toy_fun.png.webp"
           alt="Cat Toys"
           fill
+          sizes="100vw"
           className="object-cover object-center"
           priority
         />
@@ -139,6 +140,7 @@ export default function ProductsPage() {
                 src="/smart_interactive_cats_ball_toy_entertainment.png.webp"
                 alt="Chat jouant avec la Smart Interactive Ball"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -164,6 +166,7 @@ export default function ProductsPage() {
                     src={color.image}
                     alt={`${product.name} - ${color.name}`}
                     fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
                     className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>

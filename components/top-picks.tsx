@@ -94,6 +94,7 @@ export default function TopPicks() {
                   src={product.image}
                   alt={product.name}
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
                 />
               </div>

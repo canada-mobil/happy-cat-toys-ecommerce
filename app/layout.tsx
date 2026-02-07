@@ -30,6 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        <link rel="preload" href="/hoeme1.mp4" as="video" type="video/mp4" />
+        <link rel="preload" href="/smart_interactive_cats_ball_toy_red.png.webp" as="image" />
+        <link rel="preload" href="/homebas.jpg.webp" as="image" />
+      </head>
       <body
         className={`${poppins.variable} ${playfair.variable} antialiased`}
       >

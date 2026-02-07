@@ -120,6 +120,7 @@ export default function CartDropdown() {
                             src={product.image || "/placeholder.svg"}
                             alt={product.name}
                             fill
+                            sizes="48px"
                             className="object-cover"
                           />
                         </div>
@@ -163,6 +164,7 @@ export default function CartDropdown() {
                             src={item.image || "/placeholder.svg"}
                             alt={item.name}
                             fill
+                            sizes="64px"
                             className="object-cover"
                           />
                         </div>
@@ -230,6 +232,7 @@ export default function CartDropdown() {
                             src={product.image || "/placeholder.svg"}
                             alt={product.name}
                             fill
+                            sizes="40px"
                             className="object-contain p-1"
                           />
                         </div>

@@ -94,6 +94,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                 src={product.colors[selectedColor].image}
                 alt={product.name}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-contain p-8"
                 priority
               />
@@ -122,7 +123,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                     selectedImage === index ? 'border-neutral-900 shadow-sm' : 'border-neutral-100 hover:border-neutral-300'
                   }`}
                 >
-                  <Image src={img} alt={`Vue ${index + 1}`} fill className="object-contain p-1" />
+                  <Image src={img} alt={`Vue ${index + 1}`} fill sizes="64px" className="object-contain p-1" />
                 </button>
               ))}
             </div>
@@ -135,7 +136,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               </p>
               {product.images.slice(1, 5).map((img, index) => (
                 <div key={index} className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
-                  <Image src={img} alt={`Détail ${index + 1}`} fill className="object-contain bg-neutral-50" />
+                  <Image src={img} alt={`Détail ${index + 1}`} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain bg-neutral-50" />
                 </div>
               ))}
             </div>
@@ -199,7 +200,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                       selectedColor === index ? 'border-neutral-900 shadow-sm' : 'border-neutral-100 hover:border-neutral-300'
                     }`}
                   >
-                    <Image src={color.image} alt={color.name} fill className="object-contain p-1" />
+                    <Image src={color.image} alt={color.name} fill sizes="40px" className="object-contain p-1" />
                   </button>
                 ))}
               </div>
@@ -355,7 +356,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           </p>
           {product.images.slice(1, 5).map((img, index) => (
             <div key={index} className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
-              <Image src={img} alt={`Détail ${index + 1}`} fill className="object-contain bg-neutral-50" />
+              <Image src={img} alt={`Détail ${index + 1}`} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain bg-neutral-50" />
             </div>
           ))}
         </div>
@@ -372,6 +373,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               src={product.colors[selectedColor].image}
               alt={product.name}
               fill
+              sizes="48px"
               className="object-contain p-1"
             />
           </div>
