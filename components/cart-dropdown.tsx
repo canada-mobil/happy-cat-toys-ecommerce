@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+import { createPortal } from "react-dom"
 import { ShoppingCart, X, Plus, Minus, Trash2, Star, Truck, Shield, Clock, MapPin } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 import Image from "next/image"
@@ -70,17 +71,18 @@ export default function CartDropdown() {
         )}
       </button>
 
-      {/* Dropdown */}
-      {isCartOpen && (
+      {/* Dropdown - rendered via portal to escape header containment */}
+      {isCartOpen && typeof document !== 'undefined' && createPortal(
         <>
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 z-[9998] bg-black/40" 
+            className="fixed inset-0 bg-black/40" 
+            style={{ zIndex: 99998 }}
             onClick={() => setCartOpen(false)}
           />
           
           {/* Cart Panel */}
-          <div className="fixed right-0 top-0 bottom-0 w-full sm:w-[420px] z-[9999] flex flex-col shadow-2xl" style={{ backgroundColor: '#ffffff' }}>
+          <div className="fixed right-0 top-0 bottom-0 w-full sm:w-[420px] flex flex-col shadow-2xl" style={{ zIndex: 99999, backgroundColor: '#ffffff' }}>
             {/* Header */}
             <div className="flex-shrink-0 flex items-center justify-between px-4 py-4 border-b border-neutral-100">
               <h3 className="font-semibold text-neutral-900 text-base">Panier ({itemCount})</h3>
@@ -194,7 +196,8 @@ export default function CartDropdown() {
               </>
             )}
           </div>
-        </>
+        </>,
+        document.body
       )}
     </>
   )
