@@ -73,7 +73,7 @@ export default function HeroSection() {
 
           {/* Video on desktop */}
           <div className="flex-1 relative">
-            <div className="relative w-full aspect-[4/5] max-w-xl mx-auto rounded-2xl overflow-hidden shadow-2xl bg-neutral-900">
+            <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl bg-neutral-900">
               <VideoHero
                 src="/hoeme1.mp4"
                 className="absolute inset-0 w-full h-full object-cover"
