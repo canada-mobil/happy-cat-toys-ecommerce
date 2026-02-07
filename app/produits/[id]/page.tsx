@@ -25,6 +25,17 @@ export default function ProductPage({ params }: ProductPageProps) {
   const [selectedPackage, setSelectedPackage] = useState(0)
   const [selectedImage, setSelectedImage] = useState(0)
   const [openSection, setOpenSection] = useState<string | null>("details")
+  const [userProvince, setUserProvince] = useState("Quebec")
+
+  // Detect visitor province via IP geolocation
+  useEffect(() => {
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.region) setUserProvince(data.region)
+      })
+      .catch(() => {})
+  }, [])
 
   // Countdown timer
   const [timeLeft, setTimeLeft] = useState({ hours: 5, minutes: 56, seconds: 23 })
@@ -220,7 +231,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="space-y-3 mb-6">
               <div className="flex items-center gap-2 text-sm text-neutral-600">
                 <Truck className="w-4 h-4 text-neutral-400" />
-                <span>Deliver to <span className="font-medium text-neutral-900 underline">Quebec, Canada</span></span>
+                <span>Deliver to <span className="font-medium text-neutral-900 underline">{userProvince}, Canada</span></span>
               </div>
               <p className="text-sm text-neutral-900 font-medium">
                 Ordered before 11:00 pm
