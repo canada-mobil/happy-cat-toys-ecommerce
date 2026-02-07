@@ -57,11 +57,6 @@ export default function TopPicks() {
               <div className="relative aspect-square bg-neutral-50 rounded-2xl overflow-hidden mb-4">
                 {/* Badges */}
                 <div className="absolute top-3 left-3 z-10 flex gap-1.5">
-                  {product.isNew && (
-                    <span className="bg-neutral-900 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wide">
-                      New
-                    </span>
-                  )}
                   <span className="bg-red-500 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wide">
                     {product.badge}
                   </span>

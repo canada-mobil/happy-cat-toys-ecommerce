@@ -143,9 +143,9 @@ export default function CartDropdown() {
                           />
                         </div>
                         
-                        <div className="flex-1 min-w-0">
-                          <div className="flex justify-between items-start">
-                            <h4 className="text-sm font-medium text-neutral-900 leading-tight pr-2">
+                        <div className="flex-1 min-w-0 overflow-hidden">
+                          <div className="flex justify-between items-start gap-1">
+                            <h4 className="text-sm font-medium text-neutral-900 leading-tight truncate">
                               {item.name}
                             </h4>
                             <button
@@ -165,28 +165,28 @@ export default function CartDropdown() {
                             </p>
                           )}
                           
-                          <div className="flex items-center justify-between mt-3">
+                          <div className="flex items-center justify-between mt-3 gap-2">
                             {item.price === 0 ? (
-                              <span className="text-xs text-green-600 font-medium">Cadeau × 1</span>
+                              <span className="text-xs text-green-600 font-medium whitespace-nowrap">Cadeau × 1</span>
                             ) : (
-                              <div className="flex items-center border border-neutral-200 rounded-lg">
+                              <div className="flex items-center border border-neutral-200 rounded-lg flex-shrink-0">
                                 <button
                                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                  className="w-8 h-8 flex items-center justify-center hover:bg-neutral-50 transition-colors"
+                                  className="w-7 h-7 flex items-center justify-center hover:bg-neutral-50 transition-colors"
                                 >
                                   <Minus className="w-3 h-3" />
                                 </button>
-                                <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
+                                <span className="text-sm font-medium w-6 text-center">{item.quantity}</span>
                                 <button
                                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                  className="w-8 h-8 flex items-center justify-center hover:bg-neutral-50 transition-colors"
+                                  className="w-7 h-7 flex items-center justify-center hover:bg-neutral-50 transition-colors"
                                 >
                                   <Plus className="w-3 h-3" />
                                 </button>
                               </div>
                             )}
                             
-                            <span className="text-sm font-semibold text-neutral-900">
+                            <span className="text-sm font-semibold text-neutral-900 whitespace-nowrap">
                               {item.price === 0 ? 'GRATUIT' : `CA$${(item.price * item.quantity).toFixed(2)}`}
                             </span>
                           </div>
@@ -201,7 +201,7 @@ export default function CartDropdown() {
                   {/* #PAWPAW discount applied */}
                   <div className="flex items-center gap-1.5 mb-3 bg-green-50 rounded-lg px-3 py-2">
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full flex-shrink-0" />
-                    <span className="text-green-700 text-[11px] font-medium">Code <span className="font-bold">#PAWPAW</span> appliqué automatiquement</span>
+                    <span className="text-green-700 text-[11px] font-medium">Coupon <span className="font-bold">#PAWPAW</span> added</span>
                   </div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-sm text-neutral-500">Sous-total</span>
