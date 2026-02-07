@@ -179,7 +179,12 @@ export const products: Product[] = [
       "/e1__no_cleaning_hassle.jpg.webp",
       "/e1__water-elecrical_separation.jpg.webp",
       "/e1__battery_life.jpg.webp",
-      "/e1__flexible_power_options.jpg.webp"
+      "/e1__flexible_power_options.jpg.webp",
+      "/set-up_guide_pc2.jpg.webp",
+      "/water_stainless_steel_pc.jpg.webp",
+      "/knowleage_slide3_pc.jpg.webp",
+      "/in_the_box_pc.jpg.webp",
+      "/Double_Protection_pc.jpg.webp"
     ],
     colors: [
       { name: "Blanc", value: "#f5f5f5", image: "/e__pumpless_design.jpg", stockCount: 14 }

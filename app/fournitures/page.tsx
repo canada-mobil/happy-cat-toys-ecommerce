@@ -276,6 +276,20 @@ export default function FournituresPage() {
         </div>
       </section>
 
+      {/* Knowledge Slide */}
+      <section className="px-4 pb-12">
+        <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden">
+          <Image
+            src="/knowleage_slide2_pc.jpg.webp"
+            alt="Purr Fountain F1 - Guide"
+            width={1200}
+            height={600}
+            sizes="(max-width: 1024px) 100vw, 896px"
+            className="w-full h-auto"
+          />
+        </div>
+      </section>
+
       <Footer />
     </div>
   )
