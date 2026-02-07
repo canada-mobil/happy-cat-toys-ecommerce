@@ -60,11 +60,11 @@ export default function CartDropdown() {
       {/* Cart Button */}
       <button
         onClick={() => setCartOpen(!isCartOpen)}
-        className="relative p-2 text-foreground hover:text-[#6b8e7b] transition-colors"
+        className="relative p-2 text-neutral-800 hover:text-black transition-colors"
       >
         <ShoppingCart className="w-5 h-5" />
         {itemCount > 0 && (
-          <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#6b8e7b] text-white text-xs rounded-full flex items-center justify-center font-medium">
+          <span className="absolute -top-1 -right-1 w-5 h-5 bg-neutral-900 text-white text-xs rounded-full flex items-center justify-center font-medium">
             {itemCount}
           </span>
         )}
@@ -80,26 +80,26 @@ export default function CartDropdown() {
           />
           
           {/* Cart Panel - Large Sidebar Style */}
-          <div className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-2xl border-l border-border z-50 flex flex-col animate-[slideInRight_0.3s_ease-out]">
+          <div className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white shadow-2xl border-l border-neutral-100 z-50 flex flex-col animate-[slideInRight_0.3s_ease-out]">
             {/* Rotating Banner */}
-            <div className="bg-[#6b8e7b] text-white p-3 text-center transition-all duration-500">
+            <div className="bg-neutral-900 text-white p-3 text-center transition-all duration-500">
               <div className="flex items-center justify-center gap-2">
                 <span className="text-white">{bannerMessages[currentBannerIndex].icon}</span>
                 <div>
-                  <div className="text-sm font-semibold">{bannerMessages[currentBannerIndex].text}</div>
-                  <div className="text-xs opacity-90">{bannerMessages[currentBannerIndex].subtext}</div>
+                  <div className="text-xs font-medium">{bannerMessages[currentBannerIndex].text}</div>
+                  <div className="text-[10px] text-neutral-400">{bannerMessages[currentBannerIndex].subtext}</div>
                 </div>
               </div>
             </div>
 
             {/* Header */}
-            <div className="flex items-center justify-between p-4 sm:p-4 border-b border-border">
-              <h3 className="font-semibold text-foreground text-lg sm:text-base">Panier ({itemCount})</h3>
+            <div className="flex items-center justify-between p-4 sm:p-4 border-b border-neutral-100">
+              <h3 className="font-semibold text-neutral-900 text-lg sm:text-base">Panier ({itemCount})</h3>
               <button
                 onClick={() => setCartOpen(false)}
-                className="p-2 sm:p-1 hover:bg-muted rounded-md transition-colors"
+                className="p-2 sm:p-1 hover:bg-neutral-50 rounded-md transition-colors"
               >
-                <X className="w-5 h-5 sm:w-4 sm:h-4" />
+                <X className="w-5 h-5 sm:w-4 sm:h-4 text-neutral-400" />
               </button>
             </div>
 
@@ -220,27 +220,23 @@ export default function CartDropdown() {
                 </div>
 
                 {/* Recommendations Section */}
-                <div className="border-t border-border p-3 bg-gray-50">
-                  <h4 className="text-xs font-semibold text-foreground mb-2">Vous pourriez aussi aimer</h4>
+                <div className="border-t border-neutral-100 p-3 bg-neutral-50">
+                  <h4 className="text-xs font-medium text-neutral-400 uppercase tracking-wider mb-2">Recommandé</h4>
                   <div>
                     {recommendedProducts.slice(0, 1).map((product) => (
-                      <div key={product.id} className="flex gap-2 p-2 bg-white rounded-lg border border-border hover:shadow-sm transition-shadow">
-                        <div className="relative w-10 h-10 rounded-md overflow-hidden bg-muted flex-shrink-0">
+                      <div key={product.id} className="flex gap-2 p-2 bg-white rounded-lg border border-neutral-100">
+                        <div className="relative w-10 h-10 rounded-md overflow-hidden bg-neutral-50 flex-shrink-0">
                           <Image
                             src={product.image || "/placeholder.svg"}
                             alt={product.name}
                             fill
-                            className="object-cover"
+                            className="object-contain p-1"
                           />
                         </div>
                         <div className="flex-1">
-                          <h5 className="text-xs font-medium text-foreground leading-tight">{product.name}</h5>
-                          <div className="flex items-center gap-1 mt-1">
-                            <Star className="w-2.5 h-2.5 fill-yellow-400 text-yellow-400" />
-                            <span className="text-xs text-muted-foreground">{product.rating}</span>
-                          </div>
-                          <div className="flex items-center justify-between mt-1">
-                            <span className="text-xs font-semibold text-[#6b8e7b]">${product.price} CAD</span>
+                          <h5 className="text-xs font-medium text-neutral-900 leading-tight">{product.name}</h5>
+                          <div className="flex items-center justify-between mt-1.5">
+                            <span className="text-xs font-semibold text-neutral-900">CA${product.price}</span>
                             <button
                               onClick={() => addItem({
                                 id: product.id,
@@ -249,9 +245,9 @@ export default function CartDropdown() {
                                 originalPrice: product.price,
                                 image: product.image,
                               })}
-                              className="text-xs bg-[#6b8e7b] text-white px-2 py-0.5 rounded hover:bg-[#5a7a66] transition-colors"
+                              className="text-[10px] bg-neutral-900 text-white px-2.5 py-0.5 rounded-full hover:bg-black transition-colors"
                             >
-                              +
+                              Ajouter
                             </button>
                           </div>
                         </div>
@@ -261,11 +257,11 @@ export default function CartDropdown() {
                 </div>
 
                 {/* Footer */}
-                <div className="p-3 sm:p-4 border-t border-border bg-white">
+                <div className="p-3 sm:p-4 border-t border-neutral-100 bg-white">
                   <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <span className="font-semibold text-foreground">Total:</span>
-                    <span className="font-bold text-lg sm:text-xl text-[#6b8e7b]">
-                      ${total.toFixed(2)} CAD
+                    <span className="font-medium text-neutral-500 text-sm">Total</span>
+                    <span className="font-semibold text-lg text-neutral-900">
+                      CA${total.toFixed(2)}
                     </span>
                   </div>
                   
@@ -273,7 +269,7 @@ export default function CartDropdown() {
                     <Link href="/checkout" className="block">
                       <button
                         onClick={() => setCartOpen(false)}
-                        className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white py-3 px-4 rounded-lg font-semibold transition-colors text-sm"
+                        className="w-full bg-neutral-900 hover:bg-black text-white py-3 px-4 rounded-full font-medium transition-all text-sm"
                       >
                         Commander
                       </button>
@@ -281,7 +277,7 @@ export default function CartDropdown() {
                     <Link href="/cart" className="block">
                       <button
                         onClick={() => setCartOpen(false)}
-                        className="w-full border border-[#6b8e7b] text-[#6b8e7b] hover:bg-[#6b8e7b] hover:text-white py-2 px-4 rounded-lg font-medium transition-colors text-sm"
+                        className="w-full text-neutral-500 hover:text-neutral-900 py-2 px-4 font-medium transition-colors text-xs"
                       >
                         Voir le panier complet
                       </button>
@@ -289,9 +285,9 @@ export default function CartDropdown() {
                   </div>
 
                   {/* Bottom Trust Badges - Simplified */}
-                  <div className="mt-3 pt-2 border-t border-border">
-                    <div className="text-xs text-center text-muted-foreground">
-                      Paiement sécurisé SSL • Livraison 2-3j • Garantie 2 mois
+                  <div className="mt-3 pt-2 border-t border-neutral-100">
+                    <div className="text-[10px] text-center text-neutral-300">
+                      Paiement sécurisé · Livraison 24-72h · Garantie 2 mois
                     </div>
                   </div>
                 </div>

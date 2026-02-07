@@ -35,12 +35,12 @@ export default function Header() {
   return (
     <>
       {/* Animated Announcement Bar */}
-      <div className="bg-[#f5f2ed] py-2 text-center overflow-hidden relative">
-        <div className="relative h-6">
+      <div className="bg-neutral-900 py-2 text-center overflow-hidden relative">
+        <div className="relative h-5">
           {messages.map((message, index) => (
             <p
               key={index}
-              className={`absolute inset-0 text-sm font-medium text-foreground tracking-wide transition-transform duration-500 ease-in-out ${
+              className={`absolute inset-0 text-xs font-medium text-white/90 tracking-widest uppercase transition-transform duration-500 ease-in-out ${
                 index === currentMessage
                   ? 'transform translate-x-0'
                   : index < currentMessage
@@ -55,21 +55,21 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <header className="bg-[#c8847a] py-4 px-4 sticky top-0 z-50">
+      <header className="bg-white/95 backdrop-blur-md py-4 px-4 sticky top-0 z-50 border-b border-neutral-100">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Left Icons */}
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-white hover:opacity-80 transition-opacity"
+              className="text-neutral-800 hover:text-black transition-colors"
               aria-label="Menu"
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5" />
             </button>
           </div>
 
           {/* Logo */}
-          <Link href="/" className="text-white text-xl md:text-2xl font-serif font-semibold tracking-wide hover:opacity-90 transition-opacity">
+          <Link href="/" className="text-neutral-900 text-xl md:text-2xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
             Purrball
           </Link>
 
@@ -81,13 +81,13 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <nav className="mt-4 pt-4 border-t border-white/20">
+          <nav className="mt-4 pt-4 border-t border-neutral-100">
             <ul className="flex flex-col gap-3">
               {menuItems.map((item) => (
                 <li key={item.label}>
                   <Link 
                     href={item.href} 
-                    className="text-white hover:opacity-80 transition-opacity block py-1"
+                    className="text-neutral-600 hover:text-black transition-colors block py-1 text-sm"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.label}

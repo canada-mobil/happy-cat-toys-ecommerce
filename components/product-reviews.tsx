@@ -195,7 +195,7 @@ function StarRating({ rating, size = "w-4 h-4" }: { rating: number; size?: strin
   return (
     <div className="flex">
       {[1, 2, 3, 4, 5].map(i => (
-        <Star key={i} className={`${size} ${i <= rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} />
+        <Star key={i} className={`${size} ${i <= rating ? 'text-neutral-900 fill-neutral-900' : 'text-neutral-200'}`} />
       ))}
     </div>
   )
@@ -214,11 +214,11 @@ export default function ProductReviews() {
   const visibleReviews = sortedReviews.slice(0, visibleCount)
 
   return (
-    <section className="max-w-4xl mx-auto px-4 py-12">
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+    <section className="max-w-4xl mx-auto px-4 py-16">
+      <div className="bg-white rounded-2xl border border-neutral-100 overflow-hidden">
         {/* Header */}
-        <div className="p-6 border-b border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Customer Reviews</h2>
+        <div className="p-6 border-b border-neutral-100">
+          <h2 className="text-lg font-semibold text-neutral-900 mb-6">Customer Reviews</h2>
           
           <div className="flex flex-col md:flex-row md:items-start gap-6">
             {/* Average Rating */}
@@ -226,7 +226,7 @@ export default function ProductReviews() {
               <div className="flex items-center gap-2 mb-1">
                 <StarRating rating={Math.round(avgRating)} size="w-5 h-5" />
               </div>
-              <p className="text-sm text-gray-600">Based on {totalReviews} reviews</p>
+              <p className="text-xs text-neutral-400">Based on {totalReviews} reviews</p>
             </div>
 
             {/* Rating Bars */}
@@ -239,14 +239,14 @@ export default function ProductReviews() {
                     <div className="flex items-center gap-0.5 w-20">
                       <StarRating rating={star} size="w-3 h-3" />
                     </div>
-                    <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                    <div className="flex-1 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
                       <div 
-                        className="h-full bg-yellow-400 rounded-full" 
+                        className="h-full bg-neutral-900 rounded-full" 
                         style={{ width: `${pct}%` }}
                       />
                     </div>
-                    <span className="text-gray-500 w-8 text-right text-xs">{pct}%</span>
-                    <span className="text-gray-400 w-8 text-right text-xs">({count})</span>
+                    <span className="text-neutral-400 w-8 text-right text-[10px]">{pct}%</span>
+                    <span className="text-neutral-300 w-8 text-right text-[10px]">({count})</span>
                   </div>
                 )
               })}
@@ -255,57 +255,57 @@ export default function ProductReviews() {
         </div>
 
         {/* Sort */}
-        <div className="px-6 py-3 border-b border-gray-100 flex items-center gap-2">
+        <div className="px-6 py-3 border-b border-neutral-100 flex items-center gap-2">
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 text-gray-700 bg-white"
+            className="text-xs border border-neutral-200 rounded-full px-3 py-1.5 text-neutral-600 bg-white appearance-none pr-6"
           >
             <option value="newest">Plus récents</option>
             <option value="highest">Meilleure note</option>
             <option value="lowest">Note la plus basse</option>
           </select>
-          <span className="text-xs text-gray-400">{totalReviews} avis</span>
+          <span className="text-[10px] text-neutral-300">{totalReviews} avis</span>
         </div>
 
         {/* Reviews List */}
-        <div className="divide-y divide-gray-100">
+        <div className="divide-y divide-neutral-50">
           {visibleReviews.map(review => (
             <div key={review.id} className="p-6">
               <div className="flex items-start gap-3 mb-3">
                 {/* Avatar */}
-                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                  <span className="text-sm font-bold text-gray-500">{review.name.charAt(0)}</span>
+                <div className="w-9 h-9 rounded-full bg-neutral-100 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xs font-medium text-neutral-500">{review.name.charAt(0)}</span>
                 </div>
                 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <StarRating rating={review.rating} size="w-3.5 h-3.5" />
-                    <span className="text-xs text-gray-400">{review.date}</span>
+                    <StarRating rating={review.rating} size="w-3 h-3" />
+                    <span className="text-[10px] text-neutral-300">{review.date}</span>
                   </div>
                   <div className="flex items-center gap-1.5 mt-0.5">
                     {review.verified && (
-                      <span className="inline-flex items-center gap-0.5 bg-green-100 text-green-700 text-[10px] font-semibold px-1.5 py-0.5 rounded">
+                      <span className="inline-flex items-center gap-0.5 bg-neutral-100 text-neutral-500 text-[9px] font-medium px-1.5 py-0.5 rounded-full">
                         <CheckCircle className="w-2.5 h-2.5" />
                         Verified
                       </span>
                     )}
-                    <span className="text-sm font-medium text-gray-700">{review.name}</span>
+                    <span className="text-xs font-medium text-neutral-700">{review.name}</span>
                   </div>
                 </div>
               </div>
 
-              <h4 className="font-bold text-gray-900 text-sm mb-1.5">{review.title}</h4>
-              <p className="text-sm text-gray-600 leading-relaxed">{review.body}</p>
+              <h4 className="font-medium text-neutral-900 text-sm mb-1">{review.title}</h4>
+              <p className="text-xs text-neutral-500 leading-relaxed">{review.body}</p>
 
               {/* Helpful */}
               <div className="flex items-center gap-4 mt-3">
-                <button className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition-colors">
-                  <ThumbsUp className="w-3.5 h-3.5" />
+                <button className="flex items-center gap-1 text-[10px] text-neutral-300 hover:text-neutral-600 transition-colors">
+                  <ThumbsUp className="w-3 h-3" />
                   <span>{review.helpful}</span>
                 </button>
-                <button className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition-colors">
-                  <ThumbsDown className="w-3.5 h-3.5" />
+                <button className="flex items-center gap-1 text-[10px] text-neutral-300 hover:text-neutral-600 transition-colors">
+                  <ThumbsDown className="w-3 h-3" />
                   <span>{review.notHelpful}</span>
                 </button>
               </div>
@@ -315,12 +315,12 @@ export default function ProductReviews() {
 
         {/* Load More */}
         {visibleCount < totalReviews && (
-          <div className="p-6 border-t border-gray-100 text-center">
+          <div className="p-6 border-t border-neutral-100 text-center">
             <button
               onClick={() => setVisibleCount(prev => Math.min(prev + 15, totalReviews))}
-              className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium text-sm px-6 py-2.5 rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 bg-neutral-900 hover:bg-black text-white font-medium text-xs px-6 py-2.5 rounded-full transition-all hover:scale-[1.02]"
             >
-              <ChevronDown className="w-4 h-4" />
+              <ChevronDown className="w-3.5 h-3.5" />
               Voir plus d'avis ({totalReviews - visibleCount} restants)
             </button>
           </div>

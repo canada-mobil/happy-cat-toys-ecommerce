@@ -3,61 +3,64 @@ import Link from "next/link"
 
 export default function PromoBanner() {
   return (
-    <section className="bg-[#c8847a] py-12 px-4">
+    <section className="bg-neutral-50 py-20 px-4">
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-serif font-semibold text-white mb-4">
-          Pourquoi Choisir Purrball?
+        <p className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 mb-3">
+          Pourquoi nous choisir
+        </p>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-neutral-900 mb-4">
+          La confiance, simplement.
         </h2>
-        <p className="text-white/90 mb-8 max-w-xl mx-auto">
-          Entreprise 100% canadienne, nous livrons rapidement partout au Canada avec une garantie satisfaction totale.
+        <p className="text-neutral-500 mb-14 max-w-xl mx-auto">
+          Entreprise 100% canadienne basée à Montréal. Livraison rapide, garantie satisfaction, et un service client qui répond vraiment.
         </p>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
           <div className="flex flex-col items-center">
-            <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
-              <MapPin className="w-7 h-7 text-white" />
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-sm">
+              <MapPin className="w-5 h-5 text-neutral-700" />
             </div>
-            <span className="text-white font-semibold">Canadien</span>
-            <span className="text-white/70 text-sm">Basé à Montréal</span>
+            <span className="text-neutral-900 font-medium text-sm">100% Canadien</span>
+            <span className="text-neutral-400 text-xs mt-0.5">Basé à Montréal</span>
           </div>
           
           <div className="flex flex-col items-center">
-            <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
-              <Truck className="w-7 h-7 text-white" />
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-sm">
+              <Truck className="w-5 h-5 text-neutral-700" />
             </div>
-            <span className="text-white font-semibold">Livraison Rapide</span>
-            <span className="text-white/70 text-sm">2-3 jours ouvrables</span>
+            <span className="text-neutral-900 font-medium text-sm">Livraison 24-72h</span>
+            <span className="text-neutral-400 text-xs mt-0.5">Canada Post</span>
           </div>
           
           <div className="flex flex-col items-center">
-            <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
-              <Shield className="w-7 h-7 text-white" />
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-sm">
+              <Shield className="w-5 h-5 text-neutral-700" />
             </div>
-            <span className="text-white font-semibold">Garantie 2 Mois</span>
-            <span className="text-white/70 text-sm">Sur tous les produits</span>
+            <span className="text-neutral-900 font-medium text-sm">Garantie 2 Mois</span>
+            <span className="text-neutral-400 text-xs mt-0.5">Satisfait ou remboursé</span>
           </div>
           
           <div className="flex flex-col items-center">
-            <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mb-3">
-              <Star className="w-7 h-7 text-white" />
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-sm">
+              <Star className="w-5 h-5 text-neutral-700" />
             </div>
-            <span className="text-white font-semibold">50,000+</span>
-            <span className="text-white/70 text-sm">Chats heureux</span>
+            <span className="text-neutral-900 font-medium text-sm">50,000+</span>
+            <span className="text-neutral-400 text-xs mt-0.5">Chats heureux</span>
           </div>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/produits"
-            className="bg-white text-[#c8847a] px-8 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors"
+            className="bg-neutral-900 hover:bg-black text-white px-8 py-3 rounded-full font-medium text-sm transition-all hover:scale-[1.02]"
           >
             Voir les Produits
           </Link>
           <Link
             href="/a-propos"
-            className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors"
+            className="text-neutral-500 hover:text-neutral-900 font-medium px-8 py-3 text-sm transition-colors"
           >
-            En Savoir Plus
+            En savoir plus →
           </Link>
         </div>
       </div>

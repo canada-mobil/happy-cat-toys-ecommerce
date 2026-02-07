@@ -2,31 +2,48 @@ import Image from "next/image"
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[500px] md:min-h-[600px] flex items-center justify-center">
-      {/* Background Image */}
-      <Image
-        src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=1200&h=800&fit=crop&crop=center"
-        alt="Chats jouant avec des jouets"
-        fill
-        className="object-cover"
-        priority
-      />
-      
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40" />
+    <section className="relative bg-neutral-50">
+      <div className="max-w-7xl mx-auto px-6 py-20 md:py-32 flex flex-col md:flex-row items-center gap-12">
+        {/* Content */}
+        <div className="flex-1 text-center md:text-left">
+          <p className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 mb-4">
+            Conçu pour les chats curieux
+          </p>
+          <h1 className="text-4xl md:text-6xl font-semibold leading-[1.1] tracking-tight text-neutral-900 mb-6">
+            Le jouet que votre chat mérite.
+          </h1>
+          <p className="text-lg md:text-xl text-neutral-500 leading-relaxed mb-8 max-w-lg">
+            Stimulez l'instinct naturel de votre félin avec notre balle interactive intelligente. Livraison rapide partout au Canada.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center md:items-start gap-4">
+            <a
+              href="/produits/smart-interactive-ball"
+              className="bg-neutral-900 hover:bg-black text-white font-medium px-8 py-3.5 rounded-full transition-all hover:scale-[1.02] text-sm tracking-wide"
+            >
+              Acheter — CA$4.99
+            </a>
+            <a
+              href="/produits"
+              className="text-neutral-500 hover:text-neutral-900 font-medium px-8 py-3.5 text-sm transition-colors"
+            >
+              En savoir plus →
+            </a>
+          </div>
+        </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-2xl">
-        <h2 className="text-white text-3xl md:text-5xl font-serif font-semibold leading-tight text-balance mb-8">
-          Des Jouets Choisis avec Soin pour des Chats Plus Heureux
-        </h2>
-        
-        <a
-          href="/produits"
-          className="inline-block bg-white/90 hover:bg-white text-foreground font-medium px-8 py-3 rounded-full transition-all hover:scale-105 tracking-wide"
-        >
-          DÉCOUVRIR
-        </a>
+        {/* Image */}
+        <div className="flex-1 relative">
+          <div className="relative w-full aspect-square max-w-md mx-auto">
+            <Image
+              src="/smart_interactive_cats_ball_toy_red.png.webp"
+              alt="Smart Interactive Cats Ball Toy"
+              fill
+              className="object-contain drop-shadow-2xl"
+              priority
+            />
+          </div>
+        </div>
       </div>
     </section>
   )

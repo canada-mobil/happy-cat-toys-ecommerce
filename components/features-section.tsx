@@ -1,77 +1,48 @@
-import Image from "next/image"
+import { Zap, Heart, Shield } from "lucide-react"
 
 const features = [
   {
-    image: "/cat-playing.jpg",
-    title: "Livraison Rapide",
-    subtitle: "Paiement Sécurisé"
-  },
-  {
-    image: "/cat-happy.jpg",
+    icon: Zap,
     title: "Stimulation Naturelle",
-    description: "Un chat actif est un chat en bonne santé. Nos jouets soigneusement sélectionnés stimulent les instincts naturels de chasse de votre félin, favorisent l'exercice quotidien et préviennent l'ennui pour un compagnon épanoui."
+    description: "Un chat actif est un chat en bonne santé. Nos jouets stimulent les instincts naturels de chasse, favorisent l'exercice quotidien et préviennent l'ennui."
   },
   {
-    image: "/cat-toys-collection.jpg",
+    icon: Heart,
     title: "Adorés par les Chats",
-    description: "La qualité des jouets est essentielle au bien-être de votre chat. Nos produits premium sont fabriqués avec des matériaux sûrs et durables, testés et approuvés par des milliers de félins heureux."
+    description: "Fabriqués avec des matériaux sûrs et durables, testés et approuvés par des milliers de félins heureux à travers le Canada."
+  },
+  {
+    icon: Shield,
+    title: "Qualité Premium",
+    description: "Matériaux écologiques et non toxiques. Rechargeable par USB. Conçu pour durer et résister au jeu le plus intense."
   }
 ]
 
 export default function FeaturesSection() {
   return (
-    <section className="bg-[#d4a59a] py-12 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* First Feature - Shipping */}
-        <div className="text-center mb-12">
-          <div className="w-32 h-32 mx-auto mb-4 relative">
-            <Image
-              src={features[0].image || "/placeholder.svg"}
-              alt={features[0].title}
-              fill
-              className="object-cover rounded-full"
-            />
-          </div>
-          <h3 className="text-2xl md:text-3xl font-serif text-white mb-2">
-            {features[0].title}
-          </h3>
-          <p className="text-white/90">{features[0].subtitle}</p>
-        </div>
+    <section className="bg-white py-20 px-4 border-t border-neutral-100">
+      <div className="max-w-5xl mx-auto">
+        <p className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 text-center mb-3">
+          Caractéristiques
+        </p>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-center text-neutral-900 mb-16">
+          Pensé dans les moindres détails.
+        </h2>
 
-        {/* Second Feature - Stimulation */}
-        <div className="text-center mb-12">
-          <div className="w-32 h-32 mx-auto mb-4 relative">
-            <Image
-              src={features[1].image || "/placeholder.svg"}
-              alt={features[1].title}
-              fill
-              className="object-cover rounded-full"
-            />
-          </div>
-          <h3 className="text-2xl md:text-3xl font-serif text-white mb-4">
-            {features[1].title}
-          </h3>
-          <p className="text-white/90 max-w-xl mx-auto leading-relaxed text-pretty">
-            {features[1].description}
-          </p>
-        </div>
-
-        {/* Third Feature - Loved by Cats */}
-        <div className="text-center">
-          <div className="w-32 h-32 mx-auto mb-4 relative">
-            <Image
-              src={features[2].image || "/placeholder.svg"}
-              alt={features[2].title}
-              fill
-              className="object-cover rounded-full"
-            />
-          </div>
-          <h3 className="text-2xl md:text-3xl font-serif text-white mb-4">
-            {features[2].title}
-          </h3>
-          <p className="text-white/90 max-w-xl mx-auto leading-relaxed text-pretty">
-            {features[2].description}
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {features.map((feature, index) => (
+            <div key={index} className="text-center">
+              <div className="w-12 h-12 bg-neutral-50 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                <feature.icon className="w-5 h-5 text-neutral-700" />
+              </div>
+              <h3 className="text-lg font-semibold text-neutral-900 mb-2">
+                {feature.title}
+              </h3>
+              <p className="text-neutral-500 text-sm leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

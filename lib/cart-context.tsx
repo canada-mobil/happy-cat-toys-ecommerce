@@ -70,7 +70,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
             left: 50% !important;
             transform: translateX(-50%) !important;
             z-index: 99999 !important;
-            background: #6b8e7b !important;
+            background: #171717 !important;
             color: white !important;
             padding: 12px 20px !important;
             border-radius: 25px !important;

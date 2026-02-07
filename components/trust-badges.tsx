@@ -41,19 +41,19 @@ export default function TrustBadges() {
   }, [])
 
   return (
-    <section className="bg-[#f5f2ed] py-10 px-4 overflow-hidden">
+    <section className="bg-white py-12 px-4 border-y border-neutral-100 overflow-hidden">
       <div className="max-w-6xl mx-auto" ref={containerRef}>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
           {badges.map((badge, index) => (
             <div 
               key={badge.title} 
               className="trust-badge flex flex-col items-center text-center opacity-0 transform translate-x-12 transition-all duration-1000 ease-out"
             >
-              <div className="w-12 h-12 bg-[#6b8e7b]/10 rounded-full flex items-center justify-center mb-2">
-                <badge.icon className="w-6 h-6 text-[#6b8e7b]" />
+              <div className="w-10 h-10 bg-neutral-50 rounded-full flex items-center justify-center mb-2.5">
+                <badge.icon className="w-5 h-5 text-neutral-700" />
               </div>
-              <span className="text-foreground font-medium text-sm">{badge.title}</span>
-              <span className="text-muted-foreground text-xs">{badge.subtitle}</span>
+              <span className="text-neutral-900 font-medium text-xs">{badge.title}</span>
+              <span className="text-neutral-400 text-[11px]">{badge.subtitle}</span>
             </div>
           ))}
         </div>

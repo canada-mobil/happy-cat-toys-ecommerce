@@ -41,14 +41,14 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-[#f5f2ed]">
+    <footer className="bg-white border-t border-neutral-100">
       {/* Guarantees Bar */}
-      <div className="bg-[#6b8e7b] py-4 px-4">
+      <div className="border-b border-neutral-100 py-6 px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
           {guarantees.map((item) => (
-            <div key={item.text} className="flex items-center justify-center gap-2 text-white">
-              <item.icon className="w-4 h-4" />
-              <span className="text-sm font-medium">{item.text}</span>
+            <div key={item.text} className="flex items-center justify-center gap-2 text-neutral-600">
+              <item.icon className="w-4 h-4 text-neutral-400" />
+              <span className="text-xs font-medium">{item.text}</span>
             </div>
           ))}
         </div>
@@ -57,44 +57,28 @@ export default function Footer() {
       <div className="pt-12 pb-8 px-4">
         <div className="max-w-6xl mx-auto">
           {/* Main Footer Content */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-10">
             {/* Brand */}
             <div className="col-span-2 md:col-span-1">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-9 h-9 bg-gradient-to-br from-[#6b8e7b] to-[#5a7a66] rounded-lg flex items-center justify-center">
-                  <Cat className="w-5 h-5 text-white" />
-                </div>
-                <span className="font-bold text-lg text-foreground">
-                  Happy Cat Toys
-                </span>
-              </div>
-              <p className="text-muted-foreground text-xs leading-relaxed mb-3">
-                Produits premium 100% naturels pour chats canadiens.
+              <span className="font-semibold text-lg text-neutral-900 tracking-tight block mb-3">
+                Purrball
+              </span>
+              <p className="text-neutral-400 text-xs leading-relaxed mb-3">
+                Produits premium pour chats heureux. 100% canadien.
               </p>
-              <div className="flex items-center gap-1 mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-[#6b8e7b] text-[#6b8e7b]" />
-                ))}
-                <span className="font-semibold text-xs ml-1 text-foreground">
-                  4.9/5
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4" />
-                Montréal, Québec, Canada
+              <div className="flex items-center gap-2 text-xs text-neutral-400">
+                <MapPin className="w-3 h-3" />
+                Montréal, Québec
               </div>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h4 className="font-semibold text-foreground mb-4 text-xs uppercase tracking-wide">Navigation</h4>
-              <ul className="space-y-2 text-xs text-muted-foreground">
+              <h4 className="font-medium text-neutral-900 mb-4 text-xs uppercase tracking-wider">Navigation</h4>
+              <ul className="space-y-2.5 text-xs text-neutral-400">
                 {quickLinks.map((link) => (
                   <li key={link.label}>
-                    <Link 
-                      href={link.href}
-                      className="hover:text-[#6b8e7b] transition-colors"
-                    >
+                    <Link href={link.href} className="hover:text-neutral-900 transition-colors">
                       {link.label}
                     </Link>
                   </li>
@@ -104,14 +88,11 @@ export default function Footer() {
 
             {/* Support Links */}
             <div>
-              <h4 className="font-semibold text-foreground mb-4 text-xs uppercase tracking-wide">Support</h4>
-              <ul className="space-y-2 text-xs text-muted-foreground">
+              <h4 className="font-medium text-neutral-900 mb-4 text-xs uppercase tracking-wider">Support</h4>
+              <ul className="space-y-2.5 text-xs text-neutral-400">
                 {supportLinks.map((link) => (
                   <li key={link.label}>
-                    <Link 
-                      href={link.href}
-                      className="hover:text-[#6b8e7b] transition-colors"
-                    >
+                    <Link href={link.href} className="hover:text-neutral-900 transition-colors">
                       {link.label}
                     </Link>
                   </li>
@@ -121,100 +102,68 @@ export default function Footer() {
 
             {/* Contact */}
             <div>
-              <h4 className="font-semibold text-foreground mb-4 text-xs uppercase tracking-wide">Contact</h4>
-              <ul className="space-y-2 text-xs text-muted-foreground">
+              <h4 className="font-medium text-neutral-900 mb-4 text-xs uppercase tracking-wider">Contact</h4>
+              <ul className="space-y-2.5 text-xs text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <Mail className="w-3 h-3 text-[#6b8e7b] flex-shrink-0" />
+                  <Mail className="w-3 h-3 flex-shrink-0" />
                   <span className="truncate">support@purrball.ca</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Phone className="w-3 h-3 text-[#6b8e7b] flex-shrink-0" />
+                  <Phone className="w-3 h-3 flex-shrink-0" />
                   1-800-CAT-TOYS
-                </li>
-                <li className="text-[10px] mt-2 text-muted-foreground/70">
-                  24/7 Customer Support
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Payment Methods */}
-          <div className="py-5 border-t border-border mb-5">
+          <div className="py-5 border-t border-neutral-100 mb-5">
             <div className="flex flex-wrap items-center justify-center gap-2">
               {paymentLogos.map((logo) => (
                 <div
                   key={logo.name}
-                  className="h-8 px-2 rounded border bg-white border-border hover:border-muted-foreground/30 flex items-center justify-center transition-colors"
+                  className="h-7 px-2 rounded border border-neutral-100 flex items-center justify-center"
                 >
-                  <img 
-                    src={logo.src} 
-                    alt={logo.name} 
-                    className="h-5 w-auto"
-                  />
+                  <img src={logo.src} alt={logo.name} className="h-4 w-auto opacity-50" />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Images Grid */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="relative aspect-video rounded-lg overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&h=400&fit=crop&crop=center"
-                alt="Chat heureux"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="relative aspect-video rounded-lg overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=600&h=400&fit=crop&crop=center"
-                alt="Collection de jouets"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-
           {/* Bottom Bar */}
-          <div className="border-t border-border pt-6">
+          <div className="border-t border-neutral-100 pt-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              {/* Country & Language Selector */}
               <div className="flex items-center gap-2">
                 <button
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border bg-white border-border text-muted-foreground hover:border-muted-foreground/50 text-xs transition-all"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-neutral-200 text-neutral-400 hover:text-neutral-600 text-xs transition-all"
                   onClick={() => setSelectedCountry(selectedCountry === "CA" ? "US" : "CA")}
                 >
                   <Globe className="w-3 h-3" />
-                  <span className="font-medium">{selectedCountry === "CA" ? "🇨🇦 Canada" : "🇺🇸 USA"}</span>
-                  <span className="text-[10px] text-muted-foreground/70">
-                    {selectedCountry === "CA" ? "CAD $" : "USD $"}
-                  </span>
+                  <span>{selectedCountry === "CA" ? "🇨🇦 Canada" : "🇺🇸 USA"}</span>
                 </button>
                 <button
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border bg-white border-border text-muted-foreground hover:border-muted-foreground/50 text-xs transition-all"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-neutral-200 text-neutral-400 hover:text-neutral-600 text-xs transition-all"
                   onClick={() => setSelectedLanguage(selectedLanguage === "FR" ? "EN" : "FR")}
                 >
-                  <span className="font-medium">{selectedLanguage === "FR" ? "Français" : "English"}</span>
+                  <span>{selectedLanguage === "FR" ? "Français" : "English"}</span>
                 </button>
               </div>
 
-              {/* Copyright & Links */}
               <div className="flex flex-col md:flex-row items-center gap-3">
-                <p className="text-[10px] text-muted-foreground/70">
-                  © 2026 Happy Cat Toys. Tous droits réservés.
+                <p className="text-[10px] text-neutral-300">
+                  © 2026 Purrball. Tous droits réservés.
                 </p>
-                <div className="flex items-center gap-3 text-[10px] text-muted-foreground/70">
-                  <Link href="/politique-confidentialite" className="hover:text-[#6b8e7b] transition-colors">
-                    Politique de Confidentialité
+                <div className="flex items-center gap-3 text-[10px] text-neutral-300">
+                  <Link href="/politique-confidentialite" className="hover:text-neutral-600 transition-colors">
+                    Confidentialité
                   </Link>
-                  <span>•</span>
-                  <Link href="/conditions-utilisation" className="hover:text-[#6b8e7b] transition-colors">
-                    Conditions d'Utilisation
+                  <span>·</span>
+                  <Link href="/conditions-utilisation" className="hover:text-neutral-600 transition-colors">
+                    Conditions
                   </Link>
-                  <span>•</span>
-                  <Link href="/politique-remboursement" className="hover:text-[#6b8e7b] transition-colors">
-                    Politique de Remboursement
+                  <span>·</span>
+                  <Link href="/politique-remboursement" className="hover:text-neutral-600 transition-colors">
+                    Remboursement
                   </Link>
                 </div>
               </div>

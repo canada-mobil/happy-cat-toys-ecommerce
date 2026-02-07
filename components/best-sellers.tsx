@@ -40,9 +40,9 @@ const products = [
 
 export default function BestSellers() {
   return (
-    <section className="bg-[#5a7a66] py-12 px-4">
-      <div className="max-w-6xl mx-auto text-center text-white">
-        <p className="text-base md:text-lg leading-relaxed max-w-2xl mx-auto text-pretty">
+    <section className="bg-white py-16 px-4">
+      <div className="max-w-3xl mx-auto text-center">
+        <p className="text-neutral-500 text-base md:text-lg leading-relaxed">
           Des jouets pour chats premium conçus pour stimuler l&apos;instinct de jeu de votre félin, 
           favoriser l&apos;exercice et renforcer le lien avec votre compagnon. 
           Parce qu&apos;un chat qui joue est un chat heureux.
@@ -54,27 +54,23 @@ export default function BestSellers() {
 
 export function BestSellersProducts() {
   return (
-    <section id="best-sellers" className="bg-[#f5f2ed] py-12 px-4">
+    <section id="best-sellers" className="bg-white py-16 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-serif text-center text-foreground mb-6">
+        <p className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 text-center mb-3">
+          Nos produits
+        </p>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-center text-neutral-900 mb-4">
           Meilleures Ventes
         </h2>
         
-        <p className="text-center text-muted-foreground max-w-xl mx-auto mb-4 text-pretty">
+        <p className="text-center text-neutral-500 max-w-xl mx-auto mb-12">
           Découvrez nos jouets les plus populaires qui font le bonheur des chats 
-          et de leurs propriétaires depuis des années.
+          et de leurs propriétaires.
         </p>
 
-        <a href="#" className="block text-center text-[#c8847a] hover:underline mb-8">
-          Voir tout
-        </a>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
-          ))}
-          {products.map((product) => (
-            <ProductCard key={`${product.id}-2`} product={{...product, id: `${product.id}-duplicate`}} />
           ))}
         </div>
       </div>
@@ -101,47 +97,37 @@ function ProductCard({ product }: { product: typeof products[0] }) {
   }
 
   return (
-    <div className="group relative">
-      <div className="relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-        {/* Stock Badge */}
+    <div className="group">
+      {/* Product Image */}
+      <div className="relative aspect-square bg-neutral-50 rounded-2xl overflow-hidden mb-4">
         {product.soldOut && (
-          <span className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
+          <span className="absolute top-3 left-3 z-10 bg-neutral-900 text-white text-[10px] font-medium px-2.5 py-1 rounded-full">
             ÉPUISÉ
           </span>
         )}
-        
-        {/* Best Seller Badge */}
-        {product.price > 20 && (
-          <span className="absolute top-3 right-3 z-10 bg-orange-500 text-white text-xs font-medium px-2 py-1 rounded-full">
-            BEST SELLER
-          </span>
-        )}
-        
-        {/* Product Image */}
-        <div className="relative aspect-square bg-gray-50">
-          <Image
-            src={product.image || "/placeholder.svg"}
-            alt={product.name}
-            fill
-            className="object-contain p-6 group-hover:scale-105 transition-transform duration-300"
-          />
-        </div>
+        <Image
+          src={product.image || "/placeholder.svg"}
+          alt={product.name}
+          fill
+          className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
+        />
       </div>
 
       {/* Product Info */}
-      <div className="mt-4 px-2">
-        <h3 className="font-semibold text-gray-900 text-sm leading-tight group-hover:text-[#6b8e7b] transition-colors line-clamp-2 mb-3">
+      <div className="px-1">
+        <p className="text-[11px] text-neutral-400 uppercase tracking-wider mb-1">{product.color}</p>
+        <h3 className="font-medium text-neutral-900 text-sm leading-snug mb-2">
           {product.name}
         </h3>
         
         {/* Price */}
-        <div className="mb-3 flex items-center gap-2">
-          <span className="text-lg font-bold text-[#6b8e7b]">
-            ${product.price.toFixed(2)} CAD
+        <div className="mb-4 flex items-center gap-2">
+          <span className="text-base font-semibold text-neutral-900">
+            CA${product.price.toFixed(2)}
           </span>
           {product.originalPrice > product.price && (
-            <span className="text-sm text-muted-foreground line-through">
-              ${product.originalPrice.toFixed(2)} CAD
+            <span className="text-sm text-neutral-400 line-through">
+              CA${product.originalPrice.toFixed(2)}
             </span>
           )}
         </div>
@@ -150,10 +136,10 @@ function ProductCard({ product }: { product: typeof products[0] }) {
         <button
           onClick={handleAddToCart}
           disabled={product.soldOut}
-          className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-4 py-2.5 rounded-lg font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+          className="w-full bg-neutral-900 hover:bg-black text-white px-4 py-2.5 rounded-full font-medium text-xs tracking-wide transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
-          <ShoppingCart className="w-4 h-4" />
-          AJOUTER
+          <ShoppingCart className="w-3.5 h-3.5" />
+          Ajouter au panier
         </button>
       </div>
     </div>
