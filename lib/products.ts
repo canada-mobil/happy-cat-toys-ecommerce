@@ -129,13 +129,13 @@ export const products: Product[] = [
     image: "/mouse1.jpg",
     images: [
       "/mouse1.jpg",
-      "/mouse3.webp",
-      "/mouse4.webp",
       "/mouse5.webp",
-      "/mouse6.webp",
       "/mouse7.webp",
       "/mouse8.webp",
-      "/mouse9.webp"
+      "/mouse9.webp",
+      "/mouse3.webp",
+      "/mouse4.webp",
+      "/mouse6.webp"
     ],
     colors: [
       { name: "Milky Blue", value: "#b8d4e3", image: "/mouse1.jpg", stockCount: 15 },

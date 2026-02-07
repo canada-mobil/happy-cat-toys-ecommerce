@@ -124,7 +124,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             </div>
 
             {/* Main Image */}
-            <div className="relative flex-1 aspect-square bg-neutral-50 rounded-xl overflow-hidden">
+            <div className="relative flex-1 aspect-square bg-white rounded-xl overflow-hidden">
               {!product.inStock && (
                 <span className="absolute top-4 left-4 z-10 bg-neutral-900 text-white text-xs font-medium px-3 py-1 rounded-full">
                   ÉPUISÉ
@@ -135,7 +135,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                 alt={product.name}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+                className="object-contain p-4"
                 priority
               />
             </div>
