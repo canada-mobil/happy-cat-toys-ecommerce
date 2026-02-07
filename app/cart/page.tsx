@@ -15,18 +15,18 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f5f2ed] py-12 px-4">
+      <div className="min-h-screen bg-white py-12 px-4">
         <div className="max-w-2xl mx-auto text-center">
-          <ShoppingCart className="w-24 h-24 mx-auto mb-6 text-muted-foreground/50" />
-          <h1 className="text-3xl font-serif font-semibold text-foreground mb-4">
+          <ShoppingCart className="w-16 h-16 mx-auto mb-6 text-neutral-200" />
+          <h1 className="text-2xl font-semibold text-neutral-900 mb-4 tracking-tight">
             Votre panier est vide
           </h1>
-          <p className="text-muted-foreground mb-8">
+          <p className="text-neutral-400 text-sm mb-8">
             Découvrez nos jouets premium pour rendre votre chat heureux!
           </p>
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            className="inline-flex items-center gap-2 bg-neutral-900 hover:bg-black text-white px-6 py-3 rounded-full font-medium text-sm transition-all"
           >
             <ArrowLeft className="w-4 h-4" />
             Continuer mes achats
@@ -37,18 +37,18 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f2ed] py-12 px-4">
+    <div className="min-h-screen bg-white py-12 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 text-[#6b8e7b] hover:text-[#5a7a66] mb-4 transition-colors"
+            className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-900 mb-4 transition-colors text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             Continuer mes achats
           </Link>
-          <h1 className="text-3xl md:text-4xl font-serif font-semibold text-foreground">
+          <h1 className="text-2xl md:text-3xl font-semibold text-neutral-900 tracking-tight">
             Mon Panier ({items.length} {items.length === 1 ? 'article' : 'articles'})
           </h1>
         </div>
@@ -58,13 +58,13 @@ export default function CartPage() {
           <div className="lg:col-span-2 space-y-4">
             {/* Free Shipping Progress */}
             {remainingItemsForFreeShipping > 0 ? (
-              <div className="bg-[#6b8e7b]/10 border border-[#6b8e7b]/20 rounded-lg p-4 mb-6">
-                <p className="text-[#6b8e7b] font-medium mb-2">
+              <div className="bg-neutral-900/10 border border-neutral-900/20 rounded-lg p-4 mb-6">
+                <p className="text-neutral-900 font-medium mb-2">
                   Plus que {remainingItemsForFreeShipping} article{remainingItemsForFreeShipping > 1 ? 's' : ''} pour la livraison gratuite !
                 </p>
-                <div className="w-full bg-[#6b8e7b]/20 rounded-full h-2">
+                <div className="w-full bg-neutral-900/20 rounded-full h-2">
                   <div 
-                    className="bg-[#6b8e7b] h-2 rounded-full transition-all duration-300"
+                    className="bg-neutral-900 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${freeShippingProgress}%` }}
                   />
                 </div>
@@ -79,9 +79,9 @@ export default function CartPage() {
             )}
 
             {items.map((item) => (
-              <div key={item.id} className="bg-white rounded-lg p-6 border border-border">
+              <div key={item.id} className="bg-white rounded-2xl p-5 border border-neutral-100">
                 <div className="flex gap-4">
-                  <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-muted flex-shrink-0">
+                  <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-neutral-50 flex-shrink-0">
                     <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.name}
@@ -93,11 +93,11 @@ export default function CartPage() {
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-2">
                       <div>
-                        <h3 className="font-semibold text-foreground text-lg">
+                        <h3 className="font-medium text-neutral-900 text-sm">
                           {item.name}
                         </h3>
                         {item.variant && (
-                          <p className="text-sm text-[#6b8e7b] font-medium">
+                          <p className="text-sm text-neutral-900 font-medium">
                             {item.variant}
                           </p>
                         )}
@@ -114,27 +114,27 @@ export default function CartPage() {
                       <div className="flex items-center gap-3">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="w-8 h-8 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
+                          className="w-8 h-8 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors"
                         >
-                          <Minus className="w-4 h-4" />
+                          <Minus className="w-3 h-3" />
                         </button>
-                        <span className="font-medium text-lg w-8 text-center">
+                        <span className="font-medium text-sm w-8 text-center">
                           {item.quantity}
                         </span>
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="w-8 h-8 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
+                          className="w-8 h-8 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors"
                         >
                           <Plus className="w-4 h-4" />
                         </button>
                       </div>
                       
                       <div className="text-right">
-                        <div className="font-bold text-lg text-foreground">
+                        <div className="font-semibold text-sm text-neutral-900">
                           ${(item.price * item.quantity).toFixed(2)} CAD
                         </div>
                         {item.originalPrice > item.price && (
-                          <div className="text-sm text-muted-foreground line-through">
+                          <div className="text-xs text-neutral-300 line-through">
                             ${(item.originalPrice * item.quantity).toFixed(2)} CAD
                           </div>
                         )}
@@ -148,24 +148,24 @@ export default function CartPage() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg p-6 border border-border sticky top-4">
-              <h2 className="text-xl font-semibold text-foreground mb-4">
+            <div className="bg-white rounded-2xl p-6 border border-neutral-100 sticky top-4">
+              <h2 className="text-base font-semibold text-neutral-900 mb-4">
                 Résumé de commande
               </h2>
               
               <div className="space-y-3 mb-4">
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Sous-total</span>
+                  <span className="text-neutral-400">Sous-total</span>
                   <span className="font-medium">${subtotal.toFixed(2)} CAD</span>
                 </div>
                 {discount > 0 && (
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Économies</span>
+                    <span className="text-neutral-400">Économies</span>
                     <span className="font-medium text-green-600">-${discount.toFixed(2)} CAD</span>
                   </div>
                 )}
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Livraison</span>
+                  <span className="text-neutral-400">Livraison</span>
                   <span className="font-medium">
                     {shipping === 0 ? (
                       <span className="text-green-600">Gratuite</span>
@@ -176,17 +176,17 @@ export default function CartPage() {
                 </div>
               </div>
               
-              <div className="border-t border-border pt-4 mb-6">
+              <div className="border-t border-neutral-100 pt-4 mb-6">
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold text-foreground">Total</span>
-                  <span className="text-2xl font-bold text-[#6b8e7b]">
+                  <span className="text-sm font-medium text-neutral-500">Total</span>
+                  <span className="text-xl font-semibold text-neutral-900">
                     ${finalTotal.toFixed(2)} CAD
                   </span>
                 </div>
               </div>
               
               <Link href="/checkout" className="block">
-                <button className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white py-3 px-4 rounded-lg font-semibold transition-colors">
+                <button className="w-full bg-neutral-900 hover:bg-black text-white py-3 px-4 rounded-full font-medium text-sm transition-all">
                   Procéder au paiement
                 </button>
               </Link>
@@ -195,7 +195,7 @@ export default function CartPage() {
               <div className="mt-4 text-center">
                 <Link 
                   href="/"
-                  className="text-sm text-[#6b8e7b] hover:text-[#5a7a66] transition-colors"
+                  className="text-xs text-neutral-400 hover:text-neutral-900 transition-colors"
                 >
                   Continuer mes achats
                 </Link>
@@ -206,7 +206,7 @@ export default function CartPage() {
       </div>
       
       {/* Trust Section */}
-      <div className="bg-[#6b8e7b] text-white py-8 mt-8">
+      <div className="bg-neutral-900 text-white py-8 mt-8">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="flex flex-col items-center">

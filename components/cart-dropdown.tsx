@@ -105,17 +105,17 @@ export default function CartDropdown() {
 
             {items.length === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-8 text-center">
-                <ShoppingCart className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 opacity-50 text-muted-foreground" />
-                <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2">Votre panier est vide</h3>
-                <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">Découvrez nos produits et ajoutez-les à votre panier</p>
+                <ShoppingCart className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 opacity-50 text-neutral-400" />
+                <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-2">Votre panier est vide</h3>
+                <p className="text-sm sm:text-base text-neutral-400 mb-4 sm:mb-6">Découvrez nos produits et ajoutez-les à votre panier</p>
                 
                 {/* Recommended Products for Empty Cart */}
                 <div className="w-full">
-                  <h4 className="text-sm font-semibold text-foreground mb-4">Produits recommandés</h4>
+                  <h4 className="text-sm font-semibold text-neutral-900 mb-4">Produits recommandés</h4>
                   <div className="space-y-3">
                     {recommendedProducts.slice(0, 1).map((product) => (
-                      <div key={product.id} className="flex gap-2 p-2 border border-border rounded-lg hover:shadow-md transition-shadow">
-                        <div className="relative w-12 h-12 rounded-md overflow-hidden bg-muted flex-shrink-0">
+                      <div key={product.id} className="flex gap-2 p-2 border border-neutral-200 rounded-lg hover:shadow-md transition-shadow">
+                        <div className="relative w-12 h-12 rounded-md overflow-hidden bg-neutral-50 flex-shrink-0">
                           <Image
                             src={product.image || "/placeholder.svg"}
                             alt={product.name}
@@ -124,13 +124,13 @@ export default function CartDropdown() {
                           />
                         </div>
                         <div className="flex-1">
-                          <h5 className="text-xs font-medium text-foreground">{product.name}</h5>
+                          <h5 className="text-xs font-medium text-neutral-900">{product.name}</h5>
                           <div className="flex items-center gap-1 mt-1">
                             <Star className="w-2.5 h-2.5 fill-yellow-400 text-yellow-400" />
-                            <span className="text-xs text-muted-foreground">{product.rating} ({product.reviews})</span>
+                            <span className="text-xs text-neutral-400">{product.rating} ({product.reviews})</span>
                           </div>
                           <div className="flex items-center justify-between mt-1">
-                            <span className="text-xs font-semibold text-[#6b8e7b]">${product.price} CAD</span>
+                            <span className="text-xs font-semibold text-neutral-900">${product.price} CAD</span>
                             <button
                               onClick={() => addItem({
                                 id: product.id,
@@ -139,7 +139,7 @@ export default function CartDropdown() {
                                 originalPrice: product.price,
                                 image: product.image,
                               })}
-                              className="text-xs bg-[#6b8e7b] text-white px-2 py-0.5 rounded hover:bg-[#5a7a66] transition-colors"
+                              className="text-xs bg-neutral-900 text-white px-2 py-0.5 rounded hover:bg-black transition-colors"
                             >
                               +
                             </button>
@@ -156,9 +156,9 @@ export default function CartDropdown() {
                 {/* Items */}
                 <div className="flex-1 overflow-y-auto">
                   {items.map((item) => (
-                    <div key={item.id} className="p-3 sm:p-4 border-b border-border last:border-b-0">
+                    <div key={item.id} className="p-3 sm:p-4 border-b border-neutral-200 last:border-b-0">
                       <div className="flex gap-2 sm:gap-3">
-                        <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-md overflow-hidden bg-muted flex-shrink-0">
+                        <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-md overflow-hidden bg-neutral-50 flex-shrink-0">
                           <Image
                             src={item.image || "/placeholder.svg"}
                             alt={item.name}
@@ -168,11 +168,11 @@ export default function CartDropdown() {
                         </div>
                         
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-medium text-foreground">
+                          <h4 className="text-sm font-medium text-neutral-900">
                             {item.name}
                           </h4>
                           {item.variant && (
-                            <p className="text-xs text-[#6b8e7b] font-medium">
+                            <p className="text-xs text-neutral-500 font-medium">
                               {item.variant}
                             </p>
                           )}
@@ -181,7 +181,7 @@ export default function CartDropdown() {
                             <div className="flex items-center gap-1 sm:gap-2">
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
+                                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors"
                               >
                                 <Minus className="w-3 h-3" />
                               </button>
@@ -190,7 +190,7 @@ export default function CartDropdown() {
                               </span>
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors"
+                                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors"
                               >
                                 <Plus className="w-3 h-3" />
                               </button>

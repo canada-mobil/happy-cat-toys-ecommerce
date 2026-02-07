@@ -110,19 +110,19 @@ export default function GuidePage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
       <section className="relative">
-        <div className="absolute inset-0 bg-[#6b8e7b]" />
+        <div className="absolute inset-0 bg-neutral-900" />
         <div className="relative py-20 px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <BookOpen className="w-16 h-16 text-white mx-auto mb-6" />
-            <h1 className="text-3xl md:text-5xl font-serif font-semibold text-white mb-6">
+            <BookOpen className="w-12 h-12 text-white/60 mx-auto mb-6" />
+            <h1 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">
               Guide de Soins pour Chats
             </h1>
-            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
               Tout ce que vous devez savoir pour offrir une vie heureuse et saine à votre compagnon félin.
             </p>
           </div>
@@ -132,7 +132,7 @@ export default function GuidePage() {
       {/* Image Section */}
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-xl">
+          <div className="relative aspect-video rounded-2xl overflow-hidden bg-neutral-100">
             <Image
               src="/cat-care-guide.jpg"
               alt="Guide de soins pour chats"
@@ -146,7 +146,7 @@ export default function GuidePage() {
       {/* Introduction */}
       <section className="py-8 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-sm text-neutral-500 leading-relaxed">
             Prendre soin d'un chat est une responsabilité enrichissante. Ce guide vous aidera à comprendre 
             les besoins essentiels de votre félin et à éviter les erreurs courantes. Un chat bien soigné 
             peut vivre jusqu'à 15-20 ans en bonne santé!
@@ -155,26 +155,26 @@ export default function GuidePage() {
       </section>
 
       {/* Do's Section */}
-      <section className="py-12 px-4 bg-[#f5f2ed]">
+      <section className="py-16 px-4 bg-neutral-50">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-[#6b8e7b] rounded-full flex items-center justify-center">
-              <Check className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-neutral-900 rounded-full flex items-center justify-center">
+              <Check className="w-5 h-5 text-white" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-serif font-semibold text-foreground">
+            <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 tracking-tight">
               Ce qu'il faut faire
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {dosList.map((item) => (
-              <div key={item.title} className="bg-card rounded-xl p-6 shadow-sm flex gap-4">
-                <div className="w-12 h-12 bg-[#6b8e7b]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-6 h-6 text-[#6b8e7b]" />
+              <div key={item.title} className="bg-white rounded-2xl p-5 flex gap-4">
+                <div className="w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <item.icon className="w-4 h-4 text-neutral-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                  <h3 className="font-medium text-neutral-900 mb-1 text-sm">{item.title}</h3>
+                  <p className="text-neutral-400 text-xs leading-relaxed">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -183,26 +183,26 @@ export default function GuidePage() {
       </section>
 
       {/* Don'ts Section */}
-      <section className="py-12 px-4">
+      <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-[#c8847a] rounded-full flex items-center justify-center">
-              <X className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
+              <X className="w-5 h-5 text-white" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-serif font-semibold text-foreground">
+            <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 tracking-tight">
               Ce qu'il ne faut pas faire
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {dontsList.map((item) => (
-              <div key={item.title} className="bg-[#c8847a]/5 border border-[#c8847a]/20 rounded-xl p-6 flex gap-4">
-                <div className="w-12 h-12 bg-[#c8847a]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-6 h-6 text-[#c8847a]" />
+              <div key={item.title} className="bg-red-50/50 border border-red-100/50 rounded-2xl p-5 flex gap-4">
+                <div className="w-10 h-10 bg-red-100/50 rounded-full flex items-center justify-center flex-shrink-0">
+                  <item.icon className="w-4 h-4 text-red-400" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                  <h3 className="font-medium text-neutral-900 mb-1 text-sm">{item.title}</h3>
+                  <p className="text-neutral-400 text-xs leading-relaxed">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -211,29 +211,29 @@ export default function GuidePage() {
       </section>
 
       {/* Health Section */}
-      <section className="py-12 px-4 bg-[#6b8e7b]">
+      <section className="py-16 px-4 bg-neutral-900">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-serif font-semibold text-white text-center mb-8">
+          <h2 className="text-xl md:text-2xl font-semibold text-white text-center mb-8 tracking-tight">
             Santé de Votre Chat
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {healthTips.map((section, index) => (
-              <div key={section.title} className={`rounded-xl p-6 ${
-                index === 0 ? "bg-white/10" : "bg-[#c8847a]/20"
+              <div key={section.title} className={`rounded-2xl p-6 ${
+                index === 0 ? "bg-white/5" : "bg-white/5"
               }`}>
-                <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
+                <h3 className="font-medium text-white mb-4 flex items-center gap-2 text-sm">
                   {index === 0 ? (
-                    <Check className="w-5 h-5" />
+                    <Check className="w-4 h-4 text-green-400" />
                   ) : (
-                    <AlertTriangle className="w-5 h-5" />
+                    <AlertTriangle className="w-4 h-4 text-amber-400" />
                   )}
                   {section.title}
                 </h3>
                 <ul className="space-y-2">
                   {section.items.map((item) => (
-                    <li key={item} className="text-white/90 text-sm flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 bg-white/60 rounded-full mt-2 flex-shrink-0" />
+                    <li key={item} className="text-white/60 text-xs flex items-start gap-2">
+                      <span className="w-1 h-1 bg-white/30 rounded-full mt-1.5 flex-shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -242,12 +242,12 @@ export default function GuidePage() {
             ))}
           </div>
 
-          <div className="mt-8 bg-white/10 rounded-xl p-6 text-center">
-            <Stethoscope className="w-10 h-10 text-white mx-auto mb-4" />
-            <p className="text-white font-medium mb-2">
+          <div className="mt-8 bg-white/5 rounded-2xl p-6 text-center">
+            <Stethoscope className="w-8 h-8 text-white/60 mx-auto mb-4" />
+            <p className="text-white font-medium mb-2 text-sm">
               En cas de doute, consultez toujours un vétérinaire
             </p>
-            <p className="text-white/80 text-sm">
+            <p className="text-white/50 text-xs">
               Votre vétérinaire est votre meilleur allié pour la santé de votre chat. 
               N'hésitez pas à le contacter si vous remarquez des changements inhabituels.
             </p>
@@ -256,42 +256,42 @@ export default function GuidePage() {
       </section>
 
       {/* Toy Benefits */}
-      <section className="py-16 px-4">
+      <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-serif font-semibold text-foreground text-center mb-4">
+          <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 text-center mb-3 tracking-tight">
             L'Importance du Jeu
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-neutral-400 mb-12 max-w-2xl mx-auto text-sm">
             Les jouets ne sont pas un luxe, mais une nécessité pour le bien-être de votre chat.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center p-6">
-              <div className="w-16 h-16 bg-[#c8847a] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Activity className="w-8 h-8 text-white" />
+              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Activity className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Exercice Physique</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="font-medium text-neutral-900 mb-2 text-sm">Exercice Physique</h3>
+              <p className="text-neutral-400 text-xs leading-relaxed">
                 Le jeu maintient votre chat en forme et prévient l'obésité, un problème courant chez les chats d'intérieur.
               </p>
             </div>
             
             <div className="text-center p-6">
-              <div className="w-16 h-16 bg-[#c8847a] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Sparkles className="w-8 h-8 text-white" />
+              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Sparkles className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Stimulation Mentale</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="font-medium text-neutral-900 mb-2 text-sm">Stimulation Mentale</h3>
+              <p className="text-neutral-400 text-xs leading-relaxed">
                 Les jouets interactifs stimulent l'intelligence de votre chat et préviennent l'ennui et les comportements destructeurs.
               </p>
             </div>
             
             <div className="text-center p-6">
-              <div className="w-16 h-16 bg-[#c8847a] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8 text-white" />
+              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Heart className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Lien Affectif</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="font-medium text-neutral-900 mb-2 text-sm">Lien Affectif</h3>
+              <p className="text-neutral-400 text-xs leading-relaxed">
                 Jouer ensemble renforce la relation entre vous et votre chat et crée des moments de complicité.
               </p>
             </div>
@@ -300,18 +300,18 @@ export default function GuidePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-12 px-4 bg-[#f5f2ed]">
+      <section className="py-16 px-4 bg-neutral-50">
         <div className="max-w-3xl mx-auto text-center">
-          <Cat className="w-12 h-12 text-[#c8847a] mx-auto mb-4" />
-          <h2 className="text-2xl font-serif font-semibold text-foreground mb-4">
+          <Cat className="w-10 h-10 text-neutral-400 mx-auto mb-4" />
+          <h2 className="text-xl font-semibold text-neutral-900 mb-4 tracking-tight">
             Offrez le Meilleur à Votre Chat
           </h2>
-          <p className="text-muted-foreground mb-8">
+          <p className="text-neutral-400 mb-8 text-sm">
             Découvrez notre sélection de jouets de qualité pour stimuler et divertir votre compagnon.
           </p>
           <a
             href="/produits"
-            className="inline-block bg-[#c8847a] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#b8746a] transition-colors"
+            className="inline-block bg-neutral-900 text-white px-8 py-3.5 rounded-full font-medium text-sm hover:bg-black transition-all hover:scale-[1.02]"
           >
             Voir Nos Jouets
           </a>

@@ -16,7 +16,6 @@ export default function Header() {
   ]
 
   const menuItems = [
-    { label: "Accueil", href: "/" },
     { label: "Produits", href: "/produits" },
     { label: "Guide Soins Chat", href: "/guide" },
     { label: "À Propos", href: "/a-propos" },
@@ -55,33 +54,44 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <header className="bg-white/95 backdrop-blur-md py-4 px-4 sticky top-0 z-50 border-b border-neutral-100">
+      <header className="bg-white/95 backdrop-blur-md py-3 px-4 sticky top-0 z-50 border-b border-neutral-100">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Left Icons */}
+          {/* Left: Logo */}
+          <div className="flex items-center gap-8">
+            <Link href="/" className="text-neutral-900 text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
+              Purrball
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-6">
+              {menuItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-neutral-500 hover:text-neutral-900 transition-colors text-sm font-medium"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Right Icons */}
           <div className="flex items-center gap-4">
+            <CartDropdown />
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-neutral-800 hover:text-black transition-colors"
+              className="lg:hidden text-neutral-800 hover:text-black transition-colors"
               aria-label="Menu"
             >
               <Menu className="w-5 h-5" />
             </button>
           </div>
-
-          {/* Logo */}
-          <Link href="/" className="text-neutral-900 text-xl md:text-2xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
-            Purrball
-          </Link>
-
-          {/* Right Icons */}
-          <div className="flex items-center gap-4">
-            <CartDropdown />
-          </div>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <nav className="mt-4 pt-4 border-t border-neutral-100">
+          <nav className="lg:hidden mt-4 pt-4 border-t border-neutral-100">
             <ul className="flex flex-col gap-3">
               {menuItems.map((item) => (
                 <li key={item.label}>

@@ -98,17 +98,17 @@ export default function OrderTracking() {
   ]
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-white">
       <Header />
       
       <div className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+            <h1 className="text-3xl md:text-4xl text-neutral-900 mb-4">
               Suivi de commande
             </h1>
-            <p className="text-muted-foreground text-lg mb-6">
+            <p className="text-neutral-400 text-lg mb-6">
               Entrez votre numéro de commande pour suivre votre colis
             </p>
             
@@ -120,12 +120,12 @@ export default function OrderTracking() {
                   placeholder="Ex: PB1738782123456"
                   value={searchOrderId}
                   onChange={(e) => setSearchOrderId(e.target.value.toUpperCase())}
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b] focus:border-transparent"
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
                   onKeyPress={(e) => e.key === 'Enter' && searchOrder()}
                 />
                 <button
                   onClick={searchOrder}
-                  className="bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+                  className="bg-neutral-900 hover:bg-black text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
                 >
                   <Search className="w-4 h-4" />
                   Rechercher
@@ -175,18 +175,18 @@ export default function OrderTracking() {
           <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h2 className="text-xl font-semibold text-foreground mb-2">
+                <h2 className="text-xl font-semibold text-neutral-900 mb-2">
                   Commande #{orderData.orderNumber}
                 </h2>
-                <p className="text-muted-foreground">
+                <p className="text-neutral-400">
                   Statut actuel : Préparation en cours
                 </p>
-                <p className="text-muted-foreground">
+                <p className="text-neutral-400">
                   Livraison estimée : 2-3 jours ouvrables
                 </p>
               </div>
               <div className="text-right">
-                <div className="w-16 h-16 bg-[#6b8e7b] rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 bg-neutral-900 rounded-full flex items-center justify-center">
                   <Package className="w-8 h-8 text-white" />
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function OrderTracking() {
             <div className="relative">
               <div className="absolute top-6 left-0 w-full h-0.5 bg-gray-200"></div>
               <div 
-                className="absolute top-6 left-0 h-0.5 bg-[#6b8e7b] transition-all duration-500"
+                className="absolute top-6 left-0 h-0.5 bg-neutral-900 transition-all duration-500"
                 style={{ width: `${(defaultOrderStatus.currentStep / steps.length) * 100}%` }}
               ></div>
               
@@ -207,9 +207,9 @@ export default function OrderTracking() {
                     <div key={step.id} className="flex flex-col items-center">
                       <div className={`w-12 h-12 rounded-full flex items-center justify-center border-4 transition-all duration-300 ${
                         step.completed 
-                          ? 'bg-[#6b8e7b] border-[#6b8e7b] text-white' 
+                          ? 'bg-neutral-900 border-neutral-900 text-white' 
                           : step.current
-                          ? 'bg-white border-[#6b8e7b] text-[#6b8e7b] animate-pulse'
+                          ? 'bg-white border-neutral-900 text-neutral-900 animate-pulse'
                           : 'bg-white border-gray-200 text-gray-400'
                       }`}>
                         <Icon className="w-5 h-5" />
@@ -217,14 +217,14 @@ export default function OrderTracking() {
                       
                       <div className="mt-4 text-center max-w-[120px]">
                         <h3 className={`font-medium text-sm mb-1 ${
-                          step.completed || step.current ? 'text-foreground' : 'text-muted-foreground'
+                          step.completed || step.current ? 'text-neutral-900' : 'text-neutral-400'
                         }`}>
                           {step.title}
                         </h3>
-                        <p className="text-xs text-muted-foreground mb-1">
+                        <p className="text-xs text-neutral-400 mb-1">
                           {step.description}
                         </p>
-                        <p className="text-xs font-medium text-[#6b8e7b]">
+                        <p className="text-xs font-medium text-neutral-900">
                           {step.date}
                         </p>
                       </div>
@@ -239,47 +239,47 @@ export default function OrderTracking() {
           {/* Order Details */}
           {orderData && (
           <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <h3 className="text-lg font-semibold text-foreground mb-4">
+            <h3 className="text-lg font-semibold text-neutral-900 mb-4">
               Détails de la commande
             </h3>
             
             <div className="space-y-4">
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-muted-foreground">Numéro de commande</span>
+                <span className="text-neutral-400">Numéro de commande</span>
                 <span className="font-medium">{orderData.orderNumber}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-muted-foreground">Date de commande</span>
+                <span className="text-neutral-400">Date de commande</span>
                 <span className="font-medium">
                   {new Date(orderData.orderDate).toLocaleDateString('fr-FR')}
                 </span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-muted-foreground">Client</span>
+                <span className="text-neutral-400">Client</span>
                 <span className="font-medium">
                   {orderData.customerInfo.firstName} {orderData.customerInfo.lastName}
                 </span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-muted-foreground">Email</span>
+                <span className="text-neutral-400">Email</span>
                 <span className="font-medium">{orderData.customerInfo.email}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-muted-foreground">Téléphone</span>
+                <span className="text-neutral-400">Téléphone</span>
                 <span className="font-medium">{orderData.customerInfo.phone}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-muted-foreground">Méthode de livraison</span>
+                <span className="text-neutral-400">Méthode de livraison</span>
                 <span className="font-medium">Livraison standard (2-3 jours)</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-muted-foreground">Total de la commande</span>
+                <span className="text-neutral-400">Total de la commande</span>
                 <span className="font-medium">
                   ${orderData.finalTotal.toFixed(2)} CAD
                 </span>
               </div>
               <div className="flex justify-between py-2">
-                <span className="text-muted-foreground">Adresse de livraison</span>
+                <span className="text-neutral-400">Adresse de livraison</span>
                 <span className="font-medium text-right">
                   {orderData.customerInfo.address}<br />
                   {orderData.customerInfo.apartment && `${orderData.customerInfo.apartment}<br />`}
@@ -293,23 +293,23 @@ export default function OrderTracking() {
           {/* Order Items */}
           {orderData && (
             <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-              <h3 className="text-lg font-semibold text-foreground mb-4">
+              <h3 className="text-lg font-semibold text-neutral-900 mb-4">
                 Articles commandés
               </h3>
               <div className="space-y-3">
                 {orderData.items.map((item, index) => (
                   <div key={index} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
                     <div>
-                      <p className="font-medium text-foreground">{item.name}</p>
-                      <p className="text-sm text-muted-foreground">Quantité: {item.quantity}</p>
+                      <p className="font-medium text-neutral-900">{item.name}</p>
+                      <p className="text-sm text-neutral-400">Quantité: {item.quantity}</p>
                     </div>
                     <p className="font-medium">${(item.price * item.quantity).toFixed(2)} CAD</p>
                   </div>
                 ))}
                 <div className="pt-3 border-t border-gray-200">
                   <div className="flex justify-between items-center">
-                    <span className="font-semibold text-foreground">Total final</span>
-                    <span className="font-bold text-[#6b8e7b] text-lg">${orderData.finalTotal.toFixed(2)} CAD</span>
+                    <span className="font-semibold text-neutral-900">Total final</span>
+                    <span className="font-bold text-neutral-900 text-lg">${orderData.finalTotal.toFixed(2)} CAD</span>
                   </div>
                 </div>
               </div>
@@ -317,23 +317,23 @@ export default function OrderTracking() {
           )}
 
           {/* Contact Support */}
-          <div className="bg-[#f5f2ed] rounded-xl p-6 text-center">
-            <h3 className="text-lg font-semibold text-foreground mb-2">
+          <div className="bg-white rounded-xl p-6 text-center">
+            <h3 className="text-lg font-semibold text-neutral-900 mb-2">
               Besoin d'aide ?
             </h3>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-neutral-400 mb-4">
               Notre équipe est là pour vous aider avec votre commande
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                className="bg-neutral-900 hover:bg-black text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 Contacter le support
               </a>
               <a
                 href="/faq"
-                className="border border-[#6b8e7b] text-[#6b8e7b] hover:bg-[#6b8e7b] hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                className="border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 Voir la FAQ
               </a>

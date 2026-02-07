@@ -23,7 +23,7 @@ export default function OrderFailed() {
   ]
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-white">
       <Header />
       
       <div className="py-12 px-4">
@@ -34,16 +34,16 @@ export default function OrderFailed() {
           </div>
 
           {/* Error Message */}
-          <h1 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+          <h1 className="text-3xl md:text-4xl text-neutral-900 mb-4">
             Échec de la commande
           </h1>
-          <p className="text-lg text-muted-foreground mb-8">
+          <p className="text-lg text-neutral-400 mb-8">
             Nous n'avons pas pu traiter votre commande. Ne vous inquiétez pas, aucun montant n'a été débité.
           </p>
 
           {/* Error Details Card */}
           <div className="bg-white rounded-xl shadow-lg p-6 mb-8 text-left">
-            <h2 className="text-xl font-semibold text-foreground mb-4 text-center">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-4 text-center">
               Que s'est-il passé ?
             </h2>
             
@@ -56,8 +56,8 @@ export default function OrderFailed() {
                       <Icon className="w-4 h-4 text-red-600" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-foreground mb-1">{reason.title}</h3>
-                      <p className="text-sm text-muted-foreground">{reason.description}</p>
+                      <h3 className="font-medium text-neutral-900 mb-1">{reason.title}</h3>
+                      <p className="text-sm text-neutral-400">{reason.description}</p>
                     </div>
                   </div>
                 )
@@ -66,38 +66,38 @@ export default function OrderFailed() {
           </div>
 
           {/* Solutions */}
-          <div className="bg-[#f5f2ed] rounded-xl p-6 mb-8">
-            <h3 className="text-lg font-semibold text-foreground mb-4">
+          <div className="bg-white rounded-xl p-6 mb-8">
+            <h3 className="text-lg font-semibold text-neutral-900 mb-4">
               Comment résoudre le problème ?
             </h3>
             
             <div className="space-y-3 text-left">
               <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-[#6b8e7b] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-neutral-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-white font-bold text-xs">1</span>
                 </div>
-                <p className="text-muted-foreground">
-                  <strong className="text-foreground">Vérifiez vos informations de paiement</strong> - 
+                <p className="text-neutral-400">
+                  <strong className="text-neutral-900">Vérifiez vos informations de paiement</strong> - 
                   Assurez-vous que votre carte n'est pas expirée et que les informations sont correctes
                 </p>
               </div>
               
               <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-[#6b8e7b] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-neutral-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-white font-bold text-xs">2</span>
                 </div>
-                <p className="text-muted-foreground">
-                  <strong className="text-foreground">Essayez une autre méthode de paiement</strong> - 
+                <p className="text-neutral-400">
+                  <strong className="text-neutral-900">Essayez une autre méthode de paiement</strong> - 
                   Utilisez une autre carte ou PayPal si disponible
                 </p>
               </div>
               
               <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-[#6b8e7b] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-neutral-900 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-white font-bold text-xs">3</span>
                 </div>
-                <p className="text-muted-foreground">
-                  <strong className="text-foreground">Contactez votre banque</strong> - 
+                <p className="text-neutral-400">
+                  <strong className="text-neutral-900">Contactez votre banque</strong> - 
                   Votre banque peut avoir bloqué la transaction par sécurité
                 </p>
               </div>
@@ -108,14 +108,14 @@ export default function OrderFailed() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               href="/cart"
-              className="bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+              className="bg-neutral-900 hover:bg-black text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
             >
               <RefreshCw className="w-4 h-4" />
               Réessayer la commande
             </Link>
             <Link
               href="/produits"
-              className="border border-[#6b8e7b] text-[#6b8e7b] hover:bg-[#6b8e7b] hover:text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+              className="border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
               Retour aux produits
@@ -124,10 +124,10 @@ export default function OrderFailed() {
 
           {/* Support Section */}
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-lg font-semibold text-foreground mb-3">
+            <h3 className="text-lg font-semibold text-neutral-900 mb-3">
               Besoin d'aide ?
             </h3>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-neutral-400 mb-4">
               Notre équipe de support est disponible pour vous aider à résoudre ce problème rapidement.
             </p>
             

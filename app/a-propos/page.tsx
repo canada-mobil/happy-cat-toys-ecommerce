@@ -35,19 +35,19 @@ export default function AboutPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
       <section className="relative">
-        <div className="absolute inset-0 bg-[#6b8e7b]" />
+        <div className="absolute inset-0 bg-neutral-900" />
         <div className="relative py-20 px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <Cat className="w-16 h-16 text-white mx-auto mb-6" />
-            <h1 className="text-3xl md:text-5xl font-serif font-semibold text-white mb-6">
+            <Cat className="w-12 h-12 text-white/80 mx-auto mb-6" />
+            <h1 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">
               À Propos de Purrball
             </h1>
-            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               Une entreprise canadienne dédiée au bonheur et au bien-être de vos compagnons félins depuis 2020.
             </p>
           </div>
@@ -55,25 +55,25 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-[#c8847a] py-8 px-4">
+      <section className="bg-neutral-50 py-10 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="text-2xl md:text-3xl font-bold text-white">{stat.number}</p>
-              <p className="text-white/80 text-sm">{stat.label}</p>
+              <p className="text-2xl md:text-3xl font-semibold text-neutral-900">{stat.number}</p>
+              <p className="text-neutral-400 text-xs mt-1">{stat.label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Our Story */}
-      <section className="py-16 px-4">
+      <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-2xl md:text-3xl font-serif font-semibold text-foreground mb-6">
+            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-6 tracking-tight">
               Notre Histoire
             </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <div className="space-y-4 text-neutral-500 text-sm leading-relaxed">
               <p>
                 Purrball est née d'une passion simple : rendre les chats heureux. Fondée en 2020 
                 à Montréal par une équipe d'amoureux des félins, notre mission est de fournir aux 
@@ -89,7 +89,7 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl">
+          <div className="relative aspect-square rounded-2xl overflow-hidden">
             <Image
               src="https://images.unsplash.com/photo-1556582305-06b8a7d5471b?w=600&h=600&fit=crop&crop=center"
               alt="Notre équipe et nos chats"
@@ -101,19 +101,19 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-16 px-4 bg-[#f5f2ed]">
+      <section className="py-20 px-4 bg-neutral-50">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-serif font-semibold text-foreground text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 text-center mb-12 tracking-tight">
             Nos Valeurs
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value) => (
-              <div key={value.title} className="bg-card rounded-xl p-6 text-center shadow-sm">
-                <div className="w-14 h-14 bg-[#6b8e7b]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="w-7 h-7 text-[#6b8e7b]" />
+              <div key={value.title} className="bg-white rounded-2xl p-6 text-center">
+                <div className="w-12 h-12 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <value.icon className="w-5 h-5 text-neutral-600" />
                 </div>
-                <h3 className="font-semibold text-foreground mb-2">{value.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
+                <h3 className="font-medium text-neutral-900 mb-2 text-sm">{value.title}</h3>
+                <p className="text-neutral-400 text-xs leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
@@ -121,42 +121,42 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 px-4">
+      <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-serif font-semibold text-foreground text-center mb-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 text-center mb-4 tracking-tight">
             Pourquoi Nous Choisir?
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-neutral-400 mb-12 max-w-2xl mx-auto text-sm">
             Nous nous engageons à offrir la meilleure expérience d'achat pour vous et votre chat.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-[#c8847a] rounded-full flex items-center justify-center mb-4">
-                <MapPin className="w-8 h-8 text-white" />
+              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mb-4">
+                <MapPin className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">100% Canadien</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="font-medium text-neutral-900 mb-2 text-sm">100% Canadien</h3>
+              <p className="text-neutral-400 text-xs leading-relaxed">
                 Entreprise locale basée à Montréal. Nous expédions depuis le Canada pour une livraison rapide et sans frais de douane.
               </p>
             </div>
 
             <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-[#c8847a] rounded-full flex items-center justify-center mb-4">
-                <Truck className="w-8 h-8 text-white" />
+              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mb-4">
+                <Truck className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Livraison Gratuite</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="font-medium text-neutral-900 mb-2 text-sm">Livraison Gratuite</h3>
+              <p className="text-neutral-400 text-xs leading-relaxed">
                 Livraison gratuite sur toutes les commandes de plus de 50$. Recevez vos produits en 2-3 jours ouvrables.
               </p>
             </div>
 
             <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-[#c8847a] rounded-full flex items-center justify-center mb-4">
-                <Award className="w-8 h-8 text-white" />
+              <div className="w-14 h-14 bg-neutral-900 rounded-full flex items-center justify-center mb-4">
+                <Award className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Qualité Garantie</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="font-medium text-neutral-900 mb-2 text-sm">Qualité Garantie</h3>
+              <p className="text-neutral-400 text-xs leading-relaxed">
                 Garantie de 2 ans sur tous nos produits. Satisfait ou remboursé sous 30 jours, sans questions.
               </p>
             </div>
@@ -165,37 +165,37 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 px-4 bg-[#6b8e7b]">
+      <section className="py-20 px-4 bg-neutral-900">
         <div className="max-w-4xl mx-auto text-center">
-          <Users className="w-12 h-12 text-white mx-auto mb-4" />
-          <h2 className="text-2xl md:text-3xl font-serif font-semibold text-white mb-4">
+          <Users className="w-10 h-10 text-white/60 mx-auto mb-4" />
+          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4 tracking-tight">
             Notre Équipe
           </h2>
-          <p className="text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto">
+          <p className="text-white/60 leading-relaxed mb-8 max-w-2xl mx-auto text-sm">
             Nous sommes une petite équipe passionnée de 12 personnes, tous propriétaires de chats. 
             Chaque jour, nous travaillons avec amour pour sélectionner les meilleurs produits 
             et vous offrir un service client exceptionnel.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <span className="bg-white/20 text-white px-4 py-2 rounded-full text-sm">12 Employés</span>
-            <span className="bg-white/20 text-white px-4 py-2 rounded-full text-sm">15+ Chats au Bureau</span>
-            <span className="bg-white/20 text-white px-4 py-2 rounded-full text-sm">Montréal, QC</span>
+          <div className="flex flex-wrap justify-center gap-3">
+            <span className="bg-white/10 text-white/80 px-4 py-2 rounded-full text-xs">12 Employés</span>
+            <span className="bg-white/10 text-white/80 px-4 py-2 rounded-full text-xs">15+ Chats au Bureau</span>
+            <span className="bg-white/10 text-white/80 px-4 py-2 rounded-full text-xs">Montréal, QC</span>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 px-4">
+      <section className="py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-serif font-semibold text-foreground mb-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-4 tracking-tight">
             Prêt à Rendre Votre Chat Heureux?
           </h2>
-          <p className="text-muted-foreground mb-8">
+          <p className="text-neutral-400 mb-8 text-sm">
             Découvrez notre collection de jouets premium sélectionnés avec amour.
           </p>
           <a
             href="/produits"
-            className="inline-block bg-[#c8847a] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#b8746a] transition-colors"
+            className="inline-block bg-neutral-900 text-white px-8 py-3.5 rounded-full font-medium text-sm hover:bg-black transition-all hover:scale-[1.02]"
           >
             Voir Nos Produits
           </a>

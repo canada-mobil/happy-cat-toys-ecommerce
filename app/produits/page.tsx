@@ -34,21 +34,21 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Header />
       
       <main className="px-4 py-8 max-w-7xl mx-auto">
         {/* Page Title */}
-        <h1 className="font-serif text-4xl md:text-5xl font-semibold text-foreground mb-8">
+        <h1 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-8 tracking-tight">
           Produits
         </h1>
 
         {/* Filter Bar */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <button className="flex items-center gap-2 text-foreground hover:opacity-70 transition-opacity">
-              <SlidersHorizontal className="w-5 h-5" />
-              <span className="text-sm font-medium">Filtrer</span>
+            <button className="flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors">
+              <SlidersHorizontal className="w-4 h-4" />
+              <span className="text-xs font-medium">Filtrer</span>
             </button>
           </div>
 
@@ -58,10 +58,10 @@ export default function ProductsPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 text-sm rounded-full whitespace-nowrap transition-colors ${
+                className={`px-3 py-1 text-xs rounded-full whitespace-nowrap transition-all ${
                   selectedCategory === cat
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    ? "bg-neutral-900 text-white"
+                    : "bg-neutral-50 text-neutral-500 hover:bg-neutral-100"
                 }`}
               >
                 {cat}
@@ -73,17 +73,17 @@ export default function ProductsPage() {
           <div className="flex items-center gap-1">
             <button 
               onClick={() => setGridView("list")}
-              className={`p-2 rounded transition-colors ${gridView === "list" ? "bg-muted" : ""}`}
+              className={`p-2 rounded-lg transition-colors ${gridView === "list" ? "bg-neutral-100" : ""}`}
               aria-label="Vue liste"
             >
-              <Square className="w-5 h-5 text-foreground" />
+              <Square className="w-4 h-4 text-neutral-500" />
             </button>
             <button 
               onClick={() => setGridView("grid")}
-              className={`p-2 rounded transition-colors ${gridView === "grid" ? "bg-muted" : ""}`}
+              className={`p-2 rounded-lg transition-colors ${gridView === "grid" ? "bg-neutral-100" : ""}`}
               aria-label="Vue grille"
             >
-              <Grid2X2 className="w-5 h-5 text-foreground" />
+              <Grid2X2 className="w-4 h-4 text-neutral-500" />
             </button>
           </div>
         </div>
@@ -94,10 +94,10 @@ export default function ProductsPage() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 text-sm rounded-full whitespace-nowrap transition-colors ${
+              className={`px-3 py-1 text-xs rounded-full whitespace-nowrap transition-all ${
                 selectedCategory === cat
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  ? "bg-neutral-900 text-white"
+                  : "bg-neutral-50 text-neutral-500 hover:bg-neutral-100"
               }`}
             >
               {cat}
@@ -113,7 +113,7 @@ export default function ProductsPage() {
                 href={`/produits/${product.id}`}
                 className="block"
               >
-                <div className="relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
+                <div className="relative bg-white rounded-2xl overflow-hidden hover:shadow-sm transition-all duration-300 border border-neutral-100">
                   {/* Stock Badge */}
                   {!product.inStock && (
                     <span className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
@@ -129,7 +129,7 @@ export default function ProductsPage() {
                   )}
                   
                   {/* Product Image */}
-                  <div className="relative aspect-square bg-gray-50">
+                  <div className="relative aspect-square bg-neutral-50">
                     <Image
                       src={product.image || "/placeholder.svg"}
                       alt={product.name}
@@ -143,14 +143,14 @@ export default function ProductsPage() {
               {/* Product Info */}
               <div className="mt-4 px-2">
                 <Link href={`/produits/${product.id}`}>
-                  <h3 className="font-semibold text-gray-900 text-sm leading-tight group-hover:text-[#6b8e7b] transition-colors line-clamp-2 mb-3">
+                  <h3 className="font-medium text-neutral-900 text-sm leading-tight line-clamp-2 mb-3">
                     {product.name}
                   </h3>
                 </Link>
                 
                 {/* Price */}
                 <div className="mb-3">
-                  <span className="text-lg font-bold text-[#6b8e7b]">
+                  <span className="text-sm font-semibold text-neutral-900">
                     ${product.price.toFixed(2)} CAD
                   </span>
                 </div>
@@ -159,7 +159,7 @@ export default function ProductsPage() {
                 <button
                   onClick={(e) => handleAddToCart(product, e)}
                   disabled={!product.inStock}
-                  className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] text-white px-4 py-2.5 rounded-lg font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+                  className="w-full bg-neutral-900 hover:bg-black text-white px-4 py-2.5 rounded-full font-medium text-xs transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <ShoppingCart className="w-4 h-4" />
                   AJOUTER
@@ -172,7 +172,7 @@ export default function ProductsPage() {
         {/* Empty State */}
         {filteredProducts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">Aucun produit trouvé dans cette catégorie.</p>
+            <p className="text-neutral-400 text-sm">Aucun produit trouvé dans cette catégorie.</p>
           </div>
         )}
       </main>

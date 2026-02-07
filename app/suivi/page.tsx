@@ -54,14 +54,14 @@ export default function TrackOrderPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-[#6b8e7b] py-16 px-4">
+      <section className="bg-neutral-900 py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <Package className="w-12 h-12 text-white mx-auto mb-4" />
-          <h1 className="text-3xl md:text-4xl font-serif font-semibold text-white mb-4">
+          <h1 className="text-3xl md:text-4xl font-semibold text-white mb-4">
             Suivre Ma Commande
           </h1>
           <p className="text-white/90 text-lg max-w-xl mx-auto">
@@ -73,17 +73,17 @@ export default function TrackOrderPage() {
       {/* Search Form */}
       <section className="py-12 px-4 -mt-8">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-card rounded-xl shadow-lg p-8">
+          <div className="bg-white rounded-xl shadow-lg p-8">
             <form onSubmit={handleSearch} className="space-y-5">
               <div>
-                <label htmlFor="orderNumber" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="orderNumber" className="block text-sm font-medium text-neutral-900 mb-2">
                   Numéro de commande
                 </label>
                 <input
                   type="text"
                   id="orderNumber"
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-[#c8847a] transition-all uppercase"
+                  className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900 transition-all uppercase"
                   placeholder="Ex: HCT-12345"
                   value={orderNumber}
                   onChange={(e) => setOrderNumber(e.target.value)}
@@ -91,14 +91,14 @@ export default function TrackOrderPage() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-neutral-900 mb-2">
                   Email de la commande
                 </label>
                 <input
                   type="email"
                   id="email"
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-[#c8847a] transition-all"
+                  className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900 transition-all"
                   placeholder="votre@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -107,7 +107,7 @@ export default function TrackOrderPage() {
 
               <button
                 type="submit"
-                className="w-full bg-[#c8847a] text-white py-4 rounded-lg font-semibold hover:bg-[#b8746a] transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-neutral-900 text-white py-4 rounded-lg font-semibold hover:bg-black transition-colors flex items-center justify-center gap-2"
               >
                 <Search className="w-5 h-5" />
                 Rechercher ma commande
@@ -124,13 +124,13 @@ export default function TrackOrderPage() {
             {orderStatus ? (
               <div className="space-y-6">
                 {/* Order Info Card */}
-                <div className="bg-card rounded-xl shadow-lg p-6">
+                <div className="bg-white rounded-xl shadow-lg p-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
-                      <p className="text-sm text-muted-foreground">Commande</p>
-                      <p className="text-xl font-semibold text-foreground">{orderStatus.orderNumber}</p>
+                      <p className="text-sm text-neutral-400">Commande</p>
+                      <p className="text-xl font-semibold text-neutral-900">{orderStatus.orderNumber}</p>
                     </div>
-                    <div className="bg-[#6b8e7b]/10 text-[#6b8e7b] px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+                    <div className="bg-neutral-900/10 text-neutral-900 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
                       <Truck className="w-4 h-4" />
                       En transit
                     </div>
@@ -138,27 +138,27 @@ export default function TrackOrderPage() {
 
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                     <div>
-                      <p className="text-muted-foreground">Date de commande</p>
-                      <p className="font-medium text-foreground">{orderStatus.date}</p>
+                      <p className="text-neutral-400">Date de commande</p>
+                      <p className="font-medium text-neutral-900">{orderStatus.date}</p>
                     </div>
                     <div>
-                      <p className="text-muted-foreground">Livraison estimée</p>
-                      <p className="font-medium text-foreground">{orderStatus.estimatedDelivery}</p>
+                      <p className="text-neutral-400">Livraison estimée</p>
+                      <p className="font-medium text-neutral-900">{orderStatus.estimatedDelivery}</p>
                     </div>
                     <div>
-                      <p className="text-muted-foreground">Transporteur</p>
-                      <p className="font-medium text-foreground">{orderStatus.carrier}</p>
+                      <p className="text-neutral-400">Transporteur</p>
+                      <p className="font-medium text-neutral-900">{orderStatus.carrier}</p>
                     </div>
                     <div>
-                      <p className="text-muted-foreground">N° de suivi</p>
-                      <p className="font-medium text-[#c8847a]">{orderStatus.trackingNumber}</p>
+                      <p className="text-neutral-400">N° de suivi</p>
+                      <p className="font-medium text-neutral-900">{orderStatus.trackingNumber}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Progress Steps */}
-                <div className="bg-card rounded-xl shadow-lg p-6">
-                  <h3 className="font-semibold text-foreground mb-6">Progression de la livraison</h3>
+                <div className="bg-white rounded-xl shadow-lg p-6">
+                  <h3 className="font-semibold text-neutral-900 mb-6">Progression de la livraison</h3>
                   <div className="space-y-4">
                     {orderStatus.steps.map((step, index) => (
                       <div key={step.title} className="flex items-start gap-4">
@@ -166,9 +166,9 @@ export default function TrackOrderPage() {
                           <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                             step.completed 
                               ? step.current 
-                                ? "bg-[#6b8e7b] text-white" 
-                                : "bg-[#6b8e7b]/20 text-[#6b8e7b]"
-                              : "bg-muted text-muted-foreground"
+                                ? "bg-neutral-900 text-white" 
+                                : "bg-neutral-900/20 text-neutral-900"
+                              : "bg-neutral-50 text-neutral-400"
                           }`}>
                             {step.completed ? (
                               step.current ? (
@@ -182,17 +182,17 @@ export default function TrackOrderPage() {
                           </div>
                           {index < orderStatus.steps.length - 1 && (
                             <div className={`w-0.5 h-8 ${
-                              step.completed ? "bg-[#6b8e7b]/30" : "bg-muted"
+                              step.completed ? "bg-neutral-900/30" : "bg-neutral-50"
                             }`} />
                           )}
                         </div>
                         <div className="flex-1 pb-4">
                           <p className={`font-medium ${
-                            step.current ? "text-[#6b8e7b]" : step.completed ? "text-foreground" : "text-muted-foreground"
+                            step.current ? "text-neutral-900" : step.completed ? "text-neutral-900" : "text-neutral-400"
                           }`}>
                             {step.title}
                           </p>
-                          <p className="text-sm text-muted-foreground">{step.date}</p>
+                          <p className="text-sm text-neutral-400">{step.date}</p>
                         </div>
                       </div>
                     ))}
@@ -200,12 +200,12 @@ export default function TrackOrderPage() {
                 </div>
 
                 {/* Delivery Info */}
-                <div className="bg-[#c8847a]/10 rounded-xl p-6">
+                <div className="bg-neutral-900/10 rounded-xl p-6">
                   <div className="flex items-start gap-4">
-                    <MapPin className="w-6 h-6 text-[#c8847a] flex-shrink-0" />
+                    <MapPin className="w-6 h-6 text-neutral-900 flex-shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">Adresse de livraison</h4>
-                      <p className="text-muted-foreground text-sm">
+                      <h4 className="font-semibold text-neutral-900 mb-1">Adresse de livraison</h4>
+                      <p className="text-neutral-400 text-sm">
                         123 Rue Exemple<br />
                         Montréal, QC H2X 1Y4<br />
                         Canada
@@ -215,16 +215,16 @@ export default function TrackOrderPage() {
                 </div>
               </div>
             ) : (
-              <div className="bg-card rounded-xl shadow-lg p-12 text-center">
-                <div className="w-16 h-16 bg-[#c8847a]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Package className="w-8 h-8 text-[#c8847a]" />
+              <div className="bg-white rounded-xl shadow-lg p-12 text-center">
+                <div className="w-16 h-16 bg-neutral-900/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Package className="w-8 h-8 text-neutral-900" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">Commande non trouvée</h3>
-                <p className="text-muted-foreground mb-6">
+                <h3 className="text-xl font-semibold text-neutral-900 mb-2">Commande non trouvée</h3>
+                <p className="text-neutral-400 mb-6">
                   Nous n'avons pas trouvé de commande avec ce numéro. Vérifiez les informations et réessayez.
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  Besoin d'aide? <a href="/contact" className="text-[#c8847a] underline">Contactez-nous</a>
+                <p className="text-sm text-neutral-400">
+                  Besoin d'aide? <a href="/contact" className="text-neutral-900 underline">Contactez-nous</a>
                 </p>
               </div>
             )}
@@ -233,30 +233,30 @@ export default function TrackOrderPage() {
       )}
 
       {/* Shipping Info */}
-      <section className="py-12 px-4 bg-[#f5f2ed]">
+      <section className="py-12 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-serif font-semibold text-foreground text-center mb-8">
+          <h2 className="text-2xl font-semibold text-neutral-900 text-center mb-8">
             Informations de Livraison
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-card rounded-xl p-6 text-center">
-              <Truck className="w-10 h-10 text-[#6b8e7b] mx-auto mb-4" />
-              <h3 className="font-semibold text-foreground mb-2">Livraison Rapide</h3>
-              <p className="text-muted-foreground text-sm">
+            <div className="bg-white rounded-xl p-6 text-center">
+              <Truck className="w-10 h-10 text-neutral-900 mx-auto mb-4" />
+              <h3 className="font-semibold text-neutral-900 mb-2">Livraison Rapide</h3>
+              <p className="text-neutral-400 text-sm">
                 Recevez votre commande en 2-3 jours ouvrables partout au Canada.
               </p>
             </div>
-            <div className="bg-card rounded-xl p-6 text-center">
-              <Package className="w-10 h-10 text-[#6b8e7b] mx-auto mb-4" />
-              <h3 className="font-semibold text-foreground mb-2">Livraison Gratuite</h3>
-              <p className="text-muted-foreground text-sm">
+            <div className="bg-white rounded-xl p-6 text-center">
+              <Package className="w-10 h-10 text-neutral-900 mx-auto mb-4" />
+              <h3 className="font-semibold text-neutral-900 mb-2">Livraison Gratuite</h3>
+              <p className="text-neutral-400 text-sm">
                 Frais de port offerts pour toute commande de plus de 50$.
               </p>
             </div>
-            <div className="bg-card rounded-xl p-6 text-center">
-              <CheckCircle className="w-10 h-10 text-[#6b8e7b] mx-auto mb-4" />
-              <h3 className="font-semibold text-foreground mb-2">Suivi en Temps Réel</h3>
-              <p className="text-muted-foreground text-sm">
+            <div className="bg-white rounded-xl p-6 text-center">
+              <CheckCircle className="w-10 h-10 text-neutral-900 mx-auto mb-4" />
+              <h3 className="font-semibold text-neutral-900 mb-2">Suivi en Temps Réel</h3>
+              <p className="text-neutral-400 text-sm">
                 Suivez votre colis étape par étape jusqu'à votre porte.
               </p>
             </div>
@@ -267,15 +267,15 @@ export default function TrackOrderPage() {
       {/* Help Section */}
       <section className="py-12 px-4">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-xl font-semibold text-foreground mb-4">
+          <h2 className="text-xl font-semibold text-neutral-900 mb-4">
             Une question sur votre commande?
           </h2>
-          <p className="text-muted-foreground mb-6">
+          <p className="text-neutral-400 mb-6">
             Notre équipe de service client est disponible pour vous aider du lundi au vendredi, de 9h à 18h.
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 text-[#c8847a] font-medium hover:underline"
+            className="inline-flex items-center gap-2 text-neutral-900 font-medium hover:underline"
           >
             Contactez-nous
             <ArrowRight className="w-4 h-4" />

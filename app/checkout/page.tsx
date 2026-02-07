@@ -358,12 +358,12 @@ ${itemsList}
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f5f2ed] py-12 px-4">
+      <div className="min-h-screen bg-white py-12 px-4">
         <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-3xl font-serif font-semibold text-foreground mb-4">
+          <h1 className="text-3xl font-semibold text-neutral-900 mb-4">
             Votre panier est vide
           </h1>
-          <Link href="/" className="text-[#6b8e7b] hover:text-[#5a7a66]">
+          <Link href="/" className="text-neutral-500 hover:text-neutral-900 text-sm">
             Retourner à la boutique
           </Link>
         </div>
@@ -372,30 +372,30 @@ ${itemsList}
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f2ed] py-8 px-4">
+    <div className="min-h-screen bg-white py-8 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
           <Link 
             href="/cart"
-            className="inline-flex items-center gap-2 text-[#6b8e7b] hover:text-[#5a7a66] mb-4 transition-colors"
+            className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-900 mb-4 transition-colors text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             Retour au panier
           </Link>
-          <h1 className="text-3xl md:text-4xl font-serif font-semibold text-foreground">
+          <h1 className="text-2xl md:text-3xl font-semibold text-neutral-900 tracking-tight">
             Finaliser ma commande
           </h1>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
           <div className="space-y-6">
-            <div className="bg-white rounded-lg p-6 border border-border">
-              <h2 className="text-xl font-semibold text-foreground mb-4">
+            <div className="bg-white rounded-2xl p-6 border border-neutral-100">
+              <h2 className="text-base font-semibold text-neutral-900 mb-4">
                 Informations de contact
               </h2>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">
+                  <label className="block text-xs font-medium text-neutral-500 mb-1">
                     Adresse e-mail
                   </label>
                   <input
@@ -403,20 +403,20 @@ ${itemsList}
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                    className="w-full px-3 py-2.5 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                     required
                   />
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-6 border border-border">
-              <h2 className="text-xl font-semibold text-foreground mb-4">
+            <div className="bg-white rounded-2xl p-6 border border-neutral-100">
+              <h2 className="text-base font-semibold text-neutral-900 mb-4">
                 Adresse de livraison
               </h2>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">
+                  <label className="block text-xs font-medium text-neutral-500 mb-1">
                     Prénom
                   </label>
                   <input
@@ -424,12 +424,12 @@ ${itemsList}
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                    className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">
+                  <label className="block text-xs font-medium text-neutral-500 mb-1">
                     Nom
                   </label>
                   <input
@@ -437,14 +437,14 @@ ${itemsList}
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                    className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                     required
                   />
                 </div>
               </div>
               
               <div className="mt-4">
-                <label className="block text-sm font-medium text-foreground mb-1">
+                <label className="block text-xs font-medium text-neutral-500 mb-1">
                   Adresse
                 </label>
                 <input
@@ -452,13 +452,13 @@ ${itemsList}
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                  className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                   required
                 />
               </div>
 
               <div className="mt-4">
-                <label className="block text-sm font-medium text-foreground mb-1">
+                <label className="block text-xs font-medium text-neutral-500 mb-1">
                   Appartement/Suite (optionnel)
                 </label>
                 <input
@@ -466,14 +466,14 @@ ${itemsList}
                   name="apartment"
                   value={formData.apartment}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                  className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                   placeholder="Apt, suite, etc."
                 />
               </div>
               
               <div className="grid grid-cols-2 gap-4 mt-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">
+                  <label className="block text-xs font-medium text-neutral-500 mb-1">
                     Ville
                   </label>
                   <input
@@ -481,12 +481,12 @@ ${itemsList}
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                    className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1">
+                  <label className="block text-xs font-medium text-neutral-500 mb-1">
                     Code postal
                   </label>
                   <input
@@ -494,7 +494,7 @@ ${itemsList}
                     name="postalCode"
                     value={formData.postalCode}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                    className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                     placeholder="H1H 3K3"
                     maxLength={7}
                     required
@@ -503,14 +503,14 @@ ${itemsList}
               </div>
               
               <div className="mt-4">
-                <label className="block text-sm font-medium text-foreground mb-1">
+                <label className="block text-xs font-medium text-neutral-500 mb-1">
                   Province
                 </label>
                 <select
                   name="province"
                   value={formData.province}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                  className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                   required
                 >
                   <option value="">Sélectionnez une province</option>
@@ -531,14 +531,14 @@ ${itemsList}
               </div>
               
               <div className="mt-4">
-                <label className="block text-sm font-medium text-foreground mb-1">
+                <label className="block text-xs font-medium text-neutral-500 mb-1">
                   Pays
                 </label>
                 <select
                   name="country"
                   value={formData.country}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                  className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                 >
                   <option value="CA">Canada</option>
                   <option value="US">États-Unis</option>
@@ -546,7 +546,7 @@ ${itemsList}
               </div>
 
               <div className="mt-4">
-                <label className="block text-sm font-medium text-foreground mb-1">
+                <label className="block text-xs font-medium text-neutral-500 mb-1">
                   Numéro de téléphone
                 </label>
                 <input
@@ -554,7 +554,7 @@ ${itemsList}
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                  className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                   placeholder="+1 (438)-438-4394"
                   maxLength={17}
                   required
@@ -565,15 +565,15 @@ ${itemsList}
           </div>
 
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg p-6 border border-border sticky top-4">
-              <h2 className="text-xl font-semibold text-foreground mb-4">
+            <div className="bg-white rounded-2xl p-6 border border-neutral-100 sticky top-4">
+              <h2 className="text-base font-semibold text-neutral-900 mb-4">
                 Résumé de commande
               </h2>
               
               <div className="space-y-3 mb-4 max-h-60 overflow-y-auto">
                 {items.map((item) => (
                   <div key={item.id} className="flex gap-3">
-                    <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-muted flex-shrink-0">
+                    <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-neutral-50 flex-shrink-0">
                       <Image
                         src={item.image || "/placeholder.svg"}
                         alt={item.name}
@@ -582,11 +582,11 @@ ${itemsList}
                       />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-sm font-medium text-foreground truncate">
+                      <h4 className="text-sm font-medium text-neutral-900 truncate">
                         {item.name}
                       </h4>
                       <div className="flex justify-between items-center">
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-xs text-neutral-400">
                           Qté: {item.quantity}
                         </span>
                         <span className="text-sm font-medium">
@@ -600,11 +600,11 @@ ${itemsList}
               
               <div className="space-y-2 mb-4 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Sous-total</span>
+                  <span className="text-neutral-400">Sous-total</span>
                   <span className="font-medium">${total.toFixed(2)} CAD</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Livraison</span>
+                  <span className="text-neutral-400">Livraison</span>
                   <span className="font-medium">
                     {shipping === 0 ? (
                       <span className="text-green-600">Gratuite</span>
@@ -614,28 +614,28 @@ ${itemsList}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Taxes</span>
+                  <span className="text-neutral-400">Taxes</span>
                   <span className="font-medium">${taxes.toFixed(2)} CAD</span>
                 </div>
               </div>
               
-              <div className="border-t border-border pt-4 mb-6">
+              <div className="border-t border-neutral-100 pt-4 mb-6">
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold text-foreground">Total</span>
-                  <span className="text-2xl font-bold text-[#6b8e7b]">
-                    ${finalTotal.toFixed(2)} CAD
+                  <span className="text-sm font-medium text-neutral-500">Total</span>
+                  <span className="text-xl font-semibold text-neutral-900">
+                    CA${finalTotal.toFixed(2)}
                   </span>
                 </div>
               </div>
 
               {/* Date of Birth Verification */}
-              <div className="mb-6 p-4 bg-gray-50 rounded-lg border border-border">
-                <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Lock className="w-4 h-4" />
+              <div className="mb-6 p-4 bg-neutral-50 rounded-xl">
+                <h3 className="text-xs font-medium text-neutral-900 mb-3 flex items-center gap-2">
+                  <Lock className="w-3.5 h-3.5 text-neutral-400" />
                   Vérification de sécurité
                 </h3>
                 <div className="relative">
-                  <label className="block text-xs font-medium text-foreground mb-2">
+                  <label className="block text-xs font-medium text-neutral-500 mb-2">
                     Date de naissance (pour vérification)
                   </label>
                   
@@ -643,9 +643,9 @@ ${itemsList}
                   <button
                     type="button"
                     onClick={() => setShowDatePicker(!showDatePicker)}
-                    className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6b8e7b] text-sm bg-white text-left flex items-center justify-between"
+                    className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm bg-white text-left flex items-center justify-between"
                   >
-                    <span className={formData.dateOfBirth ? 'text-foreground' : 'text-muted-foreground'}>
+                    <span className={formData.dateOfBirth ? 'text-neutral-900' : 'text-neutral-400'}>
                       {formData.dateOfBirth ? 
                         new Date(formData.dateOfBirth).toLocaleDateString('fr-FR') : 
                         'Sélectionner une date'
@@ -658,18 +658,18 @@ ${itemsList}
 
                   {/* Custom Dropdown */}
                   {showDatePicker && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-border rounded-lg shadow-lg z-50 p-4">
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-neutral-200 rounded-xl shadow-lg z-50 p-4">
                       <div className="grid grid-cols-3 gap-3">
                         {/* Day */}
                         <div>
-                          <label className="block text-xs font-medium text-foreground mb-1">Jour</label>
+                          <label className="block text-xs font-medium text-neutral-500 mb-1">Jour</label>
                           <select
                             value={selectedDay}
                             onChange={(e) => {
                               setSelectedDay(e.target.value)
                               updateDateOfBirth(e.target.value, selectedMonth, selectedYear)
                             }}
-                            className="w-full px-2 py-1 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                            className="w-full px-2 py-1.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
                           >
                             <option value="">Jour</option>
                             {Array.from({length: 31}, (_, i) => i + 1).map(day => (
@@ -680,14 +680,14 @@ ${itemsList}
 
                         {/* Month */}
                         <div>
-                          <label className="block text-xs font-medium text-foreground mb-1">Mois</label>
+                          <label className="block text-xs font-medium text-neutral-500 mb-1">Mois</label>
                           <select
                             value={selectedMonth}
                             onChange={(e) => {
                               setSelectedMonth(e.target.value)
                               updateDateOfBirth(selectedDay, e.target.value, selectedYear)
                             }}
-                            className="w-full px-2 py-1 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                            className="w-full px-2 py-1.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
                           >
                             <option value="">Mois</option>
                             {[
@@ -703,14 +703,14 @@ ${itemsList}
 
                         {/* Year */}
                         <div>
-                          <label className="block text-xs font-medium text-foreground mb-1">Année</label>
+                          <label className="block text-xs font-medium text-neutral-500 mb-1">Année</label>
                           <select
                             value={selectedYear}
                             onChange={(e) => {
                               setSelectedYear(e.target.value)
                               updateDateOfBirth(selectedDay, selectedMonth, e.target.value)
                             }}
-                            className="w-full px-2 py-1 border border-border rounded text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e7b]"
+                            className="w-full px-2 py-1.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
                           >
                             <option value="">Année</option>
                             {Array.from({length: 88}, (_, i) => new Date().getFullYear() - 13 - i).map(year => (
@@ -723,14 +723,14 @@ ${itemsList}
                       <button
                         type="button"
                         onClick={() => setShowDatePicker(false)}
-                        className="mt-3 w-full bg-[#6b8e7b] text-white py-2 px-3 rounded text-sm hover:bg-[#5a7a66] transition-colors"
+                        className="mt-3 w-full bg-neutral-900 text-white py-2 px-3 rounded-lg text-sm hover:bg-black transition-colors"
                       >
                         Confirmer
                       </button>
                     </div>
                   )}
                   
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-neutral-400 mt-1">
                     Requis pour la sécurité
                   </p>
                 </div>
@@ -740,7 +740,7 @@ ${itemsList}
                 <button 
                   type="submit"
                   disabled={isProcessing || !isFormValid()}
-                  className="w-full bg-[#6b8e7b] hover:bg-[#5a7a66] disabled:opacity-50 text-white py-3 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+                  className="w-full bg-neutral-900 hover:bg-black disabled:opacity-50 text-white py-3.5 px-4 rounded-full font-medium text-sm transition-all flex items-center justify-center gap-2"
                 >
                   {isProcessing ? (
                     <>
@@ -757,8 +757,8 @@ ${itemsList}
               </form>
 
               {/* Payment Cards Accepted */}
-              <div className="mt-6 pt-4 border-t border-border">
-                <p className="text-xs text-muted-foreground text-center mb-3">Cartes acceptées :</p>
+              <div className="mt-6 pt-4 border-t border-neutral-100">
+                <p className="text-[10px] text-neutral-300 text-center mb-3">Cartes acceptées</p>
                 <div className="flex items-center justify-center gap-2">
                   <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" alt="Visa" className="h-6 w-10" />
                   <img src="https://secure.payment-ca.com/assets/img/mastercard.svg" alt="Mastercard" className="h-6 w-10" />
@@ -768,7 +768,7 @@ ${itemsList}
               </div>
               
               <div className="mt-4 text-center">
-                <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                <div className="flex items-center justify-center gap-2 text-[10px] text-neutral-300">
                   <Truck className="w-3 h-3" />
                   Livraison 2-3 jours ouvrables
                 </div>

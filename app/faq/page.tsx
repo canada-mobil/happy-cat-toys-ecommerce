@@ -170,35 +170,35 @@ export default function FAQPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#f5f2ed]">
+    <div className="min-h-screen bg-white">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="mb-8">
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 text-[#6b8e7b] hover:text-[#5a7a66] transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-900 transition-colors mb-6 text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             Retour à l'accueil
           </Link>
           
-          <h1 className="text-4xl font-serif font-semibold text-foreground mb-4">
-            Questions Fréquentes (FAQ)
+          <h1 className="text-3xl font-semibold text-neutral-900 mb-3 tracking-tight">
+            Questions Fréquentes
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-neutral-400 text-sm">
             Trouvez rapidement les réponses à vos questions sur Purrball
           </p>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {faqData.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="bg-white rounded-lg border border-border overflow-hidden">
-              <div className="bg-[#6b8e7b] bg-opacity-10 px-6 py-4">
-                <h2 className="text-xl font-semibold text-foreground">
+            <div key={categoryIndex} className="bg-white rounded-2xl border border-neutral-100 overflow-hidden">
+              <div className="bg-neutral-50 px-6 py-4">
+                <h2 className="text-sm font-semibold text-neutral-900">
                   {category.category}
                 </h2>
               </div>
               
-              <div className="divide-y divide-border">
+              <div className="divide-y divide-neutral-100">
                 {category.questions.map((item, questionIndex) => {
                   const globalIndex = categoryIndex * 100 + questionIndex
                   const isOpen = openItems.includes(globalIndex)
@@ -207,21 +207,21 @@ export default function FAQPage() {
                     <div key={questionIndex}>
                       <button
                         onClick={() => toggleItem(globalIndex)}
-                        className="w-full px-6 py-4 text-left hover:bg-gray-50 transition-colors flex items-center justify-between"
+                        className="w-full px-6 py-4 text-left hover:bg-neutral-50 transition-colors flex items-center justify-between"
                       >
-                        <h3 className="font-medium text-foreground pr-4">
+                        <h3 className="font-medium text-neutral-900 pr-4 text-sm">
                           {item.question}
                         </h3>
                         {isOpen ? (
-                          <ChevronUp className="w-5 h-5 text-[#6b8e7b] flex-shrink-0" />
+                          <ChevronUp className="w-4 h-4 text-neutral-400 flex-shrink-0" />
                         ) : (
-                          <ChevronDown className="w-5 h-5 text-[#6b8e7b] flex-shrink-0" />
+                          <ChevronDown className="w-4 h-4 text-neutral-400 flex-shrink-0" />
                         )}
                       </button>
                       
                       {isOpen && (
                         <div className="px-6 pb-4">
-                          <p className="text-muted-foreground leading-relaxed">
+                          <p className="text-neutral-500 text-sm leading-relaxed">
                             {item.answer}
                           </p>
                         </div>
@@ -234,23 +234,23 @@ export default function FAQPage() {
           ))}
         </div>
 
-        <div className="mt-12 bg-[#6b8e7b] bg-opacity-10 rounded-lg p-8 text-center">
-          <h2 className="text-2xl font-semibold text-foreground mb-4">
+        <div className="mt-12 bg-neutral-50 rounded-2xl p-8 text-center">
+          <h2 className="text-lg font-semibold text-neutral-900 mb-3 tracking-tight">
             Vous ne trouvez pas votre réponse ?
           </h2>
-          <p className="text-muted-foreground mb-6">
+          <p className="text-neutral-400 mb-6 text-sm">
             Notre équipe de service client est là pour vous aider avec toutes vos questions !
           </p>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg p-6 border border-border">
-              <h3 className="font-semibold text-foreground mb-2">📧 Email</h3>
-              <p className="text-muted-foreground mb-1">support@purrball.ca</p>
-              <p className="text-sm text-muted-foreground">Réponse garantie sous 24h</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-white rounded-xl p-5 border border-neutral-100">
+              <h3 className="font-medium text-neutral-900 mb-1 text-sm">Email</h3>
+              <p className="text-neutral-500 text-xs mb-0.5">support@purrball.ca</p>
+              <p className="text-neutral-300 text-[10px]">Réponse garantie sous 24h</p>
             </div>
-            <div className="bg-white rounded-lg p-6 border border-border">
-              <h3 className="font-semibold text-foreground mb-2">📞 Téléphone</h3>
-              <p className="text-muted-foreground mb-1">1-800-CAT-TOYS</p>
-              <p className="text-sm text-muted-foreground">Lun-Ven 9h-17h (EST)</p>
+            <div className="bg-white rounded-xl p-5 border border-neutral-100">
+              <h3 className="font-medium text-neutral-900 mb-1 text-sm">Téléphone</h3>
+              <p className="text-neutral-500 text-xs mb-0.5">1-800-CAT-TOYS</p>
+              <p className="text-neutral-300 text-[10px]">Lun-Ven 9h-17h (EST)</p>
             </div>
           </div>
         </div>
