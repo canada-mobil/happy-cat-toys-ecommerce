@@ -2,10 +2,12 @@
 
 import { useRef, useState, useCallback } from "react"
 import { Play } from "lucide-react"
+import { useI18n } from "@/lib/i18n-context"
 
 export default function LovedByFamilies() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
+  const { t } = useI18n()
 
   const handlePlay = useCallback(() => {
     if (!videoRef.current) return
@@ -22,10 +24,10 @@ export default function LovedByFamilies() {
     <section className="py-16 px-4 bg-white">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight mb-4">
-          Loved by Pet Families Worldwide
+          {t.lovedByFamilies.title}
         </h2>
         <p className="text-neutral-500 text-sm md:text-base mb-8 max-w-xl mx-auto">
-          Découvrez pourquoi des milliers de familles font confiance à Purrball pour le bonheur de leurs compagnons.
+          {t.lovedByFamilies.subtitle}
         </p>
 
         <div

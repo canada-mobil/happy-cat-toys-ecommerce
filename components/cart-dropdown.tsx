@@ -4,11 +4,13 @@ import { useState, useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
 import { ShoppingCart, X, Plus, Minus, Trash2, Star, Truck, Shield, Clock, MapPin } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
+import { useI18n } from "@/lib/i18n-context"
 import Image from "next/image"
 import Link from "next/link"
 
 export default function CartDropdown() {
   const { items, removeItem, updateQuantity, total, itemCount, freeShippingProgress, freeShippingThreshold, addItem, setCartOpen, isCartOpen } = useCart()
+  const { t } = useI18n()
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0)
 
   const remainingForFreeShipping = Math.max(0, freeShippingThreshold - total)
@@ -97,7 +99,7 @@ export default function CartDropdown() {
           <div className="fixed right-0 top-0 bottom-0 w-full sm:w-[420px] flex flex-col shadow-2xl" style={{ zIndex: 99999, backgroundColor: '#ffffff', animation: 'cartSlideIn 0.3s ease-out' }}>
             {/* Header */}
             <div className="flex-shrink-0 flex items-center justify-between px-4 py-4 border-b border-neutral-100">
-              <h3 className="font-semibold text-neutral-900 text-base">Panier ({itemCount})</h3>
+              <h3 className="font-semibold text-neutral-900 text-base">{t.cart.title} ({itemCount})</h3>
               <button
                 onClick={() => setCartOpen(false)}
                 className="p-1.5 hover:bg-neutral-100 rounded-full transition-colors"
@@ -108,22 +110,22 @@ export default function CartDropdown() {
 
             {/* Free shipping banner */}
             <div className="flex-shrink-0 bg-green-50 px-4 py-2.5 text-center">
-              <p className="text-green-700 text-xs font-medium">Livraison gratuite offerte sur toutes les commandes!</p>
+              <p className="text-green-700 text-xs font-medium">{t.cart.freeShipping}</p>
             </div>
 
             {/* Delivery estimate */}
             <div className="flex-shrink-0 flex items-center justify-center gap-2 px-4 py-2 border-b border-neutral-100">
               <Truck className="w-4 h-4 text-brand" />
-              <p className="text-neutral-600 text-xs">Livré en <span className="font-semibold text-neutral-900">1-3 jours ouvrables</span></p>
+              <p className="text-neutral-600 text-xs">{t.cart.delivery} <span className="font-semibold text-neutral-900">{t.cart.deliveryDays}</span></p>
             </div>
 
             {items.length === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
                 <ShoppingCart className="w-14 h-14 mx-auto mb-4 text-neutral-200" />
-                <h3 className="text-base font-semibold text-neutral-900 mb-1">Votre panier est vide</h3>
-                <p className="text-sm text-neutral-400 mb-6">Ajoutez des produits pour commencer</p>
+                <h3 className="text-base font-semibold text-neutral-900 mb-1">{t.cart.empty}</h3>
+                <p className="text-sm text-neutral-400 mb-6">{t.cart.emptySubtitle}</p>
                 <Link href="/produits" onClick={() => setCartOpen(false)} className="bg-brand text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-brand-dark transition-colors">
-                  Voir les produits
+                  {t.cart.viewProducts}
                 </Link>
               </div>
             ) : (
@@ -201,20 +203,20 @@ export default function CartDropdown() {
                   {/* #PAWPAW discount applied */}
                   <div className="flex items-center gap-1.5 mb-3 bg-green-50 rounded-lg px-3 py-2">
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full flex-shrink-0" />
-                    <span className="text-green-700 text-[11px] font-medium">Coupon <span className="font-bold">#PAWPAW</span> added</span>
+                    <span className="text-green-700 text-[11px] font-medium">{t.cart.couponAdded} <span className="font-bold">#PAWPAW</span> {t.cart.couponApplied}</span>
                   </div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm text-neutral-500">Sous-total</span>
+                    <span className="text-sm text-neutral-500">{t.cart.subtotal}</span>
                     <span className="text-lg font-semibold text-neutral-900">CA${total.toFixed(2)}</span>
                   </div>
-                  <p className="text-[11px] text-neutral-400 mb-3">Taxes et frais de livraison calculés à la caisse</p>
+                  <p className="text-[11px] text-neutral-400 mb-3">{t.cart.taxes}</p>
                   
                   <Link href="/checkout" className="block mb-2">
                     <button
                       onClick={() => setCartOpen(false)}
                       className="w-full bg-brand hover:bg-brand-dark text-white py-3.5 rounded-full font-medium transition-all text-sm"
                     >
-                      Commander · CA${total.toFixed(2)}
+                      {t.cart.checkout} · CA${total.toFixed(2)}
                     </button>
                   </Link>
                   <Link href="/cart" className="block">
@@ -222,7 +224,7 @@ export default function CartDropdown() {
                       onClick={() => setCartOpen(false)}
                       className="w-full text-neutral-500 hover:text-neutral-900 py-2 font-medium transition-colors text-xs underline underline-offset-2"
                     >
-                      Voir le panier complet
+                      {t.cart.viewCart}
                     </button>
                   </Link>
                 </div>

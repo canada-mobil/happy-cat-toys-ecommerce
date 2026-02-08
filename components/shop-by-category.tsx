@@ -1,30 +1,33 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
-
-const categories = [
-  {
-    name: "Toys",
-    href: "/produits",
-    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp",
-    span: "col-span-1 row-span-2",
-  },
-  {
-    name: "Fournitures",
-    href: "/fournitures",
-    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517763/purrball/petfount.webp",
-    span: "col-span-1 row-span-1",
-  },
-]
+import { useI18n } from "@/lib/i18n-context"
 
 export default function ShopByCategory() {
+  const { t } = useI18n()
+
+  const categories = [
+    {
+      name: t.shopByCategory.toys,
+      href: "/produits",
+      image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp",
+    },
+    {
+      name: t.shopByCategory.fournitures,
+      href: "/fournitures",
+      image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517763/purrball/petfount.webp",
+    },
+  ]
+
   return (
     <section className="py-16 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight text-center mb-3">
-          Magasiner par Catégorie
+          {t.shopByCategory.title}
         </h2>
         <p className="text-neutral-500 text-sm md:text-base text-center mb-10 max-w-xl mx-auto">
-          Trouvez exactement ce qu'il faut pour votre compagnon félin.
+          {t.shopByCategory.toysDesc}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

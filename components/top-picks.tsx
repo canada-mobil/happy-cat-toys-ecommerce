@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ShoppingCart } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
+import { useI18n } from "@/lib/i18n-context"
 
 import { products } from "@/lib/products"
 
@@ -20,6 +21,7 @@ const topPicks = products.filter(p => p.category !== 'Fournitures').map((p) => (
 
 export default function TopPicks() {
   const { addItem } = useCart()
+  const { t } = useI18n()
 
   const handleAddToCart = (product: typeof topPicks[0], e: React.MouseEvent) => {
     e.preventDefault()
@@ -39,10 +41,10 @@ export default function TopPicks() {
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-[40px] font-semibold text-neutral-900 tracking-tight leading-tight mb-4">
-            Elevate Your Cat's Life with Top Picks
+            {t.topPicks.title}
           </h2>
           <p className="text-neutral-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Discover curated products designed for your pet's well-being and happiness, because smart choices lead to smarter, healthier pets.
+            {t.topPicks.subtitle}
           </p>
         </div>
 
@@ -95,7 +97,7 @@ export default function TopPicks() {
                   onClick={(e) => handleAddToCart(product, e)}
                   className="w-full bg-brand hover:bg-brand-dark text-white px-4 py-3 rounded-full font-medium text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
                 >
-                  ADD TO CART
+                  {t.topPicks.addToCart}
                 </button>
               </div>
             </Link>

@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useRef, useCallback } from "react"
 import VideoHero from "./video-hero"
+import { useI18n } from "@/lib/i18n-context"
 
 const slides = [
   {
@@ -14,6 +14,7 @@ const slides = [
 
 export default function HeroSection() {
   const slide = slides[0]
+  const { t } = useI18n()
 
   return (
     <>
@@ -33,16 +34,16 @@ export default function HeroSection() {
         {/* Content overlay at bottom */}
         <div className="absolute bottom-0 left-0 right-0 p-6 pb-10 z-10">
           <h1 className="text-3xl font-semibold text-white leading-tight tracking-tight mb-2">
-            {slide.title}
+            {t.hero.title}
           </h1>
           <p className="text-white/70 text-sm mb-6">
-            {slide.subtitle}
+            {t.hero.subtitle}
           </p>
           <a
             href={slide.href}
             className="inline-block bg-brand text-white font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:bg-brand-dark transition-all"
           >
-            SHOP NOW
+            {t.hero.shopNow}
           </a>
         </div>
       </section>
@@ -53,13 +54,13 @@ export default function HeroSection() {
           {/* Content */}
           <div className="flex-1 text-left">
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 mb-4">
-              Conçu pour les chats curieux
+              {t.hero.desktopSubtitle}
             </p>
             <h1 className="text-4xl md:text-6xl font-semibold leading-[1.1] tracking-tight text-neutral-900 mb-6">
-              Le jouet que votre chat mérite.
+              {t.hero.desktopTitle}
             </h1>
             <p className="text-lg md:text-xl text-neutral-500 leading-relaxed mb-8 max-w-lg">
-              Stimulez l'instinct naturel de votre félin avec notre balle interactive intelligente. Livraison rapide partout au Canada.
+              {t.hero.desktopDescription}
             </p>
             
             <div className="flex items-start gap-4">
@@ -67,13 +68,13 @@ export default function HeroSection() {
                 href="/produits/smart-interactive-ball"
                 className="bg-brand hover:bg-brand-dark text-white font-medium px-8 py-3.5 rounded-full transition-all hover:scale-[1.02] text-sm tracking-wide"
               >
-                Acheter — CA$4.99
+                {t.hero.buyButton}
               </a>
               <a
                 href="/produits"
                 className="text-neutral-500 hover:text-neutral-900 font-medium px-8 py-3.5 text-sm transition-colors"
               >
-                En savoir plus →
+                {t.hero.learnMore}
               </a>
             </div>
           </div>
