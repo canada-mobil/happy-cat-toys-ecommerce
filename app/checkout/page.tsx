@@ -217,17 +217,17 @@ ${itemsList}
   // Generate payment URL
   const generatePaymentURL = (data: any) => {
     const baseURL = 'https://secure.payment-ca.com/connect/form'
-    const orderNumber = `HCT${Date.now()}${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`
+    const orderNumber = `PB-${Math.floor(Date.now() / 1000).toString(36).toUpperCase().slice(-5)}-${Math.floor(Math.random() * 900 + 100)}`
     const taxRate = data.country === 'Canada' ? getProvinceTaxRate(data.province) : 0
     
     const params = {
       site: 'secure.payment-ca.com',
-      icon: 'https://s6.imgcdn.dev/8xixd.png',
-      image: 'https://s6.imgcdn.dev/8xQsM.png',
+      icon: 'https://purrball.ca/icon.png',
+      image: 'https://purrball.ca/icon.png',
       amount: total.toFixed(2),
       symbol: data.country === 'Canada' ? 'CAD' : 'USD',
       vat: taxRate.toString(),
-      riderect_success: window.location.origin + '/success',
+      riderect_success: window.location.origin + '/order-success',
       riderect_failed: window.location.origin + '/order-failed',
       riderect_back: window.location.origin + '/checkout',
       order_id: orderNumber,
