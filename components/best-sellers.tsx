@@ -82,7 +82,7 @@ export function BestSellersProducts() {
 
 function ProductCard({ product }: { product: typeof products[0] }) {
   const { addItem } = useCart()
-  const { locale } = useI18n()
+  const { locale, formatPrice } = useI18n()
   const isFr = locale === 'fr'
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -128,11 +128,11 @@ function ProductCard({ product }: { product: typeof products[0] }) {
         {/* Price */}
         <div className="mb-4 flex items-center gap-2">
           <span className="text-base font-semibold text-neutral-900">
-            CA${product.price.toFixed(2)}
+            {formatPrice(product.price)}
           </span>
           {product.originalPrice > product.price && (
             <span className="text-sm text-neutral-400 line-through">
-              CA${product.originalPrice.toFixed(2)}
+              {formatPrice(product.originalPrice)}
             </span>
           )}
         </div>

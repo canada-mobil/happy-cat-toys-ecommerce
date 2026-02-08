@@ -13,7 +13,7 @@ import { useLocalizedProduct } from "@/lib/use-localized-product"
 
 export default function FournituresPage() {
   const { addItem } = useCart()
-  const { t } = useI18n()
+  const { t, formatPrice } = useI18n()
   const { localize } = useLocalizedProduct()
   const fountain = localize(products.find(p => p.id === "purr-fountain-f1")!)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -138,8 +138,8 @@ export default function FournituresPage() {
               </div>
 
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-3xl font-bold text-red-600">CA${fountain.price.toFixed(2)}</span>
-                <span className="text-lg text-neutral-300 line-through">CA${fountain.originalPrice.toFixed(2)}</span>
+                <span className="text-3xl font-bold text-red-600">{formatPrice(fountain.price)}</span>
+                <span className="text-lg text-neutral-300 line-through">{formatPrice(fountain.originalPrice)}</span>
               </div>
 
               {/* #PAWPAW discount badge */}

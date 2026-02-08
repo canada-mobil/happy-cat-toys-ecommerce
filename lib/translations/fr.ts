@@ -23,15 +23,15 @@ export const fr = {
 
   // Top Picks
   topPicks: {
-    title: "Elevate Your Cat's Life with Top Picks",
-    subtitle: "Discover curated products designed for your pet's well-being and happiness, because smart choices lead to smarter, healthier pets.",
-    addToCart: "ADD TO CART",
+    title: "Améliorez la Vie de Votre Chat avec Nos Coups de Cœur",
+    subtitle: "Découvrez des produits soigneusement sélectionnés pour le bien-être et le bonheur de votre animal, car les bons choix mènent à des animaux plus intelligents et en meilleure santé.",
+    addToCart: "AJOUTER AU PANIER",
   },
 
   // Shop by Category
   shopByCategory: {
-    title: "Shop by Category",
-    toys: "Toys",
+    title: "Magasiner par Catégorie",
+    toys: "Jouets",
     toysDesc: "Des jouets pour chats premium conçus pour stimuler l'instinct de jeu de votre félin, favoriser l'exercice et renforcer le lien avec votre compagnon. Parce qu'un chat qui joue est un chat heureux.",
     fournitures: "Fournitures",
     fournituresDesc: "Tout ce dont votre chat a besoin pour une vie saine et heureuse. Fontaines à eau, accessoires et plus encore.",
@@ -54,7 +54,7 @@ export const fr = {
 
   // Loved by Families
   lovedByFamilies: {
-    title: "Loved by Pet Families Worldwide",
+    title: "Adoré par les Familles d'Animaux du Monde Entier",
     subtitle: "Découvrez pourquoi des milliers de familles font confiance à Purrball pour le bonheur de leurs compagnons.",
   },
 
@@ -99,14 +99,14 @@ export const fr = {
 
   // Products Page (Toys)
   productsPage: {
-    title: "Toys",
-    trending: "Trending This Month",
-    allProducts: "All Products",
-    addToCart: "ADD TO CART",
-    viewDetails: "VIEW DETAILS",
-    learnMore: "LEARN MORE",
-    save: "Save",
-    cat: "Cat",
+    title: "Jouets",
+    trending: "Tendances du Mois",
+    allProducts: "Tous les Produits",
+    addToCart: "AJOUTER AU PANIER",
+    viewDetails: "VOIR DÉTAILS",
+    learnMore: "EN SAVOIR PLUS",
+    save: "Économisez",
+    cat: "Chat",
     seeInAction: "Voir en action",
   },
 

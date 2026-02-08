@@ -14,7 +14,7 @@ const slides = [
 
 export default function HeroSection() {
   const slide = slides[0]
-  const { t } = useI18n()
+  const { t, formatPrice, locale } = useI18n()
 
   return (
     <>
@@ -68,7 +68,7 @@ export default function HeroSection() {
                 href="/produits/smart-interactive-ball"
                 className="bg-brand hover:bg-brand-dark text-white font-medium px-8 py-3.5 rounded-full transition-all hover:scale-[1.02] text-sm tracking-wide"
               >
-                {t.hero.buyButton}
+                {locale === 'fr' ? `Acheter — ${formatPrice(4.99)}` : `Buy — ${formatPrice(4.99)}`}
               </a>
               <a
                 href="/produits"

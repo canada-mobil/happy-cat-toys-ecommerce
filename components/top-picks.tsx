@@ -11,7 +11,7 @@ import { products } from "@/lib/products"
 
 export default function TopPicks() {
   const { addItem } = useCart()
-  const { t } = useI18n()
+  const { t, formatPrice } = useI18n()
   const { localize } = useLocalizedProduct()
 
   const topPicks = products.filter(p => p.category !== 'Fournitures').map((p) => {
@@ -90,10 +90,10 @@ export default function TopPicks() {
                 {/* Price */}
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-lg font-bold text-neutral-900">
-                    ${product.price.toFixed(2)}
+                    {formatPrice(product.price)}
                   </span>
                   <span className="text-sm text-neutral-300 line-through">
-                    ${product.originalPrice.toFixed(2)}
+                    {formatPrice(product.originalPrice)}
                   </span>
                 </div>
 

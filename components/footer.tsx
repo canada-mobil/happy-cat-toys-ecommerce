@@ -7,8 +7,7 @@ import { useState } from "react"
 import { useI18n } from "@/lib/i18n-context"
 
 export default function Footer() {
-  const [selectedCountry, setSelectedCountry] = useState("CA")
-  const { t, locale, toggleLocale } = useI18n()
+  const { t, locale, setLocale, country, setCountry } = useI18n()
 
   const quickLinks = [
     { label: t.footer.allProducts, href: "/produits" },
@@ -136,17 +135,28 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <button
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-neutral-200 text-neutral-400 hover:text-neutral-600 text-xs transition-all"
-                  onClick={() => setSelectedCountry(selectedCountry === "CA" ? "US" : "CA")}
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border text-xs transition-all ${country === 'CA' ? 'border-neutral-900 text-neutral-900 font-medium' : 'border-neutral-200 text-neutral-400 hover:text-neutral-600'}`}
+                  onClick={() => setCountry('CA')}
                 >
-                  <Globe className="w-3 h-3" />
-                  <span>{selectedCountry === "CA" ? "🇨🇦 Canada" : "🇺🇸 USA"}</span>
+                  🇨🇦 Canada
                 </button>
                 <button
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-neutral-200 text-neutral-400 hover:text-neutral-600 text-xs transition-all"
-                  onClick={toggleLocale}
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border text-xs transition-all ${country === 'US' ? 'border-neutral-900 text-neutral-900 font-medium' : 'border-neutral-200 text-neutral-400 hover:text-neutral-600'}`}
+                  onClick={() => setCountry('US')}
                 >
-                  <span>{locale === 'fr' ? 'Français' : 'English'}</span>
+                  🇺🇸 USA
+                </button>
+                <button
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border text-xs transition-all ${locale === 'fr' ? 'border-neutral-900 text-neutral-900 font-medium' : 'border-neutral-200 text-neutral-400 hover:text-neutral-600'}`}
+                  onClick={() => setLocale('fr')}
+                >
+                  Français
+                </button>
+                <button
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border text-xs transition-all ${locale === 'en' ? 'border-neutral-900 text-neutral-900 font-medium' : 'border-neutral-200 text-neutral-400 hover:text-neutral-600'}`}
+                  onClick={() => setLocale('en')}
+                >
+                  English
                 </button>
               </div>
 

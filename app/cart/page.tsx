@@ -9,7 +9,7 @@ import { useI18n } from "@/lib/i18n-context"
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, total, subtotal, discount, freeShippingProgress, freeShippingThreshold, itemCount } = useCart()
-  const { locale } = useI18n()
+  const { locale, formatPrice } = useI18n()
   const isFr = locale === 'fr'
 
   const remainingItemsForFreeShipping = Math.max(0, freeShippingThreshold - itemCount)
@@ -135,11 +135,11 @@ export default function CartPage() {
                       
                       <div className="text-right">
                         <div className="font-semibold text-sm text-neutral-900">
-                          ${(item.price * item.quantity).toFixed(2)} CAD
+                          {formatPrice(item.price * item.quantity)}
                         </div>
                         {item.originalPrice > item.price && (
                           <div className="text-xs text-neutral-300 line-through">
-                            ${(item.originalPrice * item.quantity).toFixed(2)} CAD
+                            {formatPrice(item.originalPrice * item.quantity)}
                           </div>
                         )}
                       </div>
@@ -160,12 +160,12 @@ export default function CartPage() {
               <div className="space-y-3 mb-4">
                 <div className="flex justify-between text-sm">
                   <span className="text-neutral-400">{isFr ? 'Sous-total' : 'Subtotal'}</span>
-                  <span className="font-medium">${subtotal.toFixed(2)} CAD</span>
+                  <span className="font-medium">{formatPrice(subtotal)}</span>
                 </div>
                 {discount > 0 && (
                   <div className="flex justify-between text-sm">
                     <span className="text-neutral-400">{isFr ? 'Économies' : 'Savings'}</span>
-                    <span className="font-medium text-green-600">-${discount.toFixed(2)} CAD</span>
+                    <span className="font-medium text-green-600">-{formatPrice(discount)}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-sm">
@@ -174,7 +174,7 @@ export default function CartPage() {
                     {shipping === 0 ? (
                       <span className="text-green-600">{isFr ? 'Gratuite' : 'Free'}</span>
                     ) : (
-                      `$${shipping.toFixed(2)} CAD`
+                      formatPrice(shipping)
                     )}
                   </span>
                 </div>
@@ -184,7 +184,7 @@ export default function CartPage() {
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium text-neutral-500">Total</span>
                   <span className="text-xl font-semibold text-neutral-900">
-                    ${finalTotal.toFixed(2)} CAD
+                    {formatPrice(finalTotal)}
                   </span>
                 </div>
               </div>

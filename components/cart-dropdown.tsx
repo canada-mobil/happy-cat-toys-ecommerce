@@ -10,7 +10,7 @@ import Link from "next/link"
 
 export default function CartDropdown() {
   const { items, removeItem, updateQuantity, total, itemCount, freeShippingProgress, freeShippingThreshold, addItem, setCartOpen, isCartOpen } = useCart()
-  const { t } = useI18n()
+  const { t, formatPrice } = useI18n()
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0)
 
   const remainingForFreeShipping = Math.max(0, freeShippingThreshold - total)
@@ -194,7 +194,7 @@ export default function CartDropdown() {
                             )}
                             
                             <span className="text-sm font-semibold text-neutral-900 whitespace-nowrap">
-                              {item.price === 0 ? 'GRATUIT' : `CA$${(item.price * item.quantity).toFixed(2)}`}
+                              {item.price === 0 ? (isFr ? 'GRATUIT' : 'FREE') : formatPrice(item.price * item.quantity)}
                             </span>
                           </div>
                         </div>
@@ -212,7 +212,7 @@ export default function CartDropdown() {
                   </div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-sm text-neutral-500">{t.cart.subtotal}</span>
-                    <span className="text-lg font-semibold text-neutral-900">CA${total.toFixed(2)}</span>
+                    <span className="text-lg font-semibold text-neutral-900">{formatPrice(total)}</span>
                   </div>
                   <p className="text-[11px] text-neutral-400 mb-3">{t.cart.taxes}</p>
                   
@@ -221,7 +221,7 @@ export default function CartDropdown() {
                       onClick={() => setCartOpen(false)}
                       className="w-full bg-brand hover:bg-brand-dark text-white py-3.5 rounded-full font-medium transition-all text-sm"
                     >
-                      {t.cart.checkout} · CA${total.toFixed(2)}
+                      {t.cart.checkout} · {formatPrice(total)}
                     </button>
                   </Link>
                   <Link href="/cart" className="block">

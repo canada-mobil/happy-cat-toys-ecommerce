@@ -37,6 +37,7 @@ export default function LovedByFamilies() {
           <video
             ref={videoRef}
             src="https://res.cloudinary.com/dhhdhilja/video/upload/v1770517796/purrball/tiktok1.mp4"
+            poster="https://res.cloudinary.com/dhhdhilja/video/upload/so_1,w_400,f_jpg/v1770517796/purrball/tiktok1.jpg"
             className="w-full aspect-[9/16] object-cover"
             playsInline
             preload="metadata"

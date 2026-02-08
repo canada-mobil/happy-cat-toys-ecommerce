@@ -13,7 +13,7 @@ import { useLocalizedProduct } from "@/lib/use-localized-product"
 
 export default function ProductsPage() {
   const { addItem } = useCart()
-  const { t } = useI18n()
+  const { t, formatPrice } = useI18n()
   const { localize } = useLocalizedProduct()
   const product = localize(products[0])
 
@@ -80,8 +80,8 @@ export default function ProductsPage() {
               <h3 className="text-lg font-bold text-neutral-900 tracking-tight">{product.name}</h3>
 
               <div className="flex items-center gap-2">
-                <span className="text-lg font-bold text-neutral-900">${product.price.toFixed(2)}</span>
-                <span className="text-sm text-neutral-300 line-through">${product.originalPrice.toFixed(2)}</span>
+                <span className="text-lg font-bold text-neutral-900">{formatPrice(product.price)}</span>
+                <span className="text-sm text-neutral-300 line-through">{formatPrice(product.originalPrice)}</span>
                 <div className="flex items-center gap-1 ml-auto">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
@@ -133,8 +133,8 @@ export default function ProductsPage() {
               </div>
 
               <div className="flex items-center gap-3 mb-5">
-                <span className="text-2xl font-bold text-neutral-900">${product.price.toFixed(2)}</span>
-                <span className="text-base text-neutral-300 line-through">${product.originalPrice.toFixed(2)}</span>
+                <span className="text-2xl font-bold text-neutral-900">{formatPrice(product.price)}</span>
+                <span className="text-base text-neutral-300 line-through">{formatPrice(product.originalPrice)}</span>
               </div>
 
               <div className="flex items-center gap-2 mb-6">
@@ -203,8 +203,8 @@ export default function ProductsPage() {
                   <h3 className="font-semibold text-neutral-900 text-sm mb-1">{p.name}</h3>
                   <p className="text-neutral-400 text-xs mb-2">{p.description.slice(0, 60)}...</p>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-base font-bold text-red-600">CA${p.price.toFixed(2)}</span>
-                    <span className="text-sm text-neutral-300 line-through">CA${p.originalPrice.toFixed(2)}</span>
+                    <span className="text-base font-bold text-red-600">{formatPrice(p.price)}</span>
+                    <span className="text-sm text-neutral-300 line-through">{formatPrice(p.originalPrice)}</span>
                   </div>
                   <button
                     onClick={(e) => {

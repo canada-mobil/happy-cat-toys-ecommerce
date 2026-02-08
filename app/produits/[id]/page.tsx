@@ -11,6 +11,7 @@ import { notFound } from "next/navigation"
 import { useCart } from "@/lib/cart-context"
 import ProductReviews from "@/components/product-reviews"
 import { useLocalizedProduct } from "@/lib/use-localized-product"
+import { useI18n } from "@/lib/i18n-context"
 
 interface ProductPageProps {
   params: Promise<{ id: string }>
@@ -22,6 +23,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   const relatedProducts = getRelatedProducts(id)
   const { addItem } = useCart()
   const { localize, isEn } = useLocalizedProduct()
+  const { formatPrice } = useI18n()
   const product = rawProduct ? localize(rawProduct) : null
   
   const [selectedColor, setSelectedColor] = useState(0)
@@ -170,8 +172,8 @@ export default function ProductPage({ params }: ProductPageProps) {
 
             {/* Price */}
             <div className="flex items-center gap-3 mb-3">
-              <span className="text-2xl font-bold text-red-600">CA${currentPrice.toFixed(2)}</span>
-              <span className="text-base text-neutral-300 line-through">CA${product.originalPrice.toFixed(2)}</span>
+              <span className="text-2xl font-bold text-red-600">{formatPrice(currentPrice)}</span>
+              <span className="text-base text-neutral-300 line-through">{formatPrice(product.originalPrice)}</span>
               <span className="bg-red-500 text-white text-[10px] font-semibold px-2.5 py-1 rounded uppercase">
                 Save {Math.round((1 - currentPrice / product.originalPrice) * 100)}%
               </span>
@@ -362,7 +364,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
           <div className="min-w-0">
             <p className="text-neutral-900 font-medium text-xs truncate">{product.name}</p>
-            <p className="text-red-600 font-semibold text-xs">CA${totalPrice.toFixed(2)}</p>
+            <p className="text-red-600 font-semibold text-xs">{formatPrice(totalPrice)}</p>
           </div>
         </div>
         <button
