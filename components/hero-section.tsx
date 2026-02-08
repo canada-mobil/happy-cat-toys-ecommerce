@@ -5,7 +5,7 @@ import VideoHero from "./video-hero"
 
 const slides = [
   {
-    video: "https://res.cloudinary.com/dhhdhilja/video/upload/v1770517656/purrball/hoeme1.mp4",
+    video: "https://res.cloudinary.com/dhhdhilja/video/upload/q_auto,f_mp4,w_720/v1770517656/purrball/hoeme1.mp4",
     title: "Smart Interactive Ball",
     subtitle: "Le jouet intelligent pour chats curieux",
     href: "/produits/smart-interactive-ball",
@@ -23,8 +23,8 @@ export default function HeroSection() {
         <VideoHero
           src={slide.video}
           className="absolute inset-0 w-full h-full object-cover"
-          preload="metadata"
-          poster="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp"
+          preload="auto"
+          poster="https://res.cloudinary.com/dhhdhilja/image/upload/q_auto,w_800,f_webp/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp"
         />
 
         {/* Dark gradient overlay */}
@@ -84,8 +84,8 @@ export default function HeroSection() {
               <VideoHero
                 src={slide.video}
                 className="absolute inset-0 w-full h-full object-cover"
-                preload="metadata"
-                poster="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp"
+                preload="auto"
+                poster="https://res.cloudinary.com/dhhdhilja/image/upload/q_auto,w_800,f_webp/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp"
               />
             </div>
           </div>
