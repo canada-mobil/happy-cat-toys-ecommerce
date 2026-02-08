@@ -23,6 +23,7 @@ interface CartContextType {
   total: number
   shipping: number
   itemCount: number
+  paidItemCount: number
   freeShippingProgress: number
   freeShippingThreshold: number
   openCart: () => void
@@ -169,6 +170,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         total,
         shipping,
         itemCount,
+        paidItemCount: paidItems,
         freeShippingProgress,
         freeShippingThreshold: FREE_SHIPPING_ITEM_THRESHOLD,
         openCart,

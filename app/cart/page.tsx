@@ -8,11 +8,11 @@ import Footer from "@/components/footer"
 import { useI18n } from "@/lib/i18n-context"
 
 export default function CartPage() {
-  const { items, removeItem, updateQuantity, total, subtotal, discount, shipping, freeShippingProgress, freeShippingThreshold, itemCount } = useCart()
+  const { items, removeItem, updateQuantity, total, subtotal, discount, shipping, freeShippingProgress, freeShippingThreshold, itemCount, paidItemCount } = useCart()
   const { locale, formatPrice } = useI18n()
   const isFr = locale === 'fr'
 
-  const remainingItemsForFreeShipping = Math.max(0, freeShippingThreshold - itemCount)
+  const remainingPaidForFreeShipping = Math.max(0, freeShippingThreshold - paidItemCount)
   const finalTotal = total + shipping
 
   if (items.length === 0) {
@@ -59,10 +59,10 @@ export default function CartPage() {
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
             {/* Free Shipping Progress */}
-            {remainingItemsForFreeShipping > 0 ? (
+            {paidItemCount > 0 && remainingPaidForFreeShipping > 0 ? (
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                 <p className="text-blue-900 font-medium mb-2">
-                  {isFr ? `Plus que ${remainingItemsForFreeShipping} article${remainingItemsForFreeShipping > 1 ? 's' : ''} pour la livraison gratuite !` : `Only ${remainingItemsForFreeShipping} more item${remainingItemsForFreeShipping > 1 ? 's' : ''} for free shipping!`}
+                  {isFr ? `Plus que ${remainingPaidForFreeShipping} article${remainingPaidForFreeShipping > 1 ? 's' : ''} pour la livraison gratuite !` : `Only ${remainingPaidForFreeShipping} more item${remainingPaidForFreeShipping > 1 ? 's' : ''} for free shipping!`}
                 </p>
                 <div className="w-full bg-blue-100 rounded-full h-2">
                   <div 
@@ -71,14 +71,14 @@ export default function CartPage() {
                   />
                 </div>
               </div>
-            ) : (
+            ) : paidItemCount >= freeShippingThreshold ? (
               <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
                 <p className="text-green-700 font-medium flex items-center gap-2">
                   <PartyPopper className="w-4 h-4" />
                   {isFr ? 'Félicitations ! Vous bénéficiez de la livraison gratuite !' : 'Congratulations! You qualify for free shipping!'}
                 </p>
               </div>
-            )}
+            ) : null}
 
             {items.map((item) => (
               <div key={item.id} className="bg-white rounded-2xl p-5 border border-neutral-100">
