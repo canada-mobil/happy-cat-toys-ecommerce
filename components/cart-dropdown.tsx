@@ -35,33 +35,38 @@ export default function CartDropdown() {
     return () => clearInterval(interval)
   }, [])
 
-  // Recommended products
-  const recommendedProducts = [
-    {
-      id: "smart-interactive-ball-Rouge",
-      name: "Smart Interactive Ball - Rouge",
-      price: 4.99,
-      image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517783/purrball/smart_interactive_cats_ball_toy_red.png.webp",
-      rating: 4.8,
-      reviews: 325
-    },
-    {
-      id: "smart-interactive-ball-Gris",
-      name: "Smart Interactive Ball - Gris",
-      price: 4.99,
-      image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517775/purrball/smart_interactive_cats_ball_toy_gray.png.webp",
-      rating: 4.8,
-      reviews: 325
-    },
-    {
-      id: "smart-interactive-ball-Vert",
-      name: "Smart Interactive Ball - Vert",
-      price: 4.99,
-      image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517777/purrball/smart_interactive_cats_ball_toy_green.png.webp",
-      rating: 4.8,
-      reviews: 325
-    }
-  ]
+  // Smart recommendation: fountain if cart has toys, toy if cart has fountain
+  const hasToy = items.some(item => item.id.includes('ball') || item.id.includes('smart'))
+  const hasFountain = items.some(item => item.id.includes('fountain') || item.id.includes('purr'))
+
+  const fountainRec = {
+    id: "purr-fountain-f1",
+    name: isFr ? "Purr Fountain F1" : "Purr Fountain F1",
+    desc: isFr ? "Fontaine à eau intelligente sans pompe" : "Smart pumpless water fountain",
+    price: 27.15,
+    originalPrice: 84.00,
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517651/purrball/e__pumpless_design.webp",
+    rating: 4.9,
+    reviews: 128,
+    href: "/fournitures",
+    badge: isFr ? "Fournitures" : "Supplies",
+  }
+
+  const toyRec = {
+    id: "smart-interactive-ball",
+    name: "Smart Interactive Ball",
+    desc: isFr ? "Balle intelligente auto-roulante" : "Smart auto-rolling ball toy",
+    price: 4.99,
+    originalPrice: 11.99,
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517783/purrball/smart_interactive_cats_ball_toy_red.png.webp",
+    rating: 4.8,
+    reviews: 325,
+    href: "/produits",
+    badge: isFr ? "Jouets" : "Toys",
+  }
+
+  // Show fountain if user has toys (or only free items), show toy if user has fountain
+  const recommendation = hasFountain && !hasToy ? toyRec : fountainRec
 
   return (
     <>
@@ -214,6 +219,30 @@ export default function CartDropdown() {
                       </div>
                     </div>
                   ))}
+                  {/* Recommended Product */}
+                  <div className="px-4 py-4 bg-neutral-50 border-t border-neutral-100">
+                    <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mb-3">
+                      {isFr ? 'Complétez votre commande' : 'Complete your order'}
+                    </p>
+                    <Link href={recommendation.href} onClick={() => setCartOpen(false)} className="flex gap-3 group">
+                      <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-white border border-neutral-100 flex-shrink-0">
+                        <Image src={recommendation.image} alt={recommendation.name} fill sizes="64px" className="object-contain p-1" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-[9px] font-semibold text-brand uppercase tracking-wider">{recommendation.badge}</span>
+                        <h4 className="text-sm font-medium text-neutral-900 truncate group-hover:text-brand transition-colors">{recommendation.name}</h4>
+                        <p className="text-[11px] text-neutral-400 truncate">{recommendation.desc}</p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-xs font-bold text-red-600">{formatPrice(recommendation.price)}</span>
+                          <span className="text-[10px] text-neutral-300 line-through">{formatPrice(recommendation.originalPrice)}</span>
+                          <div className="flex items-center gap-0.5 ml-auto">
+                            <Star className="w-2.5 h-2.5 fill-yellow-400 text-yellow-400" />
+                            <span className="text-[10px] text-neutral-400">{recommendation.rating}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
 
                 {/* Footer */}
