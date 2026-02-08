@@ -375,6 +375,8 @@ ${itemsList}
         final_total: total + (total * getProvinceTaxRate(formData.province) / 100),
         order_date: new Date().toISOString(),
         status: 'processing',
+        email_stage: 1,
+        locale: locale,
       })
       console.log('✅ Order saved to Supabase')
     } catch (error) {

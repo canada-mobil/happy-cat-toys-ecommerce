@@ -18,6 +18,8 @@ export interface OrderRecord {
   final_total: number
   order_date: string
   status: string
+  email_stage?: number
+  locale?: string
 }
 
 export async function saveOrder(order: OrderRecord): Promise<boolean> {

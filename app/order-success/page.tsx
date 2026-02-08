@@ -102,6 +102,14 @@ export default function OrderSuccess() {
                   })
                 })
                 localStorage.setItem(emailSentKey, 'true')
+                // Update email_stage in Supabase so cron knows confirmation was sent
+                try {
+                  const { supabase } = await import('@/lib/supabase')
+                  await supabase
+                    .from('orders')
+                    .update({ email_stage: 1, locale })
+                    .eq('order_number', orderData.order_number)
+                } catch { /* ignore */ }
                 console.log('✅ Confirmation email sent')
               } catch (error) {
                 console.error('❌ Error sending confirmation email:', error)

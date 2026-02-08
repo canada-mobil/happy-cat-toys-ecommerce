@@ -1,4 +1,10 @@
 {
+  "crons": [
+    {
+      "path": "/api/cron/send-order-emails",
+      "schedule": "0 * * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)\\.(jpg|jpeg|png|gif|webp|avif|svg|ico)",
