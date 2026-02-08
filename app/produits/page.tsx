@@ -234,6 +234,7 @@ export default function ProductsPage() {
         <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden bg-neutral-900">
           <video
             src="https://res.cloudinary.com/dhhdhilja/video/upload/v1770517640/purrball/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4#t=4"
+            poster="https://res.cloudinary.com/dhhdhilja/video/upload/so_4,w_800,f_jpg/v1770517640/purrball/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.jpg"
             className="w-full aspect-video object-cover"
             muted
             loop
