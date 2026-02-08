@@ -66,7 +66,8 @@ export default function CartDropdown() {
   }
 
   // Show fountain if user has toys (or only free items), show toy if user has fountain
-  const recommendation = hasFountain && !hasToy ? toyRec : fountainRec
+  // Don't recommend items already in cart
+  const recommendation = hasFountain && hasToy ? null : hasFountain ? toyRec : fountainRec
 
   return (
     <>
@@ -220,6 +221,7 @@ export default function CartDropdown() {
                     </div>
                   ))}
                   {/* Recommended Product */}
+                  {recommendation && (
                   <div className="px-4 py-4 bg-neutral-50 border-t border-neutral-100">
                     <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mb-3">
                       {isFr ? 'Complétez votre commande' : 'Complete your order'}
@@ -243,6 +245,7 @@ export default function CartDropdown() {
                       </div>
                     </Link>
                   </div>
+                  )}
                 </div>
 
                 {/* Footer */}
