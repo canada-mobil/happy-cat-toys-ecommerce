@@ -134,10 +134,11 @@ export default function GuidePage() {
         <div className="max-w-4xl mx-auto">
           <div className="relative aspect-video rounded-2xl overflow-hidden bg-neutral-100">
             <Image
-              src="/cat-care-guide.jpg"
+              src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517653/purrball/guide.webp"
               alt="Guide de soins pour chats"
               fill
               className="object-cover"
+              loading="lazy"
             />
           </div>
         </div>

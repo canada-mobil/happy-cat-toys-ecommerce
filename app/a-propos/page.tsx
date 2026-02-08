@@ -1,6 +1,5 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import Image from "next/image"
 import { Heart, Leaf, Truck, Shield, Award, Users, MapPin, Cat } from "lucide-react"
 
 export default function AboutPage() {
@@ -89,14 +88,7 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div className="relative aspect-square rounded-2xl overflow-hidden">
-            <Image
-              src="https://images.unsplash.com/photo-1556582305-06b8a7d5471b?w=600&h=600&fit=crop&crop=center"
-              alt="Notre équipe et nos chats"
-              fill
-              className="object-cover"
-            />
-          </div>
+          <div className="hidden" />
         </div>
       </section>
 
