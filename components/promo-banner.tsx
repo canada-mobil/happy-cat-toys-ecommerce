@@ -53,15 +53,12 @@ export default function PromoBanner() {
           <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-neutral-50 to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-neutral-50 to-transparent z-10" />
           
-          <div className="flex animate-marquee">
-            {/* First set */}
-            {badges.map((badge, i) => (
-              <BadgeItem key={`a-${i}`} {...badge} />
-            ))}
-            {/* Duplicate for seamless loop */}
-            {badges.map((badge, i) => (
-              <BadgeItem key={`b-${i}`} {...badge} />
-            ))}
+          <div className="flex animate-marquee will-change-transform">
+            {[0, 1, 2, 3].map(set =>
+              badges.map((badge, i) => (
+                <BadgeItem key={`${set}-${i}`} {...badge} />
+              ))
+            )}
           </div>
         </div>
 
