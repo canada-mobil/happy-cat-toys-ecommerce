@@ -148,7 +148,7 @@ export async function POST(req: NextRequest) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: 'Purrball <onboarding@resend.dev>',
+      from: 'Purrball <noreply@purrball.ca>',
       to: [email],
       subject: `🐱 Order Confirmed — #${orderNumber}`,
       html,
