@@ -17,13 +17,65 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Purrball - Jouets Premium pour Chats",
-  description: "Découvrez notre collection de jouets premium pour chats chez Purrball. Livraison gratuite au Canada. Satisfaction garantie.",
-  generator: 'v0.app',
+  title: {
+    default: 'Purrball - Jouets Premium pour Chats | Accessoires Chat Canada',
+    template: '%s | Purrball',
+  },
+  description: 'Boutique en ligne de jouets pour chat, fontaines a eau et accessoires premium. Livraison gratuite au Canada. Jouets interactifs, fournitures chat, produits naturels. Satisfaction garantie.',
+  keywords: [
+    'jouets pour chat', 'jouets chat interactifs', 'accessoires chat', 'fontaine eau chat',
+    'jouets stimulants chat', 'balle jouet chat', 'produits chat Canada', 'fournitures chat',
+    'jouets pour chat interieur', 'jouets pour chaton', 'produits naturels pour chat',
+    'boutique chat en ligne Quebec', 'livraison gratuite chat Canada', 'jouets chat Canada',
+    'cat toys', 'interactive cat toys', 'cat accessories', 'cat water fountain',
+    'premium cat toys Canada', 'cat supplies online', 'best cat toys',
+  ],
+  authors: [{ name: 'Purrball' }],
+  creator: 'Purrball',
+  publisher: 'Purrball',
+  metadataBase: new URL('https://purrball.ca'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'fr_CA',
+    alternateLocale: 'en_CA',
+    url: 'https://purrball.ca',
+    siteName: 'Purrball',
+    title: 'Purrball - Jouets Premium pour Chats | Livraison Gratuite Canada',
+    description: 'Decouvrez notre collection de jouets premium et accessoires pour chats. Fontaines a eau, jouets interactifs, produits naturels. Livraison gratuite au Canada.',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Purrball - Jouets Premium pour Chats',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Purrball - Jouets Premium pour Chats',
+    description: 'Jouets interactifs, fontaines a eau et accessoires premium pour chats. Livraison gratuite au Canada.',
+    images: ['https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: '/icon.png',
     apple: '/icon.png',
   },
+  verification: {},
 }
 
 export default function RootLayout({
