@@ -173,6 +173,30 @@ export const en = {
     continueShop: "Continue shopping",
   },
 
+  // Guide Page Do's list
+  guideDos: [
+    { title: "Balanced Diet", desc: "Provide quality food suited to your cat's age and needs. Follow recommended portions." },
+    { title: "Fresh Water Always", desc: "Change your cat's water every day. Water fountains encourage hydration." },
+    { title: "Daily Exercise", desc: "Play with your cat at least 15-20 minutes a day to keep them active and mentally stimulated." },
+    { title: "Comfortable Rest Space", desc: "Provide quiet and cozy spots where your cat can rest and feel safe." },
+    { title: "Regular Vet Visits", desc: "Take your cat to the vet at least once a year for a complete health checkup." },
+    { title: "Clean Litter Box", desc: "Clean the litter box daily and change it completely every week." },
+    { title: "Proper Scratching Post", desc: "Provide a scratching post to allow your cat to scratch naturally." },
+    { title: "Love and Attention", desc: "Spend quality time with your cat. Cuddles and affection strengthen your bond." },
+  ],
+  guideDonts: [
+    { title: "Toxic Foods", desc: "Avoid chocolate, onion, garlic, grapes, avocado and excessive dairy products." },
+    { title: "Extreme Temperatures", desc: "Never leave your cat in a hot car or exposed to intense cold." },
+    { title: "Dangerous Plants", desc: "Keep lilies, poinsettia, aloe vera and other toxic plants away from cats." },
+    { title: "Ignoring Warning Signs", desc: "Don't ignore changes in behavior or appetite that may indicate a health problem." },
+    { title: "Physical Punishment", desc: "Never hit or yell at your cat. Use positive reinforcement for training." },
+    { title: "Forcing Interactions", desc: "Respect your cat's space. Don't force them to be cuddled if they don't want to." },
+  ],
+  guideHealth: [
+    { title: "Signs of a healthy cat", items: ["Shiny and clean coat", "Clear and bright eyes", "Regular appetite", "Active and curious behavior", "Stable weight", "Normal breathing"] },
+    { title: "Signs to watch for", items: ["Prolonged loss of appetite", "Unusual lethargy", "Frequent vomiting", "Changes in litter habits", "Sudden weight loss", "Breathing difficulties"] },
+  ],
+
   // Guide Page
   guide: {
     title: "Cat Care Guide",

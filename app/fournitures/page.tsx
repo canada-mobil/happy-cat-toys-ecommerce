@@ -8,9 +8,11 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { products } from "@/lib/products"
 import { useCart } from "@/lib/cart-context"
+import { useI18n } from "@/lib/i18n-context"
 
 export default function FournituresPage() {
   const { addItem } = useCart()
+  const { t } = useI18n()
   const fountain = products.find(p => p.id === "purr-fountain-f1")!
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -48,10 +50,10 @@ export default function FournituresPage() {
   }
 
   const highlights = [
-    { icon: Droplets, title: "Sans Pompe", desc: "Technologie MagDrive™ ultra silencieuse" },
-    { icon: Zap, title: "Capteur Intelligent", desc: "Détecte automatiquement votre chat" },
-    { icon: Shield, title: "Sécuritaire", desc: "Séparation eau-électricité" },
-    { icon: Volume2, title: "Silencieux", desc: "Moins de 30dB en fonctionnement" },
+    { icon: Droplets, title: t.fournituresPage.pumpless, desc: t.fournituresPage.pumplessDesc },
+    { icon: Zap, title: t.fournituresPage.smartSensor, desc: t.fournituresPage.smartSensorDesc },
+    { icon: Shield, title: t.fournituresPage.safe, desc: t.fournituresPage.safeDesc },
+    { icon: Volume2, title: t.fournituresPage.quiet, desc: t.fournituresPage.quietDesc },
   ]
 
   return (
@@ -70,12 +72,12 @@ export default function FournituresPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/30 to-transparent" />
         <div className="absolute bottom-8 left-6 md:left-12 z-10">
-          <p className="text-xs uppercase tracking-widest text-neutral-500 mb-2">Collection</p>
+          <p className="text-xs uppercase tracking-widest text-neutral-500 mb-2">{t.fournituresPage.collection}</p>
           <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 tracking-tight">
-            Fournitures
+            {t.fournituresPage.title}
           </h1>
           <p className="text-neutral-600 text-sm md:text-base mt-2 max-w-md">
-            Tout ce dont votre chat a besoin pour une vie saine et heureuse.
+            {t.fournituresPage.subtitle}
           </p>
         </div>
       </section>
@@ -86,13 +88,13 @@ export default function FournituresPage() {
           {/* Section Title */}
           <div className="text-center mb-10 md:mb-16">
             <span className="inline-block bg-brand/10 text-brand text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4">
-              Nouveau
+              {t.fournituresPage.new}
             </span>
             <h2 className="text-2xl md:text-4xl font-bold text-neutral-900 tracking-tight mb-3">
               Purr Fountain F1
             </h2>
             <p className="text-neutral-500 text-sm md:text-base max-w-xl mx-auto">
-              La fontaine à eau intelligente sans pompe qui garde votre chat hydraté avec de l'eau fraîche et filtrée.
+              {t.fournituresPage.productSubtitle}
             </p>
           </div>
 
@@ -116,9 +118,9 @@ export default function FournituresPage() {
             {/* Right: Product Info */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <span className="border border-neutral-200 text-neutral-500 text-[11px] font-medium px-3 py-1 rounded-full uppercase tracking-wide">Fournitures</span>
+                <span className="border border-neutral-200 text-neutral-500 text-[11px] font-medium px-3 py-1 rounded-full uppercase tracking-wide">{t.fournituresPage.title}</span>
                 <span className="bg-red-500 text-white text-[11px] font-semibold px-3 py-1 rounded-full">
-                  Économisez {Math.round((1 - fountain.price / fountain.originalPrice) * 100)}%
+                  {t.fournituresPage.save} {Math.round((1 - fountain.price / fountain.originalPrice) * 100)}%
                 </span>
               </div>
 
@@ -130,7 +132,7 @@ export default function FournituresPage() {
                     <Star key={i} className={`w-4 h-4 ${i < Math.floor(fountain.rating) ? 'text-yellow-400 fill-yellow-400' : 'text-neutral-200'}`} />
                   ))}
                 </div>
-                <span className="text-xs text-neutral-400 ml-1">{fountain.rating} ({fountain.reviewCount} avis)</span>
+                <span className="text-xs text-neutral-400 ml-1">{fountain.rating} ({fountain.reviewCount} {t.fournituresPage.reviews})</span>
               </div>
 
               <div className="flex items-center gap-3 mb-3">
@@ -141,7 +143,7 @@ export default function FournituresPage() {
               {/* #PAWPAW discount badge */}
               <div className="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 rounded-full px-3 py-1.5 mb-6">
                 <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                <span className="text-green-700 text-xs font-medium">Rabais <span className="font-bold">#PAWPAW</span> -{Math.round((1 - fountain.price / fountain.originalPrice) * 100)}% appliqué automatiquement</span>
+                <span className="text-green-700 text-xs font-medium">{t.fournituresPage.discount} <span className="font-bold">#PAWPAW</span> -{Math.round((1 - fountain.price / fountain.originalPrice) * 100)}% {t.fournituresPage.discountApplied}</span>
               </div>
 
               <p className="text-neutral-600 text-sm leading-relaxed mb-6">{fountain.description}</p>
@@ -161,13 +163,13 @@ export default function FournituresPage() {
                   className="flex-1 bg-brand hover:bg-brand-dark text-white py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2"
                 >
                   <ShoppingCart className="w-4 h-4" />
-                  Ajouter au panier
+                  {t.fournituresPage.addToCart}
                 </button>
                 <Link
                   href={`/produits/${fountain.id}`}
                   className="flex-1 border border-brand text-brand hover:bg-brand hover:text-white py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all text-center"
                 >
-                  Voir détails
+                  {t.fournituresPage.viewDetails}
                 </Link>
               </div>
             </div>
@@ -188,10 +190,10 @@ export default function FournituresPage() {
           {/* CTA Section */}
           <div className="bg-neutral-900 rounded-3xl p-8 md:p-12 text-center">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-              Offrez de l'eau fraîche à votre chat
+              {t.fournituresPage.ctaTitle}
             </h3>
             <p className="text-neutral-400 text-sm md:text-base mb-6 max-w-lg mx-auto">
-              Commandez maintenant et profitez de la livraison gratuite. Votre chat mérite le meilleur.
+              {t.fournituresPage.ctaSubtitle}
             </p>
             <div className="flex items-center justify-center gap-3 mb-4">
               <span className="text-3xl font-bold text-white">CA${fountain.price.toFixed(2)}</span>
@@ -202,7 +204,7 @@ export default function FournituresPage() {
               className="bg-brand hover:bg-brand-dark text-white px-10 py-4 rounded-full font-medium text-sm uppercase tracking-wider transition-all inline-flex items-center gap-2"
             >
               <ShoppingCart className="w-4 h-4" />
-              Ajouter au panier — CA${fountain.price.toFixed(2)}
+              {t.fournituresPage.addToCart} — CA${fountain.price.toFixed(2)}
             </button>
           </div>
         </div>
@@ -212,7 +214,7 @@ export default function FournituresPage() {
       <section className="px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <h3 className="text-xl md:text-2xl font-bold text-neutral-900 tracking-tight mb-6 text-center">
-            Voir la Purr Fountain F1 en action
+            {t.fournituresPage.videoTitle}
           </h3>
           <div
             className="relative rounded-2xl overflow-hidden bg-neutral-900 cursor-pointer group"

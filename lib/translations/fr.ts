@@ -173,6 +173,30 @@ export const fr = {
     continueShop: "Continuer vos achats",
   },
 
+  // Guide Page Do's list
+  guideDos: [
+    { title: "Alimentation équilibrée", desc: "Donnez une nourriture de qualité adaptée à l'âge et aux besoins de votre chat. Respectez les portions recommandées." },
+    { title: "Eau fraîche en permanence", desc: "Changez l'eau de votre chat tous les jours. Les fontaines à eau encouragent l'hydratation." },
+    { title: "Exercice quotidien", desc: "Jouez avec votre chat au moins 15-20 minutes par jour pour le garder actif et stimulé mentalement." },
+    { title: "Espace de repos confortable", desc: "Offrez des endroits calmes et douillets où votre chat peut se reposer et se sentir en sécurité." },
+    { title: "Visites vétérinaires régulières", desc: "Emmenez votre chat chez le vétérinaire au moins une fois par an pour un bilan de santé complet." },
+    { title: "Litière propre", desc: "Nettoyez la litière quotidiennement et changez-la complètement chaque semaine." },
+    { title: "Griffoir adapté", desc: "Fournissez un griffoir pour permettre à votre chat de faire ses griffes naturellement." },
+    { title: "Affection et attention", desc: "Passez du temps de qualité avec votre chat. Les câlins et la tendresse renforcent votre lien." },
+  ],
+  guideDonts: [
+    { title: "Aliments toxiques", desc: "Évitez le chocolat, l'oignon, l'ail, le raisin, l'avocat et les produits laitiers en excès." },
+    { title: "Températures extrêmes", desc: "Ne laissez jamais votre chat dans une voiture chaude ou exposé au froid intense." },
+    { title: "Plantes dangereuses", desc: "Éloignez les lys, le poinsettia, l'aloe vera et autres plantes toxiques pour les chats." },
+    { title: "Négliger les signaux", desc: "Ne pas ignorer les changements de comportement ou d'appétit qui peuvent indiquer un problème de santé." },
+    { title: "Punitions physiques", desc: "Ne jamais frapper ou crier sur votre chat. Utilisez le renforcement positif pour l'éducation." },
+    { title: "Forcer les interactions", desc: "Respectez l'espace de votre chat. Ne le forcez pas à être câliné s'il ne le souhaite pas." },
+  ],
+  guideHealth: [
+    { title: "Signes d'un chat en bonne santé", items: ["Pelage brillant et propre", "Yeux clairs et vifs", "Appétit régulier", "Comportement actif et curieux", "Poids stable", "Respiration normale"] },
+    { title: "Signes à surveiller", items: ["Perte d'appétit prolongée", "Léthargie inhabituelle", "Vomissements fréquents", "Changements dans la litière", "Perte de poids soudaine", "Difficultés respiratoires"] },
+  ],
+
   // Guide Page
   guide: {
     title: "Guide de Soins pour Chats",

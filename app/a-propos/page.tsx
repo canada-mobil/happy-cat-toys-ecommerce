@@ -1,36 +1,25 @@
+"use client"
+
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Heart, Leaf, Truck, Shield, Award, Users, MapPin, Cat } from "lucide-react"
+import { useI18n } from "@/lib/i18n-context"
 
 export default function AboutPage() {
+  const { t } = useI18n()
+
   const values = [
-    {
-      icon: Heart,
-      title: "Passion pour les Chats",
-      description: "Chaque produit est choisi avec amour par notre équipe de passionnés de félins."
-    },
-    {
-      icon: Leaf,
-      title: "Qualité Premium",
-      description: "Nous sélectionnons uniquement des jouets sûrs et durables pour votre compagnon."
-    },
-    {
-      icon: Truck,
-      title: "Livraison Rapide",
-      description: "Expédition en 24h et livraison en 2-3 jours partout au Canada."
-    },
-    {
-      icon: Shield,
-      title: "Garantie 2 Mois",
-      description: "Tous nos produits sont couverts par notre garantie satisfaction de 2 mois."
-    }
+    { icon: Heart, title: t.about.passion, description: t.about.passionDesc },
+    { icon: Leaf, title: t.about.quality, description: t.about.qualityDesc },
+    { icon: Truck, title: t.about.fastDelivery, description: t.about.fastDeliveryDesc },
+    { icon: Shield, title: t.about.guaranteeTitle, description: t.about.guaranteeDesc },
   ]
 
   const stats = [
-    { number: "50,000+", label: "Chats Heureux" },
-    { number: "2-3", label: "Jours de Livraison" },
-    { number: "100%", label: "Canadien" },
-    { number: "2 mois", label: "Garantie" }
+    { number: "50,000+", label: t.about.happyCats },
+    { number: "2-3", label: t.about.deliveryDays },
+    { number: "100%", label: t.about.canadian },
+    { number: "2 mois", label: t.about.warranty },
   ]
 
   return (
@@ -44,10 +33,10 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto text-center">
             <Cat className="w-12 h-12 text-white/80 mx-auto mb-6" />
             <h1 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">
-              À Propos de Purrball
+              {t.about.title}
             </h1>
             <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              Une entreprise canadienne dédiée au bonheur et au bien-être de vos compagnons félins depuis 2020.
+              {t.about.subtitle}
             </p>
           </div>
         </div>
@@ -70,22 +59,12 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-6 tracking-tight">
-              Notre Histoire
+              {t.about.storyTitle}
             </h2>
             <div className="space-y-4 text-neutral-500 text-sm leading-relaxed">
-              <p>
-                Purrball est née d'une passion simple : rendre les chats heureux. Fondée en 2020 
-                à Montréal par une équipe d'amoureux des félins, notre mission est de fournir aux 
-                parents de chats les meilleurs jouets et accessoires pour leurs compagnons.
-              </p>
-              <p>
-                Après avoir constaté le manque d'options de qualité sur le marché canadien, nous avons 
-                décidé de créer une boutique qui reflète nos valeurs : qualité, sécurité et bien-être animal.
-              </p>
-              <p>
-                Aujourd'hui, nous sommes fiers d'avoir rendu plus de 50,000 chats heureux à travers le Canada, 
-                et nous continuons à grandir grâce à votre confiance et vos recommandations.
-              </p>
+              <p>{t.about.story1}</p>
+              <p>{t.about.story2}</p>
+              <p>{t.about.story3}</p>
             </div>
           </div>
           <div className="hidden" />
@@ -96,7 +75,7 @@ export default function AboutPage() {
       <section className="py-20 px-4 bg-neutral-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 text-center mb-12 tracking-tight">
-            Nos Valeurs
+            {t.about.valuesTitle}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value) => (
@@ -116,10 +95,10 @@ export default function AboutPage() {
       <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 text-center mb-4 tracking-tight">
-            Pourquoi Nous Choisir?
+            {t.about.whyTitle}
           </h2>
           <p className="text-center text-neutral-400 mb-12 max-w-2xl mx-auto text-sm">
-            Nous nous engageons à offrir la meilleure expérience d'achat pour vous et votre chat.
+            {t.about.whySubtitle}
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -127,30 +106,24 @@ export default function AboutPage() {
               <div className="w-14 h-14 bg-brand rounded-full flex items-center justify-center mb-4">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-medium text-neutral-900 mb-2 text-sm">100% Canadien</h3>
-              <p className="text-neutral-400 text-xs leading-relaxed">
-                Entreprise locale basée à Montréal. Nous expédions depuis le Canada pour une livraison rapide et sans frais de douane.
-              </p>
+              <h3 className="font-medium text-neutral-900 mb-2 text-sm">{t.about.localTitle}</h3>
+              <p className="text-neutral-400 text-xs leading-relaxed">{t.about.localDesc}</p>
             </div>
 
             <div className="flex flex-col items-center text-center">
               <div className="w-14 h-14 bg-brand rounded-full flex items-center justify-center mb-4">
                 <Truck className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-medium text-neutral-900 mb-2 text-sm">Livraison Gratuite</h3>
-              <p className="text-neutral-400 text-xs leading-relaxed">
-                Livraison gratuite sur toutes les commandes de plus de 50$. Recevez vos produits en 2-3 jours ouvrables.
-              </p>
+              <h3 className="font-medium text-neutral-900 mb-2 text-sm">{t.about.freeShipTitle}</h3>
+              <p className="text-neutral-400 text-xs leading-relaxed">{t.about.freeShipDesc}</p>
             </div>
 
             <div className="flex flex-col items-center text-center">
               <div className="w-14 h-14 bg-brand rounded-full flex items-center justify-center mb-4">
                 <Award className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-medium text-neutral-900 mb-2 text-sm">Qualité Garantie</h3>
-              <p className="text-neutral-400 text-xs leading-relaxed">
-                Garantie de 2 ans sur tous nos produits. Satisfait ou remboursé sous 30 jours, sans questions.
-              </p>
+              <h3 className="font-medium text-neutral-900 mb-2 text-sm">{t.about.qualityGuarantee}</h3>
+              <p className="text-neutral-400 text-xs leading-relaxed">{t.about.qualityGuaranteeDesc}</p>
             </div>
           </div>
         </div>
@@ -161,17 +134,15 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto text-center">
           <Users className="w-10 h-10 text-white/60 mx-auto mb-4" />
           <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4 tracking-tight">
-            Notre Équipe
+            {t.about.teamTitle}
           </h2>
           <p className="text-white/60 leading-relaxed mb-8 max-w-2xl mx-auto text-sm">
-            Nous sommes une petite équipe passionnée de 12 personnes, tous propriétaires de chats. 
-            Chaque jour, nous travaillons avec amour pour sélectionner les meilleurs produits 
-            et vous offrir un service client exceptionnel.
+            {t.about.teamDesc}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <span className="bg-white/10 text-white/80 px-4 py-2 rounded-full text-xs">12 Employés</span>
-            <span className="bg-white/10 text-white/80 px-4 py-2 rounded-full text-xs">15+ Chats au Bureau</span>
-            <span className="bg-white/10 text-white/80 px-4 py-2 rounded-full text-xs">Montréal, QC</span>
+            <span className="bg-white/10 text-white/80 px-4 py-2 rounded-full text-xs">{t.about.employees}</span>
+            <span className="bg-white/10 text-white/80 px-4 py-2 rounded-full text-xs">{t.about.officeCats}</span>
+            <span className="bg-white/10 text-white/80 px-4 py-2 rounded-full text-xs">{t.about.location}</span>
           </div>
         </div>
       </section>
@@ -180,16 +151,16 @@ export default function AboutPage() {
       <section className="py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-4 tracking-tight">
-            Prêt à Rendre Votre Chat Heureux?
+            {t.about.ctaTitle}
           </h2>
           <p className="text-neutral-400 mb-8 text-sm">
-            Découvrez notre collection de jouets premium sélectionnés avec amour.
+            {t.about.ctaSubtitle}
           </p>
           <a
             href="/produits"
             className="inline-block bg-brand text-white px-8 py-3.5 rounded-full font-medium text-sm hover:bg-brand-dark transition-all hover:scale-[1.02]"
           >
-            Voir Nos Produits
+            {t.about.ctaButton}
           </a>
         </div>
       </section>
