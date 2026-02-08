@@ -62,6 +62,7 @@ export default function ProductsPage() {
                 fill
                 sizes="100vw"
                 className="object-cover"
+                loading="lazy"
               />
             </div>
 
@@ -162,6 +163,7 @@ export default function ProductsPage() {
                 fill
                 sizes="50vw"
                 className="object-cover"
+                loading="lazy"
               />
             </div>
           </div>
@@ -188,6 +190,7 @@ export default function ProductsPage() {
                     fill
                     sizes="(max-width: 768px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                 </div>
                 <div className="px-1">
@@ -220,17 +223,17 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Product Video - autoplay on load */}
+      {/* Product Video - lazy load with click to play */}
       <section className="px-4 py-12">
         <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden bg-neutral-900">
           <video
-            src="/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4#t=4"
+            src="https://res.cloudinary.com/dhhdhilja/video/upload/v1770517640/purrball/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4"
             className="w-full aspect-video object-cover"
-            autoPlay
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
+            controls
           />
         </div>
       </section>
