@@ -10,58 +10,21 @@ const slides = [
     subtitle: "Le jouet intelligent pour chats curieux",
     href: "/produits/smart-interactive-ball",
   },
-  {
-    video: "https://res.cloudinary.com/dhhdhilja/video/upload/v1770517660/purrball/home2.mp4",
-    title: "Wicked Ball M3",
-    subtitle: "La balle douce et robuste pour chats",
-    href: "/produits/wicked-ball-m3",
-  },
 ]
 
 export default function HeroSection() {
-  const [activeSlide, setActiveSlide] = useState(0)
-  const touchStartX = useRef(0)
-  const touchEndX = useRef(0)
-
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
-  }, [])
-
-  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
-    touchEndX.current = e.changedTouches[0].clientX
-    const diff = touchStartX.current - touchEndX.current
-    if (Math.abs(diff) > 50) {
-      if (diff > 0 && activeSlide < slides.length - 1) {
-        setActiveSlide(activeSlide + 1)
-      } else if (diff < 0 && activeSlide > 0) {
-        setActiveSlide(activeSlide - 1)
-      }
-    }
-  }, [activeSlide])
+  const slide = slides[0]
 
   return (
     <>
-      {/* Mobile: Full-screen video hero carousel */}
-      <section
-        className="relative md:hidden w-full h-[100svh] overflow-hidden bg-neutral-900"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
+      {/* Mobile: Full-screen video hero */}
+      <section className="relative md:hidden w-full h-[100svh] overflow-hidden bg-neutral-900">
         {/* Video Background */}
-        {slides.map((slide, i) => (
-          <div
-            key={i}
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              i === activeSlide ? 'opacity-100 z-[1]' : 'opacity-0 z-0'
-            }`}
-          >
-            <VideoHero
-              src={slide.video}
-              className="absolute inset-0 w-full h-full object-cover"
-              preload={i === activeSlide ? "auto" : "none"}
-            />
-          </div>
-        ))}
+        <VideoHero
+          src={slide.video}
+          className="absolute inset-0 w-full h-full object-cover"
+          preload="auto"
+        />
 
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-[2]" />
@@ -69,30 +32,17 @@ export default function HeroSection() {
         {/* Content overlay at bottom */}
         <div className="absolute bottom-0 left-0 right-0 p-6 pb-10 z-10">
           <h1 className="text-3xl font-semibold text-white leading-tight tracking-tight mb-2">
-            {slides[activeSlide].title}
+            {slide.title}
           </h1>
           <p className="text-white/70 text-sm mb-6">
-            {slides[activeSlide].subtitle}
+            {slide.subtitle}
           </p>
           <a
-            href={slides[activeSlide].href}
+            href={slide.href}
             className="inline-block bg-brand text-white font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:bg-brand-dark transition-all"
           >
             SHOP NOW
           </a>
-        </div>
-
-        {/* Dots indicator */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveSlide(i)}
-              className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                i === activeSlide ? 'bg-white' : 'bg-white/40'
-              }`}
-            />
-          ))}
         </div>
       </section>
 
@@ -131,7 +81,7 @@ export default function HeroSection() {
           <div className="flex-1 relative">
             <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl bg-neutral-900">
               <VideoHero
-                src="https://res.cloudinary.com/dhhdhilja/video/upload/v1770517656/purrball/hoeme1.mp4"
+                src={slide.video}
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
