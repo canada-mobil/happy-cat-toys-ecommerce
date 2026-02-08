@@ -9,11 +9,13 @@ import BenefitsSection from "@/components/benefits-section"
 import { products } from "@/lib/products"
 import { useCart } from "@/lib/cart-context"
 import { useI18n } from "@/lib/i18n-context"
+import { useLocalizedProduct } from "@/lib/use-localized-product"
 
 export default function ProductsPage() {
   const { addItem } = useCart()
   const { t } = useI18n()
-  const product = products[0]
+  const { localize } = useLocalizedProduct()
+  const product = localize(products[0])
 
   const handleAddToCart = () => {
     addItem({
@@ -180,7 +182,9 @@ export default function ProductsPage() {
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {products.filter(p => p.category !== 'Fournitures').map((p) => (
+            {products.filter(p => p.category !== 'Fournitures').map((rawP) => {
+              const p = localize(rawP)
+              return (
               <Link key={p.id} href={`/produits/${p.id}`} className="group block">
                 <div className="relative aspect-square bg-white rounded-2xl overflow-hidden mb-4 border border-neutral-100">
                   <span className="absolute top-3 right-3 z-10 bg-red-500 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full">
@@ -220,7 +224,7 @@ export default function ProductsPage() {
                   </button>
                 </div>
               </Link>
-            ))}
+            )})}
           </div>
         </div>
       </section>

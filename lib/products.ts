@@ -16,7 +16,9 @@ export interface Product {
   id: string
   name: string
   description: string
+  descriptionEn: string
   longDescription: string
+  longDescriptionEn: string
   price: number
   originalPrice: number
   image: string
@@ -27,8 +29,11 @@ export interface Product {
   inStock: boolean
   stockCount: number
   features: string[]
+  featuresEn: string[]
   materials: string
+  materialsEn: string
   shipping: string
+  shippingEn: string
   reviewCount: number
   rating: number
 }
@@ -38,7 +43,9 @@ export const products: Product[] = [
     id: "smart-interactive-ball",
     name: "Smart Interactive Cats Ball Toy",
     description: "Jouet balle interactive intelligente qui roule, rebondit et stimule l'instinct de chasse de votre chat.",
+    descriptionEn: "Smart interactive ball toy that rolls, bounces and stimulates your cat's hunting instinct.",
     longDescription: "Transformez le temps de jeu de votre chat en une aventure ! La Smart Interactive Cats Ball Toy est conçue pour éveiller la curiosité et l'énergie de votre félin grâce à ses mouvements de roulement, de secousse et de rebond qui imitent une proie naturelle. Rechargeable par USB, matériaux écologiques et sécuritaires.",
+    longDescriptionEn: "Transform your cat's playtime into an adventure! The Smart Interactive Cats Ball Toy is designed to awaken your feline's curiosity and energy with rolling, shaking and bouncing movements that mimic natural prey. USB rechargeable, eco-friendly and safe materials.",
     price: 4.99,
     originalPrice: 11.99,
     image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517783/purrball/smart_interactive_cats_ball_toy_red.png.webp",
@@ -72,8 +79,18 @@ export const products: Product[] = [
       "Silencieux - ne dérange pas votre sommeil",
       "Stimule l'instinct de chasse naturel"
     ],
+    featuresEn: [
+      "Smart self-rolling movement",
+      "3 interactive play modes",
+      "USB rechargeable (2h battery life)",
+      "Eco-friendly and non-toxic materials",
+      "Silent - won't disturb your sleep",
+      "Stimulates natural hunting instinct"
+    ],
     materials: "Plastique ABS écologique non toxique, silicone alimentaire, batterie lithium rechargeable. Sans BPA.",
+    materialsEn: "Eco-friendly non-toxic ABS plastic, food-grade silicone, rechargeable lithium battery. BPA-free.",
     shipping: "Expédition en 24h. Livraison garantie avec Canada Post. Livraison gratuite pour les commandes de 2+ unités.",
+    shippingEn: "Ships within 24h. Guaranteed delivery with Canada Post. Free shipping on orders of 2+ units.",
     reviewCount: 325,
     rating: 4.8
   },
@@ -81,7 +98,9 @@ export const products: Product[] = [
     id: "wicked-ball-m3",
     name: "Wicked Ball M3",
     description: "La balle douce et robuste pour chats avec jeu multi-scénarios. Stimule l'instinct de chasse avec des mouvements imprévisibles.",
+    descriptionEn: "Soft and durable ball for cats with multi-scenario play. Stimulates hunting instinct with unpredictable movements.",
     longDescription: "Le Wicked Ball M3 est le compagnon de jeu ultime pour votre chat. Sa surface douce en peluche protège les pattes délicates tout en offrant des mouvements intelligents et imprévisibles. Avec plusieurs modes de jeu, il garde votre chat actif et stimulé même quand vous n'êtes pas là. Rechargeable par USB, silencieux et durable.",
+    longDescriptionEn: "The Wicked Ball M3 is the ultimate play companion for your cat. Its soft plush surface protects delicate paws while offering smart and unpredictable movements. With multiple play modes, it keeps your cat active and stimulated even when you're not around. USB rechargeable, silent and durable.",
     price: 6.99,
     originalPrice: 15.75,
     image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517594/purrball/Section1-Productimages-M3Red1-monderncat_jpg.jpg.webp",
@@ -114,8 +133,18 @@ export const products: Product[] = [
       "Matériaux non toxiques et durables",
       "Active l'instinct de chasse naturel"
     ],
+    featuresEn: [
+      "Soft plush surface - protects paws",
+      "Smart multi-scenario movements",
+      "USB rechargeable (3h battery life)",
+      "Built-in silent mode",
+      "Non-toxic and durable materials",
+      "Activates natural hunting instinct"
+    ],
     materials: "Peluche douce premium, plastique ABS écologique, batterie lithium rechargeable. Sans BPA, non toxique.",
+    materialsEn: "Premium soft plush, eco-friendly ABS plastic, rechargeable lithium battery. BPA-free, non-toxic.",
     shipping: "Expédition en 24h. Livraison garantie avec Canada Post. Livraison gratuite pour les commandes de 2+ unités.",
+    shippingEn: "Ships within 24h. Guaranteed delivery with Canada Post. Free shipping on orders of 2+ units.",
     reviewCount: 198,
     rating: 4.7
   },
@@ -123,7 +152,9 @@ export const products: Product[] = [
     id: "mouse-plus",
     name: "Mouse PLUS",
     description: "Jouet souris interactive qui imite les mouvements d'une vraie souris. Stimule l'instinct de chasse avec des déplacements imprévisibles.",
+    descriptionEn: "Interactive mouse toy that mimics real mouse movements. Stimulates hunting instinct with unpredictable movements.",
     longDescription: "Le Mouse PLUS offre une expérience de chasse réaliste pour votre chat grâce à ses mouvements aléatoires qui imitent une vraie souris. Avec 2 modes de vitesse, un système anti-perte par bip sonore, et un équilibre jeu/repos automatique (10 min de jeu, 30 min de repos), il garde votre chat actif et stimulé. Rechargeable par USB-C, roues détachables et évitement d'obstacles automatique.",
+    longDescriptionEn: "The Mouse PLUS offers a realistic hunting experience for your cat with random movements that mimic a real mouse. With 2 speed modes, an anti-loss beep system, and automatic play/rest balance (10 min play, 30 min rest), it keeps your cat active and stimulated. USB-C rechargeable, detachable wheels and automatic obstacle avoidance.",
     price: 7.99,
     originalPrice: 17.99,
     image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517668/purrball/mouse1.webp",
@@ -159,8 +190,20 @@ export const products: Product[] = [
       "Roues facilement détachables",
       "Batterie 48% plus grande que la Gen 1"
     ],
+    featuresEn: [
+      "Mimics real mouse movements",
+      "2 speed modes (Normal & Gentle)",
+      "Built-in anti-loss beep alert",
+      "Play/rest balance (10 min play, 30 min rest)",
+      "USB-C rechargeable",
+      "Automatic obstacle avoidance",
+      "Easily detachable wheels",
+      "48% larger battery than Gen 1"
+    ],
     materials: "Plastique ABS écologique, roues en silicone, batterie lithium rechargeable USB-C. Sans BPA, non toxique.",
+    materialsEn: "Eco-friendly ABS plastic, silicone wheels, USB-C rechargeable lithium battery. BPA-free, non-toxic.",
     shipping: "Expédition en 24h. Livraison garantie avec Canada Post. Livraison gratuite pour les commandes de 2+ unités.",
+    shippingEn: "Ships within 24h. Guaranteed delivery with Canada Post. Free shipping on orders of 2+ units.",
     reviewCount: 156,
     rating: 4.9
   },
@@ -168,7 +211,9 @@ export const products: Product[] = [
     id: "purr-fountain-f1",
     name: "Purr Fountain F1",
     description: "Fontaine à eau intelligente sans pompe pour chats. Design sans fil, filtration multi-couches et capteur intelligent pour une eau toujours fraîche.",
+    descriptionEn: "Smart pumpless water fountain for cats. Wireless design, multi-layer filtration and smart sensor for always fresh water.",
     longDescription: "La Purr Fountain F1 révolutionne l'hydratation de votre chat grâce à sa technologie MagDrive™ sans pompe. Silencieuse, facile à nettoyer et dotée d'un capteur intelligent qui détecte la présence de votre chat. Double mode de distribution, séparation eau-électricité pour la sécurité, et filtration multi-couches pour une eau pure et fraîche en permanence.",
+    longDescriptionEn: "The Purr Fountain F1 revolutionizes your cat's hydration with its pumpless MagDrive™ technology. Silent, easy to clean and equipped with a smart sensor that detects your cat's presence. Dual dispensing mode, water-electrical separation for safety, and multi-layer filtration for pure and fresh water at all times.",
     price: 27.15,
     originalPrice: 84.00,
     image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517651/purrball/e__pumpless_design.webp",
@@ -210,8 +255,21 @@ export const products: Product[] = [
       "Options d'alimentation flexibles (USB / batterie)",
       "Autonomie longue durée de la batterie"
     ],
+    featuresEn: [
+      "Pumpless design - ultra silent",
+      "Patented MagDrive™ technology",
+      "Smart sensor - detects your cat",
+      "Dual water dispensing mode",
+      "Multi-layer filtration",
+      "Safe water-electrical separation",
+      "Easy cleaning - no hassle",
+      "Flexible power options (USB / battery)",
+      "Long-lasting battery life"
+    ],
     materials: "Plastique alimentaire sans BPA, filtre à charbon actif multi-couches, moteur MagDrive silencieux. Certifié sécuritaire pour animaux.",
+    materialsEn: "BPA-free food-grade plastic, multi-layer activated carbon filter, silent MagDrive motor. Certified safe for pets.",
     shipping: "Expédition en 24h. Livraison garantie avec Canada Post. Livraison gratuite.",
+    shippingEn: "Ships within 24h. Guaranteed delivery with Canada Post. Free shipping.",
     reviewCount: 89,
     rating: 4.8
   }

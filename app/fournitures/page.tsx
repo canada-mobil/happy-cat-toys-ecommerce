@@ -9,11 +9,13 @@ import Footer from "@/components/footer"
 import { products } from "@/lib/products"
 import { useCart } from "@/lib/cart-context"
 import { useI18n } from "@/lib/i18n-context"
+import { useLocalizedProduct } from "@/lib/use-localized-product"
 
 export default function FournituresPage() {
   const { addItem } = useCart()
   const { t } = useI18n()
-  const fountain = products.find(p => p.id === "purr-fountain-f1")!
+  const { localize } = useLocalizedProduct()
+  const fountain = localize(products.find(p => p.id === "purr-fountain-f1")!)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
 

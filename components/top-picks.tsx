@@ -5,23 +5,28 @@ import Link from "next/link"
 import { ShoppingCart } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 import { useI18n } from "@/lib/i18n-context"
+import { useLocalizedProduct } from "@/lib/use-localized-product"
 
 import { products } from "@/lib/products"
-
-const topPicks = products.filter(p => p.category !== 'Fournitures').map((p) => ({
-  id: p.id,
-  name: p.name,
-  description: p.description,
-  price: p.price,
-  originalPrice: p.originalPrice,
-  image: p.image,
-  badge: `SAVE ${Math.round((1 - p.price / p.originalPrice) * 100)}%`,
-  isNew: true,
-}))
 
 export default function TopPicks() {
   const { addItem } = useCart()
   const { t } = useI18n()
+  const { localize } = useLocalizedProduct()
+
+  const topPicks = products.filter(p => p.category !== 'Fournitures').map((p) => {
+    const lp = localize(p)
+    return {
+      id: lp.id,
+      name: lp.name,
+      description: lp.description,
+      price: lp.price,
+      originalPrice: lp.originalPrice,
+      image: lp.image,
+      badge: `SAVE ${Math.round((1 - lp.price / lp.originalPrice) * 100)}%`,
+      isNew: true,
+    }
+  })
 
   const handleAddToCart = (product: typeof topPicks[0], e: React.MouseEvent) => {
     e.preventDefault()

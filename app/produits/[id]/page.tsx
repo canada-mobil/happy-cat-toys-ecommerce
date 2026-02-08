@@ -10,6 +10,7 @@ import { getProductById, getRelatedProducts } from "@/lib/products"
 import { notFound } from "next/navigation"
 import { useCart } from "@/lib/cart-context"
 import ProductReviews from "@/components/product-reviews"
+import { useLocalizedProduct } from "@/lib/use-localized-product"
 
 interface ProductPageProps {
   params: Promise<{ id: string }>
@@ -17,9 +18,11 @@ interface ProductPageProps {
 
 export default function ProductPage({ params }: ProductPageProps) {
   const { id } = use(params)
-  const product = getProductById(id)
+  const rawProduct = getProductById(id)
   const relatedProducts = getRelatedProducts(id)
   const { addItem } = useCart()
+  const { localize, isEn } = useLocalizedProduct()
+  const product = rawProduct ? localize(rawProduct) : null
   
   const [selectedColor, setSelectedColor] = useState(0)
   const [selectedPackage, setSelectedPackage] = useState(0)
@@ -126,7 +129,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="relative flex-1 aspect-square bg-white rounded-xl overflow-hidden">
               {!product.inStock && (
                 <span className="absolute top-4 left-4 z-10 bg-neutral-900 text-white text-xs font-medium px-3 py-1 rounded-full">
-                  ÉPUISÉ
+                  {isEn ? 'SOLD OUT' : 'ÉPUISÉ'}
                 </span>
               )}
               <Image
@@ -177,7 +180,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             {/* #PAWPAW discount badge */}
             <div className="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 rounded-full px-3 py-1.5 mb-6">
               <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-              <span className="text-green-700 text-xs font-medium">Rabais <span className="font-bold">#PAWPAW</span> -{Math.round((1 - currentPrice / product.originalPrice) * 100)}% appliqué automatiquement</span>
+              <span className="text-green-700 text-xs font-medium">{isEn ? 'Discount' : 'Rabais'} <span className="font-bold">#PAWPAW</span> -{Math.round((1 - currentPrice / product.originalPrice) * 100)}% {isEn ? 'applied automatically' : 'appliqué automatiquement'}</span>
             </div>
 
             {/* Divider */}
@@ -248,7 +251,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                 disabled={!product.inStock}
                 className="flex-1 bg-brand hover:bg-brand-dark text-white h-12 rounded-lg font-medium text-sm uppercase tracking-wider transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                ADD TO CART
+                {isEn ? 'ADD TO CART' : 'AJOUTER AU PANIER'}
               </button>
             </div>
 
@@ -256,13 +259,13 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="space-y-3 mb-6">
               <div className="flex items-center gap-2 text-sm text-neutral-600">
                 <Truck className="w-4 h-4 text-neutral-400" />
-                <span>Deliver to <span className="font-medium text-neutral-900 underline">{userProvince}, Canada</span></span>
+                <span>{isEn ? 'Deliver to' : 'Livrer à'} <span className="font-medium text-neutral-900 underline">{userProvince}, Canada</span></span>
               </div>
               <p className="text-sm text-neutral-900 font-medium">
-                Ordered before 11:00 pm
+                {isEn ? 'Ordered before 11:00 pm' : 'Commandé avant 23h'}
               </p>
               <p className="text-sm text-neutral-500">
-                Estimated delivery: <span className="font-medium text-neutral-900">2-3 business days</span>
+                {isEn ? 'Estimated delivery:' : 'Livraison estimée:'} <span className="font-medium text-neutral-900">{isEn ? '2-3 business days' : '2-3 jours ouvrables'}</span>
               </p>
             </div>
 
@@ -273,19 +276,19 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="grid grid-cols-2 gap-3 mb-6">
               <div className="flex items-center gap-2.5 text-xs text-neutral-500">
                 <Truck className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                <span>Livraison gratuite</span>
+                <span>{isEn ? 'Free shipping' : 'Livraison gratuite'}</span>
               </div>
               <div className="flex items-center gap-2.5 text-xs text-neutral-500">
                 <Shield className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                <span>Garantie 2 mois</span>
+                <span>{isEn ? '2-month warranty' : 'Garantie 2 mois'}</span>
               </div>
               <div className="flex items-center gap-2.5 text-xs text-neutral-500">
                 <Leaf className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                <span>Éco-responsable</span>
+                <span>{isEn ? 'Eco-friendly' : 'Éco-responsable'}</span>
               </div>
               <div className="flex items-center gap-2.5 text-xs text-neutral-500">
                 <Clock className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                <span>Expédition 24h</span>
+                <span>{isEn ? 'Ships in 24h' : 'Expédition 24h'}</span>
               </div>
             </div>
 
@@ -293,7 +296,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="border-t border-neutral-100">
               <div className="border-b border-neutral-100">
                 <button onClick={() => toggleSection("details")} className="w-full flex items-center justify-between py-4 text-left hover:opacity-70 transition-opacity">
-                  <span className="text-xs font-medium text-neutral-900 uppercase tracking-wider">Détails du produit</span>
+                  <span className="text-xs font-medium text-neutral-900 uppercase tracking-wider">{isEn ? 'Product Details' : 'Détails du produit'}</span>
                   {openSection === "details" ? <Minus className="w-4 h-4 text-neutral-400" /> : <Plus className="w-4 h-4 text-neutral-400" />}
                 </button>
                 {openSection === "details" && (
@@ -311,7 +314,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               </div>
               <div className="border-b border-neutral-100">
                 <button onClick={() => toggleSection("materials")} className="w-full flex items-center justify-between py-4 text-left hover:opacity-70 transition-opacity">
-                  <span className="text-xs font-medium text-neutral-900 uppercase tracking-wider">Matériaux & Entretien</span>
+                  <span className="text-xs font-medium text-neutral-900 uppercase tracking-wider">{isEn ? 'Materials & Care' : 'Matériaux & Entretien'}</span>
                   {openSection === "materials" ? <Minus className="w-4 h-4 text-neutral-400" /> : <Plus className="w-4 h-4 text-neutral-400" />}
                 </button>
                 {openSection === "materials" && (
@@ -320,13 +323,13 @@ export default function ProductPage({ params }: ProductPageProps) {
               </div>
               <div className="border-b border-neutral-100">
                 <button onClick={() => toggleSection("shipping")} className="w-full flex items-center justify-between py-4 text-left hover:opacity-70 transition-opacity">
-                  <span className="text-xs font-medium text-neutral-900 uppercase tracking-wider">Livraison & Retours</span>
+                  <span className="text-xs font-medium text-neutral-900 uppercase tracking-wider">{isEn ? 'Shipping & Returns' : 'Livraison & Retours'}</span>
                   {openSection === "shipping" ? <Minus className="w-4 h-4 text-neutral-400" /> : <Plus className="w-4 h-4 text-neutral-400" />}
                 </button>
                 {openSection === "shipping" && (
                   <div className="pb-6">
                     <p className="text-neutral-500 text-sm leading-relaxed">{product.shipping}</p>
-                    <p className="text-neutral-500 text-sm leading-relaxed mt-4">Retours acceptés dans les 30 jours. L'article doit être dans son emballage d'origine.</p>
+                    <p className="text-neutral-500 text-sm leading-relaxed mt-4">{isEn ? 'Returns accepted within 30 days. Item must be in original packaging.' : 'Retours acceptés dans les 30 jours. L\'article doit être dans son emballage d\'origine.'}</p>
                   </div>
                 )}
               </div>
@@ -336,7 +339,7 @@ export default function ProductPage({ params }: ProductPageProps) {
 
         {/* Product Gallery Images */}
         <div className="mt-16 space-y-5">
-          <h3 className="text-xl font-semibold text-neutral-900">Unleash the Fun</h3>
+          <h3 className="text-xl font-semibold text-neutral-900">{isEn ? 'Unleash the Fun' : 'Libérez le plaisir'}</h3>
           <p className="text-neutral-500 text-sm leading-relaxed max-w-2xl">{product.longDescription}</p>
           <div className="space-y-4">
             {product.images.slice(1).map((img, index) => (
@@ -367,7 +370,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           disabled={!product.inStock}
           className="bg-brand hover:bg-brand-dark text-white py-2.5 px-5 rounded-lg font-medium text-xs uppercase tracking-wider flex items-center gap-2 disabled:opacity-50 transition-all"
         >
-          ADD TO CART
+          {isEn ? 'ADD TO CART' : 'AJOUTER AU PANIER'}
         </button>
       </div>
 
