@@ -635,11 +635,11 @@ ${itemsList}
               <div className="mb-6 p-4 bg-neutral-50 rounded-xl">
                 <h3 className="text-xs font-medium text-neutral-900 mb-3 flex items-center gap-2">
                   <Lock className="w-3.5 h-3.5 text-neutral-400" />
-                  {isFr ? 'Vérification de sécurité' : 'Security Verification'}
+                  {isFr ? 'Vérification de l\'âge (13+)' : 'Age Verification (13+)'}
                 </h3>
                 <div className="relative">
                   <label className="block text-xs font-medium text-neutral-500 mb-2">
-                    {isFr ? 'Date de naissance (pour vérification)' : 'Date of birth (for verification)'}
+                    {isFr ? 'Date de naissance' : 'Date of birth'}
                   </label>
                   
                   {/* Custom Date Picker Button */}
@@ -739,7 +739,7 @@ ${itemsList}
                   )}
                   
                   <p className="text-xs text-neutral-400 mt-1">
-                    {isFr ? 'Requis pour la sécurité' : 'Required for security'}
+                    {isFr ? 'Requis pour vérifier votre âge' : 'Required to verify your age'}
                   </p>
                 </div>
               </div>
