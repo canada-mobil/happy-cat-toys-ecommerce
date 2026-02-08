@@ -265,6 +265,77 @@ export default function FournituresPage() {
         </div>
       </section>
 
+      {/* Cross-sell: Toys */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image
+                src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp"
+                alt={t.fournituresPage.title === 'Fournitures' ? 'Jouets pour chats' : 'Cat toys'}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <span className="inline-block bg-red-50 text-red-600 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+                {t.fournituresPage.title === 'Fournitures' ? 'Jouets' : 'Toys'}
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight mb-4">
+                {t.fournituresPage.title === 'Fournitures' ? 'Stimulez l\'Instinct de Jeu de Votre Chat' : 'Stimulate Your Cat\'s Play Instinct'}
+              </h2>
+              <p className="text-neutral-500 text-sm leading-relaxed mb-4">
+                {t.fournituresPage.title === 'Fournitures'
+                  ? "Un chat hydraté est un chat en bonne santé, mais un chat actif l'est encore plus ! Nos jouets interactifs intelligents stimulent les instincts naturels de chasse de votre félin, favorisent l'exercice quotidien et renforcent votre lien."
+                  : "A hydrated cat is a healthy cat, but an active cat is even healthier! Our smart interactive toys stimulate your cat's natural hunting instincts, promote daily exercise and strengthen your bond."}
+              </p>
+              <ul className="space-y-2 mb-6">
+                {(t.fournituresPage.title === 'Fournitures'
+                  ? ['Balle auto-roulante intelligente', 'Stimulation mentale et physique', 'Rechargeable par USB', 'Économisez jusqu\'à 58%']
+                  : ['Smart auto-rolling ball', 'Mental and physical stimulation', 'USB rechargeable', 'Save up to 58%']
+                ).map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 text-neutral-600 text-sm">
+                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/produits"
+                className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium px-6 py-3 rounded-full text-sm transition-all"
+              >
+                {t.fournituresPage.title === 'Fournitures' ? 'Voir Nos Jouets' : 'See Our Toys'}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cross-sell: Cat Care Guide */}
+      <section className="py-16 px-4 bg-neutral-900">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="inline-block bg-white/10 text-white/80 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+            {t.fournituresPage.title === 'Fournitures' ? 'Guide Santé' : 'Health Guide'}
+          </span>
+          <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-4">
+            {t.fournituresPage.title === 'Fournitures' ? 'Tout Savoir sur la Santé de Votre Chat' : 'Everything About Your Cat\'s Health'}
+          </h2>
+          <p className="text-neutral-400 text-sm leading-relaxed mb-8 max-w-2xl mx-auto">
+            {t.fournituresPage.title === 'Fournitures'
+              ? "L'hydratation n'est qu'un aspect de la santé de votre chat. Découvrez notre guide complet avec les meilleures pratiques pour l'alimentation, l'exercice, les soins et les signes à surveiller."
+              : "Hydration is just one aspect of your cat's health. Discover our complete guide with best practices for nutrition, exercise, care and warning signs to watch for."}
+          </p>
+          <Link
+            href="/guide"
+            className="inline-flex items-center gap-2 bg-white text-neutral-900 font-medium px-6 py-3 rounded-full text-sm hover:bg-neutral-100 transition-all"
+          >
+            {t.fournituresPage.title === 'Fournitures' ? 'Lire le Guide Santé Chat' : 'Read the Cat Health Guide'}
+          </Link>
+        </div>
+      </section>
+
       <Footer />
     </div>
   )
