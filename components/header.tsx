@@ -4,6 +4,7 @@ import { Menu, PawPrint, Globe } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import CartDropdown from "./cart-dropdown"
+import ProfileDropdown from "./profile-dropdown"
 import { useI18n } from "@/lib/i18n-context"
 
 export default function Header() {
@@ -96,8 +97,9 @@ export default function Header() {
             Purrball
           </Link>
 
-          {/* Right: Cart */}
-          <div className="flex items-center gap-1">
+          {/* Right: Profile + Cart */}
+          <div className="flex items-center gap-0.5">
+            <ProfileDropdown />
             <CartDropdown />
           </div>
         </div>
