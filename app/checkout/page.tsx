@@ -344,11 +344,14 @@ ${itemsList}
     
     try {
       localStorage.setItem(`order_${orderNumber}`, JSON.stringify(orderData))
+      // Save latest order number for order-success page
+      localStorage.setItem('purrball-latest-order', orderNumber)
+      // Save email-to-orders mapping for tracking by email
+      const emailKey = `purrball-orders-${formData.email.toLowerCase()}`
+      const existingOrders = JSON.parse(localStorage.getItem(emailKey) || '[]')
+      existingOrders.push(orderNumber)
+      localStorage.setItem(emailKey, JSON.stringify(existingOrders))
       console.log('✅ Order data saved successfully to localStorage')
-      
-      // Verify it was saved
-      const savedData = localStorage.getItem(`order_${orderNumber}`)
-      console.log('✅ Verification - Retrieved data:', savedData)
     } catch (error) {
       console.error('❌ Error saving to localStorage:', error)
     }

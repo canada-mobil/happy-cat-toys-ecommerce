@@ -1,21 +1,70 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { CheckCircle, Package, Truck, Heart, ArrowRight } from "lucide-react"
+import { CheckCircle, Package, Truck, Heart, ArrowRight, ShoppingBag } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useI18n } from "@/lib/i18n-context"
 
-export default function OrderSuccess() {
-  const { locale } = useI18n()
-  const isFr = locale === 'fr'
-
-  const orderDetails = {
-    orderNumber: "HC-2024-001234",
-    email: "client@example.com",
-    total: "47.97",
-    estimatedDelivery: isFr ? "7-9 février 2026" : "February 7-9, 2026"
+interface OrderData {
+  orderNumber: string
+  customerInfo: {
+    email: string
+    firstName: string
+    lastName: string
+    address: string
+    apartment: string
+    city: string
+    province: string
+    postalCode: string
+    country: string
+    phone: string
   }
+  items: { id: string; name: string; price: number; quantity: number; image: string; color?: string }[]
+  total: number
+  tax: number
+  finalTotal: number
+  orderDate: string
+  status: string
+}
+
+function getEstimatedDelivery(orderDate: string, isFr: boolean): string {
+  const date = new Date(orderDate)
+  const start = new Date(date)
+  start.setDate(start.getDate() + 2)
+  const end = new Date(date)
+  end.setDate(end.getDate() + 3)
+  
+  const months = isFr 
+    ? ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+    : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  
+  if (start.getMonth() === end.getMonth()) {
+    return isFr
+      ? `${start.getDate()}-${end.getDate()} ${months[start.getMonth()]} ${start.getFullYear()}`
+      : `${months[start.getMonth()]} ${start.getDate()}-${end.getDate()}, ${start.getFullYear()}`
+  }
+  return isFr
+    ? `${start.getDate()} ${months[start.getMonth()]} - ${end.getDate()} ${months[end.getMonth()]} ${start.getFullYear()}`
+    : `${months[start.getMonth()]} ${start.getDate()} - ${months[end.getMonth()]} ${end.getDate()}, ${start.getFullYear()}`
+}
+
+export default function OrderSuccess() {
+  const { locale, formatPrice } = useI18n()
+  const isFr = locale === 'fr'
+  const [order, setOrder] = useState<OrderData | null>(null)
+
+  useEffect(() => {
+    try {
+      const latestOrderNumber = localStorage.getItem('purrball-latest-order')
+      if (latestOrderNumber) {
+        const data = localStorage.getItem(`order_${latestOrderNumber}`)
+        if (data) setOrder(JSON.parse(data))
+      }
+    } catch (e) { /* ignore */ }
+  }, [])
 
   return (
     <main className="min-h-screen bg-white">
@@ -23,7 +72,7 @@ export default function OrderSuccess() {
       
       <div className="py-12 px-4">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
             <CheckCircle className="w-12 h-12 text-white" />
           </div>
 
@@ -41,22 +90,46 @@ export default function OrderSuccess() {
             <div className="space-y-3">
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-neutral-400">{isFr ? 'Numéro de commande' : 'Order number'}</span>
-                <span className="font-medium">{orderDetails.orderNumber}</span>
+                <span className="font-medium font-mono text-sm">{order?.orderNumber || '—'}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-neutral-400">{isFr ? 'Email de confirmation' : 'Confirmation email'}</span>
-                <span className="font-medium">{orderDetails.email}</span>
+                <span className="font-medium">{order?.customerInfo?.email || '—'}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-neutral-400">{isFr ? 'Total payé' : 'Total paid'}</span>
-                <span className="font-bold text-neutral-900">${orderDetails.total} CAD</span>
+                <span className="font-bold text-neutral-900">{order ? formatPrice(order.finalTotal) : '—'}</span>
               </div>
               <div className="flex justify-between py-2">
                 <span className="text-neutral-400">{isFr ? 'Livraison estimée' : 'Estimated delivery'}</span>
-                <span className="font-medium">{orderDetails.estimatedDelivery}</span>
+                <span className="font-medium">{order ? getEstimatedDelivery(order.orderDate, isFr) : '—'}</span>
               </div>
             </div>
           </div>
+
+          {/* Items ordered */}
+          {order && order.items.length > 0 && (
+            <div className="bg-white rounded-xl shadow-lg p-6 mb-8 text-left">
+              <h3 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center gap-2">
+                <ShoppingBag className="w-5 h-5" />
+                {isFr ? 'Articles commandés' : 'Items ordered'}
+              </h3>
+              <div className="space-y-3">
+                {order.items.filter(item => item.price > 0).map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3 py-2 border-b border-gray-50 last:border-0">
+                    <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-neutral-50 flex-shrink-0">
+                      <Image src={item.image} alt={item.name} fill sizes="48px" className="object-contain p-1" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-neutral-900 truncate">{item.name}</p>
+                      <p className="text-xs text-neutral-400">{isFr ? 'Qté' : 'Qty'}: {item.quantity}</p>
+                    </div>
+                    <span className="text-sm font-semibold text-neutral-900">{formatPrice(item.price * item.quantity)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="bg-white rounded-xl p-6 mb-8">
             <h3 className="text-lg font-semibold text-neutral-900 mb-4">
@@ -94,7 +167,7 @@ export default function OrderSuccess() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Link href="/order-tracking" className="bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2">
+            <Link href="/suivi" className="bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2">
               {isFr ? 'Suivre ma commande' : 'Track my order'}
               <ArrowRight className="w-4 h-4" />
             </Link>
