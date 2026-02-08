@@ -146,14 +146,12 @@ function generateReviews(): Review[] {
     const firstName = firstNames[i % firstNames.length]
     const lastInit = lastInitials[i % lastInitials.length]
     
-    // Weighted rating: mostly 5 stars
+    // Weighted rating: realistic distribution (no 1 or 2 stars)
     let rating: number
     const ratingRoll = Math.random()
-    if (ratingRoll < 0.78) rating = 5
-    else if (ratingRoll < 0.92) rating = 4
-    else if (ratingRoll < 0.95) rating = 3
-    else if (ratingRoll < 0.97) rating = 2
-    else rating = 1
+    if (ratingRoll < 0.80) rating = 5
+    else if (ratingRoll < 0.95) rating = 4
+    else rating = 3
 
     const randomDate = new Date(startDate.getTime() + Math.random() * dateRange)
     const dateStr = `${String(randomDate.getMonth() + 1).padStart(2, '0')}/${String(randomDate.getDate()).padStart(2, '0')}/${randomDate.getFullYear()}`
@@ -266,7 +264,6 @@ export default function ProductReviews() {
           >
             <option value="newest">{isFr ? 'Plus récents' : 'Most recent'}</option>
             <option value="highest">{isFr ? 'Meilleure note' : 'Highest rated'}</option>
-            <option value="lowest">{isFr ? 'Note la plus basse' : 'Lowest rated'}</option>
           </select>
           <span className="text-[10px] text-neutral-300">{totalReviews} {isFr ? 'avis' : 'reviews'}</span>
         </div>
