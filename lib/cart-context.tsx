@@ -21,6 +21,7 @@ interface CartContextType {
   subtotal: number
   discount: number
   total: number
+  shipping: number
   itemCount: number
   freeShippingProgress: number
   freeShippingThreshold: number
@@ -149,8 +150,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const discount = 0
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
-  const shipping = totalItems >= FREE_SHIPPING_ITEM_THRESHOLD ? 0 : 7.99
-  const total = subtotal - discount + shipping
+  const paidItems = items.filter(item => item.price > 0).reduce((sum, item) => sum + item.quantity, 0)
+  const shipping = paidItems === 0 ? 0 : (totalItems >= FREE_SHIPPING_ITEM_THRESHOLD ? 0 : 7.99)
+  const total = subtotal - discount
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
   const freeShippingProgress = Math.min((totalItems / FREE_SHIPPING_ITEM_THRESHOLD) * 100, 100)
 
@@ -165,6 +167,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         subtotal,
         discount,
         total,
+        shipping,
         itemCount,
         freeShippingProgress,
         freeShippingThreshold: FREE_SHIPPING_ITEM_THRESHOLD,

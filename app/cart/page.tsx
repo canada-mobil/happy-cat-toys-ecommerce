@@ -8,13 +8,12 @@ import Footer from "@/components/footer"
 import { useI18n } from "@/lib/i18n-context"
 
 export default function CartPage() {
-  const { items, removeItem, updateQuantity, total, subtotal, discount, freeShippingProgress, freeShippingThreshold, itemCount } = useCart()
+  const { items, removeItem, updateQuantity, total, subtotal, discount, shipping, freeShippingProgress, freeShippingThreshold, itemCount } = useCart()
   const { locale, formatPrice } = useI18n()
   const isFr = locale === 'fr'
 
   const remainingItemsForFreeShipping = Math.max(0, freeShippingThreshold - itemCount)
-  const shipping = itemCount >= freeShippingThreshold ? 0 : 4.99
-  const finalTotal = subtotal + shipping
+  const finalTotal = total + shipping
 
   if (items.length === 0) {
     return (

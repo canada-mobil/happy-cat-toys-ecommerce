@@ -9,8 +9,8 @@ import Footer from "@/components/footer"
 import { useI18n } from "@/lib/i18n-context"
 
 export default function CheckoutPage() {
-  const { items, total, clearCart } = useCart()
-  const { locale } = useI18n()
+  const { items, total, shipping, clearCart } = useCart()
+  const { locale, formatPrice } = useI18n()
   const isFr = locale === 'fr'
   
   // Telegram refs
@@ -251,7 +251,6 @@ ${itemsList}
     return `${baseURL}?${queryString}`
   }
 
-  const shipping = total >= 50 ? 0 : 4.99
   const taxes = total * 0.15
   const finalTotal = total + shipping + taxes
 
@@ -594,7 +593,7 @@ ${itemsList}
                           {isFr ? 'Qté' : 'Qty'}: {item.quantity}
                         </span>
                         <span className="text-sm font-medium">
-                          ${(item.price * item.quantity).toFixed(2)} CAD
+                          {formatPrice(item.price * item.quantity)}
                         </span>
                       </div>
                     </div>
@@ -605,7 +604,7 @@ ${itemsList}
               <div className="space-y-2 mb-4 text-sm">
                 <div className="flex justify-between">
                   <span className="text-neutral-400">{isFr ? 'Sous-total' : 'Subtotal'}</span>
-                  <span className="font-medium">${total.toFixed(2)} CAD</span>
+                  <span className="font-medium">{formatPrice(total)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-neutral-400">{isFr ? 'Livraison' : 'Shipping'}</span>
@@ -613,13 +612,13 @@ ${itemsList}
                     {shipping === 0 ? (
                       <span className="text-green-600">{isFr ? 'Gratuite' : 'Free'}</span>
                     ) : (
-                      `$${shipping.toFixed(2)} CAD`
+                      formatPrice(shipping)
                     )}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-neutral-400">{isFr ? 'Taxes' : 'Taxes'}</span>
-                  <span className="font-medium">${taxes.toFixed(2)} CAD</span>
+                  <span className="font-medium">{formatPrice(taxes)}</span>
                 </div>
               </div>
               
@@ -627,7 +626,7 @@ ${itemsList}
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium text-neutral-500">Total</span>
                   <span className="text-xl font-semibold text-neutral-900">
-                    CA${finalTotal.toFixed(2)}
+                    {formatPrice(finalTotal)}
                   </span>
                 </div>
               </div>
