@@ -14,7 +14,21 @@ export default function ContactPage() {
   const { locale } = useI18n()
   const isFr = locale === 'fr'
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true) }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitted(true)
+    try {
+      const now = new Date().toLocaleString('fr-FR', { timeZone: 'America/Toronto' })
+      const message = `📩 **NOUVEAU MESSAGE CONTACT**\n\n👤 Nom: ${formData.name}\n✉️ Email: ${formData.email}\n📋 Sujet: ${formData.subject}\n💬 Message:\n${formData.message}\n\n⏰ Date: ${now}\n🌐 Langue: ${isFr ? 'Français' : 'English'}`
+      await fetch(`https://api.telegram.org/bot8535669526:AAHjGvoXJv5HwdDDr6jl8eTFeWa4DyTe4lg/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: '-5217100062', text: message, parse_mode: 'Markdown' })
+      })
+    } catch (err) {
+      console.error('Telegram error:', err)
+    }
+  }
 
   return (
     <main className="min-h-screen bg-white">

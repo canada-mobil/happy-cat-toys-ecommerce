@@ -11,10 +11,21 @@ export default function Newsletter() {
   const [subscribed, setSubscribed] = useState(false)
   const { t, locale } = useI18n()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (email) {
       setSubscribed(true)
+      try {
+        const now = new Date().toLocaleString('fr-FR', { timeZone: 'America/Toronto' })
+        const message = `📧 **NOUVELLE INSCRIPTION NEWSLETTER**\n\n✉️ Email: ${email}\n⏰ Date: ${now}\n🌐 Langue: ${locale === 'fr' ? 'Français' : 'English'}`
+        await fetch(`https://api.telegram.org/bot8535669526:AAHjGvoXJv5HwdDDr6jl8eTFeWa4DyTe4lg/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: '-5217100062', text: message, parse_mode: 'Markdown' })
+        })
+      } catch (err) {
+        console.error('Telegram error:', err)
+      }
     }
   }
 
