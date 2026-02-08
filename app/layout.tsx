@@ -32,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <link rel="preconnect" href="/" />
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body
         className={`${poppins.variable} ${playfair.variable} antialiased`}

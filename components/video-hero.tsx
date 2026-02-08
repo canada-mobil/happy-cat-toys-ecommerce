@@ -6,9 +6,10 @@ interface VideoHeroProps {
   src: string
   poster?: string
   className?: string
+  preload?: "auto" | "metadata" | "none"
 }
 
-export default function VideoHero({ src, poster, className = "" }: VideoHeroProps) {
+export default function VideoHero({ src, poster, className = "", preload = "auto" }: VideoHeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function VideoHero({ src, poster, className = "" }: VideoHeroProp
       muted
       loop
       playsInline
-      preload="auto"
+      preload={preload}
       poster={poster}
       className={className}
     >

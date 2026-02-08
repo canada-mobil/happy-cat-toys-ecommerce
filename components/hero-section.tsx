@@ -58,6 +58,7 @@ export default function HeroSection() {
             <VideoHero
               src={slide.video}
               className="absolute inset-0 w-full h-full object-cover"
+              preload={i === activeSlide ? "auto" : "none"}
             />
           </div>
         ))}
