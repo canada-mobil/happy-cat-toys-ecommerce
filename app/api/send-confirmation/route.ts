@@ -1,0 +1,163 @@
+import { Resend } from 'resend'
+import { NextRequest, NextResponse } from 'next/server'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json()
+    const { orderNumber, email, firstName, lastName, items, total, tax, finalTotal, address, city, province, postalCode, country, orderDate } = body
+
+    const estimatedStart = new Date(orderDate)
+    estimatedStart.setDate(estimatedStart.getDate() + 2)
+    const estimatedEnd = new Date(orderDate)
+    estimatedEnd.setDate(estimatedEnd.getDate() + 3)
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const estimatedDelivery = `${months[estimatedStart.getMonth()]} ${estimatedStart.getDate()} - ${estimatedEnd.getDate()}, ${estimatedStart.getFullYear()}`
+
+    const itemsHtml = items.map((item: { name: string; quantity: number; price: number; image?: string }) => `
+      <tr>
+        <td style="padding: 12px 0; border-bottom: 1px solid #f0f0f0;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            ${item.image ? `<img src="${item.image}" alt="${item.name}" width="50" height="50" style="border-radius: 8px; object-fit: cover;" />` : ''}
+            <div>
+              <p style="margin: 0; font-weight: 600; color: #1a1a1a;">${item.name}</p>
+              <p style="margin: 2px 0 0; color: #888; font-size: 13px;">Qty: ${item.quantity}</p>
+            </div>
+          </div>
+        </td>
+        <td style="padding: 12px 0; border-bottom: 1px solid #f0f0f0; text-align: right; font-weight: 600; color: #1a1a1a;">
+          $${(item.price * item.quantity).toFixed(2)}
+        </td>
+      </tr>
+    `).join('')
+
+    const html = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="margin: 0; padding: 0; background-color: #f7f7f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+      <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); border-radius: 16px 16px 0 0; padding: 32px; text-align: center;">
+          <h1 style="margin: 0; color: #fff; font-size: 24px; letter-spacing: -0.5px;">🐱 Purrball</h1>
+          <p style="margin: 8px 0 0; color: #ccc; font-size: 14px;">Premium Cat Toys & Supplies</p>
+        </div>
+
+        <!-- Main Content -->
+        <div style="background: #fff; padding: 32px; border-left: 1px solid #e5e5e5; border-right: 1px solid #e5e5e5;">
+          
+          <!-- Success Icon -->
+          <div style="text-align: center; margin-bottom: 24px;">
+            <div style="display: inline-block; background: #ecfdf5; border-radius: 50%; width: 64px; height: 64px; line-height: 64px; font-size: 28px;">
+              ✅
+            </div>
+          </div>
+
+          <h2 style="text-align: center; color: #1a1a1a; font-size: 22px; margin: 0 0 8px;">Order Confirmed!</h2>
+          <p style="text-align: center; color: #666; font-size: 14px; margin: 0 0 24px;">
+            Thank you, <strong>${firstName}</strong>! Your order has been received.
+          </p>
+
+          <!-- Order Info Box -->
+          <div style="background: #fafafa; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="font-size: 14px;">
+              <tr>
+                <td style="padding: 4px 0; color: #888;">Order Number</td>
+                <td style="padding: 4px 0; text-align: right; font-weight: 700; color: #1a1a1a;">#${orderNumber}</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #888;">Date</td>
+                <td style="padding: 4px 0; text-align: right; color: #1a1a1a;">${new Date(orderDate).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #888;">Estimated Delivery</td>
+                <td style="padding: 4px 0; text-align: right; font-weight: 600; color: #16a34a;">${estimatedDelivery}</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Items -->
+          <h3 style="font-size: 16px; color: #1a1a1a; margin: 0 0 12px;">Items Ordered</h3>
+          <table width="100%" cellpadding="0" cellspacing="0" style="font-size: 14px;">
+            ${itemsHtml}
+          </table>
+
+          <!-- Totals -->
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 2px solid #f0f0f0;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="font-size: 14px;">
+              <tr>
+                <td style="padding: 4px 0; color: #888;">Subtotal</td>
+                <td style="padding: 4px 0; text-align: right; color: #1a1a1a;">$${total.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #888;">Tax</td>
+                <td style="padding: 4px 0; text-align: right; color: #1a1a1a;">$${tax.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #888;">Shipping</td>
+                <td style="padding: 4px 0; text-align: right; color: #16a34a; font-weight: 600;">FREE</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0 4px; font-size: 16px; font-weight: 700; color: #1a1a1a;">Total</td>
+                <td style="padding: 12px 0 4px; text-align: right; font-size: 18px; font-weight: 700; color: #1a1a1a;">$${finalTotal.toFixed(2)}</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Shipping Address -->
+          <div style="margin-top: 24px; background: #fafafa; border-radius: 12px; padding: 20px;">
+            <h3 style="font-size: 14px; color: #888; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.5px;">Shipping Address</h3>
+            <p style="margin: 0; color: #1a1a1a; font-size: 14px; line-height: 1.6;">
+              ${firstName} ${lastName}<br>
+              ${address}<br>
+              ${city}, ${province} ${postalCode}<br>
+              ${country}
+            </p>
+          </div>
+
+          <!-- Track Order Button -->
+          <div style="text-align: center; margin-top: 28px;">
+            <a href="https://purrball.ca/suivi" style="display: inline-block; background: #1a1a1a; color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 10px; font-weight: 600; font-size: 14px;">
+              Track Your Order →
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="background: #fafafa; border-radius: 0 0 16px 16px; padding: 24px 32px; border: 1px solid #e5e5e5; border-top: none; text-align: center;">
+          <p style="margin: 0 0 8px; color: #888; font-size: 13px;">
+            Questions? Reply to this email or chat with us on our website.
+          </p>
+          <p style="margin: 0; color: #aaa; font-size: 12px;">
+            © ${new Date().getFullYear()} Purrball — Vancouver, BC, Canada 🇨🇦
+          </p>
+        </div>
+
+      </div>
+    </body>
+    </html>
+    `
+
+    const { data, error } = await resend.emails.send({
+      from: 'Purrball <onboarding@resend.dev>',
+      to: [email],
+      subject: `🐱 Order Confirmed — #${orderNumber}`,
+      html,
+    })
+
+    if (error) {
+      console.error('Resend error:', error)
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    return NextResponse.json({ success: true, id: data?.id })
+  } catch (e) {
+    console.error('Email send error:', e)
+    return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
+  }
+}
