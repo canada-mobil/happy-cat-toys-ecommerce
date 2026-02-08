@@ -16,7 +16,7 @@ export default function ShopByCategory() {
     {
       name: t.shopByCategory.fournitures,
       href: "/fournitures",
-      image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517763/purrball/petfount.webp",
+      image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517806/purrball/water_stainless_steel_pc.jpg.webp",
     },
   ]
 
