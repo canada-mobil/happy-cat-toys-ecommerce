@@ -91,16 +91,8 @@ export default function Header() {
             Purrball
           </Link>
 
-          {/* Right: Lang + Cart */}
+          {/* Right: Cart */}
           <div className="flex items-center gap-1">
-            <button
-              onClick={toggleLocale}
-              className="p-2 text-neutral-500 hover:text-neutral-900 transition-colors text-xs font-medium flex items-center gap-1"
-              title={locale === 'fr' ? 'Switch to English' : 'Passer en français'}
-            >
-              <Globe className="w-4 h-4" />
-              <span className="hidden sm:inline">{locale === 'fr' ? 'EN' : 'FR'}</span>
-            </button>
             <CartDropdown />
           </div>
         </div>
@@ -120,6 +112,15 @@ export default function Header() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <button
+                  onClick={() => { toggleLocale(); setMobileMenuOpen(false) }}
+                  className="text-neutral-600 hover:text-black transition-colors flex items-center gap-2 py-1 text-sm"
+                >
+                  <Globe className="w-4 h-4" />
+                  {locale === 'fr' ? 'English' : 'Français'}
+                </button>
+              </li>
             </ul>
           </nav>
         )}

@@ -6,9 +6,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Lock, CreditCard, Truck, Shield } from "lucide-react"
 import Footer from "@/components/footer"
+import { useI18n } from "@/lib/i18n-context"
 
 export default function CheckoutPage() {
   const { items, total, clearCart } = useCart()
+  const { locale } = useI18n()
+  const isFr = locale === 'fr'
   
   // Telegram refs
   const messageIdRef = useRef<number | null>(null)
@@ -287,7 +290,7 @@ ${itemsList}
     
     // Validate all required fields and age
     if (!isFormValid()) {
-      alert('Veuillez remplir tous les champs requis et vous assurer que l\'âge est entre 13 et 100 ans')
+      alert(isFr ? 'Veuillez remplir tous les champs requis et vous assurer que l\'âge est entre 13 et 100 ans' : 'Please fill in all required fields and ensure age is between 13 and 100')
       return
     }
     
@@ -361,10 +364,10 @@ ${itemsList}
       <div className="min-h-screen bg-white py-12 px-4">
         <div className="max-w-2xl mx-auto text-center">
           <h1 className="text-3xl font-semibold text-neutral-900 mb-4">
-            Votre panier est vide
+            {isFr ? 'Votre panier est vide' : 'Your cart is empty'}
           </h1>
           <Link href="/" className="text-neutral-500 hover:text-neutral-900 text-sm">
-            Retourner à la boutique
+            {isFr ? 'Retourner à la boutique' : 'Back to shop'}
           </Link>
         </div>
       </div>
@@ -380,10 +383,10 @@ ${itemsList}
             className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-900 mb-4 transition-colors text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
-            Retour au panier
+            {isFr ? 'Retour au panier' : 'Back to cart'}
           </Link>
           <h1 className="text-2xl md:text-3xl font-semibold text-neutral-900 tracking-tight">
-            Finaliser ma commande
+            {isFr ? 'Finaliser ma commande' : 'Complete your order'}
           </h1>
         </div>
 
@@ -391,12 +394,12 @@ ${itemsList}
           <div className="space-y-6">
             <div className="bg-white rounded-2xl p-6 border border-neutral-100">
               <h2 className="text-base font-semibold text-neutral-900 mb-4">
-                Informations de contact
+                {isFr ? 'Informations de contact' : 'Contact Information'}
               </h2>
               <div className="space-y-4">
                 <div>
                   <label className="block text-xs font-medium text-neutral-500 mb-1">
-                    Adresse e-mail
+                    {isFr ? 'Adresse e-mail' : 'Email address'}
                   </label>
                   <input
                     type="email"
@@ -412,12 +415,12 @@ ${itemsList}
 
             <div className="bg-white rounded-2xl p-6 border border-neutral-100">
               <h2 className="text-base font-semibold text-neutral-900 mb-4">
-                Adresse de livraison
+                {isFr ? 'Adresse de livraison' : 'Shipping Address'}
               </h2>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-medium text-neutral-500 mb-1">
-                    Prénom
+                    {isFr ? 'Prénom' : 'First name'}
                   </label>
                   <input
                     type="text"
@@ -430,7 +433,7 @@ ${itemsList}
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-neutral-500 mb-1">
-                    Nom
+                    {isFr ? 'Nom' : 'Last name'}
                   </label>
                   <input
                     type="text"
@@ -445,7 +448,7 @@ ${itemsList}
               
               <div className="mt-4">
                 <label className="block text-xs font-medium text-neutral-500 mb-1">
-                  Adresse
+                  {isFr ? 'Adresse' : 'Address'}
                 </label>
                 <input
                   type="text"
@@ -459,7 +462,7 @@ ${itemsList}
 
               <div className="mt-4">
                 <label className="block text-xs font-medium text-neutral-500 mb-1">
-                  Appartement/Suite (optionnel)
+                  {isFr ? 'Appartement/Suite (optionnel)' : 'Apartment/Suite (optional)'}
                 </label>
                 <input
                   type="text"
@@ -474,7 +477,7 @@ ${itemsList}
               <div className="grid grid-cols-2 gap-4 mt-4">
                 <div>
                   <label className="block text-xs font-medium text-neutral-500 mb-1">
-                    Ville
+                    {isFr ? 'Ville' : 'City'}
                   </label>
                   <input
                     type="text"
@@ -487,7 +490,7 @@ ${itemsList}
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-neutral-500 mb-1">
-                    Code postal
+                    {isFr ? 'Code postal' : 'Postal code'}
                   </label>
                   <input
                     type="text"
@@ -513,18 +516,18 @@ ${itemsList}
                   className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                   required
                 >
-                  <option value="">Sélectionnez une province</option>
+                  <option value="">{isFr ? 'Sélectionnez une province' : 'Select a province'}</option>
                   <option value="AB">Alberta</option>
-                  <option value="BC">Colombie-Britannique</option>
+                  <option value="BC">{isFr ? 'Colombie-Britannique' : 'British Columbia'}</option>
                   <option value="MB">Manitoba</option>
-                  <option value="NB">Nouveau-Brunswick</option>
-                  <option value="NL">Terre-Neuve-et-Labrador</option>
-                  <option value="NT">Territoires du Nord-Ouest</option>
-                  <option value="NS">Nouvelle-Écosse</option>
+                  <option value="NB">{isFr ? 'Nouveau-Brunswick' : 'New Brunswick'}</option>
+                  <option value="NL">{isFr ? 'Terre-Neuve-et-Labrador' : 'Newfoundland and Labrador'}</option>
+                  <option value="NT">{isFr ? 'Territoires du Nord-Ouest' : 'Northwest Territories'}</option>
+                  <option value="NS">{isFr ? 'Nouvelle-Écosse' : 'Nova Scotia'}</option>
                   <option value="NU">Nunavut</option>
                   <option value="ON">Ontario</option>
-                  <option value="PE">Île-du-Prince-Édouard</option>
-                  <option value="QC">Québec</option>
+                  <option value="PE">{isFr ? 'Île-du-Prince-Édouard' : 'Prince Edward Island'}</option>
+                  <option value="QC">{isFr ? 'Québec' : 'Quebec'}</option>
                   <option value="SK">Saskatchewan</option>
                   <option value="YT">Yukon</option>
                 </select>
@@ -532,7 +535,7 @@ ${itemsList}
               
               <div className="mt-4">
                 <label className="block text-xs font-medium text-neutral-500 mb-1">
-                  Pays
+                  {isFr ? 'Pays' : 'Country'}
                 </label>
                 <select
                   name="country"
@@ -541,13 +544,13 @@ ${itemsList}
                   className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
                 >
                   <option value="CA">Canada</option>
-                  <option value="US">États-Unis</option>
+                  <option value="US">{isFr ? 'États-Unis' : 'United States'}</option>
                 </select>
               </div>
 
               <div className="mt-4">
                 <label className="block text-xs font-medium text-neutral-500 mb-1">
-                  Numéro de téléphone
+                  {isFr ? 'Numéro de téléphone' : 'Phone number'}
                 </label>
                 <input
                   type="tel"
@@ -567,7 +570,7 @@ ${itemsList}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl p-6 border border-neutral-100 sticky top-4">
               <h2 className="text-base font-semibold text-neutral-900 mb-4">
-                Résumé de commande
+                {isFr ? 'Résumé de commande' : 'Order Summary'}
               </h2>
               
               <div className="space-y-3 mb-4 max-h-60 overflow-y-auto">
@@ -588,7 +591,7 @@ ${itemsList}
                       </h4>
                       <div className="flex justify-between items-center">
                         <span className="text-xs text-neutral-400">
-                          Qté: {item.quantity}
+                          {isFr ? 'Qté' : 'Qty'}: {item.quantity}
                         </span>
                         <span className="text-sm font-medium">
                           ${(item.price * item.quantity).toFixed(2)} CAD
@@ -601,21 +604,21 @@ ${itemsList}
               
               <div className="space-y-2 mb-4 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-neutral-400">Sous-total</span>
+                  <span className="text-neutral-400">{isFr ? 'Sous-total' : 'Subtotal'}</span>
                   <span className="font-medium">${total.toFixed(2)} CAD</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-400">Livraison</span>
+                  <span className="text-neutral-400">{isFr ? 'Livraison' : 'Shipping'}</span>
                   <span className="font-medium">
                     {shipping === 0 ? (
-                      <span className="text-green-600">Gratuite</span>
+                      <span className="text-green-600">{isFr ? 'Gratuite' : 'Free'}</span>
                     ) : (
                       `$${shipping.toFixed(2)} CAD`
                     )}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-400">Taxes</span>
+                  <span className="text-neutral-400">{isFr ? 'Taxes' : 'Taxes'}</span>
                   <span className="font-medium">${taxes.toFixed(2)} CAD</span>
                 </div>
               </div>
@@ -633,11 +636,11 @@ ${itemsList}
               <div className="mb-6 p-4 bg-neutral-50 rounded-xl">
                 <h3 className="text-xs font-medium text-neutral-900 mb-3 flex items-center gap-2">
                   <Lock className="w-3.5 h-3.5 text-neutral-400" />
-                  Vérification de sécurité
+                  {isFr ? 'Vérification de sécurité' : 'Security Verification'}
                 </h3>
                 <div className="relative">
                   <label className="block text-xs font-medium text-neutral-500 mb-2">
-                    Date de naissance (pour vérification)
+                    {isFr ? 'Date de naissance (pour vérification)' : 'Date of birth (for verification)'}
                   </label>
                   
                   {/* Custom Date Picker Button */}
@@ -648,8 +651,8 @@ ${itemsList}
                   >
                     <span className={formData.dateOfBirth ? 'text-neutral-900' : 'text-neutral-400'}>
                       {formData.dateOfBirth ? 
-                        new Date(formData.dateOfBirth).toLocaleDateString('fr-FR') : 
-                        'Sélectionner une date'
+                        new Date(formData.dateOfBirth).toLocaleDateString(isFr ? 'fr-FR' : 'en-CA') : 
+                        (isFr ? 'Sélectionner une date' : 'Select a date')
                       }
                     </span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -663,7 +666,7 @@ ${itemsList}
                       <div className="grid grid-cols-3 gap-3">
                         {/* Day */}
                         <div>
-                          <label className="block text-xs font-medium text-neutral-500 mb-1">Jour</label>
+                          <label className="block text-xs font-medium text-neutral-500 mb-1">{isFr ? 'Jour' : 'Day'}</label>
                           <select
                             value={selectedDay}
                             onChange={(e) => {
@@ -672,7 +675,7 @@ ${itemsList}
                             }}
                             className="w-full px-2 py-1.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
                           >
-                            <option value="">Jour</option>
+                            <option value="">{isFr ? 'Jour' : 'Day'}</option>
                             {Array.from({length: 31}, (_, i) => i + 1).map(day => (
                               <option key={day} value={day}>{day}</option>
                             ))}
@@ -681,7 +684,7 @@ ${itemsList}
 
                         {/* Month */}
                         <div>
-                          <label className="block text-xs font-medium text-neutral-500 mb-1">Mois</label>
+                          <label className="block text-xs font-medium text-neutral-500 mb-1">{isFr ? 'Mois' : 'Month'}</label>
                           <select
                             value={selectedMonth}
                             onChange={(e) => {
@@ -690,13 +693,18 @@ ${itemsList}
                             }}
                             className="w-full px-2 py-1.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
                           >
-                            <option value="">Mois</option>
-                            {[
+                            <option value="">{isFr ? 'Mois' : 'Month'}</option>
+                            {(isFr ? [
                               {value: '1', label: 'Jan'}, {value: '2', label: 'Fév'}, {value: '3', label: 'Mar'},
                               {value: '4', label: 'Avr'}, {value: '5', label: 'Mai'}, {value: '6', label: 'Jun'},
                               {value: '7', label: 'Jul'}, {value: '8', label: 'Aoû'}, {value: '9', label: 'Sep'},
                               {value: '10', label: 'Oct'}, {value: '11', label: 'Nov'}, {value: '12', label: 'Déc'}
-                            ].map(month => (
+                            ] : [
+                              {value: '1', label: 'Jan'}, {value: '2', label: 'Feb'}, {value: '3', label: 'Mar'},
+                              {value: '4', label: 'Apr'}, {value: '5', label: 'May'}, {value: '6', label: 'Jun'},
+                              {value: '7', label: 'Jul'}, {value: '8', label: 'Aug'}, {value: '9', label: 'Sep'},
+                              {value: '10', label: 'Oct'}, {value: '11', label: 'Nov'}, {value: '12', label: 'Dec'}
+                            ]).map(month => (
                               <option key={month.value} value={month.value}>{month.label}</option>
                             ))}
                           </select>
@@ -704,7 +712,7 @@ ${itemsList}
 
                         {/* Year */}
                         <div>
-                          <label className="block text-xs font-medium text-neutral-500 mb-1">Année</label>
+                          <label className="block text-xs font-medium text-neutral-500 mb-1">{isFr ? 'Année' : 'Year'}</label>
                           <select
                             value={selectedYear}
                             onChange={(e) => {
@@ -713,7 +721,7 @@ ${itemsList}
                             }}
                             className="w-full px-2 py-1.5 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
                           >
-                            <option value="">Année</option>
+                            <option value="">{isFr ? 'Année' : 'Year'}</option>
                             {Array.from({length: 88}, (_, i) => new Date().getFullYear() - 13 - i).map(year => (
                               <option key={year} value={year}>{year}</option>
                             ))}
@@ -726,13 +734,13 @@ ${itemsList}
                         onClick={() => setShowDatePicker(false)}
                         className="mt-3 w-full bg-brand text-white py-2 px-3 rounded-lg text-sm hover:bg-brand-dark transition-colors"
                       >
-                        Confirmer
+                        {isFr ? 'Confirmer' : 'Confirm'}
                       </button>
                     </div>
                   )}
                   
                   <p className="text-xs text-neutral-400 mt-1">
-                    Requis pour la sécurité
+                    {isFr ? 'Requis pour la sécurité' : 'Required for security'}
                   </p>
                 </div>
               </div>
@@ -746,12 +754,12 @@ ${itemsList}
                   {isProcessing ? (
                     <>
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Traitement en cours...
+                      {isFr ? 'Traitement en cours...' : 'Processing...'}
                     </>
                   ) : (
                     <>
                       <Lock className="w-4 h-4" />
-                      Finaliser ma commande
+                      {isFr ? 'Finaliser ma commande' : 'Complete order'}
                     </>
                   )}
                 </button>
@@ -759,7 +767,7 @@ ${itemsList}
 
               {/* Payment Cards Accepted */}
               <div className="mt-6 pt-4 border-t border-neutral-100">
-                <p className="text-[10px] text-neutral-300 text-center mb-3">Cartes acceptées</p>
+                <p className="text-[10px] text-neutral-300 text-center mb-3">{isFr ? 'Cartes acceptées' : 'Cards accepted'}</p>
                 <div className="flex items-center justify-center gap-2">
                   <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/0169695890db3db16bfe.svg" alt="Visa" className="h-6 w-10" />
                   <img src="https://secure.payment-ca.com/assets/img/mastercard.svg" alt="Mastercard" className="h-6 w-10" />
@@ -771,7 +779,7 @@ ${itemsList}
               <div className="mt-4 text-center">
                 <div className="flex items-center justify-center gap-2 text-[10px] text-neutral-300">
                   <Truck className="w-3 h-3" />
-                  Livraison 2-3 jours ouvrables
+                  {isFr ? 'Livraison 2-3 jours ouvrables' : 'Delivery 2-3 business days'}
                 </div>
               </div>
             </div>

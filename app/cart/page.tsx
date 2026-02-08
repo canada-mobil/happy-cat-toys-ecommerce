@@ -5,9 +5,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { Minus, Plus, Trash2, ShoppingCart, ArrowLeft, PartyPopper, Truck, CheckCircle, Lock, RotateCcw, Shield } from "lucide-react"
 import Footer from "@/components/footer"
+import { useI18n } from "@/lib/i18n-context"
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, total, subtotal, discount, freeShippingProgress, freeShippingThreshold, itemCount } = useCart()
+  const { locale } = useI18n()
+  const isFr = locale === 'fr'
 
   const remainingItemsForFreeShipping = Math.max(0, freeShippingThreshold - itemCount)
   const shipping = itemCount >= freeShippingThreshold ? 0 : 4.99
@@ -19,17 +22,17 @@ export default function CartPage() {
         <div className="max-w-2xl mx-auto text-center">
           <ShoppingCart className="w-16 h-16 mx-auto mb-6 text-neutral-200" />
           <h1 className="text-2xl font-semibold text-neutral-900 mb-4 tracking-tight">
-            Votre panier est vide
+            {isFr ? 'Votre panier est vide' : 'Your cart is empty'}
           </h1>
           <p className="text-neutral-400 text-sm mb-8">
-            Découvrez nos jouets premium pour rendre votre chat heureux!
+            {isFr ? 'Découvrez nos jouets premium pour rendre votre chat heureux!' : 'Discover our premium toys to make your cat happy!'}
           </p>
           <Link 
             href="/"
             className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-full font-medium text-sm transition-all"
           >
             <ArrowLeft className="w-4 h-4" />
-            Continuer mes achats
+            {isFr ? 'Continuer mes achats' : 'Continue shopping'}
           </Link>
         </div>
       </div>
@@ -46,10 +49,10 @@ export default function CartPage() {
             className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-900 mb-4 transition-colors text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
-            Continuer mes achats
+            {isFr ? 'Continuer mes achats' : 'Continue shopping'}
           </Link>
           <h1 className="text-2xl md:text-3xl font-semibold text-neutral-900 tracking-tight">
-            Mon Panier ({items.length} {items.length === 1 ? 'article' : 'articles'})
+            {isFr ? `Mon Panier (${items.length} ${items.length === 1 ? 'article' : 'articles'})` : `My Cart (${items.length} ${items.length === 1 ? 'item' : 'items'})`}
           </h1>
         </div>
 
@@ -60,7 +63,7 @@ export default function CartPage() {
             {remainingItemsForFreeShipping > 0 ? (
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                 <p className="text-blue-900 font-medium mb-2">
-                  Plus que {remainingItemsForFreeShipping} article{remainingItemsForFreeShipping > 1 ? 's' : ''} pour la livraison gratuite !
+                  {isFr ? `Plus que ${remainingItemsForFreeShipping} article${remainingItemsForFreeShipping > 1 ? 's' : ''} pour la livraison gratuite !` : `Only ${remainingItemsForFreeShipping} more item${remainingItemsForFreeShipping > 1 ? 's' : ''} for free shipping!`}
                 </p>
                 <div className="w-full bg-blue-100 rounded-full h-2">
                   <div 
@@ -73,7 +76,7 @@ export default function CartPage() {
               <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
                 <p className="text-green-700 font-medium flex items-center gap-2">
                   <PartyPopper className="w-4 h-4" />
-                  Félicitations ! Vous bénéficiez de la livraison gratuite !
+                  {isFr ? 'Félicitations ! Vous bénéficiez de la livraison gratuite !' : 'Congratulations! You qualify for free shipping!'}
                 </p>
               </div>
             )}
@@ -151,25 +154,25 @@ export default function CartPage() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl p-6 border border-neutral-100 sticky top-4">
               <h2 className="text-base font-semibold text-neutral-900 mb-4">
-                Résumé de commande
+                {isFr ? 'Résumé de commande' : 'Order Summary'}
               </h2>
               
               <div className="space-y-3 mb-4">
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-400">Sous-total</span>
+                  <span className="text-neutral-400">{isFr ? 'Sous-total' : 'Subtotal'}</span>
                   <span className="font-medium">${subtotal.toFixed(2)} CAD</span>
                 </div>
                 {discount > 0 && (
                   <div className="flex justify-between text-sm">
-                    <span className="text-neutral-400">Économies</span>
+                    <span className="text-neutral-400">{isFr ? 'Économies' : 'Savings'}</span>
                     <span className="font-medium text-green-600">-${discount.toFixed(2)} CAD</span>
                   </div>
                 )}
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-400">Livraison</span>
+                  <span className="text-neutral-400">{isFr ? 'Livraison' : 'Shipping'}</span>
                   <span className="font-medium">
                     {shipping === 0 ? (
-                      <span className="text-green-600">Gratuite</span>
+                      <span className="text-green-600">{isFr ? 'Gratuite' : 'Free'}</span>
                     ) : (
                       `$${shipping.toFixed(2)} CAD`
                     )}
@@ -188,7 +191,7 @@ export default function CartPage() {
               
               <Link href="/checkout" className="block">
                 <button className="w-full bg-brand hover:bg-brand-dark text-white py-3 px-4 rounded-full font-medium text-sm transition-all">
-                  Procéder au paiement
+                  {isFr ? 'Procéder au paiement' : 'Proceed to checkout'}
                 </button>
               </Link>
               
@@ -198,7 +201,7 @@ export default function CartPage() {
                   href="/"
                   className="text-xs text-neutral-400 hover:text-neutral-900 transition-colors"
                 >
-                  Continuer mes achats
+                  {isFr ? 'Continuer mes achats' : 'Continue shopping'}
                 </Link>
               </div>
             </div>
@@ -212,19 +215,19 @@ export default function CartPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="flex flex-col items-center">
               <CheckCircle className="w-6 h-6 mb-2" />
-              <span className="text-sm font-medium">100% Canadien</span>
+              <span className="text-sm font-medium">{isFr ? '100% Canadien' : '100% Canadian'}</span>
             </div>
             <div className="flex flex-col items-center">
               <Truck className="w-6 h-6 mb-2" />
-              <span className="text-sm font-medium">Livraison 2-3 jours</span>
+              <span className="text-sm font-medium">{isFr ? 'Livraison 2-3 jours' : '2-3 day delivery'}</span>
             </div>
             <div className="flex flex-col items-center">
               <Shield className="w-6 h-6 mb-2" />
-              <span className="text-sm font-medium">Garantie 2 mois</span>
+              <span className="text-sm font-medium">{isFr ? 'Garantie 2 mois' : '2-month warranty'}</span>
             </div>
             <div className="flex flex-col items-center">
               <RotateCcw className="w-6 h-6 mb-2" />
-              <span className="text-sm font-medium">Retours 30 jours</span>
+              <span className="text-sm font-medium">{isFr ? 'Retours 30 jours' : '30-day returns'}</span>
             </div>
           </div>
         </div>

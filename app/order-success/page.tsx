@@ -1,14 +1,20 @@
+"use client"
+
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { CheckCircle, Package, Truck, Heart, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { useI18n } from "@/lib/i18n-context"
 
 export default function OrderSuccess() {
+  const { locale } = useI18n()
+  const isFr = locale === 'fr'
+
   const orderDetails = {
     orderNumber: "HC-2024-001234",
     email: "client@example.com",
     total: "47.97",
-    estimatedDelivery: "7-9 février 2026"
+    estimatedDelivery: isFr ? "7-9 février 2026" : "February 7-9, 2026"
   }
 
   return (
@@ -17,111 +23,94 @@ export default function OrderSuccess() {
       
       <div className="py-12 px-4">
         <div className="max-w-2xl mx-auto text-center">
-          {/* Success Icon */}
           <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle className="w-12 h-12 text-white" />
           </div>
 
-          {/* Success Message */}
           <h1 className="text-3xl md:text-4xl text-neutral-900 mb-4">
-            Commande confirmée !
+            {isFr ? 'Commande confirmée !' : 'Order Confirmed!'}
           </h1>
           <p className="text-lg text-neutral-400 mb-8">
-            Merci pour votre achat ! Votre chat va adorer ses nouveaux jouets.
+            {isFr ? 'Merci pour votre achat ! Votre chat va adorer ses nouveaux jouets.' : 'Thank you for your purchase! Your cat will love their new toys.'}
           </p>
 
-          {/* Order Summary Card */}
           <div className="bg-white rounded-xl shadow-lg p-6 mb-8 text-left">
             <h2 className="text-xl font-semibold text-neutral-900 mb-4 text-center">
-              Résumé de votre commande
+              {isFr ? 'Résumé de votre commande' : 'Your Order Summary'}
             </h2>
-            
             <div className="space-y-3">
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-neutral-400">Numéro de commande</span>
+                <span className="text-neutral-400">{isFr ? 'Numéro de commande' : 'Order number'}</span>
                 <span className="font-medium">{orderDetails.orderNumber}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-neutral-400">Email de confirmation</span>
+                <span className="text-neutral-400">{isFr ? 'Email de confirmation' : 'Confirmation email'}</span>
                 <span className="font-medium">{orderDetails.email}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-neutral-400">Total payé</span>
+                <span className="text-neutral-400">{isFr ? 'Total payé' : 'Total paid'}</span>
                 <span className="font-bold text-neutral-900">${orderDetails.total} CAD</span>
               </div>
               <div className="flex justify-between py-2">
-                <span className="text-neutral-400">Livraison estimée</span>
+                <span className="text-neutral-400">{isFr ? 'Livraison estimée' : 'Estimated delivery'}</span>
                 <span className="font-medium">{orderDetails.estimatedDelivery}</span>
               </div>
             </div>
           </div>
 
-          {/* Next Steps */}
           <div className="bg-white rounded-xl p-6 mb-8">
             <h3 className="text-lg font-semibold text-neutral-900 mb-4">
-              Prochaines étapes
+              {isFr ? 'Prochaines étapes' : 'Next Steps'}
             </h3>
-            
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-left">
                 <div className="w-8 h-8 bg-neutral-900 rounded-full flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-sm">1</span>
                 </div>
                 <div>
-                  <p className="font-medium text-neutral-900">Confirmation par email</p>
-                  <p className="text-sm text-neutral-400">Vous recevrez un email de confirmation dans quelques minutes</p>
+                  <p className="font-medium text-neutral-900">{isFr ? 'Confirmation par email' : 'Email confirmation'}</p>
+                  <p className="text-sm text-neutral-400">{isFr ? 'Vous recevrez un email de confirmation dans quelques minutes' : "You'll receive a confirmation email in a few minutes"}</p>
                 </div>
               </div>
-              
               <div className="flex items-center gap-3 text-left">
                 <div className="w-8 h-8 bg-neutral-900 rounded-full flex items-center justify-center flex-shrink-0">
                   <Package className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <p className="font-medium text-neutral-900">Préparation de votre commande</p>
-                  <p className="text-sm text-neutral-400">Nous préparons vos jouets avec le plus grand soin</p>
+                  <p className="font-medium text-neutral-900">{isFr ? 'Préparation de votre commande' : 'Order preparation'}</p>
+                  <p className="text-sm text-neutral-400">{isFr ? 'Nous préparons vos jouets avec le plus grand soin' : 'We prepare your toys with the greatest care'}</p>
                 </div>
               </div>
-              
               <div className="flex items-center gap-3 text-left">
                 <div className="w-8 h-8 bg-neutral-900 rounded-full flex items-center justify-center flex-shrink-0">
                   <Truck className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <p className="font-medium text-neutral-900">Expédition et livraison</p>
-                  <p className="text-sm text-neutral-400">Livraison gratuite en 2-3 jours ouvrables</p>
+                  <p className="font-medium text-neutral-900">{isFr ? 'Expédition et livraison' : 'Shipping and delivery'}</p>
+                  <p className="text-sm text-neutral-400">{isFr ? 'Livraison gratuite en 2-3 jours ouvrables' : 'Free delivery in 2-3 business days'}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Link
-              href="/order-tracking"
-              className="bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
-            >
-              Suivre ma commande
+            <Link href="/order-tracking" className="bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2">
+              {isFr ? 'Suivre ma commande' : 'Track my order'}
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link
-              href="/produits"
-              className="border border-brand text-brand hover:bg-brand hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
-            >
-              Continuer mes achats
+            <Link href="/produits" className="border border-brand text-brand hover:bg-brand hover:text-white px-6 py-3 rounded-lg font-medium transition-colors">
+              {isFr ? 'Continuer mes achats' : 'Continue shopping'}
             </Link>
           </div>
 
-          {/* Thank You Message */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center justify-center gap-2 mb-3">
               <Heart className="w-5 h-5 text-red-500" />
-              <span className="text-lg font-semibold text-neutral-900">Merci de votre confiance !</span>
+              <span className="text-lg font-semibold text-neutral-900">{isFr ? 'Merci de votre confiance !' : 'Thank you for your trust!'}</span>
               <Heart className="w-5 h-5 text-red-500" />
             </div>
             <p className="text-neutral-400">
-              Chez Purrball, nous nous engageons à offrir les meilleurs jouets pour rendre votre chat heureux. 
-              N'hésitez pas à nous contacter si vous avez des questions !
+              {isFr ? "Chez Purrball, nous nous engageons à offrir les meilleurs jouets pour rendre votre chat heureux. N'hésitez pas à nous contacter si vous avez des questions !" : "At Purrball, we're committed to offering the best toys to make your cat happy. Don't hesitate to contact us if you have any questions!"}
             </p>
           </div>
         </div>

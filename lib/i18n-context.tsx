@@ -19,7 +19,7 @@ const I18nContext = createContext<I18nContextType | undefined>(undefined)
 const translations: Record<Locale, Translations> = { fr, en }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("fr")
+  const [locale, setLocaleState] = useState<Locale>("en")
 
   useEffect(() => {
     // Check localStorage first
