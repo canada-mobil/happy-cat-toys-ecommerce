@@ -4,6 +4,7 @@ import Image from "next/image"
 import { ChevronRight, ShoppingCart } from "lucide-react"
 import { useRef } from "react"
 import { useCart } from "@/lib/cart-context"
+import { useI18n } from "@/lib/i18n-context"
 
 const products = [
   {
@@ -35,6 +36,8 @@ const products = [
 export default function TreatsSection() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const { addItem } = useCart()
+  const { locale } = useI18n()
+  const isFr = locale === 'fr'
 
   const scrollRight = () => {
     if (scrollRef.current) {
@@ -60,10 +63,10 @@ export default function TreatsSection() {
     <section className="bg-white py-16 px-4 border-t border-neutral-100">
       <div className="max-w-6xl mx-auto">
         <p className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 text-center mb-3">
-          Collection
+          {isFr ? 'Collection' : 'Collection'}
         </p>
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-center text-neutral-900 mb-12">
-          Toutes les couleurs
+          {isFr ? 'Toutes les couleurs' : 'All Colors'}
         </h2>
 
         {/* Grid Layout */}
@@ -74,7 +77,7 @@ export default function TreatsSection() {
               <div className="relative aspect-square bg-neutral-50 rounded-2xl overflow-hidden mb-4">
                 {product.soldOut && (
                   <span className="absolute top-3 left-3 z-10 bg-neutral-900 text-white text-[10px] font-medium px-2.5 py-1 rounded-full">
-                    ÉPUISÉ
+                    {isFr ? 'ÉPUISÉ' : 'SOLD OUT'}
                   </span>
                 )}
                 <Image
@@ -105,7 +108,7 @@ export default function TreatsSection() {
                   className="w-full bg-brand hover:bg-brand-dark text-white px-4 py-2.5 rounded-full font-medium text-xs tracking-wide transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <ShoppingCart className="w-3.5 h-3.5" />
-                  {product.soldOut ? 'Épuisé' : 'Ajouter au panier'}
+                  {product.soldOut ? (isFr ? 'Épuisé' : 'Sold out') : (isFr ? 'Ajouter au panier' : 'Add to cart')}
                 </button>
               </div>
             </div>

@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useCart } from "@/lib/cart-context"
 import { toast } from "sonner"
 import { ShoppingCart } from "lucide-react"
+import { useI18n } from "@/lib/i18n-context"
 
 const products = [
   {
@@ -39,13 +40,13 @@ const products = [
 ]
 
 export default function BestSellers() {
+  const { locale } = useI18n()
+  const isFr = locale === 'fr'
   return (
     <section className="bg-white py-16 px-4">
       <div className="max-w-3xl mx-auto text-center">
         <p className="text-neutral-500 text-base md:text-lg leading-relaxed">
-          Des jouets pour chats premium conçus pour stimuler l&apos;instinct de jeu de votre félin, 
-          favoriser l&apos;exercice et renforcer le lien avec votre compagnon. 
-          Parce qu&apos;un chat qui joue est un chat heureux.
+          {isFr ? "Des jouets pour chats premium conçus pour stimuler l'instinct de jeu de votre félin, favoriser l'exercice et renforcer le lien avec votre compagnon. Parce qu'un chat qui joue est un chat heureux." : "Premium cat toys designed to stimulate your feline's play instinct, promote exercise and strengthen the bond with your companion. Because a cat that plays is a happy cat."}
         </p>
       </div>
     </section>
@@ -53,19 +54,20 @@ export default function BestSellers() {
 }
 
 export function BestSellersProducts() {
+  const { locale } = useI18n()
+  const isFr = locale === 'fr'
   return (
     <section id="best-sellers" className="bg-white py-16 px-4">
       <div className="max-w-6xl mx-auto">
         <p className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 text-center mb-3">
-          Nos produits
+          {isFr ? 'Nos produits' : 'Our products'}
         </p>
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-center text-neutral-900 mb-4">
-          Meilleures Ventes
+          {isFr ? 'Meilleures Ventes' : 'Best Sellers'}
         </h2>
         
         <p className="text-center text-neutral-500 max-w-xl mx-auto mb-12">
-          Découvrez nos jouets les plus populaires qui font le bonheur des chats 
-          et de leurs propriétaires.
+          {isFr ? 'Découvrez nos jouets les plus populaires qui font le bonheur des chats et de leurs propriétaires.' : 'Discover our most popular toys that bring joy to cats and their owners.'}
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -80,6 +82,8 @@ export function BestSellersProducts() {
 
 function ProductCard({ product }: { product: typeof products[0] }) {
   const { addItem } = useCart()
+  const { locale } = useI18n()
+  const isFr = locale === 'fr'
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -102,7 +106,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
       <div className="relative aspect-square bg-neutral-50 rounded-2xl overflow-hidden mb-4">
         {product.soldOut && (
           <span className="absolute top-3 left-3 z-10 bg-neutral-900 text-white text-[10px] font-medium px-2.5 py-1 rounded-full">
-            ÉPUISÉ
+            {isFr ? 'ÉPUISÉ' : 'SOLD OUT'}
           </span>
         )}
         <Image
@@ -140,7 +144,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
           className="w-full bg-brand hover:bg-brand-dark text-white px-4 py-2.5 rounded-full font-medium text-xs tracking-wide transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           <ShoppingCart className="w-3.5 h-3.5" />
-          Ajouter au panier
+          {isFr ? 'Ajouter au panier' : 'Add to cart'}
         </button>
       </div>
     </div>

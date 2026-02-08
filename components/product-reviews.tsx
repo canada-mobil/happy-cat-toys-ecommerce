@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Star, ThumbsUp, ThumbsDown, ChevronDown, CheckCircle } from "lucide-react"
+import { useI18n } from "@/lib/i18n-context"
 
 interface Review {
   id: number
@@ -204,6 +205,8 @@ function StarRating({ rating, size = "w-4 h-4" }: { rating: number; size?: strin
 export default function ProductReviews() {
   const [visibleCount, setVisibleCount] = useState(10)
   const [sortBy, setSortBy] = useState<'newest' | 'highest' | 'lowest'>('newest')
+  const { locale } = useI18n()
+  const isFr = locale === 'fr'
 
   const sortedReviews = [...allReviews].sort((a, b) => {
     if (sortBy === 'highest') return b.rating - a.rating
@@ -261,11 +264,11 @@ export default function ProductReviews() {
             onChange={(e) => setSortBy(e.target.value as any)}
             className="text-xs border border-neutral-200 rounded-full px-3 py-1.5 text-neutral-600 bg-white appearance-none pr-6"
           >
-            <option value="newest">Plus récents</option>
-            <option value="highest">Meilleure note</option>
-            <option value="lowest">Note la plus basse</option>
+            <option value="newest">{isFr ? 'Plus récents' : 'Most recent'}</option>
+            <option value="highest">{isFr ? 'Meilleure note' : 'Highest rated'}</option>
+            <option value="lowest">{isFr ? 'Note la plus basse' : 'Lowest rated'}</option>
           </select>
-          <span className="text-[10px] text-neutral-300">{totalReviews} avis</span>
+          <span className="text-[10px] text-neutral-300">{totalReviews} {isFr ? 'avis' : 'reviews'}</span>
         </div>
 
         {/* Reviews List */}
@@ -321,7 +324,7 @@ export default function ProductReviews() {
               className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium text-xs px-6 py-2.5 rounded-full transition-all hover:scale-[1.02]"
             >
               <ChevronDown className="w-3.5 h-3.5" />
-              Voir plus d'avis ({totalReviews - visibleCount} restants)
+              {isFr ? `Voir plus d'avis (${totalReviews - visibleCount} restants)` : `Load more reviews (${totalReviews - visibleCount} remaining)`}
             </button>
           </div>
         )}

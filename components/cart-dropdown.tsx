@@ -16,10 +16,15 @@ export default function CartDropdown() {
   const remainingForFreeShipping = Math.max(0, freeShippingThreshold - total)
 
   // Rotating banner messages
-  const bannerMessages = [
+  const isFr = t.cart.title === 'Panier'
+  const bannerMessages = isFr ? [
     { icon: <MapPin className="w-4 h-4" />, text: "Fabriqué au Canada", subtext: "Nos produits sont 100% naturels" },
     { icon: <Truck className="w-4 h-4" />, text: "Livraison 2-3 jours", subtext: "Expédition rapide" },
     { icon: <Shield className="w-4 h-4" />, text: "Garantie 2 mois", subtext: "100% sécurisé" }
+  ] : [
+    { icon: <MapPin className="w-4 h-4" />, text: "Made in Canada", subtext: "Our products are 100% natural" },
+    { icon: <Truck className="w-4 h-4" />, text: "Delivery 2-3 days", subtext: "Fast shipping" },
+    { icon: <Shield className="w-4 h-4" />, text: "2-month warranty", subtext: "100% secure" }
   ]
 
   // Auto-rotate banner every 4 seconds
