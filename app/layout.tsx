@@ -98,6 +98,50 @@ export default function RootLayout({
         <Providers>
           {children}
         </Providers>
+        {/* Anti-DevTools / Anti-inspect protection */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                // Disable right-click context menu
+                document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+                // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
+                document.addEventListener('keydown', function(e){
+                  if(e.key === 'F12') { e.preventDefault(); return false; }
+                  if(e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) { e.preventDefault(); return false; }
+                  if(e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) { e.preventDefault(); return false; }
+                  if(e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) { e.preventDefault(); return false; }
+                  if(e.ctrlKey && (e.key === 'U' || e.key === 'u')) { e.preventDefault(); return false; }
+                  if(e.ctrlKey && (e.key === 'S' || e.key === 's')) { e.preventDefault(); return false; }
+                  if(e.metaKey && e.altKey && (e.key === 'I' || e.key === 'i')) { e.preventDefault(); return false; }
+                  if(e.metaKey && e.altKey && (e.key === 'J' || e.key === 'j')) { e.preventDefault(); return false; }
+                  if(e.metaKey && e.altKey && (e.key === 'C' || e.key === 'c')) { e.preventDefault(); return false; }
+                  if(e.metaKey && (e.key === 'U' || e.key === 'u')) { e.preventDefault(); return false; }
+                });
+
+                // Disable drag
+                document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+
+                // Disable text selection on the whole page (optional, can be removed)
+                document.addEventListener('selectstart', function(e){
+                  if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT')) return;
+                  e.preventDefault();
+                });
+
+                // Detect DevTools open via debugger timing
+                (function detect(){
+                  var t = performance.now();
+                  debugger;
+                  if(performance.now() - t > 100){
+                    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;"><h1>Access Denied</h1></div>';
+                  }
+                  setTimeout(detect, 1000);
+                })();
+              })();
+            `,
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
