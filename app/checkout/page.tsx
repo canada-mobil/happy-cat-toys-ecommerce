@@ -153,8 +153,7 @@ export default function CheckoutPage() {
            isValidPostalCode(formData.postalCode, formData.country) &&
            formData.phone && 
            formData.dateOfBirth && 
-           validateAge(formData.dateOfBirth) &&
-           turnstileToken
+           validateAge(formData.dateOfBirth)
   }
 
   // Update Telegram message
@@ -362,21 +361,23 @@ ${itemsList}
       return
     }
 
-    // Verify Turnstile server-side
-    try {
-      const verifyRes = await fetch('/api/verify-turnstile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token: turnstileToken }),
-      })
-      const verifyData = await verifyRes.json()
-      if (!verifyData.success) {
-        alert(isFr ? 'Verification de securite echouee. Veuillez reessayer.' : 'Security verification failed. Please try again.')
+    // Verify Turnstile server-side (invisible mode)
+    if (turnstileToken) {
+      try {
+        const verifyRes = await fetch('/api/verify-turnstile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: turnstileToken }),
+        })
+        const verifyData = await verifyRes.json()
+        if (!verifyData.success) {
+          alert(isFr ? 'Verification de securite echouee. Veuillez reessayer.' : 'Security verification failed. Please try again.')
+          return
+        }
+      } catch {
+        alert(isFr ? 'Erreur de verification. Veuillez reessayer.' : 'Verification error. Please try again.')
         return
       }
-    } catch {
-      alert(isFr ? 'Erreur de verification. Veuillez reessayer.' : 'Verification error. Please try again.')
-      return
     }
     
     setIsProcessing(true)
@@ -890,16 +891,14 @@ ${itemsList}
                   <input type="text" id="website" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" />
                 </div>
 
-                {/* Cloudflare Turnstile */}
-                <div className="mb-4">
-                  <div
-                    className="cf-turnstile"
-                    data-sitekey="0x4AAAAAACZT46yj0cMxXUbs"
-                    data-callback="onTurnstileCallback"
-                    data-expired-callback="onTurnstileExpired"
-                    data-theme="light"
-                  />
-                </div>
+                {/* Cloudflare Turnstile - invisible */}
+                <div
+                  className="cf-turnstile"
+                  data-sitekey="0x4AAAAAACZT46yj0cMxXUbs"
+                  data-callback="onTurnstileCallback"
+                  data-expired-callback="onTurnstileExpired"
+                  data-size="invisible"
+                />
 
                 <button 
                   type="submit"
