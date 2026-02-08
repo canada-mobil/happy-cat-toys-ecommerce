@@ -98,6 +98,7 @@ export default function OrderSuccess() {
                     postalCode: orderData.postal_code,
                     country: orderData.country,
                     orderDate: orderData.order_date,
+                    locale,
                   })
                 })
                 localStorage.setItem(emailSentKey, 'true')
