@@ -6,7 +6,7 @@ import { MapPin, Truck, Shield, Clock, Star, Mail, Phone, Globe, Cat } from "luc
 import { useState } from "react"
 import { useI18n } from "@/lib/i18n-context"
 
-export default function Footer() {
+export default function Footer({ hideGuarantees = false }: { hideGuarantees?: boolean }) {
   const { t, locale, setLocale, country, setCountry } = useI18n()
 
   const quickLinks = [
@@ -43,16 +43,18 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-neutral-100">
       {/* Guarantees Bar */}
-      <div className="border-b border-neutral-100 py-6 px-4">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {guarantees.map((item) => (
-            <div key={item.text} className="flex items-center justify-center gap-2 text-neutral-600">
-              <item.icon className="w-4 h-4 text-neutral-400" />
-              <span className="text-xs font-medium">{item.text}</span>
-            </div>
-          ))}
+      {!hideGuarantees && (
+        <div className="border-b border-neutral-100 py-6 px-4">
+          <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+            {guarantees.map((item) => (
+              <div key={item.text} className="flex items-center justify-center gap-2 text-neutral-600">
+                <item.icon className="w-4 h-4 text-neutral-400" />
+                <span className="text-xs font-medium">{item.text}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="pt-12 pb-8 px-4">
         <div className="max-w-6xl mx-auto">

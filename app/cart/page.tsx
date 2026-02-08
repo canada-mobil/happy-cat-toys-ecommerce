@@ -114,6 +114,9 @@ export default function CartPage() {
                     </div>
                     
                     <div className="flex items-center justify-between">
+                      {item.price === 0 ? (
+                        <span className="text-xs text-green-600 font-medium">{isFr ? 'Cadeau × 1' : 'Gift × 1'}</span>
+                      ) : (
                       <div className="flex items-center gap-3">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
@@ -131,6 +134,7 @@ export default function CartPage() {
                           <Plus className="w-4 h-4" />
                         </button>
                       </div>
+                      )}
                       
                       <div className="text-right">
                         <div className="font-semibold text-sm text-neutral-900">
@@ -232,7 +236,7 @@ export default function CartPage() {
         </div>
       </div>
       
-      <Footer />
+      <Footer hideGuarantees />
     </div>
   )
 }
