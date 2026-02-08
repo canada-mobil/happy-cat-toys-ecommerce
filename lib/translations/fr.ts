@@ -1,0 +1,248 @@
+export const fr = {
+  // Header
+  header: {
+    toys: "Toys",
+    fournitures: "Fournitures",
+    guide: "Guide Soins Chat",
+    about: "À Propos",
+    tracking: "Suivre Commande",
+    contact: "Contact",
+  },
+
+  // Hero Section
+  hero: {
+    title: "Smart Interactive Ball",
+    subtitle: "Le jouet intelligent pour chats curieux",
+    shopNow: "SHOP NOW",
+    desktopSubtitle: "Conçu pour les chats curieux",
+    desktopTitle: "Le jouet que votre chat mérite.",
+    desktopDescription: "Stimulez l'instinct naturel de votre félin avec notre balle interactive intelligente. Livraison rapide partout au Canada.",
+    buyButton: "Acheter — CA$4.99",
+    learnMore: "En savoir plus →",
+  },
+
+  // Top Picks
+  topPicks: {
+    title: "Elevate Your Cat's Life with Top Picks",
+    subtitle: "Discover curated products designed for your pet's well-being and happiness, because smart choices lead to smarter, healthier pets.",
+    addToCart: "ADD TO CART",
+  },
+
+  // Shop by Category
+  shopByCategory: {
+    title: "Shop by Category",
+    toys: "Toys",
+    toysDesc: "Des jouets pour chats premium conçus pour stimuler l'instinct de jeu de votre félin, favoriser l'exercice et renforcer le lien avec votre compagnon. Parce qu'un chat qui joue est un chat heureux.",
+    fournitures: "Fournitures",
+    fournituresDesc: "Tout ce dont votre chat a besoin pour une vie saine et heureuse. Fontaines à eau, accessoires et plus encore.",
+  },
+
+  // Features Section
+  features: {
+    whyChooseUs: "POURQUOI NOUS CHOISIR",
+    trustTitle: "La confiance, simplement.",
+    trustDesc: "Entreprise 100% canadienne basée à Montréal. Livraison rapide, garantie satisfaction, et un service client qui répond vraiment.",
+    freeShipping: "Livraison Gratuite",
+    freeShippingDesc: "Sur toutes les commandes au Canada",
+    guarantee: "Garantie 2 Mois",
+    guaranteeDesc: "Satisfait ou remboursé",
+    support: "Support 24/7",
+    supportDesc: "Réponse en moins de 24h",
+    canadian: "100% Canadien",
+    canadianDesc: "Basé à Montréal, QC",
+  },
+
+  // Loved by Families
+  lovedByFamilies: {
+    title: "Loved by Pet Families Worldwide",
+    subtitle: "Découvrez pourquoi des milliers de familles font confiance à Purrball pour le bonheur de leurs compagnons.",
+  },
+
+  // Benefits Section
+  benefits: {
+    title: "Bon pour votre chat. Bon pour vous.",
+    subtitle: "AVANTAGES",
+  },
+
+  // FAQ
+  faq: {
+    title: "Questions Fréquentes",
+    subtitle: "Tout ce que vous devez savoir sur nos produits et services.",
+  },
+
+  // Newsletter
+  newsletter: {
+    title: "Restez Informé",
+    subtitle: "Recevez nos offres exclusives et conseils pour votre chat.",
+    placeholder: "Votre adresse email",
+    button: "S'abonner",
+  },
+
+  // Footer
+  footer: {
+    shop: "Boutique",
+    allProducts: "Tous les Produits",
+    toys: "Jouets",
+    fournitures: "Fournitures",
+    help: "Aide",
+    contact: "Contact",
+    faq: "FAQ",
+    shipping: "Livraison",
+    returns: "Retours & Échanges",
+    legal: "Légal",
+    privacy: "Politique de Confidentialité",
+    terms: "Conditions d'Utilisation",
+    refund: "Politique de Remboursement",
+    rights: "Tous droits réservés.",
+    madeWith: "Fait avec ❤️ à Montréal",
+  },
+
+  // Products Page (Toys)
+  productsPage: {
+    title: "Toys",
+    trending: "Trending This Month",
+    allProducts: "All Products",
+    addToCart: "ADD TO CART",
+    viewDetails: "VIEW DETAILS",
+    learnMore: "LEARN MORE",
+    save: "Save",
+    cat: "Cat",
+    seeInAction: "Voir en action",
+  },
+
+  // Fournitures Page
+  fournituresPage: {
+    title: "Fournitures",
+    subtitle: "Tout ce dont votre chat a besoin pour une vie saine et heureuse.",
+    collection: "Collection",
+    new: "Nouveau",
+    productSubtitle: "La fontaine à eau intelligente sans pompe qui garde votre chat hydraté avec de l'eau fraîche et filtrée.",
+    save: "Économisez",
+    reviews: "avis",
+    discount: "Rabais",
+    discountApplied: "appliqué automatiquement",
+    addToCart: "Ajouter au panier",
+    viewDetails: "Voir détails",
+    pumpless: "Sans Pompe",
+    pumplessDesc: "Technologie MagDrive™ ultra silencieuse",
+    smartSensor: "Capteur Intelligent",
+    smartSensorDesc: "Détecte automatiquement votre chat",
+    safe: "Sécuritaire",
+    safeDesc: "Séparation eau-électricité",
+    quiet: "Silencieux",
+    quietDesc: "Moins de 30dB en fonctionnement",
+    ctaTitle: "Offrez de l'eau fraîche à votre chat",
+    ctaSubtitle: "Commandez maintenant et profitez de la livraison gratuite. Votre chat mérite le meilleur.",
+    videoTitle: "Voir la Purr Fountain F1 en action",
+  },
+
+  // Product Detail Page
+  productDetail: {
+    addToCart: "Ajouter au panier",
+    description: "Description",
+    features: "Caractéristiques",
+    materials: "Matériaux",
+    shipping: "Livraison",
+    color: "Couleur",
+    standard: "Standard",
+    package: "Forfait",
+    bestDeal: "Meilleur Deal",
+    inStock: "En stock",
+    lowStock: "Stock limité",
+    freeShipping: "Livraison gratuite",
+    reviews: "avis",
+  },
+
+  // Cart
+  cart: {
+    title: "Panier",
+    empty: "Votre panier est vide",
+    emptySubtitle: "Ajoutez des produits pour commencer",
+    viewProducts: "Voir les produits",
+    subtotal: "Sous-total",
+    taxes: "Taxes et frais de livraison calculés à la caisse",
+    checkout: "Commander",
+    viewCart: "Voir le panier",
+    freeShipping: "Livraison gratuite offerte sur toutes les commandes!",
+    delivery: "Livré en",
+    deliveryDays: "1-3 jours ouvrables",
+    couponAdded: "Coupon",
+    couponApplied: "added",
+    gift: "Cadeau",
+    free: "GRATUIT",
+    continueShop: "Continuer vos achats",
+  },
+
+  // Guide Page
+  guide: {
+    title: "Guide de Soins pour Chats",
+    subtitle: "Tout ce que vous devez savoir pour offrir une vie heureuse et saine à votre compagnon félin.",
+    intro: "Prendre soin d'un chat est une responsabilité enrichissante. Ce guide vous aidera à comprendre les besoins essentiels de votre félin et à éviter les erreurs courantes. Un chat bien soigné peut vivre jusqu'à 15-20 ans en bonne santé!",
+    doTitle: "Ce qu'il faut faire",
+    dontTitle: "Ce qu'il ne faut pas faire",
+    healthTitle: "Santé de Votre Chat",
+    healthySignsTitle: "Signes d'un chat en bonne santé",
+    warningSignsTitle: "Signes à surveiller",
+    vetAdvice: "En cas de doute, consultez toujours un vétérinaire",
+    vetDesc: "Votre vétérinaire est votre meilleur allié pour la santé de votre chat. N'hésitez pas à le contacter si vous remarquez des changements inhabituels.",
+    playTitle: "L'Importance du Jeu",
+    playSubtitle: "Les jouets ne sont pas un luxe, mais une nécessité pour le bien-être de votre chat.",
+    exercise: "Exercice Physique",
+    exerciseDesc: "Le jeu maintient votre chat en forme et prévient l'obésité, un problème courant chez les chats d'intérieur.",
+    mental: "Stimulation Mentale",
+    mentalDesc: "Les jouets interactifs stimulent l'intelligence de votre chat et préviennent l'ennui et les comportements destructeurs.",
+    bond: "Lien Affectif",
+    bondDesc: "Jouer ensemble renforce la relation entre vous et votre chat et crée des moments de complicité.",
+    ctaTitle: "Offrez le Meilleur à Votre Chat",
+    ctaSubtitle: "Découvrez notre sélection de jouets de qualité pour stimuler et divertir votre compagnon.",
+    ctaButton: "Voir Nos Jouets",
+  },
+
+  // About Page
+  about: {
+    title: "À Propos de Purrball",
+    subtitle: "Une entreprise canadienne dédiée au bonheur et au bien-être de vos compagnons félins depuis 2020.",
+    happyCats: "Chats Heureux",
+    deliveryDays: "Jours de Livraison",
+    canadian: "Canadien",
+    warranty: "Garantie",
+    storyTitle: "Notre Histoire",
+    story1: "Purrball est née d'une passion simple : rendre les chats heureux. Fondée en 2020 à Montréal par une équipe d'amoureux des félins, notre mission est de fournir aux parents de chats les meilleurs jouets et accessoires pour leurs compagnons.",
+    story2: "Après avoir constaté le manque d'options de qualité sur le marché canadien, nous avons décidé de créer une boutique qui reflète nos valeurs : qualité, sécurité et bien-être animal.",
+    story3: "Aujourd'hui, nous sommes fiers d'avoir rendu plus de 50,000 chats heureux à travers le Canada, et nous continuons à grandir grâce à votre confiance et vos recommandations.",
+    valuesTitle: "Nos Valeurs",
+    passion: "Passion pour les Chats",
+    passionDesc: "Chaque produit est choisi avec amour par notre équipe de passionnés de félins.",
+    quality: "Qualité Premium",
+    qualityDesc: "Nous sélectionnons uniquement des jouets sûrs et durables pour votre compagnon.",
+    fastDelivery: "Livraison Rapide",
+    fastDeliveryDesc: "Expédition en 24h et livraison en 2-3 jours partout au Canada.",
+    guaranteeTitle: "Garantie 2 Mois",
+    guaranteeDesc: "Tous nos produits sont couverts par notre garantie satisfaction de 2 mois.",
+    whyTitle: "Pourquoi Nous Choisir?",
+    whySubtitle: "Nous nous engageons à offrir la meilleure expérience d'achat pour vous et votre chat.",
+    localTitle: "100% Canadien",
+    localDesc: "Entreprise locale basée à Montréal. Nous expédions depuis le Canada pour une livraison rapide et sans frais de douane.",
+    freeShipTitle: "Livraison Gratuite",
+    freeShipDesc: "Livraison gratuite sur toutes les commandes de plus de 50$. Recevez vos produits en 2-3 jours ouvrables.",
+    qualityGuarantee: "Qualité Garantie",
+    qualityGuaranteeDesc: "Garantie de 2 ans sur tous nos produits. Satisfait ou remboursé sous 30 jours, sans questions.",
+    teamTitle: "Notre Équipe",
+    teamDesc: "Nous sommes une petite équipe passionnée de 12 personnes, tous propriétaires de chats. Chaque jour, nous travaillons avec amour pour sélectionner les meilleurs produits et vous offrir un service client exceptionnel.",
+    employees: "12 Employés",
+    officeCats: "15+ Chats au Bureau",
+    location: "Montréal, QC",
+    ctaTitle: "Prêt à Rendre Votre Chat Heureux?",
+    ctaSubtitle: "Découvrez notre collection de jouets premium sélectionnés avec amour.",
+    ctaButton: "Voir Nos Produits",
+  },
+
+  // Common
+  common: {
+    shopNow: "SHOP NOW",
+    addToCart: "Ajouter au panier",
+    viewDetails: "Voir détails",
+    learnMore: "En savoir plus",
+    freeShipping: "LIVRAISON GRATUITE OFFERTE",
+  },
+}

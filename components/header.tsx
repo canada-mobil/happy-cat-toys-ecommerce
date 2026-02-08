@@ -1,27 +1,27 @@
 "use client"
 
-import { Menu, ShoppingBag, PawPrint } from "lucide-react"
+import { Menu, PawPrint, Globe } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import CartDropdown from "./cart-dropdown"
+import { useI18n } from "@/lib/i18n-context"
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [currentMessage, setCurrentMessage] = useState(0)
+  const { t, locale, toggleLocale } = useI18n()
 
-  const messages = [
-    "LIVRAISON GRATUITE OFFERTE",
-    "LIVRAISON RAPIDE",
-    "GARANTI 2 MOIS"
-  ]
+  const messages = locale === 'fr' 
+    ? ["LIVRAISON GRATUITE OFFERTE", "LIVRAISON RAPIDE", "GARANTI 2 MOIS"]
+    : ["FREE SHIPPING", "FAST DELIVERY", "2-MONTH GUARANTEE"]
 
   const menuItems = [
-    { label: "Toys", href: "/produits" },
-    { label: "Fournitures", href: "/fournitures" },
-    { label: "Guide Soins Chat", href: "/guide" },
-    { label: "À Propos", href: "/a-propos" },
-    { label: "Suivre Commande", href: "/suivi" },
-    { label: "Contact", href: "/contact" },
+    { label: t.header.toys, href: "/produits" },
+    { label: t.header.fournitures, href: "/fournitures" },
+    { label: t.header.guide, href: "/guide" },
+    { label: t.header.about, href: "/a-propos" },
+    { label: t.header.tracking, href: "/suivi" },
+    { label: t.header.contact, href: "/contact" },
   ]
 
   useEffect(() => {
@@ -91,8 +91,16 @@ export default function Header() {
             Purrball
           </Link>
 
-          {/* Right: Cart */}
-          <div className="flex items-center">
+          {/* Right: Lang + Cart */}
+          <div className="flex items-center gap-1">
+            <button
+              onClick={toggleLocale}
+              className="p-2 text-neutral-500 hover:text-neutral-900 transition-colors text-xs font-medium flex items-center gap-1"
+              title={locale === 'fr' ? 'Switch to English' : 'Passer en français'}
+            >
+              <Globe className="w-4 h-4" />
+              <span className="hidden sm:inline">{locale === 'fr' ? 'EN' : 'FR'}</span>
+            </button>
             <CartDropdown />
           </div>
         </div>

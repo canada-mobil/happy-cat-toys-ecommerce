@@ -1,9 +1,7 @@
 import React from "react"
 import type { Metadata } from 'next'
 import { Poppins, Playfair_Display } from 'next/font/google'
-import { CartProvider } from "@/lib/cart-context"
-import { Toaster } from "sonner"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import Providers from "@/components/providers"
 
 import './globals.css'
 
@@ -41,15 +39,9 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${playfair.variable} antialiased`}
       >
-        <CartProvider>
+        <Providers>
           {children}
-          <Toaster 
-            position="top-right"
-            richColors
-            closeButton
-          />
-          <SpeedInsights />
-        </CartProvider>
+        </Providers>
       </body>
     </html>
   )
