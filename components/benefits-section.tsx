@@ -1,35 +1,25 @@
-import { Eye, Heart, User } from "lucide-react"
+"use client"
 
-const benefits = [
-  {
-    icon: Eye,
-    number: "01",
-    title: "Économisez chez le Vétérinaire",
-    description: "Un chat actif prévient l'obésité et les problèmes de santé coûteux. Investir dans le jeu, c'est investir dans sa santé."
-  },
-  {
-    icon: Heart,
-    number: "02",
-    title: "Une Vie Plus Heureuse",
-    description: "Le jeu quotidien réduit le stress et renforce votre lien. Un chat stimulé est un chat épanoui."
-  },
-  {
-    icon: User,
-    number: "03",
-    title: "Prévenir les Problèmes",
-    description: "L'exercice régulier prévient les comportements destructeurs. Fini les griffures sur le canapé."
-  }
-]
+import { Eye, Heart, User } from "lucide-react"
+import { useI18n } from "@/lib/i18n-context"
 
 export default function BenefitsSection() {
+  const { t } = useI18n()
+
+  const benefits = [
+    { icon: Eye, number: "01", title: t.benefitsSection.benefit1Title, description: t.benefitsSection.benefit1Desc },
+    { icon: Heart, number: "02", title: t.benefitsSection.benefit2Title, description: t.benefitsSection.benefit2Desc },
+    { icon: User, number: "03", title: t.benefitsSection.benefit3Title, description: t.benefitsSection.benefit3Desc },
+  ]
+
   return (
     <section className="bg-neutral-50 py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <p className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-400 text-center mb-3">
-          Avantages
+          {t.benefitsSection.label}
         </p>
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-center text-neutral-900 mb-16">
-          Bon pour votre chat. Bon pour vous.
+          {t.benefitsSection.title}
         </h2>
         
         <div className="space-y-12">

@@ -237,6 +237,51 @@ export const en = {
     ctaButton: "See Our Products",
   },
 
+  // Features Section (detailed)
+  featuresSection: {
+    label: "Features",
+    title: "Designed with every detail in mind.",
+    feature1Title: "Natural Stimulation",
+    feature1Desc: "An active cat is a healthy cat. Our toys stimulate natural hunting instincts, promote daily exercise and prevent boredom.",
+    feature2Title: "Loved by Cats",
+    feature2Desc: "Made with safe and durable materials, tested and approved by thousands of happy cats across Canada.",
+    feature3Title: "Premium Quality",
+    feature3Desc: "Eco-friendly and non-toxic materials. USB rechargeable. Built to last and withstand the most intense play.",
+  },
+
+  // Benefits Section (detailed)
+  benefitsSection: {
+    label: "Benefits",
+    title: "Good for your cat. Good for you.",
+    benefit1Title: "Save on Vet Bills",
+    benefit1Desc: "An active cat prevents obesity and costly health problems. Investing in play means investing in their health.",
+    benefit2Title: "A Happier Life",
+    benefit2Desc: "Daily play reduces stress and strengthens your bond. A stimulated cat is a fulfilled cat.",
+    benefit3Title: "Prevent Problems",
+    benefit3Desc: "Regular exercise prevents destructive behavior. No more scratches on the couch.",
+  },
+
+  // FAQ Section (detailed)
+  faqSection: {
+    label: "FAQ",
+    title: "Frequently Asked Questions",
+    subtitle: "Everything you need to know",
+    moreQuestions: "Have more questions?",
+    contactUs: "Contact Us",
+    q1: "Are your toys safe for my cat?",
+    a1: "Absolutely! All our toys are made with non-toxic materials and tested for feline safety. We comply with the strictest Canadian standards and every product goes through rigorous quality controls.",
+    q2: "How often should I change my cat's toys?",
+    a2: "We recommend rotating toys every 1-2 weeks to maintain your cat's interest. Replace any damaged toy immediately. Our durable toys are designed to withstand intense play for months.",
+    q3: "My cat isn't interested in new toys, what should I do?",
+    a3: "That's normal! Try introducing the toy gradually, use catnip to attract them, or play with it yourself to show them. Some cats prefer to observe before playing. Be patient, it can take a few days.",
+    q4: "Is catnip safe for all cats?",
+    a4: "Yes, our organic catnip is 100% natural and safe. About 70% of cats are sensitive to it. It's not addictive and effects last 10-15 minutes. Just avoid giving it to kittens under 6 months.",
+    q5: "Can I wash the plush toys?",
+    a5: "Most of our plush toys can be hand-washed with warm water and mild soap. Let them dry completely before giving them back to your cat. Always check the product label for specific instructions.",
+    q6: "How much playtime does my cat need per day?",
+    a6: "Cats need 10-15 minutes of active play, 2-3 times a day. Kittens and young cats can play up to 30 minutes at a time. Play helps maintain a healthy weight and reduces destructive behavior.",
+  },
+
   // Common
   common: {
     shopNow: "SHOP NOW",

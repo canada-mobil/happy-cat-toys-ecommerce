@@ -237,6 +237,51 @@ export const fr = {
     ctaButton: "Voir Nos Produits",
   },
 
+  // Features Section (detailed)
+  featuresSection: {
+    label: "Caractéristiques",
+    title: "Pensé dans les moindres détails.",
+    feature1Title: "Stimulation Naturelle",
+    feature1Desc: "Un chat actif est un chat en bonne santé. Nos jouets stimulent les instincts naturels de chasse, favorisent l'exercice quotidien et préviennent l'ennui.",
+    feature2Title: "Adorés par les Chats",
+    feature2Desc: "Fabriqués avec des matériaux sûrs et durables, testés et approuvés par des milliers de félins heureux à travers le Canada.",
+    feature3Title: "Qualité Premium",
+    feature3Desc: "Matériaux écologiques et non toxiques. Rechargeable par USB. Conçu pour durer et résister au jeu le plus intense.",
+  },
+
+  // Benefits Section (detailed)
+  benefitsSection: {
+    label: "Avantages",
+    title: "Bon pour votre chat. Bon pour vous.",
+    benefit1Title: "Économisez chez le Vétérinaire",
+    benefit1Desc: "Un chat actif prévient l'obésité et les problèmes de santé coûteux. Investir dans le jeu, c'est investir dans sa santé.",
+    benefit2Title: "Une Vie Plus Heureuse",
+    benefit2Desc: "Le jeu quotidien réduit le stress et renforce votre lien. Un chat stimulé est un chat épanoui.",
+    benefit3Title: "Prévenir les Problèmes",
+    benefit3Desc: "L'exercice régulier prévient les comportements destructeurs. Fini les griffures sur le canapé.",
+  },
+
+  // FAQ Section (detailed)
+  faqSection: {
+    label: "FAQ",
+    title: "Questions Fréquentes",
+    subtitle: "Tout ce que vous devez savoir",
+    moreQuestions: "Vous avez d'autres questions ?",
+    contactUs: "Contactez-nous",
+    q1: "Mes jouets sont-ils sûrs pour mon chat ?",
+    a1: "Absolument ! Tous nos jouets sont fabriqués avec des matériaux non toxiques et testés pour la sécurité des félins. Nous respectons les normes canadiennes les plus strictes et chaque produit passe par des contrôles qualité rigoureux.",
+    q2: "À quelle fréquence dois-je changer les jouets de mon chat ?",
+    a2: "Nous recommandons de faire une rotation des jouets toutes les 1-2 semaines pour maintenir l'intérêt de votre chat. Remplacez immédiatement tout jouet endommagé. Nos jouets durables sont conçus pour résister à un jeu intensif pendant des mois.",
+    q3: "Mon chat ne s'intéresse pas aux nouveaux jouets, que faire ?",
+    a3: "C'est normal ! Essayez d'introduire le jouet progressivement, utilisez de l'herbe à chat pour l'attirer, ou jouez vous-même avec pour montrer l'exemple. Certains chats préfèrent observer avant de jouer. Soyez patient, cela peut prendre quelques jours.",
+    q4: "L'herbe à chat est-elle sans danger pour tous les chats ?",
+    a4: "Oui, notre herbe à chat biologique est 100% naturelle et sans danger. Environ 70% des chats y sont sensibles. Elle n'est pas addictive et les effets durent 10-15 minutes. Évitez simplement d'en donner aux chatons de moins de 6 mois.",
+    q5: "Puis-je laver les jouets en peluche ?",
+    a5: "La plupart de nos peluches peuvent être lavées à la main avec de l'eau tiède et un savon doux. Laissez sécher complètement avant de redonner à votre chat. Vérifiez toujours l'étiquette du produit pour les instructions spécifiques.",
+    q6: "Combien de temps de jeu mon chat a-t-il besoin par jour ?",
+    a6: "Les chats ont besoin de 10-15 minutes de jeu actif, 2-3 fois par jour. Les chatons et jeunes chats peuvent jouer jusqu'à 30 minutes d'affilée. Le jeu aide à maintenir un poids santé et réduit les comportements destructeurs.",
+  },
+
   // Common
   common: {
     shopNow: "SHOP NOW",
