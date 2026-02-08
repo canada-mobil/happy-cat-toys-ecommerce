@@ -106,6 +106,7 @@ export default function FournituresPage() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-contain p-6"
+                loading="lazy"
               />
               <span className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
                 -{Math.round((1 - fountain.price / fountain.originalPrice) * 100)}%
@@ -219,10 +220,10 @@ export default function FournituresPage() {
           >
             <video
               ref={videoRef}
-              src="/pet_video.mp4#t=1"
+              src="https://res.cloudinary.com/dhhdhilja/video/upload/v1770517640/purrball/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4"
               className="w-full aspect-video object-cover"
               playsInline
-              preload="metadata"
+              preload="none"
               onTimeUpdate={handleTimeUpdate}
             />
             {!isPlaying && (
@@ -233,6 +234,7 @@ export default function FournituresPage() {
                   fill
                   sizes="(max-width: 1024px) 100vw, 896px"
                   className="object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
                 <div className="relative w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
@@ -254,6 +256,7 @@ export default function FournituresPage() {
             height={600}
             sizes="(max-width: 1024px) 100vw, 896px"
             className="w-full h-auto"
+            loading="lazy"
           />
         </div>
       </section>
