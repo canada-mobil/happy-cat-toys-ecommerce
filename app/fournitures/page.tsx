@@ -220,7 +220,7 @@ export default function FournituresPage() {
           >
             <video
               ref={videoRef}
-              src="https://res.cloudinary.com/dhhdhilja/video/upload/v1770517640/purrball/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4"
+              src="/pet_video.mp4#t=1"
               className="w-full aspect-video object-cover"
               playsInline
               preload="none"

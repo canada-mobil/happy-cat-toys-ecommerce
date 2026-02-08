@@ -227,7 +227,7 @@ export default function ProductsPage() {
       <section className="px-4 py-12">
         <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden bg-neutral-900">
           <video
-            src="https://res.cloudinary.com/dhhdhilja/video/upload/v1770517640/purrball/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4"
+            src="https://res.cloudinary.com/dhhdhilja/video/upload/v1770517640/purrball/e7c69d7aa78343edb5974d2576e163fb.HD-1080p-7.2Mbps-46122013.mp4#t=4"
             className="w-full aspect-video object-cover"
             muted
             loop
