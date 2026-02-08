@@ -11,7 +11,7 @@ const products = [
     name: "Smart Interactive Ball - Rouge",
     description: "Balle intelligente auto-roulante pour chat",
     price: 4.99,
-    image: "/smart_interactive_cats_ball_toy_red.png.webp",
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517783/purrball/smart_interactive_cats_ball_toy_red.png.webp",
     soldOut: false
   },
   {
@@ -19,7 +19,7 @@ const products = [
     name: "Smart Interactive Ball - Gris",
     description: "Balle intelligente auto-roulante pour chat",
     price: 4.99,
-    image: "/smart_interactive_cats_ball_toy_gray.png.avif",
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517775/purrball/smart_interactive_cats_ball_toy_gray.png.webp",
     soldOut: false
   },
   {
@@ -27,7 +27,7 @@ const products = [
     name: "Smart Interactive Ball - Vert",
     description: "Balle intelligente auto-roulante pour chat",
     price: 4.99,
-    image: "/smart_interactive_cats_ball_toy_green.png.avif",
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517777/purrball/smart_interactive_cats_ball_toy_green.png.webp",
     soldOut: false
   }
 ]

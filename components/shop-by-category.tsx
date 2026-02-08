@@ -5,13 +5,13 @@ const categories = [
   {
     name: "Toys",
     href: "/produits",
-    image: "/Section2_-_Featured_Cat_Toy.jpg.webp",
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp",
     span: "col-span-1 row-span-2",
   },
   {
     name: "Fournitures",
     href: "/fournitures",
-    image: "/petfount.webp",
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517763/purrball/petfount.webp",
     span: "col-span-1 row-span-1",
   },
 ]

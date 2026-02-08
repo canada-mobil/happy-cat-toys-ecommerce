@@ -61,7 +61,7 @@ export default function FournituresPage() {
       {/* Hero Banner */}
       <section className="relative h-[200px] md:h-[320px] overflow-hidden">
         <Image
-          src="/petfount.webp"
+          src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517763/purrball/petfount.webp"
           alt="Fournitures pour chats"
           fill
           sizes="100vw"
@@ -228,7 +228,7 @@ export default function FournituresPage() {
             {!isPlaying && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <Image
-                  src="/pet_fountain_elfin_e1_plus_video_post_image_1.jpg.webp"
+                  src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517681/purrball/pet_fountain_elfin_e1_plus_video_post_image_1.jpg.webp"
                   alt="Purr Fountain F1 Video"
                   fill
                   sizes="(max-width: 1024px) 100vw, 896px"
@@ -248,7 +248,7 @@ export default function FournituresPage() {
       <section className="px-4 pb-12">
         <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden">
           <Image
-            src="/knowleage_slide2_pc.jpg.webp"
+            src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517666/purrball/knowleage_slide2_pc.jpg.webp"
             alt="Purr Fountain F1 - Guide"
             width={1200}
             height={600}

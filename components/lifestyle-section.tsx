@@ -9,7 +9,7 @@ export default function LifestyleSection() {
           {/* Image Side */}
           <div className="relative h-[300px] lg:h-auto">
             <Image
-              src="/homebas.jpg.webp"
+              src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517663/purrball/homebas.jpg.webp"
               alt="Chat heureux jouant avec son jouet"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

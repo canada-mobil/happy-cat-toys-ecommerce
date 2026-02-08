@@ -54,7 +54,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           name: 'Catnip Gratuit',
           price: 0,
           originalPrice: 5.99,
-          image: '/smart_interactive_cats_ball_toy_package.png.avif',
+          image: 'https://res.cloudinary.com/dhhdhilja/image/upload/v1770517781/purrball/smart_interactive_cats_ball_toy_package.png.webp',
           quantity: 1,
           variant: 'CADEAU GRATUIT'
         }

@@ -34,7 +34,7 @@ export default function CartDropdown() {
       id: "smart-interactive-ball-Rouge",
       name: "Smart Interactive Ball - Rouge",
       price: 4.99,
-      image: "/smart_interactive_cats_ball_toy_red.png.webp",
+      image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517783/purrball/smart_interactive_cats_ball_toy_red.png.webp",
       rating: 4.8,
       reviews: 325
     },
@@ -42,7 +42,7 @@ export default function CartDropdown() {
       id: "smart-interactive-ball-Gris",
       name: "Smart Interactive Ball - Gris",
       price: 4.99,
-      image: "/smart_interactive_cats_ball_toy_gray.png.avif",
+      image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517775/purrball/smart_interactive_cats_ball_toy_gray.png.webp",
       rating: 4.8,
       reviews: 325
     },
@@ -50,7 +50,7 @@ export default function CartDropdown() {
       id: "smart-interactive-ball-Vert",
       name: "Smart Interactive Ball - Vert",
       price: 4.99,
-      image: "/smart_interactive_cats_ball_toy_green.png.avif",
+      image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517777/purrball/smart_interactive_cats_ball_toy_green.png.webp",
       rating: 4.8,
       reviews: 325
     }

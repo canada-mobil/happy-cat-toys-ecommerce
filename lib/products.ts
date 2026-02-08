@@ -41,20 +41,20 @@ export const products: Product[] = [
     longDescription: "Transformez le temps de jeu de votre chat en une aventure ! La Smart Interactive Cats Ball Toy est conçue pour éveiller la curiosité et l'énergie de votre félin grâce à ses mouvements de roulement, de secousse et de rebond qui imitent une proie naturelle. Rechargeable par USB, matériaux écologiques et sécuritaires.",
     price: 4.99,
     originalPrice: 11.99,
-    image: "/smart_interactive_cats_ball_toy_red.png.webp",
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517783/purrball/smart_interactive_cats_ball_toy_red.png.webp",
     images: [
-      "/smart_interactive_cats_ball_toy_red.png.webp",
-      "/smart_interactive_cats_ball_toy_intro.png.webp",
-      "/smart_interactive_cats_ball_toy_fun.png.webp",
-      "/smart_interactive_cats_ball_toy_entertainment.png.webp",
-      "/smart_interactive_cats_ball_toy_modes.png.webp",
-      "/smart_interactive_cats_ball_toy_dimension.png.webp",
-      "/smart_interactive_cats_ball_toy_package.png.avif"
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517783/purrball/smart_interactive_cats_ball_toy_red.png.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517778/purrball/smart_interactive_cats_ball_toy_intro.png.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517774/purrball/smart_interactive_cats_ball_toy_fun.png.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517772/purrball/smart_interactive_cats_ball_toy_entertainment.png.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517780/purrball/smart_interactive_cats_ball_toy_modes.png.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517771/purrball/smart_interactive_cats_ball_toy_dimension.png.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517781/purrball/smart_interactive_cats_ball_toy_package.png.webp"
     ],
     colors: [
-      { name: "Rouge", value: "#e53e3e", image: "/smart_interactive_cats_ball_toy_red.png.webp", stockCount: 18 },
-      { name: "Gris", value: "#a0aec0", image: "/smart_interactive_cats_ball_toy_gray.png.avif", stockCount: 3 },
-      { name: "Vert", value: "#48bb78", image: "/smart_interactive_cats_ball_toy_green.png.avif", stockCount: 7 }
+      { name: "Rouge", value: "#e53e3e", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517783/purrball/smart_interactive_cats_ball_toy_red.png.webp", stockCount: 18 },
+      { name: "Gris", value: "#a0aec0", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517775/purrball/smart_interactive_cats_ball_toy_gray.png.webp", stockCount: 3 },
+      { name: "Vert", value: "#48bb78", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517777/purrball/smart_interactive_cats_ball_toy_green.png.webp", stockCount: 7 }
     ],
     packages: [
       { quantity: 1, label: "1x", pricePerUnit: 4.99 },
@@ -84,19 +84,19 @@ export const products: Product[] = [
     longDescription: "Le Wicked Ball M3 est le compagnon de jeu ultime pour votre chat. Sa surface douce en peluche protège les pattes délicates tout en offrant des mouvements intelligents et imprévisibles. Avec plusieurs modes de jeu, il garde votre chat actif et stimulé même quand vous n'êtes pas là. Rechargeable par USB, silencieux et durable.",
     price: 6.99,
     originalPrice: 15.75,
-    image: "/Section1-Productimages-M3Red1-monderncat_jpg.jpg.webp",
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517594/purrball/Section1-Productimages-M3Red1-monderncat_jpg.jpg.webp",
     images: [
-      "/Section1-Productimages-M3Red1-monderncat_jpg.jpg.webp",
-      "/Section1-ProductImages-M3Red2.jpg.webp",
-      "/Section1-ProductImages-M3Red4.jpg.webp",
-      "/Section1_-_Product_Images_-_M3_Beige_1.png.webp",
-      "/Section1_-_Product_Images_-_M3_Beige_2.jpg.webp",
-      "/Section1_-_Product_Images_-_M3_Beige_3.jpg.webp",
-      "/Section1_-_Product_Images_-_M3_Beige_4.png.webp"
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517594/purrball/Section1-Productimages-M3Red1-monderncat_jpg.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517590/purrball/Section1-ProductImages-M3Red2.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517592/purrball/Section1-ProductImages-M3Red4.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517595/purrball/Section1_-_Product_Images_-_M3_Beige_1.png.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517599/purrball/Section1_-_Product_Images_-_M3_Beige_2.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517600/purrball/Section1_-_Product_Images_-_M3_Beige_3.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517602/purrball/Section1_-_Product_Images_-_M3_Beige_4.png.webp"
     ],
     colors: [
-      { name: "Vintage Red", value: "#c0392b", image: "/Section1-Productimages-M3Red1-monderncat_jpg.jpg.webp", stockCount: 12 },
-      { name: "Beige", value: "#d4b896", image: "/Section1_-_Product_Images_-_M3_Beige_1.png.webp", stockCount: 9 }
+      { name: "Vintage Red", value: "#c0392b", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517594/purrball/Section1-Productimages-M3Red1-monderncat_jpg.jpg.webp", stockCount: 12 },
+      { name: "Beige", value: "#d4b896", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517595/purrball/Section1_-_Product_Images_-_M3_Beige_1.png.webp", stockCount: 9 }
     ],
     packages: [
       { quantity: 1, label: "1x", pricePerUnit: 6.99 },
@@ -126,20 +126,20 @@ export const products: Product[] = [
     longDescription: "Le Mouse PLUS offre une expérience de chasse réaliste pour votre chat grâce à ses mouvements aléatoires qui imitent une vraie souris. Avec 2 modes de vitesse, un système anti-perte par bip sonore, et un équilibre jeu/repos automatique (10 min de jeu, 30 min de repos), il garde votre chat actif et stimulé. Rechargeable par USB-C, roues détachables et évitement d'obstacles automatique.",
     price: 7.99,
     originalPrice: 17.99,
-    image: "/mouse1.jpg",
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517668/purrball/mouse1.webp",
     images: [
-      "/mouse1.jpg",
-      "/mouse5.webp",
-      "/mouse7.webp",
-      "/mouse8.webp",
-      "/mouse9.webp",
-      "/mouse3.webp",
-      "/mouse4.webp",
-      "/mouse6.webp"
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517668/purrball/mouse1.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517673/purrball/mouse5.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517676/purrball/mouse7.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517678/purrball/mouse8.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517679/purrball/mouse9.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517670/purrball/mouse3.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517671/purrball/mouse4.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517674/purrball/mouse6.webp"
     ],
     colors: [
-      { name: "Milky Blue", value: "#b8d4e3", image: "/mouse1.jpg", stockCount: 15 },
-      { name: "Vert", value: "#8fbc8f", image: "/mouse3.webp", stockCount: 10 }
+      { name: "Milky Blue", value: "#b8d4e3", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517668/purrball/mouse1.webp", stockCount: 15 },
+      { name: "Vert", value: "#8fbc8f", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517670/purrball/mouse3.webp", stockCount: 10 }
     ],
     packages: [
       { quantity: 1, label: "1x", pricePerUnit: 7.99 },
@@ -171,26 +171,26 @@ export const products: Product[] = [
     longDescription: "La Purr Fountain F1 révolutionne l'hydratation de votre chat grâce à sa technologie MagDrive™ sans pompe. Silencieuse, facile à nettoyer et dotée d'un capteur intelligent qui détecte la présence de votre chat. Double mode de distribution, séparation eau-électricité pour la sécurité, et filtration multi-couches pour une eau pure et fraîche en permanence.",
     price: 27.15,
     originalPrice: 84.00,
-    image: "/e__pumpless_design.jpg",
+    image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517651/purrball/e__pumpless_design.webp",
     images: [
-      "/e__pumpless_design.jpg",
-      "/e1__dual_mode_dispensing.jpg.webp",
-      "/e1__multi-layer__filtration.jpg.webp",
-      "/e1__no_cleaning_hassle.jpg.webp",
-      "/e1__water-elecrical_separation.jpg.webp",
-      "/e1__battery_life.jpg.webp",
-      "/e1__flexible_power_options.jpg.webp",
-      "/set-up_guide_pc2.jpg.webp",
-      "/water_stainless_steel_pc.jpg.webp",
-      "/knowleage_slide3_pc.jpg.webp",
-      "/in_the_box_pc.jpg.webp",
-      "/Double_Protection_pc.jpg.webp"
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517651/purrball/e__pumpless_design.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517607/purrball/e1__dual_mode_dispensing.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517610/purrball/e1__multi-layer__filtration.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517612/purrball/e1__no_cleaning_hassle.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517613/purrball/e1__water-elecrical_separation.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517605/purrball/e1__battery_life.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517608/purrball/e1__flexible_power_options.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517764/purrball/set-up_guide_pc2.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517806/purrball/water_stainless_steel_pc.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517667/purrball/knowleage_slide3_pc.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517664/purrball/in_the_box_pc.jpg.webp",
+      "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517588/purrball/Double_Protection_pc.jpg.webp"
     ],
     colors: [
-      { name: "American", value: "#f5f5f5", image: "/e__pumpless_design.jpg", stockCount: 14 },
-      { name: "European", value: "#e8e8e8", image: "/e__pumpless_design.jpg", stockCount: 12 },
-      { name: "British", value: "#dcdcdc", image: "/e__pumpless_design.jpg", stockCount: 8 },
-      { name: "Australian", value: "#d0d0d0", image: "/e__pumpless_design.jpg", stockCount: 6 }
+      { name: "American", value: "#f5f5f5", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517651/purrball/e__pumpless_design.webp", stockCount: 14 },
+      { name: "European", value: "#e8e8e8", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517651/purrball/e__pumpless_design.webp", stockCount: 12 },
+      { name: "British", value: "#dcdcdc", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517651/purrball/e__pumpless_design.webp", stockCount: 8 },
+      { name: "Australian", value: "#d0d0d0", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517651/purrball/e__pumpless_design.webp", stockCount: 6 }
     ],
     packages: [
       { quantity: 1, label: "1x", pricePerUnit: 27.15 },

@@ -5,13 +5,13 @@ import VideoHero from "./video-hero"
 
 const slides = [
   {
-    video: "/hoeme1.mp4",
+    video: "https://res.cloudinary.com/dhhdhilja/video/upload/v1770517656/purrball/hoeme1.mp4",
     title: "Smart Interactive Ball",
     subtitle: "Le jouet intelligent pour chats curieux",
     href: "/produits/smart-interactive-ball",
   },
   {
-    video: "/home2.mp4",
+    video: "https://res.cloudinary.com/dhhdhilja/video/upload/v1770517660/purrball/home2.mp4",
     title: "Wicked Ball M3",
     subtitle: "La balle douce et robuste pour chats",
     href: "/produits/wicked-ball-m3",
@@ -130,7 +130,7 @@ export default function HeroSection() {
           <div className="flex-1 relative">
             <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl bg-neutral-900">
               <VideoHero
-                src="/hoeme1.mp4"
+                src="https://res.cloudinary.com/dhhdhilja/video/upload/v1770517656/purrball/hoeme1.mp4"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>

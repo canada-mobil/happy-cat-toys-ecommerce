@@ -30,7 +30,7 @@ export default function ProductsPage() {
       {/* Hero Banner */}
       <section className="relative h-[140px] md:h-[200px] overflow-hidden">
         <Image
-          src="/CollectionPage-cat-banner.jpg.webp"
+          src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517587/purrball/CollectionPage-cat-banner.jpg.webp"
           alt="Cat Toys"
           fill
           sizes="100vw"
@@ -57,7 +57,7 @@ export default function ProductsPage() {
             {/* Big lifestyle photo */}
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
               <Image
-                src="/Section2_-_Featured_Cat_Toy.jpg.webp"
+                src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp"
                 alt="Smart Interactive Ball"
                 fill
                 sizes="100vw"
@@ -157,7 +157,7 @@ export default function ProductsPage() {
             {/* Right: Lifestyle photo */}
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/Section2_-_Featured_Cat_Toy.jpg.webp"
+                src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp"
                 alt="Chat jouant avec la Smart Interactive Ball"
                 fill
                 sizes="50vw"

@@ -34,7 +34,7 @@ export default function LovedByFamilies() {
         >
           <video
             ref={videoRef}
-            src="/86fe1575-9665-4b7d-a9da-3ee5e1515474.mp4"
+            src="https://res.cloudinary.com/dhhdhilja/video/upload/v1770517796/purrball/tiktok1.mp4"
             className="w-full aspect-[9/16] object-cover"
             playsInline
             preload="metadata"
