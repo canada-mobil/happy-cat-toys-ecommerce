@@ -40,36 +40,72 @@ export default function OrderSuccess() {
       try {
         const latestOrderNumber = localStorage.getItem('purrball-latest-order')
         if (latestOrderNumber) {
+          let orderData: OrderRecord | null = null
+
           // Try Supabase first
           const supaOrder = await getOrderByNumber(latestOrderNumber)
           if (supaOrder) {
-            setOrder(supaOrder)
-            return
+            orderData = supaOrder
+          } else {
+            // Fallback to localStorage
+            const data = localStorage.getItem(`order_${latestOrderNumber}`)
+            if (data) {
+              const parsed = JSON.parse(data)
+              orderData = {
+                order_number: parsed.orderNumber,
+                email: parsed.customerInfo?.email || '',
+                first_name: parsed.customerInfo?.firstName || '',
+                last_name: parsed.customerInfo?.lastName || '',
+                address: parsed.customerInfo?.address || '',
+                apartment: parsed.customerInfo?.apartment || '',
+                city: parsed.customerInfo?.city || '',
+                province: parsed.customerInfo?.province || '',
+                postal_code: parsed.customerInfo?.postalCode || '',
+                country: parsed.customerInfo?.country || 'CA',
+                phone: parsed.customerInfo?.phone || '',
+                items: parsed.items || [],
+                total: parsed.total || 0,
+                tax: parsed.tax || 0,
+                final_total: parsed.finalTotal || 0,
+                order_date: parsed.orderDate || new Date().toISOString(),
+                status: parsed.status || 'processing',
+              }
+            }
           }
-          // Fallback to localStorage
-          const data = localStorage.getItem(`order_${latestOrderNumber}`)
-          if (data) {
-            const parsed = JSON.parse(data)
-            // Convert localStorage format to OrderRecord format
-            setOrder({
-              order_number: parsed.orderNumber,
-              email: parsed.customerInfo?.email || '',
-              first_name: parsed.customerInfo?.firstName || '',
-              last_name: parsed.customerInfo?.lastName || '',
-              address: parsed.customerInfo?.address || '',
-              apartment: parsed.customerInfo?.apartment || '',
-              city: parsed.customerInfo?.city || '',
-              province: parsed.customerInfo?.province || '',
-              postal_code: parsed.customerInfo?.postalCode || '',
-              country: parsed.customerInfo?.country || 'CA',
-              phone: parsed.customerInfo?.phone || '',
-              items: parsed.items || [],
-              total: parsed.total || 0,
-              tax: parsed.tax || 0,
-              final_total: parsed.finalTotal || 0,
-              order_date: parsed.orderDate || new Date().toISOString(),
-              status: parsed.status || 'processing',
-            })
+
+          if (orderData) {
+            setOrder(orderData)
+
+            // Send confirmation email (only once per order)
+            const emailSentKey = `purrball-email-sent-${latestOrderNumber}`
+            if (!localStorage.getItem(emailSentKey)) {
+              try {
+                await fetch('/api/send-confirmation', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    orderNumber: orderData.order_number,
+                    email: orderData.email,
+                    firstName: orderData.first_name,
+                    lastName: orderData.last_name,
+                    items: orderData.items,
+                    total: orderData.total,
+                    tax: orderData.tax,
+                    finalTotal: orderData.final_total,
+                    address: orderData.address,
+                    city: orderData.city,
+                    province: orderData.province,
+                    postalCode: orderData.postal_code,
+                    country: orderData.country,
+                    orderDate: orderData.order_date,
+                  })
+                })
+                localStorage.setItem(emailSentKey, 'true')
+                console.log('✅ Confirmation email sent')
+              } catch (error) {
+                console.error('❌ Error sending confirmation email:', error)
+              }
+            }
           }
         }
       } catch { /* ignore */ }

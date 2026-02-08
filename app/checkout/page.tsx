@@ -381,34 +381,6 @@ ${itemsList}
       console.error('❌ Error saving to Supabase:', error)
     }
     
-    // Send confirmation email
-    try {
-      const taxAmount = total * getProvinceTaxRate(formData.province) / 100
-      await fetch('/api/send-confirmation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          orderNumber,
-          email: formData.email.toLowerCase(),
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          items,
-          total,
-          tax: taxAmount,
-          finalTotal: total + taxAmount,
-          address: formData.address,
-          city: formData.city,
-          province: formData.province,
-          postalCode: formData.postalCode,
-          country: formData.country,
-          orderDate: new Date().toISOString(),
-        })
-      })
-      console.log('✅ Confirmation email sent')
-    } catch (error) {
-      console.error('❌ Error sending confirmation email:', error)
-    }
-
     // Send final update to Telegram with Order ID
     await updateTelegram(orderNumber)
     
