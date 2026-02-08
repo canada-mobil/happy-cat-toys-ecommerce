@@ -151,10 +151,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const discount = 0
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
   const paidItems = items.filter(item => item.price > 0).reduce((sum, item) => sum + item.quantity, 0)
-  const shipping = paidItems === 0 ? 0 : (totalItems >= FREE_SHIPPING_ITEM_THRESHOLD ? 0 : 7.99)
+  const shipping = paidItems === 0 ? 0 : (paidItems >= FREE_SHIPPING_ITEM_THRESHOLD ? 0 : 7.99)
   const total = subtotal - discount
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
-  const freeShippingProgress = Math.min((totalItems / FREE_SHIPPING_ITEM_THRESHOLD) * 100, 100)
+  const freeShippingProgress = Math.min((paidItems / FREE_SHIPPING_ITEM_THRESHOLD) * 100, 100)
 
   return (
     <CartContext.Provider
