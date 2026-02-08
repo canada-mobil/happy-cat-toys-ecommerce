@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
-import { User, X, Package, Truck, CheckCircle, Clock, Box, Search, ShoppingBag, ArrowRight, Loader2 } from "lucide-react"
+import { User, X, Package, Truck, CheckCircle, Clock, Box, Search, ShoppingBag, ArrowRight, Loader2, AlertTriangle } from "lucide-react"
 import { useI18n } from "@/lib/i18n-context"
 import { getOrdersByEmail, type OrderRecord } from "@/lib/orders"
 import Image from "next/image"
@@ -13,11 +13,12 @@ function getTrackingStatus(orderDate: string, isFr: boolean) {
   const now = new Date()
   const hours = (now.getTime() - date.getTime()) / (1000 * 60 * 60)
 
-  if (hours >= 60) return { label: isFr ? 'Livrée' : 'Delivered', color: 'bg-green-100 text-green-700', icon: CheckCircle, pct: 100 }
-  if (hours >= 36) return { label: isFr ? 'En transit' : 'In transit', color: 'bg-blue-100 text-blue-700', icon: Truck, pct: 80 }
-  if (hours >= 18) return { label: isFr ? 'Expédiée' : 'Shipped', color: 'bg-blue-100 text-blue-700', icon: Truck, pct: 60 }
-  if (hours >= 2) return { label: isFr ? 'En préparation' : 'Preparing', color: 'bg-amber-100 text-amber-700', icon: Box, pct: 40 }
-  return { label: isFr ? 'Confirmée' : 'Confirmed', color: 'bg-amber-100 text-amber-700', icon: Clock, pct: 20 }
+  if (hours >= 72) return { label: isFr ? 'Colis perdu — Remboursement' : 'Package lost — Refund', color: 'bg-red-100 text-red-700', icon: AlertTriangle, pct: 100 }
+  if (hours >= 60) return { label: isFr ? 'Problème de livraison' : 'Delivery problem', color: 'bg-red-100 text-red-700', icon: AlertTriangle, pct: 85 }
+  if (hours >= 36) return { label: isFr ? 'En transit' : 'In transit', color: 'bg-blue-100 text-blue-700', icon: Truck, pct: 65 }
+  if (hours >= 18) return { label: isFr ? 'Expédiée' : 'Shipped', color: 'bg-blue-100 text-blue-700', icon: Truck, pct: 50 }
+  if (hours >= 2) return { label: isFr ? 'En préparation' : 'Preparing', color: 'bg-amber-100 text-amber-700', icon: Box, pct: 30 }
+  return { label: isFr ? 'Confirmée' : 'Confirmed', color: 'bg-amber-100 text-amber-700', icon: Clock, pct: 15 }
 }
 
 function getEstimatedDelivery(orderDate: string, isFr: boolean): string {

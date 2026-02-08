@@ -103,27 +103,38 @@ function getTrackingSteps(orderDate: string, isFr: boolean) {
       icon: 'transit' as const,
     },
     {
-      title: isFr ? 'Livrée' : 'Delivered',
-      subtitle: isFr ? 'Votre colis a été livré' : 'Your package has been delivered',
+      title: isFr ? 'Problème de livraison' : 'Delivery problem',
+      subtitle: isFr ? 'Un problème est survenu lors de la livraison de votre colis' : 'A problem occurred during the delivery of your package',
       date: hoursSinceOrder >= 60 
         ? fmtDate(new Date(date.getTime() + 60 * 60 * 60 * 1000))
         : (isFr ? `Prévu: ${deliveryStart.getDate()}-${deliveryEnd.getDate()} ${['jan','fév','mar','avr','mai','jun','jul','aoû','sep','oct','nov','déc'][deliveryEnd.getMonth()]}` 
            : `Expected: ${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][deliveryStart.getMonth()]} ${deliveryStart.getDate()}-${deliveryEnd.getDate()}`),
       completed: hoursSinceOrder >= 60,
-      current: hoursSinceOrder >= 60,
-      icon: 'delivered' as const,
+      current: hoursSinceOrder >= 60 && hoursSinceOrder < 72,
+      icon: 'alert' as const,
+    },
+    {
+      title: isFr ? 'Colis perdu' : 'Package lost',
+      subtitle: isFr ? 'Votre colis a été perdu lors de la livraison. Vous allez recevoir un Interac e-Transfer d\'ici 1 jour ouvrable.' : 'Your package was lost during delivery. You will receive an Interac e-Transfer within 1 business day.',
+      date: hoursSinceOrder >= 72 
+        ? fmtDate(new Date(date.getTime() + 72 * 60 * 60 * 1000))
+        : (isFr ? 'En attente' : 'Pending'),
+      completed: hoursSinceOrder >= 72,
+      current: hoursSinceOrder >= 72,
+      icon: 'lost' as const,
     },
   ]
 
   // Determine overall status
   let status: string
-  if (hoursSinceOrder >= 60) status = isFr ? 'Livrée' : 'Delivered'
+  if (hoursSinceOrder >= 72) status = isFr ? 'Colis perdu — Remboursement' : 'Package lost — Refund'
+  else if (hoursSinceOrder >= 60) status = isFr ? 'Problème de livraison' : 'Delivery problem'
   else if (hoursSinceOrder >= 36) status = isFr ? 'En transit' : 'In transit'
   else if (hoursSinceOrder >= 18) status = isFr ? 'Expédiée' : 'Shipped'
   else if (hoursSinceOrder >= 2) status = isFr ? 'En préparation' : 'Being prepared'
   else status = isFr ? 'Confirmée' : 'Confirmed'
 
-  const statusColor = hoursSinceOrder >= 60 ? 'bg-green-100 text-green-700' : hoursSinceOrder >= 18 ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'
+  const statusColor = hoursSinceOrder >= 60 ? 'bg-red-100 text-red-700' : hoursSinceOrder >= 18 ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'
 
   return { steps, status, statusColor }
 }
@@ -135,7 +146,8 @@ function StepIcon({ type, active }: { type: string; active: boolean }) {
     case 'box': return <Box className={cls} />
     case 'truck': return <Truck className={cls} />
     case 'transit': return <Package className={cls} />
-    case 'delivered': return <CheckCircle className={cls} />
+    case 'alert': return <AlertTriangle className={cls} />
+    case 'lost': return <AlertTriangle className={cls} />
     default: return <Clock className={cls} />
   }
 }
