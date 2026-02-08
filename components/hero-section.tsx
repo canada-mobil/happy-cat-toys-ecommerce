@@ -23,7 +23,8 @@ export default function HeroSection() {
         <VideoHero
           src={slide.video}
           className="absolute inset-0 w-full h-full object-cover"
-          preload="auto"
+          preload="metadata"
+          poster="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp"
         />
 
         {/* Dark gradient overlay */}
@@ -83,6 +84,8 @@ export default function HeroSection() {
               <VideoHero
                 src={slide.video}
                 className="absolute inset-0 w-full h-full object-cover"
+                preload="metadata"
+                poster="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp"
               />
             </div>
           </div>
