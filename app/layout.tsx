@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: "Purrball - Jouets Premium pour Chats",
   description: "Découvrez notre collection de jouets premium pour chats chez Purrball. Livraison gratuite au Canada. Satisfaction garantie.",
   generator: 'v0.app',
+  icons: {
+    icon: '/icon.png',
+    apple: '/icon.png',
+  },
 }
 
 export default function RootLayout({
