@@ -119,22 +119,22 @@ export default function CartDropdown() {
             </div>
 
             {/* Free shipping banner / progress */}
-            {paidItemCount >= freeShippingThreshold ? (
+            {itemCount >= freeShippingThreshold ? (
               <div className="flex-shrink-0 bg-green-50 px-4 py-2.5 text-center">
                 <p className="text-green-700 text-xs font-medium">{t.cart.freeShipping}</p>
               </div>
-            ) : paidItemCount > 0 ? (
+            ) : (
               <div className="flex-shrink-0 bg-blue-50 px-4 py-3">
                 <p className="text-blue-800 text-xs font-medium text-center mb-2">
                   {isFr
-                    ? `Plus que ${freeShippingThreshold - paidItemCount} article${freeShippingThreshold - paidItemCount > 1 ? 's' : ''} pour la livraison gratuite !`
-                    : `Only ${freeShippingThreshold - paidItemCount} more item${freeShippingThreshold - paidItemCount > 1 ? 's' : ''} for free shipping!`}
+                    ? `Plus que ${freeShippingThreshold - itemCount} article${freeShippingThreshold - itemCount > 1 ? 's' : ''} pour la livraison gratuite !`
+                    : `Only ${freeShippingThreshold - itemCount} more item${freeShippingThreshold - itemCount > 1 ? 's' : ''} for free shipping!`}
                 </p>
                 <div className="w-full bg-blue-200 rounded-full h-1.5">
                   <div className="bg-blue-600 h-1.5 rounded-full transition-all" style={{ width: `${freeShippingProgress}%` }} />
                 </div>
               </div>
-            ) : null}
+            )}
 
             {/* Delivery estimate */}
             <div className="flex-shrink-0 flex items-center justify-center gap-2 px-4 py-2 border-b border-neutral-100">
