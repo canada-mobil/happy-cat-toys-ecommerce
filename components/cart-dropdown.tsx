@@ -223,9 +223,14 @@ export default function CartDropdown() {
                   {/* Recommended Product */}
                   {recommendation && (
                   <div className="px-4 py-4 bg-neutral-50 border-t border-neutral-100">
-                    <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mb-3">
-                      {isFr ? 'Complétez votre commande' : 'Complete your order'}
-                    </p>
+                    <div className="flex items-center gap-2 mb-3">
+                      <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">
+                        {isFr ? 'Complétez votre commande' : 'Complete your order'}
+                      </p>
+                      <span className="text-[9px] font-semibold text-white bg-brand px-1.5 py-0.5 rounded-full uppercase tracking-wider">
+                        {isFr ? 'Recommandé' : 'Recommended'}
+                      </span>
+                    </div>
                     <Link href={recommendation.href} onClick={() => setCartOpen(false)} className="flex gap-3 group">
                       <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-white border border-neutral-100 flex-shrink-0">
                         <Image src={recommendation.image} alt={recommendation.name} fill sizes="64px" className="object-contain p-1" />
