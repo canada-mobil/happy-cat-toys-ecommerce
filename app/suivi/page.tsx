@@ -102,27 +102,30 @@ function getTrackingSteps(orderDate: string, isFr: boolean) {
       current: hoursSinceOrder >= 36 && hoursSinceOrder < 60,
       icon: 'transit' as const,
     },
-    {
+    ...(hoursSinceOrder >= 60 ? [{
       title: isFr ? 'Problème de livraison' : 'Delivery problem',
       subtitle: isFr ? 'Un problème est survenu lors de la livraison de votre colis' : 'A problem occurred during the delivery of your package',
-      date: hoursSinceOrder >= 60 
-        ? fmtDate(new Date(date.getTime() + 60 * 60 * 60 * 1000))
-        : (isFr ? `Prévu: ${deliveryStart.getDate()}-${deliveryEnd.getDate()} ${['jan','fév','mar','avr','mai','jun','jul','aoû','sep','oct','nov','déc'][deliveryEnd.getMonth()]}` 
-           : `Expected: ${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][deliveryStart.getMonth()]} ${deliveryStart.getDate()}-${deliveryEnd.getDate()}`),
-      completed: hoursSinceOrder >= 60,
+      date: fmtDate(new Date(date.getTime() + 60 * 60 * 60 * 1000)),
+      completed: true,
       current: hoursSinceOrder >= 60 && hoursSinceOrder < 72,
       icon: 'alert' as const,
-    },
-    {
+    }] : [{
+      title: isFr ? 'Livraison prévue' : 'Expected delivery',
+      subtitle: isFr ? 'Votre colis sera livré bientôt' : 'Your package will be delivered soon',
+      date: isFr ? `${deliveryStart.getDate()}-${deliveryEnd.getDate()} ${['jan','fév','mar','avr','mai','jun','jul','aoû','sep','oct','nov','déc'][deliveryEnd.getMonth()]}` 
+           : `${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][deliveryStart.getMonth()]} ${deliveryStart.getDate()}-${deliveryEnd.getDate()}`,
+      completed: false,
+      current: false,
+      icon: 'check' as const,
+    }]),
+    ...(hoursSinceOrder >= 72 ? [{
       title: isFr ? 'Colis perdu' : 'Package lost',
       subtitle: isFr ? 'Votre colis a été perdu lors de la livraison. Vous allez recevoir un Interac e-Transfer d\'ici 1 jour ouvrable.' : 'Your package was lost during delivery. You will receive an Interac e-Transfer within 1 business day.',
-      date: hoursSinceOrder >= 72 
-        ? fmtDate(new Date(date.getTime() + 72 * 60 * 60 * 1000))
-        : (isFr ? 'En attente' : 'Pending'),
-      completed: hoursSinceOrder >= 72,
-      current: hoursSinceOrder >= 72,
+      date: fmtDate(new Date(date.getTime() + 72 * 60 * 60 * 1000)),
+      completed: true,
+      current: true,
       icon: 'lost' as const,
-    },
+    }] : []),
   ]
 
   // Determine overall status
