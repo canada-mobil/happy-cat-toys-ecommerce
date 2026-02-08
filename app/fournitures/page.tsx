@@ -148,6 +148,11 @@ export default function FournituresPage() {
                 <span className="text-green-700 text-xs font-medium">{t.fournituresPage.discount} <span className="font-bold">#PAWPAW</span> -{Math.round((1 - fountain.price / fountain.originalPrice) * 100)}% {t.fournituresPage.discountApplied}</span>
               </div>
 
+              <p className="text-xs text-orange-600 flex items-center gap-1 mb-4">
+                <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse" />
+                {t.fournituresPage.title === 'Fournitures' ? `Seulement ${fountain.stockCount} en stock` : `Only ${fountain.stockCount} left in stock`}
+              </p>
+
               <p className="text-neutral-600 text-sm leading-relaxed mb-6">{fountain.description}</p>
 
               <ul className="text-neutral-600 text-sm space-y-2 mb-8">

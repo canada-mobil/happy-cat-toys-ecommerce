@@ -223,6 +223,12 @@ export default function ProductPage({ params }: ProductPageProps) {
                   ))
                 )}
               </div>
+              <p className="text-xs text-orange-600 mt-2 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse" />
+                {isEn
+                  ? `Only ${product.colors[selectedColor].stockCount} left in stock`
+                  : `Seulement ${product.colors[selectedColor].stockCount} en stock`}
+              </p>
             </div>
 
             {/* Divider */}

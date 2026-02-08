@@ -92,6 +92,11 @@ export default function ProductsPage() {
                 </div>
               </div>
 
+              <p className="text-xs text-orange-600 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse" />
+                {t.productsPage.cat === 'Chat' ? `Seulement ${product.stockCount} en stock` : `Only ${product.stockCount} left in stock`}
+              </p>
+
               <p className="text-neutral-500 text-xs leading-relaxed">{product.description}</p>
 
               <div className="flex items-center gap-2 pt-2">
@@ -137,11 +142,15 @@ export default function ProductsPage() {
                 <span className="text-base text-neutral-300 line-through">{formatPrice(product.originalPrice)}</span>
               </div>
 
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-2 mb-3">
                 {product.colors.map((color, i) => (
                   <div key={i} className={`w-7 h-7 rounded-full border-2 ${i === 0 ? 'border-neutral-900' : 'border-neutral-200'}`} style={{ backgroundColor: color.value }} title={color.name} />
                 ))}
               </div>
+              <p className="text-xs text-orange-600 flex items-center gap-1 mb-6">
+                <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse" />
+                {t.productsPage.cat === 'Chat' ? `Seulement ${product.stockCount} en stock` : `Only ${product.stockCount} left in stock`}
+              </p>
 
               <div className="border-t border-neutral-100 mb-6" />
 
