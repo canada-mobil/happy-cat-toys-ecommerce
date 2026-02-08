@@ -251,7 +251,7 @@ export default function ProductsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-white border border-neutral-100">
               <Image
-                src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517763/purrball/petfount.webp"
+                src="https://res.cloudinary.com/dhhdhilja/image/upload/v1770517651/purrball/e__pumpless_design.webp"
                 alt="Purr Fountain F1"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
