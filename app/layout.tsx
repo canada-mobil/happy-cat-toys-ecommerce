@@ -50,6 +50,17 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+              Tawk_API.customStyle = {
+                visibility: {
+                  desktop: { position: 'br', xOffset: 15, yOffset: 15 },
+                  mobile: { position: 'br', xOffset: 10, yOffset: 10 }
+                },
+                zIndex: 999
+              };
+              Tawk_API.onLoad = function(){
+                var iframe = document.querySelector('iframe[title="chat widget"]');
+                if(iframe) { iframe.style.transform = 'scale(0.8)'; iframe.style.transformOrigin = 'bottom right'; }
+              };
               (function(){
                 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
                 s1.async=true;
