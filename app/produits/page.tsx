@@ -8,9 +8,11 @@ import Footer from "@/components/footer"
 import BenefitsSection from "@/components/benefits-section"
 import { products } from "@/lib/products"
 import { useCart } from "@/lib/cart-context"
+import { useI18n } from "@/lib/i18n-context"
 
 export default function ProductsPage() {
   const { addItem } = useCart()
+  const { t } = useI18n()
   const product = products[0]
 
   const handleAddToCart = () => {
@@ -40,7 +42,7 @@ export default function ProductsPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/20 to-transparent" />
         <div className="absolute bottom-6 left-6 md:left-12 z-10">
           <h1 className="text-3xl md:text-5xl font-bold text-neutral-900 tracking-tight">
-            Toys
+            {t.productsPage.title}
           </h1>
         </div>
       </section>
@@ -49,7 +51,7 @@ export default function ProductsPage() {
       <section className="py-10 md:py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-4xl font-bold text-neutral-900 tracking-tight mb-6 md:mb-14">
-            Trending This Month
+            {t.productsPage.trending}
           </h2>
 
           {/* Mobile: Photo first, then simple info below like Cheerble */}
@@ -69,8 +71,8 @@ export default function ProductsPage() {
             {/* Simple product info below */}
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <span className="border border-neutral-200 text-neutral-500 text-[10px] font-medium px-2.5 py-0.5 rounded-full uppercase tracking-wide">Cat</span>
-                <span className="bg-red-500 text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-full">Save {Math.round((1 - product.price / product.originalPrice) * 100)}%</span>
+                <span className="border border-neutral-200 text-neutral-500 text-[10px] font-medium px-2.5 py-0.5 rounded-full uppercase tracking-wide">{t.productsPage.cat}</span>
+                <span className="bg-red-500 text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-full">{t.productsPage.save} {Math.round((1 - product.price / product.originalPrice) * 100)}%</span>
               </div>
 
               <h3 className="text-lg font-bold text-neutral-900 tracking-tight">{product.name}</h3>
@@ -95,13 +97,13 @@ export default function ProductsPage() {
                   onClick={handleAddToCart}
                   className="flex-1 bg-brand hover:bg-brand-dark text-white py-3 rounded-full font-medium text-xs uppercase tracking-wider transition-all"
                 >
-                  ADD TO CART
+                  {t.productsPage.addToCart}
                 </button>
                 <Link
                   href={`/produits/${product.id}`}
                   className="flex-1 border border-brand text-brand py-3 rounded-full font-medium text-xs uppercase tracking-wider transition-all text-center"
                 >
-                  VIEW DETAILS
+                  {t.productsPage.viewDetails}
                 </Link>
               </div>
             </div>
@@ -112,8 +114,8 @@ export default function ProductsPage() {
             {/* Left: Product Info */}
             <div>
               <div className="flex items-center gap-2 mb-5">
-                <span className="border border-neutral-200 text-neutral-500 text-[11px] font-medium px-3 py-1 rounded-full uppercase tracking-wide">Cat</span>
-                <span className="bg-red-500 text-white text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wide">Save {Math.round((1 - product.price / product.originalPrice) * 100)}%</span>
+                <span className="border border-neutral-200 text-neutral-500 text-[11px] font-medium px-3 py-1 rounded-full uppercase tracking-wide">{t.productsPage.cat}</span>
+                <span className="bg-red-500 text-white text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wide">{t.productsPage.save} {Math.round((1 - product.price / product.originalPrice) * 100)}%</span>
               </div>
 
               <div className="flex items-start justify-between gap-4 mb-4">
@@ -150,8 +152,8 @@ export default function ProductsPage() {
               </ul>
 
               <div className="flex items-center gap-3">
-                <button onClick={handleAddToCart} className="bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all">ADD TO CART</button>
-                <Link href={`/produits/${product.id}`} className="border border-brand text-brand hover:bg-brand hover:text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all">LEARN MORE</Link>
+                <button onClick={handleAddToCart} className="bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all">{t.productsPage.addToCart}</button>
+                <Link href={`/produits/${product.id}`} className="border border-brand text-brand hover:bg-brand hover:text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wider transition-all">{t.productsPage.learnMore}</Link>
               </div>
             </div>
 
@@ -174,7 +176,7 @@ export default function ProductsPage() {
       <section className="py-16 px-4 bg-neutral-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight mb-10">
-            All Products
+            {t.productsPage.allProducts}
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
@@ -214,7 +216,7 @@ export default function ProductsPage() {
                     className="w-full bg-brand hover:bg-brand-dark text-white px-4 py-2.5 rounded-full font-medium text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
                   >
                     <ShoppingCart className="w-3.5 h-3.5" />
-                    ADD TO CART
+                    {t.productsPage.addToCart}
                   </button>
                 </div>
               </Link>

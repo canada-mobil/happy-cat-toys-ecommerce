@@ -4,30 +4,31 @@ import Image from "next/image"
 import Link from "next/link"
 import { MapPin, Truck, Shield, Clock, Star, Mail, Phone, Globe, Cat } from "lucide-react"
 import { useState } from "react"
+import { useI18n } from "@/lib/i18n-context"
 
 export default function Footer() {
   const [selectedCountry, setSelectedCountry] = useState("CA")
-  const [selectedLanguage, setSelectedLanguage] = useState("FR")
+  const { t, locale, toggleLocale } = useI18n()
 
   const quickLinks = [
-    { label: "Produits", href: "/produits" },
-    { label: "À Propos", href: "/a-propos" },
-    { label: "Contact", href: "/contact" },
-    { label: "Guide Soins", href: "/guide" },
+    { label: t.footer.allProducts, href: "/produits" },
+    { label: t.header.about, href: "/a-propos" },
+    { label: t.header.contact, href: "/contact" },
+    { label: t.header.guide, href: "/guide" },
   ]
 
   const supportLinks = [
-    { label: "Suivre ma commande", href: "/suivi" },
-    { label: "Retours & Échanges", href: "/retours-echanges" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Contactez-nous", href: "/contact" },
+    { label: t.header.tracking, href: "/suivi" },
+    { label: t.footer.returns, href: "/retours-echanges" },
+    { label: t.footer.faq, href: "/faq" },
+    { label: t.header.contact, href: "/contact" },
   ]
 
   const guarantees = [
-    { icon: MapPin, text: "100% Canadien" },
-    { icon: Truck, text: "Livraison 2-3 jours" },
-    { icon: Shield, text: "Garantie 2 mois" },
-    { icon: Clock, text: "Retours 30 jours" },
+    { icon: MapPin, text: t.features.canadian },
+    { icon: Truck, text: locale === 'fr' ? "Livraison 2-3 jours" : "2-3 Day Delivery" },
+    { icon: Shield, text: t.features.guarantee },
+    { icon: Clock, text: locale === 'fr' ? "Retours 30 jours" : "30-Day Returns" },
   ]
 
   const paymentLogos = [
@@ -64,7 +65,7 @@ export default function Footer() {
                 Purrball
               </span>
               <p className="text-neutral-400 text-xs leading-relaxed mb-3">
-                Produits premium pour chats heureux. 100% canadien.
+                {locale === 'fr' ? 'Produits premium pour chats heureux. 100% canadien.' : 'Premium products for happy cats. 100% Canadian.'}
               </p>
               <div className="flex items-center gap-2 text-xs text-neutral-400">
                 <MapPin className="w-3 h-3" />
@@ -143,27 +144,27 @@ export default function Footer() {
                 </button>
                 <button
                   className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-neutral-200 text-neutral-400 hover:text-neutral-600 text-xs transition-all"
-                  onClick={() => setSelectedLanguage(selectedLanguage === "FR" ? "EN" : "FR")}
+                  onClick={toggleLocale}
                 >
-                  <span>{selectedLanguage === "FR" ? "Français" : "English"}</span>
+                  <span>{locale === 'fr' ? 'Français' : 'English'}</span>
                 </button>
               </div>
 
               <div className="flex flex-col md:flex-row items-center gap-3">
                 <p className="text-[10px] text-neutral-300">
-                  © 2026 Purrball. Tous droits réservés.
+                  © 2026 Purrball. {t.footer.rights}
                 </p>
                 <div className="flex items-center gap-3 text-[10px] text-neutral-300">
                   <Link href="/politique-confidentialite" className="hover:text-neutral-600 transition-colors">
-                    Confidentialité
+                    {t.footer.privacy}
                   </Link>
                   <span>·</span>
                   <Link href="/conditions-utilisation" className="hover:text-neutral-600 transition-colors">
-                    Conditions
+                    {t.footer.terms}
                   </Link>
                   <span>·</span>
                   <Link href="/politique-remboursement" className="hover:text-neutral-600 transition-colors">
-                    Remboursement
+                    {t.footer.refund}
                   </Link>
                 </div>
               </div>
