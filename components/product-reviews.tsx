@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { Star, ThumbsUp, ThumbsDown, ChevronDown, CheckCircle } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Star, ThumbsUp, ThumbsDown, ChevronDown, CheckCircle, PenLine, X } from "lucide-react"
 import { useI18n } from "@/lib/i18n-context"
 
 interface Review {
@@ -182,13 +182,7 @@ function generateReviews(): Review[] {
   return reviews
 }
 
-const allReviews = generateReviews()
-
-// Calculate rating distribution
-const ratingCounts = [0, 0, 0, 0, 0]
-allReviews.forEach(r => ratingCounts[r.rating - 1]++)
-const totalReviews = allReviews.length
-const avgRating = allReviews.reduce((sum, r) => sum + r.rating, 0) / totalReviews
+const baseReviews = generateReviews()
 
 function StarRating({ rating, size = "w-4 h-4" }: { rating: number; size?: string }) {
   return (
@@ -200,11 +194,119 @@ function StarRating({ rating, size = "w-4 h-4" }: { rating: number; size?: strin
   )
 }
 
+function StarSelector({ rating, onChange }: { rating: number; onChange: (r: number) => void }) {
+  const [hover, setHover] = useState(0)
+  return (
+    <div className="flex gap-1">
+      {[1, 2, 3, 4, 5].map(i => (
+        <button
+          key={i}
+          type="button"
+          onMouseEnter={() => setHover(i)}
+          onMouseLeave={() => setHover(0)}
+          onClick={() => onChange(i)}
+          className="p-0.5"
+        >
+          <Star className={`w-6 h-6 transition-colors ${i <= (hover || rating) ? 'text-neutral-900 fill-neutral-900' : 'text-neutral-200'}`} />
+        </button>
+      ))}
+    </div>
+  )
+}
+
 export default function ProductReviews() {
   const [visibleCount, setVisibleCount] = useState(10)
   const [sortBy, setSortBy] = useState<'newest' | 'highest' | 'lowest'>('newest')
+  const [userReviews, setUserReviews] = useState<Review[]>([])
+  const [votes, setVotes] = useState<Record<number, 'up' | 'down'>>({})
+  const [showForm, setShowForm] = useState(false)
+  const [formName, setFormName] = useState('')
+  const [formRating, setFormRating] = useState(5)
+  const [formTitle, setFormTitle] = useState('')
+  const [formBody, setFormBody] = useState('')
+  const [formSubmitted, setFormSubmitted] = useState(false)
   const { locale } = useI18n()
   const isFr = locale === 'fr'
+
+  // Load user reviews and votes from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('purrball-user-reviews')
+      if (saved) setUserReviews(JSON.parse(saved))
+      const savedVotes = localStorage.getItem('purrball-review-votes')
+      if (savedVotes) setVotes(JSON.parse(savedVotes))
+    } catch (e) { /* ignore */ }
+  }, [])
+
+  // Save user reviews to localStorage
+  const saveUserReviews = (reviews: Review[]) => {
+    setUserReviews(reviews)
+    localStorage.setItem('purrball-user-reviews', JSON.stringify(reviews))
+  }
+
+  // Save votes to localStorage
+  const saveVotes = (newVotes: Record<number, 'up' | 'down'>) => {
+    setVotes(newVotes)
+    localStorage.setItem('purrball-review-votes', JSON.stringify(newVotes))
+  }
+
+  // Handle vote
+  const handleVote = (reviewId: number, type: 'up' | 'down') => {
+    const newVotes = { ...votes }
+    if (newVotes[reviewId] === type) {
+      delete newVotes[reviewId]
+    } else {
+      newVotes[reviewId] = type
+    }
+    saveVotes(newVotes)
+  }
+
+  // Get vote-adjusted counts
+  const getHelpful = (review: Review) => {
+    let count = review.helpful
+    if (votes[review.id] === 'up') count++
+    return count
+  }
+  const getNotHelpful = (review: Review) => {
+    let count = review.notHelpful
+    if (votes[review.id] === 'down') count++
+    return count
+  }
+
+  // Submit review
+  const handleSubmitReview = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!formName || !formTitle || !formBody) return
+    const now = new Date()
+    const dateStr = `${String(now.getMonth() + 1).padStart(2, '0')}/${String(now.getDate()).padStart(2, '0')}/${now.getFullYear()}`
+    const newReview: Review = {
+      id: Date.now(),
+      name: formName,
+      rating: formRating,
+      date: dateStr,
+      title: formTitle,
+      body: formBody,
+      verified: false,
+      helpful: 0,
+      notHelpful: 0,
+    }
+    saveUserReviews([newReview, ...userReviews])
+    setFormName('')
+    setFormRating(5)
+    setFormTitle('')
+    setFormBody('')
+    setFormSubmitted(true)
+    setTimeout(() => { setFormSubmitted(false); setShowForm(false) }, 2000)
+  }
+
+  // Combine all reviews
+  const allReviews = [...userReviews, ...baseReviews]
+
+  // Calculate rating distribution
+  const ratingCounts = [0, 0, 0, 0, 0]
+  allReviews.forEach(r => ratingCounts[r.rating - 1]++)
+  const totalReviews = allReviews.length
+  const avgRating = allReviews.reduce((sum, r) => sum + r.rating, 0) / totalReviews
 
   const sortedReviews = [...allReviews].sort((a, b) => {
     if (sortBy === 'highest') return b.rating - a.rating
@@ -219,7 +321,80 @@ export default function ProductReviews() {
       <div className="bg-white rounded-2xl border border-neutral-100 overflow-hidden">
         {/* Header */}
         <div className="p-6 border-b border-neutral-100">
-          <h2 className="text-lg font-semibold text-neutral-900 mb-6">Customer Reviews</h2>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-semibold text-neutral-900">{isFr ? 'Avis clients' : 'Customer Reviews'}</h2>
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="inline-flex items-center gap-1.5 bg-brand hover:bg-brand-dark text-white text-xs font-medium px-4 py-2 rounded-full transition-all"
+            >
+              <PenLine className="w-3.5 h-3.5" />
+              {isFr ? 'Écrire un avis' : 'Write a review'}
+            </button>
+          </div>
+
+          {/* Write Review Form */}
+          {showForm && (
+            <div className="mb-6 p-5 bg-neutral-50 rounded-xl border border-neutral-100">
+              {formSubmitted ? (
+                <div className="text-center py-4">
+                  <CheckCircle className="w-8 h-8 text-green-500 mx-auto mb-2" />
+                  <p className="text-sm font-medium text-neutral-900">{isFr ? 'Merci pour votre avis !' : 'Thank you for your review!'}</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmitReview} className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-semibold text-neutral-900">{isFr ? 'Votre avis' : 'Your review'}</h3>
+                    <button type="button" onClick={() => setShowForm(false)} className="p-1 hover:bg-neutral-200 rounded-full transition-colors">
+                      <X className="w-4 h-4 text-neutral-400" />
+                    </button>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-neutral-500 mb-1.5">{isFr ? 'Note' : 'Rating'}</label>
+                    <StarSelector rating={formRating} onChange={setFormRating} />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-neutral-500 mb-1.5">{isFr ? 'Votre nom' : 'Your name'}</label>
+                    <input
+                      type="text"
+                      required
+                      value={formName}
+                      onChange={(e) => setFormName(e.target.value)}
+                      className="w-full px-3 py-2 border border-neutral-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                      placeholder={isFr ? 'Ex: Marie L.' : 'e.g. Sarah M.'}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-neutral-500 mb-1.5">{isFr ? 'Titre' : 'Title'}</label>
+                    <input
+                      type="text"
+                      required
+                      value={formTitle}
+                      onChange={(e) => setFormTitle(e.target.value)}
+                      className="w-full px-3 py-2 border border-neutral-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                      placeholder={isFr ? 'Résumez votre expérience' : 'Summarize your experience'}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-neutral-500 mb-1.5">{isFr ? 'Votre avis' : 'Your review'}</label>
+                    <textarea
+                      required
+                      rows={3}
+                      value={formBody}
+                      onChange={(e) => setFormBody(e.target.value)}
+                      className="w-full px-3 py-2 border border-neutral-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900 resize-none"
+                      placeholder={isFr ? 'Partagez votre expérience avec ce produit...' : 'Share your experience with this product...'}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-brand hover:bg-brand-dark text-white py-2.5 rounded-full font-medium text-sm transition-all"
+                  >
+                    {isFr ? 'Publier mon avis' : 'Submit review'}
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
           
           <div className="flex flex-col md:flex-row md:items-start gap-6">
             {/* Average Rating */}
@@ -227,7 +402,7 @@ export default function ProductReviews() {
               <div className="flex items-center gap-2 mb-1">
                 <StarRating rating={Math.round(avgRating)} size="w-5 h-5" />
               </div>
-              <p className="text-xs text-neutral-400">Based on {totalReviews} reviews</p>
+              <p className="text-xs text-neutral-400">{isFr ? `Basé sur ${totalReviews} avis` : `Based on ${totalReviews} reviews`}</p>
             </div>
 
             {/* Rating Bars */}
@@ -287,7 +462,7 @@ export default function ProductReviews() {
                     {review.verified && (
                       <span className="inline-flex items-center gap-0.5 bg-neutral-100 text-neutral-500 text-[9px] font-medium px-1.5 py-0.5 rounded-full">
                         <CheckCircle className="w-2.5 h-2.5" />
-                        Verified
+                        {isFr ? 'Vérifié' : 'Verified'}
                       </span>
                     )}
                     <span className="text-xs font-medium text-neutral-700">{review.name}</span>
@@ -300,13 +475,19 @@ export default function ProductReviews() {
 
               {/* Helpful */}
               <div className="flex items-center gap-4 mt-3">
-                <button className="flex items-center gap-1 text-[10px] text-neutral-300 hover:text-neutral-600 transition-colors">
-                  <ThumbsUp className="w-3 h-3" />
-                  <span>{review.helpful}</span>
+                <button 
+                  onClick={() => handleVote(review.id, 'up')}
+                  className={`flex items-center gap-1 text-[10px] transition-colors ${votes[review.id] === 'up' ? 'text-brand font-medium' : 'text-neutral-300 hover:text-neutral-600'}`}
+                >
+                  <ThumbsUp className={`w-3 h-3 ${votes[review.id] === 'up' ? 'fill-brand' : ''}`} />
+                  <span>{getHelpful(review)}</span>
                 </button>
-                <button className="flex items-center gap-1 text-[10px] text-neutral-300 hover:text-neutral-600 transition-colors">
-                  <ThumbsDown className="w-3 h-3" />
-                  <span>{review.notHelpful}</span>
+                <button 
+                  onClick={() => handleVote(review.id, 'down')}
+                  className={`flex items-center gap-1 text-[10px] transition-colors ${votes[review.id] === 'down' ? 'text-red-500 font-medium' : 'text-neutral-300 hover:text-neutral-600'}`}
+                >
+                  <ThumbsDown className={`w-3 h-3 ${votes[review.id] === 'down' ? 'fill-red-500' : ''}`} />
+                  <span>{getNotHelpful(review)}</span>
                 </button>
               </div>
             </div>
