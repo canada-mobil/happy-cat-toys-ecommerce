@@ -24,6 +24,11 @@ export default function Header() {
     { label: t.header.contact, href: "/contact" },
   ]
 
+  const mobileMenuItems = [
+    { label: locale === 'fr' ? 'Accueil' : 'Home', href: "/" },
+    ...menuItems,
+  ]
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentMessage((prev) => (prev + 1) % messages.length)
@@ -101,7 +106,7 @@ export default function Header() {
         {mobileMenuOpen && (
           <nav className="lg:hidden mt-4 pt-4 border-t border-neutral-100">
             <ul className="flex flex-col gap-3">
-              {menuItems.map((item) => (
+              {mobileMenuItems.map((item) => (
                 <li key={item.label}>
                   <Link 
                     href={item.href} 
