@@ -23,12 +23,12 @@ export default function PromoBanner() {
   const isFr = locale === 'fr'
 
   const badges = isFr ? [
-    { icon: MapPin, label: "100% Canadien", sub: "Basé à Montréal" },
+    { icon: MapPin, label: "100% Canadien", sub: "Basé à Vancouver" },
     { icon: Truck, label: "Livraison 24-72h", sub: "Canada Post" },
     { icon: Shield, label: "Garantie 2 Mois", sub: "Satisfait ou remboursé" },
     { icon: Star, label: "50,000+", sub: "Chats heureux" },
   ] : [
-    { icon: MapPin, label: "100% Canadian", sub: "Based in Montreal" },
+    { icon: MapPin, label: "100% Canadian", sub: "Based in Vancouver" },
     { icon: Truck, label: "Delivery 24-72h", sub: "Canada Post" },
     { icon: Shield, label: "2-Month Warranty", sub: "Satisfaction guaranteed" },
     { icon: Star, label: "50,000+", sub: "Happy cats" },
@@ -44,7 +44,7 @@ export default function PromoBanner() {
           {isFr ? 'La confiance, simplement.' : 'Trust, simply.'}
         </h2>
         <p className="text-neutral-500 mb-14 max-w-xl mx-auto">
-          {isFr ? 'Entreprise 100% canadienne basée à Montréal. Livraison rapide, garantie satisfaction, et un service client qui répond vraiment.' : '100% Canadian company based in Montreal. Fast delivery, satisfaction guarantee, and customer service that truly responds.'}
+          {isFr ? 'Entreprise 100% canadienne basée à Vancouver. Livraison rapide, garantie satisfaction, et un service client qui répond vraiment.' : '100% Canadian company based in Vancouver. Fast delivery, satisfaction guarantee, and customer service that truly responds.'}
         </p>
         
         {/* Marquee animation - smooth right to left */}

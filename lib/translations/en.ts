@@ -41,7 +41,7 @@ export const en = {
   features: {
     whyChooseUs: "WHY CHOOSE US",
     trustTitle: "Trust, simply.",
-    trustDesc: "100% Canadian company based in Montreal. Fast shipping, satisfaction guarantee, and customer service that actually responds.",
+    trustDesc: "100% Canadian company based in Vancouver. Fast shipping, satisfaction guarantee, and customer service that actually responds.",
     freeShipping: "Free Shipping",
     freeShippingDesc: "On all orders in Canada",
     guarantee: "2-Month Guarantee",
@@ -49,7 +49,7 @@ export const en = {
     support: "24/7 Support",
     supportDesc: "Response within 24h",
     canadian: "100% Canadian",
-    canadianDesc: "Based in Montreal, QC",
+    canadianDesc: "Based in Vancouver, BC",
   },
 
   // Loved by Families
@@ -94,7 +94,7 @@ export const en = {
     terms: "Terms of Use",
     refund: "Refund Policy",
     rights: "All rights reserved.",
-    madeWith: "Made with ❤️ in Montreal",
+    madeWith: "Made with ❤️ in Vancouver",
   },
 
   // Products Page (Toys)
@@ -231,7 +231,7 @@ export const en = {
     canadian: "Canadian",
     warranty: "Warranty",
     storyTitle: "Our Story",
-    story1: "Purrball was born from a simple passion: making cats happy. Founded in 2020 in Montreal by a team of cat lovers, our mission is to provide cat parents with the best toys and accessories for their companions.",
+    story1: "Purrball was born from a simple passion: making cats happy. Founded in 2020 in Vancouver by a team of cat lovers, our mission is to provide cat parents with the best toys and accessories for their companions.",
     story2: "After noticing the lack of quality options in the Canadian market, we decided to create a store that reflects our values: quality, safety and animal welfare.",
     story3: "Today, we are proud to have made over 50,000 cats happy across Canada, and we continue to grow thanks to your trust and recommendations.",
     valuesTitle: "Our Values",
@@ -246,7 +246,7 @@ export const en = {
     whyTitle: "Why Choose Us?",
     whySubtitle: "We are committed to offering the best shopping experience for you and your cat.",
     localTitle: "100% Canadian",
-    localDesc: "Local company based in Montreal. We ship from Canada for fast delivery with no customs fees.",
+    localDesc: "Local company based in Vancouver. We ship from Canada for fast delivery with no customs fees.",
     freeShipTitle: "Free Shipping",
     freeShipDesc: "Free shipping on all orders over $50. Receive your products in 2-3 business days.",
     qualityGuarantee: "Quality Guaranteed",
@@ -255,7 +255,7 @@ export const en = {
     teamDesc: "We are a passionate team of 12 people, all cat owners. Every day, we work with love to select the best products and offer you exceptional customer service.",
     employees: "12 Employees",
     officeCats: "15+ Office Cats",
-    location: "Montreal, QC",
+    location: "Vancouver, BC",
     ctaTitle: "Ready to Make Your Cat Happy?",
     ctaSubtitle: "Discover our collection of premium toys selected with love.",
     ctaButton: "See Our Products",

@@ -158,7 +158,7 @@ export default function TrackOrderPage() {
                     <MapPin className="w-6 h-6 text-neutral-900 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-neutral-900 mb-1">{isFr ? 'Adresse de livraison' : 'Delivery address'}</h4>
-                      <p className="text-neutral-400 text-sm">123 Rue Exemple<br />Montréal, QC H2X 1Y4<br />Canada</p>
+                      <p className="text-neutral-400 text-sm">1033 E 10th Ave<br />Vancouver, BC V5T 2B4<br />Canada</p>
                     </div>
                   </div>
                 </div>

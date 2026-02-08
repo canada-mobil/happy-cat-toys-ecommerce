@@ -119,13 +119,13 @@ export default function ContactPage() {
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-1 text-white/60" />
                 <div>
                   <h3 className="font-medium text-sm mb-2">{isFr ? 'Notre adresse' : 'Our address'}</h3>
-                  <p className="text-white/60 text-xs leading-relaxed">123 Rue des Félins<br />Montréal, QC H2X 1Y4<br />Canada</p>
+                  <p className="text-white/60 text-xs leading-relaxed">1033 E 10th Ave<br />Vancouver, BC V5T 2B4<br />Canada</p>
                 </div>
               </div>
               <div className="border-t border-white/10 pt-6">
                 <h4 className="font-medium text-sm mb-3">{isFr ? 'Entreprise 100% Canadienne' : '100% Canadian Company'}</h4>
                 <p className="text-white/60 text-xs leading-relaxed">
-                  {isFr ? "Nous sommes fiers d'être une entreprise locale basée au Québec. Tous nos produits sont expédiés depuis notre entrepôt de Montréal pour une livraison rapide partout au Canada." : "We're proud to be a local company based in Quebec. All our products are shipped from our Montreal warehouse for fast delivery across Canada."}
+                  {isFr ? "Nous sommes fiers d'être une entreprise locale basée en Colombie-Britannique. Tous nos produits sont expédiés depuis notre entrepôt de Vancouver pour une livraison rapide partout au Canada." : "We're proud to be a local company based in British Columbia. All our products are shipped from our Vancouver warehouse for fast delivery across Canada."}
                 </p>
               </div>
             </div>

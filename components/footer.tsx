@@ -70,7 +70,7 @@ export default function Footer({ hideGuarantees = false }: { hideGuarantees?: bo
               </p>
               <div className="flex items-center gap-2 text-xs text-neutral-400">
                 <MapPin className="w-3 h-3" />
-                Montréal, Québec
+                Vancouver, BC
               </div>
             </div>
 

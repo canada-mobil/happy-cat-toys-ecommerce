@@ -41,7 +41,7 @@ export const fr = {
   features: {
     whyChooseUs: "POURQUOI NOUS CHOISIR",
     trustTitle: "La confiance, simplement.",
-    trustDesc: "Entreprise 100% canadienne basée à Montréal. Livraison rapide, garantie satisfaction, et un service client qui répond vraiment.",
+    trustDesc: "Entreprise 100% canadienne basée à Vancouver. Livraison rapide, garantie satisfaction, et un service client qui répond vraiment.",
     freeShipping: "Livraison Gratuite",
     freeShippingDesc: "Sur toutes les commandes au Canada",
     guarantee: "Garantie 2 Mois",
@@ -49,7 +49,7 @@ export const fr = {
     support: "Support 24/7",
     supportDesc: "Réponse en moins de 24h",
     canadian: "100% Canadien",
-    canadianDesc: "Basé à Montréal, QC",
+    canadianDesc: "Basé à Vancouver, BC",
   },
 
   // Loved by Families
@@ -94,7 +94,7 @@ export const fr = {
     terms: "Conditions d'Utilisation",
     refund: "Politique de Remboursement",
     rights: "Tous droits réservés.",
-    madeWith: "Fait avec ❤️ à Montréal",
+    madeWith: "Fait avec ❤️ à Vancouver",
   },
 
   // Products Page (Toys)
@@ -231,7 +231,7 @@ export const fr = {
     canadian: "Canadien",
     warranty: "Garantie",
     storyTitle: "Notre Histoire",
-    story1: "Purrball est née d'une passion simple : rendre les chats heureux. Fondée en 2020 à Montréal par une équipe d'amoureux des félins, notre mission est de fournir aux parents de chats les meilleurs jouets et accessoires pour leurs compagnons.",
+    story1: "Purrball est née d'une passion simple : rendre les chats heureux. Fondée en 2020 à Vancouver par une équipe d'amoureux des félins, notre mission est de fournir aux parents de chats les meilleurs jouets et accessoires pour leurs compagnons.",
     story2: "Après avoir constaté le manque d'options de qualité sur le marché canadien, nous avons décidé de créer une boutique qui reflète nos valeurs : qualité, sécurité et bien-être animal.",
     story3: "Aujourd'hui, nous sommes fiers d'avoir rendu plus de 50,000 chats heureux à travers le Canada, et nous continuons à grandir grâce à votre confiance et vos recommandations.",
     valuesTitle: "Nos Valeurs",
@@ -246,7 +246,7 @@ export const fr = {
     whyTitle: "Pourquoi Nous Choisir?",
     whySubtitle: "Nous nous engageons à offrir la meilleure expérience d'achat pour vous et votre chat.",
     localTitle: "100% Canadien",
-    localDesc: "Entreprise locale basée à Montréal. Nous expédions depuis le Canada pour une livraison rapide et sans frais de douane.",
+    localDesc: "Entreprise locale basée à Vancouver. Nous expédions depuis le Canada pour une livraison rapide et sans frais de douane.",
     freeShipTitle: "Livraison Gratuite",
     freeShipDesc: "Livraison gratuite sur toutes les commandes de plus de 50$. Recevez vos produits en 2-3 jours ouvrables.",
     qualityGuarantee: "Qualité Garantie",
@@ -255,7 +255,7 @@ export const fr = {
     teamDesc: "Nous sommes une petite équipe passionnée de 12 personnes, tous propriétaires de chats. Chaque jour, nous travaillons avec amour pour sélectionner les meilleurs produits et vous offrir un service client exceptionnel.",
     employees: "12 Employés",
     officeCats: "15+ Chats au Bureau",
-    location: "Montréal, QC",
+    location: "Vancouver, BC",
     ctaTitle: "Prêt à Rendre Votre Chat Heureux?",
     ctaSubtitle: "Découvrez notre collection de jouets premium sélectionnés avec amour.",
     ctaButton: "Voir Nos Produits",
