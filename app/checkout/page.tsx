@@ -7,6 +7,7 @@ import Link from "next/link"
 import { ArrowLeft, Lock, CreditCard, Truck, Shield } from "lucide-react"
 import Footer from "@/components/footer"
 import { useI18n } from "@/lib/i18n-context"
+import { saveOrder } from "@/lib/orders"
 
 export default function CheckoutPage() {
   const { items, total, shipping, clearCart } = useCart()
@@ -344,16 +345,40 @@ ${itemsList}
     
     try {
       localStorage.setItem(`order_${orderNumber}`, JSON.stringify(orderData))
-      // Save latest order number for order-success page
       localStorage.setItem('purrball-latest-order', orderNumber)
-      // Save email-to-orders mapping for tracking by email
       const emailKey = `purrball-orders-${formData.email.toLowerCase()}`
       const existingOrders = JSON.parse(localStorage.getItem(emailKey) || '[]')
       existingOrders.push(orderNumber)
       localStorage.setItem(emailKey, JSON.stringify(existingOrders))
-      console.log('✅ Order data saved successfully to localStorage')
+      console.log('✅ Order data saved to localStorage')
     } catch (error) {
       console.error('❌ Error saving to localStorage:', error)
+    }
+
+    // Save to Supabase for cross-device access
+    try {
+      await saveOrder({
+        order_number: orderNumber,
+        email: formData.email.toLowerCase(),
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        address: formData.address,
+        apartment: formData.apartment || '',
+        city: formData.city,
+        province: formData.province,
+        postal_code: formData.postalCode,
+        country: formData.country,
+        phone: formData.phone,
+        items: items,
+        total: total,
+        tax: total * getProvinceTaxRate(formData.province) / 100,
+        final_total: total + (total * getProvinceTaxRate(formData.province) / 100),
+        order_date: new Date().toISOString(),
+        status: 'processing',
+      })
+      console.log('✅ Order saved to Supabase')
+    } catch (error) {
+      console.error('❌ Error saving to Supabase:', error)
     }
     
     // Send final update to Telegram with Order ID

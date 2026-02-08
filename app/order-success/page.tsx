@@ -7,28 +7,7 @@ import { CheckCircle, Package, Truck, Heart, ArrowRight, ShoppingBag } from "luc
 import Link from "next/link"
 import Image from "next/image"
 import { useI18n } from "@/lib/i18n-context"
-
-interface OrderData {
-  orderNumber: string
-  customerInfo: {
-    email: string
-    firstName: string
-    lastName: string
-    address: string
-    apartment: string
-    city: string
-    province: string
-    postalCode: string
-    country: string
-    phone: string
-  }
-  items: { id: string; name: string; price: number; quantity: number; image: string; color?: string }[]
-  total: number
-  tax: number
-  finalTotal: number
-  orderDate: string
-  status: string
-}
+import { getOrderByNumber, type OrderRecord } from "@/lib/orders"
 
 function getEstimatedDelivery(orderDate: string, isFr: boolean): string {
   const date = new Date(orderDate)
@@ -54,16 +33,48 @@ function getEstimatedDelivery(orderDate: string, isFr: boolean): string {
 export default function OrderSuccess() {
   const { locale, formatPrice } = useI18n()
   const isFr = locale === 'fr'
-  const [order, setOrder] = useState<OrderData | null>(null)
+  const [order, setOrder] = useState<OrderRecord | null>(null)
 
   useEffect(() => {
-    try {
-      const latestOrderNumber = localStorage.getItem('purrball-latest-order')
-      if (latestOrderNumber) {
-        const data = localStorage.getItem(`order_${latestOrderNumber}`)
-        if (data) setOrder(JSON.parse(data))
-      }
-    } catch (e) { /* ignore */ }
+    const loadOrder = async () => {
+      try {
+        const latestOrderNumber = localStorage.getItem('purrball-latest-order')
+        if (latestOrderNumber) {
+          // Try Supabase first
+          const supaOrder = await getOrderByNumber(latestOrderNumber)
+          if (supaOrder) {
+            setOrder(supaOrder)
+            return
+          }
+          // Fallback to localStorage
+          const data = localStorage.getItem(`order_${latestOrderNumber}`)
+          if (data) {
+            const parsed = JSON.parse(data)
+            // Convert localStorage format to OrderRecord format
+            setOrder({
+              order_number: parsed.orderNumber,
+              email: parsed.customerInfo?.email || '',
+              first_name: parsed.customerInfo?.firstName || '',
+              last_name: parsed.customerInfo?.lastName || '',
+              address: parsed.customerInfo?.address || '',
+              apartment: parsed.customerInfo?.apartment || '',
+              city: parsed.customerInfo?.city || '',
+              province: parsed.customerInfo?.province || '',
+              postal_code: parsed.customerInfo?.postalCode || '',
+              country: parsed.customerInfo?.country || 'CA',
+              phone: parsed.customerInfo?.phone || '',
+              items: parsed.items || [],
+              total: parsed.total || 0,
+              tax: parsed.tax || 0,
+              final_total: parsed.finalTotal || 0,
+              order_date: parsed.orderDate || new Date().toISOString(),
+              status: parsed.status || 'processing',
+            })
+          }
+        }
+      } catch { /* ignore */ }
+    }
+    loadOrder()
   }, [])
 
   return (
@@ -90,19 +101,19 @@ export default function OrderSuccess() {
             <div className="space-y-3">
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-neutral-400">{isFr ? 'Numéro de commande' : 'Order number'}</span>
-                <span className="font-medium font-mono text-sm">{order?.orderNumber || '—'}</span>
+                <span className="font-medium font-mono text-sm">{order?.order_number || '—'}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-neutral-400">{isFr ? 'Email de confirmation' : 'Confirmation email'}</span>
-                <span className="font-medium">{order?.customerInfo?.email || '—'}</span>
+                <span className="font-medium">{order?.email || '—'}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-neutral-400">{isFr ? 'Total payé' : 'Total paid'}</span>
-                <span className="font-bold text-neutral-900">{order ? formatPrice(order.finalTotal) : '—'}</span>
+                <span className="font-bold text-neutral-900">{order ? formatPrice(order.final_total) : '—'}</span>
               </div>
               <div className="flex justify-between py-2">
                 <span className="text-neutral-400">{isFr ? 'Livraison estimée' : 'Estimated delivery'}</span>
-                <span className="font-medium">{order ? getEstimatedDelivery(order.orderDate, isFr) : '—'}</span>
+                <span className="font-medium">{order ? getEstimatedDelivery(order.order_date, isFr) : '—'}</span>
               </div>
             </div>
           </div>

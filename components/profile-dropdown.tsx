@@ -2,30 +2,11 @@
 
 import { useState, useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
-import { User, X, Package, Truck, CheckCircle, Clock, Box, Search, ShoppingBag, ArrowRight } from "lucide-react"
+import { User, X, Package, Truck, CheckCircle, Clock, Box, Search, ShoppingBag, ArrowRight, Loader2 } from "lucide-react"
 import { useI18n } from "@/lib/i18n-context"
+import { getOrdersByEmail, type OrderRecord } from "@/lib/orders"
 import Image from "next/image"
 import Link from "next/link"
-
-interface OrderData {
-  orderNumber: string
-  customerInfo: {
-    email: string
-    firstName: string
-    lastName: string
-    address: string
-    city: string
-    province: string
-    postalCode: string
-    country: string
-  }
-  items: { id: string; name: string; price: number; quantity: number; image: string }[]
-  total: number
-  tax: number
-  finalTotal: number
-  orderDate: string
-  status: string
-}
 
 function getTrackingStatus(orderDate: string, isFr: boolean) {
   const date = new Date(orderDate)
@@ -53,8 +34,9 @@ export default function ProfileDropdown() {
   const [isOpen, setIsOpen] = useState(false)
   const [email, setEmail] = useState("")
   const [savedEmail, setSavedEmail] = useState("")
-  const [orders, setOrders] = useState<OrderData[]>([])
+  const [orders, setOrders] = useState<OrderRecord[]>([])
   const [searched, setSearched] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [mounted, setMounted] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const { locale, formatPrice } = useI18n()
@@ -70,21 +52,17 @@ export default function ProfileDropdown() {
     }
   }, [])
 
-  const lookupOrders = (emailToSearch: string) => {
+  const lookupOrders = async (emailToSearch: string) => {
+    setLoading(true)
     try {
-      const emailKey = `purrball-orders-${emailToSearch.toLowerCase()}`
-      const orderNumbers: string[] = JSON.parse(localStorage.getItem(emailKey) || '[]')
-      const found: OrderData[] = []
-      for (const num of orderNumbers) {
-        const data = localStorage.getItem(`order_${num}`)
-        if (data) found.push(JSON.parse(data))
-      }
-      found.sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime())
+      const found = await getOrdersByEmail(emailToSearch)
       setOrders(found)
       setSearched(true)
     } catch {
       setOrders([])
       setSearched(true)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -186,8 +164,15 @@ export default function ProfileDropdown() {
                 )}
               </div>
 
+              {/* Loading */}
+              {loading && (
+                <div className="flex items-center justify-center py-12">
+                  <Loader2 className="w-6 h-6 text-brand animate-spin" />
+                </div>
+              )}
+
               {/* Orders */}
-              {searched && (
+              {!loading && searched && (
                 <div className="p-4">
                   {orders.length > 0 ? (
                     <div className="space-y-4">
@@ -197,14 +182,14 @@ export default function ProfileDropdown() {
                       </h3>
 
                       {orders.map((order) => {
-                        const tracking = getTrackingStatus(order.orderDate, isFr)
+                        const tracking = getTrackingStatus(order.order_date, isFr)
                         const StatusIcon = tracking.icon
 
                         return (
-                          <div key={order.orderNumber} className="bg-neutral-50 rounded-xl p-3.5 space-y-3">
+                          <div key={order.order_number} className="bg-neutral-50 rounded-xl p-3.5 space-y-3">
                             {/* Order header */}
                             <div className="flex items-center justify-between">
-                              <p className="text-[11px] font-mono text-neutral-400">{order.orderNumber}</p>
+                              <p className="text-[11px] font-mono text-neutral-400">{order.order_number}</p>
                               <span className={`${tracking.color} text-[10px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1`}>
                                 <StatusIcon className="w-3 h-3" />
                                 {tracking.label}
@@ -238,9 +223,9 @@ export default function ProfileDropdown() {
                             {/* Info row */}
                             <div className="flex items-center justify-between text-[11px]">
                               <span className="text-neutral-400">
-                                {isFr ? 'Livraison:' : 'Delivery:'} {getEstimatedDelivery(order.orderDate, isFr)}
+                                {isFr ? 'Livraison:' : 'Delivery:'} {getEstimatedDelivery(order.order_date, isFr)}
                               </span>
-                              <span className="font-semibold text-neutral-900">{formatPrice(order.finalTotal)}</span>
+                              <span className="font-semibold text-neutral-900">{formatPrice(order.final_total)}</span>
                             </div>
                           </div>
                         )

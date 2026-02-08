@@ -5,30 +5,9 @@ import { useState } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import Image from "next/image"
-import { Package, Search, Truck, CheckCircle, Clock, MapPin, ArrowRight, AlertTriangle, Box, ShoppingBag } from "lucide-react"
+import { Package, Search, Truck, CheckCircle, Clock, MapPin, ArrowRight, AlertTriangle, Box, ShoppingBag, Loader2 } from "lucide-react"
 import { useI18n } from "@/lib/i18n-context"
-
-interface OrderData {
-  orderNumber: string
-  customerInfo: {
-    email: string
-    firstName: string
-    lastName: string
-    address: string
-    apartment: string
-    city: string
-    province: string
-    postalCode: string
-    country: string
-    phone: string
-  }
-  items: { id: string; name: string; price: number; quantity: number; image: string; color?: string }[]
-  total: number
-  tax: number
-  finalTotal: number
-  orderDate: string
-  status: string
-}
+import { getOrdersByEmail, type OrderRecord } from "@/lib/orders"
 
 function getEstimatedDelivery(orderDate: string, isFr: boolean): string {
   const date = new Date(orderDate)
@@ -164,31 +143,26 @@ function StepIcon({ type, active }: { type: string; active: boolean }) {
 export default function TrackOrderPage() {
   const [email, setEmail] = useState("")
   const [searched, setSearched] = useState(false)
-  const [orders, setOrders] = useState<OrderData[]>([])
+  const [orders, setOrders] = useState<OrderRecord[]>([])
   const [animateSteps, setAnimateSteps] = useState(false)
+  const [loading, setLoading] = useState(false)
   const { locale, formatPrice } = useI18n()
   const isFr = locale === 'fr'
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault()
     setSearched(true)
     setAnimateSteps(false)
+    setLoading(true)
 
     try {
-      const emailKey = `purrball-orders-${email.toLowerCase()}`
-      const orderNumbers: string[] = JSON.parse(localStorage.getItem(emailKey) || '[]')
-      const foundOrders: OrderData[] = []
-      for (const num of orderNumbers) {
-        const data = localStorage.getItem(`order_${num}`)
-        if (data) foundOrders.push(JSON.parse(data))
-      }
-      // Sort by date descending
-      foundOrders.sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime())
+      const foundOrders = await getOrdersByEmail(email)
       setOrders(foundOrders)
-      // Trigger animation after a short delay
       setTimeout(() => setAnimateSteps(true), 100)
-    } catch (e) {
+    } catch {
       setOrders([])
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -235,23 +209,31 @@ export default function TrackOrderPage() {
         </div>
       </section>
 
-      {searched && (
+      {loading && (
+        <section className="pb-16 px-4">
+          <div className="max-w-3xl mx-auto flex justify-center py-16">
+            <Loader2 className="w-8 h-8 text-brand animate-spin" />
+          </div>
+        </section>
+      )}
+
+      {!loading && searched && (
         <section className="pb-16 px-4">
           <div className="max-w-3xl mx-auto">
             {orders.length > 0 ? (
               <div className="space-y-8">
                 {orders.map((order) => {
-                  const { steps, status, statusColor } = getTrackingSteps(order.orderDate, isFr)
+                  const { steps, status, statusColor } = getTrackingSteps(order.order_date, isFr)
                   const progressPct = (steps.filter(s => s.completed).length / steps.length) * 100
 
                   return (
-                    <div key={order.orderNumber} className="space-y-4">
+                    <div key={order.order_number} className="space-y-4">
                       {/* Order Header */}
                       <div className="bg-white rounded-xl shadow-lg p-6">
                         <div className="flex items-center justify-between mb-4">
                           <div>
                             <p className="text-xs text-neutral-400 uppercase tracking-wider">{isFr ? 'Commande' : 'Order'}</p>
-                            <p className="text-lg font-semibold text-neutral-900 font-mono">{order.orderNumber}</p>
+                            <p className="text-lg font-semibold text-neutral-900 font-mono">{order.order_number}</p>
                           </div>
                           <div className={`${statusColor} px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-1.5`}>
                             <Truck className="w-3.5 h-3.5" />
@@ -270,11 +252,11 @@ export default function TrackOrderPage() {
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                           <div>
                             <p className="text-neutral-400 text-xs">{isFr ? 'Date de commande' : 'Order date'}</p>
-                            <p className="font-medium text-neutral-900">{formatOrderDate(order.orderDate, isFr)}</p>
+                            <p className="font-medium text-neutral-900">{formatOrderDate(order.order_date, isFr)}</p>
                           </div>
                           <div>
                             <p className="text-neutral-400 text-xs">{isFr ? 'Livraison estimée' : 'Estimated delivery'}</p>
-                            <p className="font-medium text-neutral-900">{getEstimatedDelivery(order.orderDate, isFr)}</p>
+                            <p className="font-medium text-neutral-900">{getEstimatedDelivery(order.order_date, isFr)}</p>
                           </div>
                           <div>
                             <p className="text-neutral-400 text-xs">{isFr ? 'Transporteur' : 'Carrier'}</p>
@@ -282,7 +264,7 @@ export default function TrackOrderPage() {
                           </div>
                           <div>
                             <p className="text-neutral-400 text-xs">{isFr ? 'Total payé' : 'Total paid'}</p>
-                            <p className="font-bold text-neutral-900">{formatPrice(order.finalTotal)}</p>
+                            <p className="font-bold text-neutral-900">{formatPrice(order.final_total)}</p>
                           </div>
                         </div>
                       </div>
@@ -334,7 +316,7 @@ export default function TrackOrderPage() {
                           {isFr ? 'Articles commandés' : 'Items ordered'}
                         </h3>
                         <div className="space-y-3">
-                          {order.items.filter(item => item.price > 0).map((item, idx) => (
+                          {order.items.filter((item: { price: number }) => item.price > 0).map((item: { id: string; name: string; price: number; quantity: number; image: string }, idx: number) => (
                             <div key={idx} className="flex items-center gap-3 py-2 border-b border-gray-50 last:border-0">
                               <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-neutral-50 flex-shrink-0">
                                 <Image src={item.image} alt={item.name} fill sizes="48px" className="object-contain p-1" />
@@ -349,7 +331,7 @@ export default function TrackOrderPage() {
                         </div>
                         <div className="mt-4 pt-3 border-t border-neutral-100 flex justify-between">
                           <span className="text-sm text-neutral-400">{isFr ? 'Total' : 'Total'}</span>
-                          <span className="text-sm font-bold text-neutral-900">{formatPrice(order.finalTotal)}</span>
+                          <span className="text-sm font-bold text-neutral-900">{formatPrice(order.final_total)}</span>
                         </div>
                       </div>
 
@@ -360,10 +342,10 @@ export default function TrackOrderPage() {
                           <div>
                             <h4 className="font-semibold text-neutral-900 mb-1 text-sm">{isFr ? 'Adresse de livraison' : 'Delivery address'}</h4>
                             <p className="text-neutral-500 text-sm">
-                              {order.customerInfo.firstName} {order.customerInfo.lastName}<br />
-                              {order.customerInfo.address}{order.customerInfo.apartment ? `, ${order.customerInfo.apartment}` : ''}<br />
-                              {order.customerInfo.city}, {order.customerInfo.province} {order.customerInfo.postalCode}<br />
-                              {order.customerInfo.country === 'CA' ? 'Canada' : (isFr ? 'États-Unis' : 'United States')}
+                              {order.first_name} {order.last_name}<br />
+                              {order.address}{order.apartment ? `, ${order.apartment}` : ''}<br />
+                              {order.city}, {order.province} {order.postal_code}<br />
+                              {order.country === 'CA' ? 'Canada' : (isFr ? 'États-Unis' : 'United States')}
                             </p>
                           </div>
                         </div>
