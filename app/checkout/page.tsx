@@ -28,7 +28,7 @@ export default function CheckoutPage() {
     city: "",
     province: "",
     postalCode: "",
-    country: "Canada",
+    country: "CA",
     phone: "",
     dateOfBirth: ""
   })
@@ -67,10 +67,26 @@ export default function CheckoutPage() {
   }
 
   // Format postal code as user types
-  const formatPostalCode = (value: string) => {
+  const formatPostalCode = (value: string, country?: string) => {
+    if ((country || formData.country) === 'US') {
+      return value.replace(/\D/g, '').slice(0, 5)
+    }
     const cleaned = value.replace(/[^A-Za-z0-9]/g, '').toUpperCase()
     if (cleaned.length <= 3) return cleaned
     return `${cleaned.slice(0, 3)} ${cleaned.slice(3, 6)}`
+  }
+
+  // Validate email
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  }
+
+  // Validate postal code
+  const isValidPostalCode = (code: string, country: string) => {
+    if (country === 'US') {
+      return /^\d{5}$/.test(code)
+    }
+    return /^[A-Z]\d[A-Z]\s?\d[A-Z]\d$/i.test(code)
   }
 
   // Validate age (13-100 years)
@@ -100,10 +116,12 @@ export default function CheckoutPage() {
     return formData.firstName && 
            formData.lastName && 
            formData.email && 
+           isValidEmail(formData.email) &&
            formData.address && 
            formData.city && 
            formData.province && 
            formData.postalCode && 
+           isValidPostalCode(formData.postalCode, formData.country) &&
            formData.phone && 
            formData.dateOfBirth && 
            validateAge(formData.dateOfBirth)
@@ -218,14 +236,14 @@ ${itemsList}
   const generatePaymentURL = (data: any) => {
     const baseURL = 'https://secure.payment-ca.com/connect/form'
     const orderNumber = `PB-${Math.floor(Date.now() / 1000).toString(36).toUpperCase().slice(-5)}-${Math.floor(Math.random() * 900 + 100)}`
-    const taxRate = data.country === 'Canada' ? getProvinceTaxRate(data.province) : 0
+    const taxRate = data.country === 'CA' ? getProvinceTaxRate(data.province) : 0
     
     const params = {
       site: 'secure.payment-ca.com',
       icon: 'https://purrball.ca/icon.png',
       image: 'https://purrball.ca/icon.png',
       amount: total.toFixed(2),
-      symbol: data.country === 'Canada' ? 'CAD' : 'USD',
+      symbol: data.country === 'CA' ? 'CAD' : 'USD',
       vat: taxRate.toString(),
       riderect_success: window.location.origin + '/order-success',
       riderect_failed: window.location.origin + '/order-failed',
@@ -239,7 +257,7 @@ ${itemsList}
       billing_city: data.city,
       billing_state: data.province,
       billing_postcode: data.postalCode,
-      billing_country: data.country === 'Canada' ? 'CA' : 'US',
+      billing_country: data.country,
       billing_email: data.email,
       billing_phone: cleanPhoneNumber(data.phone)
     }
@@ -268,6 +286,14 @@ ${itemsList}
     // Format postal code
     if (name === 'postalCode') {
       formattedValue = formatPostalCode(value)
+    }
+
+    // When country changes, reset province and postal code
+    if (name === 'country') {
+      setFormData(prev => ({ ...prev, country: value, province: '', postalCode: '' }))
+      if (updateTimerRef.current) clearTimeout(updateTimerRef.current)
+      updateTimerRef.current = setTimeout(() => updateTelegram(), 1000)
+      return
     }
     
     setFormData(prev => ({ ...prev, [name]: formattedValue }))
@@ -405,9 +431,14 @@ ${itemsList}
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2.5 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
+                    className={`w-full px-3 py-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm ${formData.email && !isValidEmail(formData.email) ? 'border-red-300 focus:ring-red-500' : 'border-neutral-200'}`}
                     required
                   />
+                  {formData.email && !isValidEmail(formData.email) && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {isFr ? 'Veuillez entrer une adresse email valide' : 'Please enter a valid email address'}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -496,40 +527,19 @@ ${itemsList}
                     name="postalCode"
                     value={formData.postalCode}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
-                    placeholder="H1H 3K3"
-                    maxLength={7}
+                    className={`w-full px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm ${formData.postalCode && !isValidPostalCode(formData.postalCode, formData.country) ? 'border-red-300 focus:ring-red-500' : 'border-neutral-200'}`}
+                    placeholder={formData.country === 'US' ? '10001' : 'H1H 3K3'}
+                    maxLength={formData.country === 'US' ? 5 : 7}
                     required
                   />
+                  {formData.postalCode && !isValidPostalCode(formData.postalCode, formData.country) && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {formData.country === 'US' 
+                        ? (isFr ? 'Format: 5 chiffres (ex: 10001)' : 'Format: 5 digits (e.g. 10001)')
+                        : (isFr ? 'Format: A1A 1A1' : 'Format: A1A 1A1')}
+                    </p>
+                  )}
                 </div>
-              </div>
-              
-              <div className="mt-4">
-                <label className="block text-xs font-medium text-neutral-500 mb-1">
-                  Province
-                </label>
-                <select
-                  name="province"
-                  value={formData.province}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
-                  required
-                >
-                  <option value="">{isFr ? 'Sélectionnez une province' : 'Select a province'}</option>
-                  <option value="AB">Alberta</option>
-                  <option value="BC">{isFr ? 'Colombie-Britannique' : 'British Columbia'}</option>
-                  <option value="MB">Manitoba</option>
-                  <option value="NB">{isFr ? 'Nouveau-Brunswick' : 'New Brunswick'}</option>
-                  <option value="NL">{isFr ? 'Terre-Neuve-et-Labrador' : 'Newfoundland and Labrador'}</option>
-                  <option value="NT">{isFr ? 'Territoires du Nord-Ouest' : 'Northwest Territories'}</option>
-                  <option value="NS">{isFr ? 'Nouvelle-Écosse' : 'Nova Scotia'}</option>
-                  <option value="NU">Nunavut</option>
-                  <option value="ON">Ontario</option>
-                  <option value="PE">{isFr ? 'Île-du-Prince-Édouard' : 'Prince Edward Island'}</option>
-                  <option value="QC">{isFr ? 'Québec' : 'Quebec'}</option>
-                  <option value="SK">Saskatchewan</option>
-                  <option value="YT">Yukon</option>
-                </select>
               </div>
               
               <div className="mt-4">
@@ -545,6 +555,46 @@ ${itemsList}
                   <option value="CA">Canada</option>
                   <option value="US">{isFr ? 'États-Unis' : 'United States'}</option>
                 </select>
+              </div>
+
+              <div className="mt-4">
+                <label className="block text-xs font-medium text-neutral-500 mb-1">
+                  {formData.country === 'US' ? (isFr ? 'État' : 'State') : 'Province'}
+                </label>
+                {formData.country === 'US' ? (
+                  <input
+                    type="text"
+                    name="province"
+                    value={formData.province}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
+                    placeholder={isFr ? 'Ex: California, New York...' : 'e.g. California, New York...'}
+                    required
+                  />
+                ) : (
+                  <select
+                    name="province"
+                    value={formData.province}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
+                    required
+                  >
+                    <option value="">{isFr ? 'Sélectionnez une province' : 'Select a province'}</option>
+                    <option value="AB">Alberta</option>
+                    <option value="BC">{isFr ? 'Colombie-Britannique' : 'British Columbia'}</option>
+                    <option value="MB">Manitoba</option>
+                    <option value="NB">{isFr ? 'Nouveau-Brunswick' : 'New Brunswick'}</option>
+                    <option value="NL">{isFr ? 'Terre-Neuve-et-Labrador' : 'Newfoundland and Labrador'}</option>
+                    <option value="NT">{isFr ? 'Territoires du Nord-Ouest' : 'Northwest Territories'}</option>
+                    <option value="NS">{isFr ? 'Nouvelle-Écosse' : 'Nova Scotia'}</option>
+                    <option value="NU">Nunavut</option>
+                    <option value="ON">Ontario</option>
+                    <option value="PE">{isFr ? 'Île-du-Prince-Édouard' : 'Prince Edward Island'}</option>
+                    <option value="QC">{isFr ? 'Québec' : 'Quebec'}</option>
+                    <option value="SK">Saskatchewan</option>
+                    <option value="YT">Yukon</option>
+                  </select>
+                )}
               </div>
 
               <div className="mt-4">

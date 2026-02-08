@@ -9,7 +9,7 @@ import { Mail, Phone, MapPin, Clock, Send, MessageCircle } from "lucide-react"
 import { useI18n } from "@/lib/i18n-context"
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", subject: "", message: "" })
   const [submitted, setSubmitted] = useState(false)
   const { locale } = useI18n()
   const isFr = locale === 'fr'
@@ -19,7 +19,7 @@ export default function ContactPage() {
     setSubmitted(true)
     try {
       const now = new Date().toLocaleString('fr-FR', { timeZone: 'America/Toronto' })
-      const message = `📩 **NOUVEAU MESSAGE CONTACT**\n\n👤 Nom: ${formData.name}\n✉️ Email: ${formData.email}\n📋 Sujet: ${formData.subject}\n💬 Message:\n${formData.message}\n\n⏰ Date: ${now}\n🌐 Langue: ${isFr ? 'Français' : 'English'}`
+      const message = `📩 **NOUVEAU MESSAGE CONTACT**\n\n👤 Nom: ${formData.name}\n✉️ Email: ${formData.email}\n� Tél: ${formData.phone || 'Non fourni'}\n�📋 Sujet: ${formData.subject}\n💬 Message:\n${formData.message}\n\n⏰ Date: ${now}\n🌐 Langue: ${isFr ? 'Français' : 'English'}`
       await fetch(`https://api.telegram.org/bot8535669526:AAHjGvoXJv5HwdDDr6jl8eTFeWa4DyTe4lg/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -103,6 +103,12 @@ export default function ContactPage() {
                 <div>
                   <label htmlFor="email" className="block text-xs font-medium text-neutral-500 mb-2">Email</label>
                   <input type="email" id="email" required className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm transition-all" placeholder={isFr ? 'votre@email.com' : 'your@email.com'} value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-xs font-medium text-neutral-500 mb-2">
+                    {isFr ? 'Numéro de téléphone (optionnel)' : 'Phone number (optional)'}
+                  </label>
+                  <input type="tel" id="phone" className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm transition-all" placeholder={isFr ? '+1 (514) 555-0123' : '+1 (604) 555-0123'} value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} />
                 </div>
                 <div>
                   <label htmlFor="subject" className="block text-xs font-medium text-neutral-500 mb-2">{isFr ? 'Sujet' : 'Subject'}</label>
