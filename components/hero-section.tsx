@@ -5,7 +5,7 @@ import { useI18n } from "@/lib/i18n-context"
 
 const slides = [
   {
-    video: "https://res.cloudinary.com/dhhdhilja/video/upload/q_auto,f_mp4,w_720/v1770517656/purrball/hoeme1.mp4",
+    video: "https://res.cloudinary.com/dhhdhilja/video/upload/q_auto:best,f_mp4,w_1080/v1770517656/purrball/hoeme1.mp4",
     title: "Smart Interactive Ball",
     subtitle: "Le jouet intelligent pour chats curieux",
     href: "/produits/smart-interactive-ball",
