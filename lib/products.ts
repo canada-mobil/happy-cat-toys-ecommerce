@@ -46,8 +46,8 @@ export const products: Product[] = [
     descriptionEn: "Smart interactive ball toy that rolls, bounces and stimulates your cat's hunting instinct.",
     longDescription: "Transformez le temps de jeu de votre chat en une aventure ! La Smart Interactive Cats Ball Toy est conçue pour éveiller la curiosité et l'énergie de votre félin grâce à ses mouvements de roulement, de secousse et de rebond qui imitent une proie naturelle. Rechargeable par USB, matériaux écologiques et sécuritaires.",
     longDescriptionEn: "Transform your cat's playtime into an adventure! The Smart Interactive Cats Ball Toy is designed to awaken your feline's curiosity and energy with rolling, shaking and bouncing movements that mimic natural prey. USB rechargeable, eco-friendly and safe materials.",
-    price: 4.99,
-    originalPrice: 11.99,
+    price: 9.99,
+    originalPrice: 19.99,
     image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517783/purrball/smart_interactive_cats_ball_toy_red.png.webp",
     images: [
       "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517783/purrball/smart_interactive_cats_ball_toy_red.png.webp",
@@ -64,9 +64,9 @@ export const products: Product[] = [
       { name: "Vert", value: "#48bb78", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517777/purrball/smart_interactive_cats_ball_toy_green.png.webp", stockCount: 7 }
     ],
     packages: [
-      { quantity: 1, label: "1x", pricePerUnit: 4.99 },
-      { quantity: 2, label: "2x", pricePerUnit: 4.49 },
-      { quantity: 3, label: "3x", pricePerUnit: 3.99, badge: "Meilleur Deal" }
+      { quantity: 1, label: "1x", pricePerUnit: 9.99, badge: "Aujourd'hui seulement - 50%" },
+      { quantity: 2, label: "2x", pricePerUnit: 8.99 },
+      { quantity: 3, label: "3x", pricePerUnit: 7.99, badge: "Meilleur Deal" }
     ],
     category: "Jouets Interactifs",
     inStock: true,
@@ -101,8 +101,8 @@ export const products: Product[] = [
     descriptionEn: "Soft and durable ball for cats with multi-scenario play. Stimulates hunting instinct with unpredictable movements.",
     longDescription: "Le Wicked Ball M3 est le compagnon de jeu ultime pour votre chat. Sa surface douce en peluche protège les pattes délicates tout en offrant des mouvements intelligents et imprévisibles. Avec plusieurs modes de jeu, il garde votre chat actif et stimulé même quand vous n'êtes pas là. Rechargeable par USB, silencieux et durable.",
     longDescriptionEn: "The Wicked Ball M3 is the ultimate play companion for your cat. Its soft plush surface protects delicate paws while offering smart and unpredictable movements. With multiple play modes, it keeps your cat active and stimulated even when you're not around. USB rechargeable, silent and durable.",
-    price: 6.99,
-    originalPrice: 15.75,
+    price: 12.99,
+    originalPrice: 25.99,
     image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517594/purrball/Section1-Productimages-M3Red1-monderncat_jpg.jpg.webp",
     images: [
       "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517594/purrball/Section1-Productimages-M3Red1-monderncat_jpg.jpg.webp",
@@ -118,9 +118,9 @@ export const products: Product[] = [
       { name: "Beige", value: "#d4b896", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517595/purrball/Section1_-_Product_Images_-_M3_Beige_1.png.webp", stockCount: 9 }
     ],
     packages: [
-      { quantity: 1, label: "1x", pricePerUnit: 6.99 },
-      { quantity: 2, label: "2x", pricePerUnit: 5.99 },
-      { quantity: 3, label: "3x", pricePerUnit: 4.99, badge: "Meilleur Deal" }
+      { quantity: 1, label: "1x", pricePerUnit: 12.99, badge: "Aujourd'hui seulement - 50%" },
+      { quantity: 2, label: "2x", pricePerUnit: 11.99 },
+      { quantity: 3, label: "3x", pricePerUnit: 10.99, badge: "Meilleur Deal" }
     ],
     category: "Jouets Interactifs",
     inStock: true,
@@ -155,8 +155,8 @@ export const products: Product[] = [
     descriptionEn: "Interactive mouse toy that mimics real mouse movements. Stimulates hunting instinct with unpredictable movements.",
     longDescription: "Le Mouse PLUS offre une expérience de chasse réaliste pour votre chat grâce à ses mouvements aléatoires qui imitent une vraie souris. Avec 2 modes de vitesse, un système anti-perte par bip sonore, et un équilibre jeu/repos automatique (10 min de jeu, 30 min de repos), il garde votre chat actif et stimulé. Rechargeable par USB-C, roues détachables et évitement d'obstacles automatique.",
     longDescriptionEn: "The Mouse PLUS offers a realistic hunting experience for your cat with random movements that mimic a real mouse. With 2 speed modes, an anti-loss beep system, and automatic play/rest balance (10 min play, 30 min rest), it keeps your cat active and stimulated. USB-C rechargeable, detachable wheels and automatic obstacle avoidance.",
-    price: 7.99,
-    originalPrice: 17.99,
+    price: 14.99,
+    originalPrice: 29.99,
     image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517668/purrball/mouse1.webp",
     images: [
       "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517668/purrball/mouse1.webp",
@@ -173,9 +173,9 @@ export const products: Product[] = [
       { name: "Vert", value: "#8fbc8f", image: "https://res.cloudinary.com/dhhdhilja/image/upload/v1770517670/purrball/mouse3.webp", stockCount: 10 }
     ],
     packages: [
-      { quantity: 1, label: "1x", pricePerUnit: 7.99 },
-      { quantity: 2, label: "2x", pricePerUnit: 6.99 },
-      { quantity: 3, label: "3x", pricePerUnit: 5.99, badge: "Meilleur Deal" }
+      { quantity: 1, label: "1x", pricePerUnit: 14.99, badge: "Aujourd'hui seulement - 50%" },
+      { quantity: 2, label: "2x", pricePerUnit: 13.99 },
+      { quantity: 3, label: "3x", pricePerUnit: 12.99, badge: "Meilleur Deal" }
     ],
     category: "Jouets Interactifs",
     inStock: true,
