@@ -88,8 +88,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        <link rel="preload" as="video" href="https://res.cloudinary.com/dhhdhilja/video/upload/q_auto:best,f_mp4,w_1080/v1770517656/purrball/hoeme1.mp4" type="video/mp4" />
-        <link rel="preload" as="image" href="https://res.cloudinary.com/dhhdhilja/image/upload/q_auto,w_800,f_webp/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp" />
+        <link rel="preload" as="image" href="/Section7-3_Interactive_Modes.gif" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* TikTok Pixel */}
         <script
