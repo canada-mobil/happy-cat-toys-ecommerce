@@ -462,7 +462,7 @@ ${itemsList}
       currency: 'CAD',
     })
 
-    // PlaceAnOrder
+    // TikTok PlaceAnOrder (not a standard Meta event)
     const poEventId = `po_${Date.now()}`
     ttqTrack('PlaceAnOrder', { value: Number(total) || 0, currency: 'CAD', contents })
     fetch('/api/tiktok-event', {
@@ -475,17 +475,7 @@ ${itemsList}
         user: ttUser,
       }),
     }).catch(() => {})
-    fbqTrack('PlaceAnOrder', {
-      content_ids: items.map(item => item.id),
-      content_type: 'product',
-      contents: items.map(item => ({
-        id: item.id,
-        quantity: item.quantity,
-        item_price: Number(item.price) || 0,
-      })),
-      value: Number(total) || 0,
-      currency: 'CAD',
-    })
+    // Note: PlaceAnOrder is not a standard Meta event, so we don't send it to Facebook
     
     // Generate unique Order ID
     const orderNumber = `PB${Date.now()}${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`

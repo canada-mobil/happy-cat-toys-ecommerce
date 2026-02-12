@@ -12,6 +12,18 @@ export function fbqTrack(eventName: string, params?: Record<string, any>) {
   }
 }
 
+// Standard Meta events with proper naming
+export const MetaEvents = {
+  ViewContent: 'ViewContent',
+  AddToCart: 'AddToCart', 
+  InitiateCheckout: 'InitiateCheckout',
+  AddPaymentInfo: 'AddPaymentInfo',
+  Purchase: 'Purchase',
+  Lead: 'Lead',
+  CompleteRegistration: 'CompleteRegistration',
+  Contact: 'Contact',
+}
+
 // Client-side Meta Pixel identification
 export function fbqIdentify(params: { email?: string; phone?: string; external_id?: string }) {
   if (typeof window === 'undefined') return
