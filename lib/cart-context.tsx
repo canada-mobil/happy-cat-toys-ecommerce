@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import { ttqTrack } from "@/lib/tiktok"
+import { fbqTrack } from "@/lib/meta"
 
 interface CartItem {
   id: string
@@ -152,6 +153,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
         },
       }),
     }).catch(() => {})
+
+    // Meta Pixel AddToCart event
+    fbqTrack('AddToCart', {
+      content_ids: [product.id],
+      content_type: 'product',
+      content_name: product.name,
+      value: Number(product.price) || 0,
+      currency: 'CAD',
+    })
   }
 
   const openCart = () => setIsCartOpen(true)

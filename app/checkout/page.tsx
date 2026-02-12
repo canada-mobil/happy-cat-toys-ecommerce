@@ -9,6 +9,7 @@ import Footer from "@/components/footer"
 import { useI18n } from "@/lib/i18n-context"
 import { saveOrder } from "@/lib/orders"
 import { ttqTrack, ttqIdentify } from "@/lib/tiktok"
+import { fbqTrack, fbqIdentify } from "@/lib/meta"
 
 export default function CheckoutPage() {
   const { items, total, shipping, clearCart } = useCart()
@@ -126,6 +127,7 @@ export default function CheckoutPage() {
       price: Number(item.price) || 0,
       quantity: Number(item.quantity) || 1,
     }))
+    // TikTok InitiateCheckout event
     ttqTrack('InitiateCheckout', {
       value: Number(total) || 0,
       currency: 'CAD',
@@ -140,6 +142,19 @@ export default function CheckoutPage() {
         properties: { value: Number(total) || 0, currency: 'CAD', contents },
       }),
     }).catch(() => {})
+
+    // Meta Pixel InitiateCheckout event
+    fbqTrack('InitiateCheckout', {
+      content_ids: items.map(item => item.id),
+      content_type: 'product',
+      contents: items.map(item => ({
+        id: item.id,
+        quantity: item.quantity,
+        item_price: Number(item.price) || 0,
+      })),
+      value: Number(total) || 0,
+      currency: 'CAD',
+    })
   }, [])
 
   // Load Turnstile script
@@ -418,7 +433,9 @@ ${itemsList}
       quantity: Number(item.quantity) || 1,
     }))
     const ttUser = { email: formData.email, phone: formData.phone }
+    const fbUser = { email: formData.email, phone: formData.phone }
     ttqIdentify({ email: formData.email, phone: formData.phone })
+    fbqIdentify({ email: formData.email, phone: formData.phone })
 
     // AddPaymentInfo
     const apiEventId = `api_${Date.now()}`
@@ -433,6 +450,17 @@ ${itemsList}
         user: ttUser,
       }),
     }).catch(() => {})
+    fbqTrack('AddPaymentInfo', {
+      content_ids: items.map(item => item.id),
+      content_type: 'product',
+      contents: items.map(item => ({
+        id: item.id,
+        quantity: item.quantity,
+        item_price: Number(item.price) || 0,
+      })),
+      value: Number(total) || 0,
+      currency: 'CAD',
+    })
 
     // PlaceAnOrder
     const poEventId = `po_${Date.now()}`
@@ -447,6 +475,17 @@ ${itemsList}
         user: ttUser,
       }),
     }).catch(() => {})
+    fbqTrack('PlaceAnOrder', {
+      content_ids: items.map(item => item.id),
+      content_type: 'product',
+      contents: items.map(item => ({
+        id: item.id,
+        quantity: item.quantity,
+        item_price: Number(item.price) || 0,
+      })),
+      value: Number(total) || 0,
+      currency: 'CAD',
+    })
     
     // Generate unique Order ID
     const orderNumber = `PB${Date.now()}${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`

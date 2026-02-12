@@ -9,6 +9,7 @@ import Image from "next/image"
 import { useI18n } from "@/lib/i18n-context"
 import { getOrderByNumber, type OrderRecord } from "@/lib/orders"
 import { ttqTrack, ttqIdentify } from "@/lib/tiktok"
+import { fbqTrack, fbqIdentify } from "@/lib/meta"
 
 function getEstimatedDelivery(orderDate: string, isFr: boolean): string {
   const date = new Date(orderDate)
@@ -114,6 +115,7 @@ export default function OrderSuccess() {
                     price: Number(item.price) || 0,
                     quantity: Number(item.quantity) || 1,
                   }))
+                  // TikTok Purchase event
                   ttqIdentify({ email: orderData.email, phone: orderData.phone || '' })
                   ttqTrack('CompletePayment', {
                     value: Number(orderData.final_total) || 0,
@@ -136,6 +138,20 @@ export default function OrderSuccess() {
                       user: { email: orderData.email, phone: orderData.phone || '', external_id: latestOrderNumber },
                     }),
                   }).catch(() => {})
+
+                  // Meta Pixel Purchase event
+                  fbqIdentify({ email: orderData.email, phone: orderData.phone || '', external_id: latestOrderNumber })
+                  fbqTrack('Purchase', {
+                    content_ids: (orderData.items || []).map((item: any) => item.id),
+                    content_type: 'product',
+                    contents: (orderData.items || []).map((item: any) => ({
+                      id: item.id,
+                      quantity: item.quantity,
+                      item_price: Number(item.price) || 0,
+                    })),
+                    value: Number(orderData.final_total) || 0,
+                    currency: 'CAD',
+                  })
                   localStorage.setItem(ttPurchaseKey, 'true')
                 }
 

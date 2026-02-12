@@ -13,6 +13,7 @@ import ProductReviews from "@/components/product-reviews"
 import { useLocalizedProduct } from "@/lib/use-localized-product"
 import { useI18n } from "@/lib/i18n-context"
 import { ttqTrack } from "@/lib/tiktok"
+import { fbqTrack } from "@/lib/meta"
 
 interface ProductPageProps {
   params: Promise<{ id: string }>
@@ -48,6 +49,7 @@ export default function ProductPage({ params }: ProductPageProps) {
     if (!product) return
     const eventId = `vc_${id}_${Date.now()}`
     // Client-side pixel
+    // TikTok ViewContent event
     ttqTrack('ViewContent', {
       content_id: product.id,
       content_type: 'product',
@@ -56,7 +58,7 @@ export default function ProductPage({ params }: ProductPageProps) {
       value: Number(product.packages[0].pricePerUnit) || 0,
       currency: 'CAD',
     })
-    // Server-side event
+    // TikTok server-side event
     fetch('/api/tiktok-event', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -73,6 +75,16 @@ export default function ProductPage({ params }: ProductPageProps) {
         },
       }),
     }).catch(() => {})
+
+    // Meta Pixel ViewContent event
+    fbqTrack('ViewContent', {
+      content_ids: [product.id],
+      content_type: 'product',
+      content_name: product.name,
+      content_category: product.category,
+      value: Number(product.packages[0].pricePerUnit) || 0,
+      currency: 'CAD',
+    })
   }, [id])
 
   // Countdown timer
