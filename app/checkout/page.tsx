@@ -66,16 +66,13 @@ export default function CheckoutPage() {
   const formatPhoneNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, '')
     
-    // If user enters 10 digits, prepend 1
-    if (cleaned.length === 10) {
-      return `1 (${cleaned.slice(0, 3)})-${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`
-    }
+    // Always start with 1, then format the rest
+    const digits = cleaned.startsWith('1') ? cleaned.slice(1) : cleaned
+    const allDigits = '1' + digits
     
-    // Normal formatting for shorter numbers
-    if (cleaned.length === 0) return '1'
-    if (cleaned.length <= 3) return `1${cleaned}`
-    if (cleaned.length <= 6) return `1 (${cleaned.slice(0, 3)})-${cleaned.slice(3)}`
-    return `1 (${cleaned.slice(0, 3)})-${cleaned.slice(3, 6)}-${cleaned.slice(6, 9)}`
+    if (digits.length <= 3) return allDigits
+    if (digits.length <= 6) return `1 (${digits.slice(0, 3)})-${digits.slice(3)}`
+    return `1 (${digits.slice(0, 3)})-${digits.slice(3, 6)}-${digits.slice(6, 10)}`
   }
 
   // Format postal code as user types
