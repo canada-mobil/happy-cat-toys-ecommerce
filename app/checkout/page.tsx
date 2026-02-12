@@ -62,13 +62,12 @@ export default function CheckoutPage() {
     return phone.replace(/[^\d+]/g, '')
   }
 
-  // Format phone number as user types
+  // Format phone number as user types (no auto +1)
   const formatPhoneNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, '')
-    if (cleaned.length <= 1) return cleaned
-    if (cleaned.length <= 4) return `+1 (${cleaned.slice(1)}`
-    if (cleaned.length <= 7) return `+1 (${cleaned.slice(1, 4)})-${cleaned.slice(4)}`
-    return `+1 (${cleaned.slice(1, 4)})-${cleaned.slice(4, 7)}-${cleaned.slice(7, 11)}`
+    if (cleaned.length <= 3) return cleaned
+    if (cleaned.length <= 6) return `(${cleaned.slice(0, 3)})-${cleaned.slice(3)}`
+    return `(${cleaned.slice(0, 3)})-${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`
   }
 
   // Format postal code as user types
