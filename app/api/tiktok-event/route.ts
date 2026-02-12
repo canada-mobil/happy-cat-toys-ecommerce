@@ -31,7 +31,17 @@ export async function POST(req: NextRequest) {
           ...(user?.ttclid && { ttclid: user.ttclid }),
         },
       },
-      properties: properties || {},
+      properties: {
+        ...properties,
+        ...(properties?.value !== undefined && { value: Number(properties.value) || 0 }),
+        ...(properties?.contents && {
+          contents: properties.contents.map((c: any) => ({
+            ...c,
+            ...(c.price !== undefined && { price: Number(c.price) || 0 }),
+            ...(c.quantity !== undefined && { quantity: Number(c.quantity) || 1 }),
+          })),
+        }),
+      },
     }
 
     const res = await fetch('https://business-api.tiktok.com/open_api/v1.3/event/track/', {

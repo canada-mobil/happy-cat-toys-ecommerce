@@ -111,12 +111,12 @@ export default function OrderSuccess() {
                     content_id: item.id,
                     content_type: 'product',
                     content_name: item.name,
-                    price: item.price,
-                    quantity: item.quantity,
+                    price: Number(item.price) || 0,
+                    quantity: Number(item.quantity) || 1,
                   }))
                   ttqIdentify({ email: orderData.email, phone: orderData.phone || '' })
                   ttqTrack('CompletePayment', {
-                    value: orderData.final_total,
+                    value: Number(orderData.final_total) || 0,
                     currency: 'CAD',
                     content_type: 'product',
                     contents,
@@ -128,7 +128,7 @@ export default function OrderSuccess() {
                       event: 'CompletePayment',
                       event_id: `purchase_${latestOrderNumber}_${Date.now()}`,
                       properties: {
-                        value: orderData.final_total,
+                        value: Number(orderData.final_total) || 0,
                         currency: 'CAD',
                         content_type: 'product',
                         contents,

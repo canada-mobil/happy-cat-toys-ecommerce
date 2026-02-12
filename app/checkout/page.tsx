@@ -124,11 +124,11 @@ export default function CheckoutPage() {
       content_id: item.id,
       content_type: 'product',
       content_name: item.name,
-      price: item.price,
-      quantity: item.quantity,
+      price: Number(item.price) || 0,
+      quantity: Number(item.quantity) || 1,
     }))
     ttqTrack('InitiateCheckout', {
-      value: total,
+      value: Number(total) || 0,
       currency: 'CAD',
       contents,
     })
@@ -138,7 +138,7 @@ export default function CheckoutPage() {
       body: JSON.stringify({
         event: 'InitiateCheckout',
         event_id: eventId,
-        properties: { value: total, currency: 'CAD', contents },
+        properties: { value: Number(total) || 0, currency: 'CAD', contents },
       }),
     }).catch(() => {})
   }, [])
@@ -415,36 +415,36 @@ ${itemsList}
       content_id: item.id,
       content_type: 'product',
       content_name: item.name,
-      price: item.price,
-      quantity: item.quantity,
+      price: Number(item.price) || 0,
+      quantity: Number(item.quantity) || 1,
     }))
     const ttUser = { email: formData.email, phone: formData.phone }
     ttqIdentify({ email: formData.email, phone: formData.phone })
 
     // AddPaymentInfo
     const apiEventId = `api_${Date.now()}`
-    ttqTrack('AddPaymentInfo', { value: total, currency: 'CAD', contents })
+    ttqTrack('AddPaymentInfo', { value: Number(total) || 0, currency: 'CAD', contents })
     fetch('/api/tiktok-event', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         event: 'AddPaymentInfo',
         event_id: apiEventId,
-        properties: { value: total, currency: 'CAD', contents },
+        properties: { value: Number(total) || 0, currency: 'CAD', contents },
         user: ttUser,
       }),
     }).catch(() => {})
 
     // PlaceAnOrder
     const poEventId = `po_${Date.now()}`
-    ttqTrack('PlaceAnOrder', { value: total, currency: 'CAD', contents })
+    ttqTrack('PlaceAnOrder', { value: Number(total) || 0, currency: 'CAD', contents })
     fetch('/api/tiktok-event', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         event: 'PlaceAnOrder',
         event_id: poEventId,
-        properties: { value: total, currency: 'CAD', contents },
+        properties: { value: Number(total) || 0, currency: 'CAD', contents },
         user: ttUser,
       }),
     }).catch(() => {})

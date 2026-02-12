@@ -53,7 +53,7 @@ export default function ProductPage({ params }: ProductPageProps) {
       content_type: 'product',
       content_name: product.name,
       content_category: product.category,
-      value: product.packages[0].pricePerUnit,
+      value: Number(product.packages[0].pricePerUnit) || 0,
       currency: 'CAD',
     })
     // Server-side event
@@ -68,7 +68,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           content_type: 'product',
           content_name: product.name,
           content_category: product.category,
-          value: product.packages[0].pricePerUnit,
+          value: Number(product.packages[0].pricePerUnit) || 0,
           currency: 'CAD',
         },
       }),

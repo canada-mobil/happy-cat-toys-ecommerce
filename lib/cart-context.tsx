@@ -134,7 +134,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       content_id: product.id,
       content_type: 'product',
       content_name: product.name,
-      value: product.price,
+      value: Number(product.price) || 0,
       currency: 'CAD',
     })
     fetch('/api/tiktok-event', {
@@ -147,7 +147,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           content_id: product.id,
           content_type: 'product',
           content_name: product.name,
-          value: product.price,
+          value: Number(product.price) || 0,
           currency: 'CAD',
         },
       }),
