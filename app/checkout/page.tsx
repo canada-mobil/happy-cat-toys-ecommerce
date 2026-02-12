@@ -62,12 +62,20 @@ export default function CheckoutPage() {
     return phone.replace(/[^\d+]/g, '')
   }
 
-  // Format phone number as user types (no auto +1)
+  // Format phone number as user types (auto 1 at start)
   const formatPhoneNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, '')
-    if (cleaned.length <= 3) return cleaned
-    if (cleaned.length <= 6) return `(${cleaned.slice(0, 3)})-${cleaned.slice(3)}`
-    return `(${cleaned.slice(0, 3)})-${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`
+    
+    // If user enters 10 digits, prepend 1
+    if (cleaned.length === 10) {
+      return `1 (${cleaned.slice(0, 3)})-${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`
+    }
+    
+    // Normal formatting for shorter numbers
+    if (cleaned.length === 0) return '1'
+    if (cleaned.length <= 3) return `1${cleaned}`
+    if (cleaned.length <= 6) return `1 (${cleaned.slice(0, 3)})-${cleaned.slice(3)}`
+    return `1 (${cleaned.slice(0, 3)})-${cleaned.slice(3, 6)}-${cleaned.slice(6, 9)}`
   }
 
   // Format postal code as user types
