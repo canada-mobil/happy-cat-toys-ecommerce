@@ -8,6 +8,7 @@ import { ArrowLeft, Lock, CreditCard, Truck, Shield } from "lucide-react"
 import Footer from "@/components/footer"
 import { useI18n } from "@/lib/i18n-context"
 import { saveOrder } from "@/lib/orders"
+import { ttqTrack, ttqIdentify } from "@/lib/tiktok"
 
 export default function CheckoutPage() {
   const { items, total, shipping, clearCart } = useCart()
@@ -114,6 +115,33 @@ export default function CheckoutPage() {
       setFormData(prev => ({ ...prev, dateOfBirth: newDate }))
     }
   }
+
+  // TikTok InitiateCheckout event on page load
+  useEffect(() => {
+    if (items.length === 0) return
+    const eventId = `ic_${Date.now()}`
+    const contents = items.map(item => ({
+      content_id: item.id,
+      content_type: 'product',
+      content_name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+    }))
+    ttqTrack('InitiateCheckout', {
+      value: total,
+      currency: 'CAD',
+      contents,
+    })
+    fetch('/api/tiktok-event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: 'InitiateCheckout',
+        event_id: eventId,
+        properties: { value: total, currency: 'CAD', contents },
+      }),
+    }).catch(() => {})
+  }, [])
 
   // Load Turnstile script
   useEffect(() => {
@@ -381,6 +409,45 @@ ${itemsList}
     }
     
     setIsProcessing(true)
+
+    // TikTok: Identify user + AddPaymentInfo + PlaceAnOrder events
+    const contents = items.map(item => ({
+      content_id: item.id,
+      content_type: 'product',
+      content_name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+    }))
+    const ttUser = { email: formData.email, phone: formData.phone }
+    ttqIdentify({ email: formData.email, phone: formData.phone })
+
+    // AddPaymentInfo
+    const apiEventId = `api_${Date.now()}`
+    ttqTrack('AddPaymentInfo', { value: total, currency: 'CAD', contents })
+    fetch('/api/tiktok-event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: 'AddPaymentInfo',
+        event_id: apiEventId,
+        properties: { value: total, currency: 'CAD', contents },
+        user: ttUser,
+      }),
+    }).catch(() => {})
+
+    // PlaceAnOrder
+    const poEventId = `po_${Date.now()}`
+    ttqTrack('PlaceAnOrder', { value: total, currency: 'CAD', contents })
+    fetch('/api/tiktok-event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: 'PlaceAnOrder',
+        event_id: poEventId,
+        properties: { value: total, currency: 'CAD', contents },
+        user: ttUser,
+      }),
+    }).catch(() => {})
     
     // Generate unique Order ID
     const orderNumber = `PB${Date.now()}${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`

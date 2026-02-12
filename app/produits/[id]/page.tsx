@@ -12,6 +12,7 @@ import { useCart } from "@/lib/cart-context"
 import ProductReviews from "@/components/product-reviews"
 import { useLocalizedProduct } from "@/lib/use-localized-product"
 import { useI18n } from "@/lib/i18n-context"
+import { ttqTrack } from "@/lib/tiktok"
 
 interface ProductPageProps {
   params: Promise<{ id: string }>
@@ -41,6 +42,38 @@ export default function ProductPage({ params }: ProductPageProps) {
       })
       .catch(() => {})
   }, [])
+
+  // TikTok ViewContent event
+  useEffect(() => {
+    if (!product) return
+    const eventId = `vc_${id}_${Date.now()}`
+    // Client-side pixel
+    ttqTrack('ViewContent', {
+      content_id: product.id,
+      content_type: 'product',
+      content_name: product.name,
+      content_category: product.category,
+      value: product.packages[0].pricePerUnit,
+      currency: 'CAD',
+    })
+    // Server-side event
+    fetch('/api/tiktok-event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: 'ViewContent',
+        event_id: eventId,
+        properties: {
+          content_id: product.id,
+          content_type: 'product',
+          content_name: product.name,
+          content_category: product.category,
+          value: product.packages[0].pricePerUnit,
+          currency: 'CAD',
+        },
+      }),
+    }).catch(() => {})
+  }, [id])
 
   // Countdown timer
   const [timeLeft, setTimeLeft] = useState({ hours: 5, minutes: 56, seconds: 23 })

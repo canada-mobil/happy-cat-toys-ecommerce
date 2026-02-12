@@ -1,6 +1,7 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import { ttqTrack } from "@/lib/tiktok"
 
 interface CartItem {
   id: string
@@ -126,6 +127,31 @@ export function CartProvider({ children }: { children: ReactNode }) {
     
     // Auto-open cart when item is added
     setIsCartOpen(true)
+
+    // TikTok AddToCart event (client + server)
+    const eventId = `atc_${product.id}_${Date.now()}`
+    ttqTrack('AddToCart', {
+      content_id: product.id,
+      content_type: 'product',
+      content_name: product.name,
+      value: product.price,
+      currency: 'CAD',
+    })
+    fetch('/api/tiktok-event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: 'AddToCart',
+        event_id: eventId,
+        properties: {
+          content_id: product.id,
+          content_type: 'product',
+          content_name: product.name,
+          value: product.price,
+          currency: 'CAD',
+        },
+      }),
+    }).catch(() => {})
   }
 
   const openCart = () => setIsCartOpen(true)

@@ -8,6 +8,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useI18n } from "@/lib/i18n-context"
 import { getOrderByNumber, type OrderRecord } from "@/lib/orders"
+import { ttqTrack, ttqIdentify } from "@/lib/tiktok"
 
 function getEstimatedDelivery(orderDate: string, isFr: boolean): string {
   const date = new Date(orderDate)
@@ -102,6 +103,42 @@ export default function OrderSuccess() {
                   })
                 })
                 localStorage.setItem(emailSentKey, 'true')
+
+                // TikTok Purchase event (only once per order)
+                const ttPurchaseKey = `purrball-tt-purchase-${latestOrderNumber}`
+                if (!localStorage.getItem(ttPurchaseKey)) {
+                  const contents = (orderData.items || []).map((item: any) => ({
+                    content_id: item.id,
+                    content_type: 'product',
+                    content_name: item.name,
+                    price: item.price,
+                    quantity: item.quantity,
+                  }))
+                  ttqIdentify({ email: orderData.email, phone: orderData.phone || '' })
+                  ttqTrack('CompletePayment', {
+                    value: orderData.final_total,
+                    currency: 'CAD',
+                    content_type: 'product',
+                    contents,
+                  })
+                  fetch('/api/tiktok-event', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      event: 'CompletePayment',
+                      event_id: `purchase_${latestOrderNumber}_${Date.now()}`,
+                      properties: {
+                        value: orderData.final_total,
+                        currency: 'CAD',
+                        content_type: 'product',
+                        contents,
+                      },
+                      user: { email: orderData.email, phone: orderData.phone || '', external_id: latestOrderNumber },
+                    }),
+                  }).catch(() => {})
+                  localStorage.setItem(ttPurchaseKey, 'true')
+                }
+
                 // Update email_stage in Supabase so cron knows confirmation was sent
                 try {
                   const { supabase } = await import('@/lib/supabase')
