@@ -10,6 +10,17 @@ export default function HeroSection() {
     <>
       {/* Mobile: Full-screen GIF hero */}
       <section className="relative md:hidden w-full h-[100svh] overflow-hidden bg-neutral-900">
+        {/* Static poster for instant load */}
+        <div className="absolute inset-0 bg-neutral-900">
+          <Image
+            src="https://res.cloudinary.com/dhhdhilja/image/upload/q_auto,w_800,f_webp/v1770517604/purrball/Section2_-_Featured_Cat_Toy.jpg.webp"
+            alt="Smart Interactive Cat Ball"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        {/* Lazy GIF that loads after */}
         <Image
           src="/Section7-3_Interactive_Modes.gif"
           alt="Smart Interactive Cat Ball"
@@ -17,6 +28,11 @@ export default function HeroSection() {
           className="object-cover"
           priority
           unoptimized
+          onLoad={(e) => {
+            // Hide poster when GIF loads
+            const poster = e.currentTarget.parentElement?.querySelector('div')
+            if (poster) poster.style.display = 'none'
+          }}
         />
 
         {/* Dark gradient overlay */}
