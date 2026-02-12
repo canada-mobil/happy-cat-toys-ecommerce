@@ -62,17 +62,10 @@ export default function CheckoutPage() {
     return phone.replace(/[^\d+]/g, '')
   }
 
-  // Format phone number as user types (auto 1 at start)
+  // Format phone number as user types (no auto +1 prefix)
   const formatPhoneNumber = (value: string) => {
-    const cleaned = value.replace(/\D/g, '')
-    
-    // Always start with 1, then format the rest
-    const digits = cleaned.startsWith('1') ? cleaned.slice(1) : cleaned
-    const allDigits = '1' + digits
-    
-    if (digits.length <= 3) return allDigits
-    if (digits.length <= 6) return `1 (${digits.slice(0, 3)})-${digits.slice(3)}`
-    return `1 (${digits.slice(0, 3)})-${digits.slice(3, 6)}-${digits.slice(6, 10)}`
+    // Just remove non-digit characters, keep everything else as-is
+    return value.replace(/[^\d]/g, '')
   }
 
   // Format postal code as user types
@@ -768,7 +761,7 @@ ${itemsList}
                   value={formData.phone}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 text-sm"
-                  placeholder="+1 (438)-438-4394"
+                  placeholder="5144394839"
                   maxLength={17}
                   required
                 />
